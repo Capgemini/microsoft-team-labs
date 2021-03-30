@@ -14,7 +14,7 @@ The first scenario in this lab will involve verifying that a basic user can view
 Right click the “Features” folder in the project and create a new SpecFlow Feature file named Manage A Contact.feature.
 
 
-![alt_text](../attachments/simple-scenarios/image1.png "image_tooltip")
+![alt_text](/.attachments/simple-scenarios/image1.png "image_tooltip")
 
 
 Once created, specify the Feature name within the file as “Manage A Contact”. Next comes the definition of a particular scenario for the feature. In this example we will be defining the “Basic user views contact information” scenario. Scenario names we recommend follow a naming convention of &lt;Persona> &lt;Verb> &lt;Object>. With this scenario you can see this as &lt;Basic User> &lt;views> &lt;the contact forms>. Below is a table giving a brief overview of this.
@@ -109,7 +109,7 @@ When it comes to organising your test scenarios the general recommendation we wo
 
 
 
-![alt_text](../attachments/simple-scenarios/image2.png "image_tooltip")
+![alt_text](/.attachments/simple-scenarios/image2.png "image_tooltip")
 
 
 In this case the user story is covering a scenario that fits inside the ‘Manage A Contact’ feature so we would simply add a new scenario into that feature file. For more best practice conventions you can read [this blog.](https://specflow.org/blog/gherkin-conventions-for-readable-specifications/)
@@ -285,7 +285,7 @@ This exercise will cover automatic creation of test data, to ensure that the run
 Create a folder named “Data” in the root of the test project and add a new json file within the folder named “a contact.json”.
 
 
-![alt_text](../attachments/simple-scenarios/image3.png "image_tooltip")
+![alt_text](/.attachments/simple-scenarios/image3.png "image_tooltip")
 
 
 Open the newly created json file and add the following information
@@ -304,7 +304,7 @@ Open the newly created json file and add the following information
 The above json specifies that a contact record will be created with the name of “Tom Jones”. The @alias value is used to reference this record in feature or other json files. Ensure that the json file properties in your data folder are set to “Copy if Newer” or “Copy Always”.
 
 
-![alt_text](../attachments/simple-scenarios/image4.png "image_tooltip")
+![alt_text](/.attachments/simple-scenarios/image4.png "image_tooltip")
 
 
 The next step is to add a step in the feature file to create this contact record. Now attempt to find an appropriate step in the Capgemini Bindings via IntelliSense or [GitHub repository](https://github.com/Capgemini/powerapps-specflow-bindings/tree/master/bindings/src/Capgemini.PowerApps.SpecFlowBindings/Steps) for each of the below lines in the sample user story.
