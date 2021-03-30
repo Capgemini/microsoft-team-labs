@@ -1,3 +1,13 @@
+Summary: A lab to learn the foundations of what ALM is and the tools we use.
+URL: /CodeLabs/
+Category: ALM
+Environment: Web
+Status: Draft
+Feedback Link: 
+Analytics Account:
+Authors: Tom Ashworth and Luke Philips
+Id: alm-introduction
+
 # Introduction to ALM
 
 ## Why this is important
@@ -13,7 +23,7 @@ Our goal is for the whole team to be able to setup and configure these tools for
 ### What is ALM?
 ALM (Application Lifecycle Management) tools provide a standardised system for communication and collaboration between software development teams and related departments, such as test and operations. These tools can also automate the process of software development and delivery. To that end, ALM combines the disciplines concerned with all aspects of the process to achieve the goal of driving efficiency through predictable and repeatable software delivery.
 
-![image.png](/.attachments/image-3a2f511f-0e68-42e0-b5e2-be0b20c059ab.png)
+![image.png](.attachments/image-3a2f511f-0e68-42e0-b5e2-be0b20c059ab.png)
 
 ALM includes these disciplines: 
 - requirements management
@@ -45,7 +55,7 @@ We as a team are keen to have people skilled in both development and operations 
 For further reading on DevOps please visit [here](https://azure.microsoft.com/en-gb/overview/what-is-devops/)
 
 ## Tooling
-![MicrosoftTeams-image (2).png](/.attachments/MicrosoftTeams-image%20(2)-d7dc9ac6-36f2-4935-af5e-5ab899c405c6.png)
+![MicrosoftTeams-image (2).png](.attachments/MicrosoftTeams-image%20(2)-d7dc9ac6-36f2-4935-af5e-5ab899c405c6.png)
 
 ### Azure DevOps
 Azure DevOps (ADO) is a Software as a service (SaaS - meaning you pay a subscription fee for the provider to host, in this case Microsoft) platform from Microsoft that provides an end-to-end DevOps toolchain for developing and deploying software.

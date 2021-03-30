@@ -1,3 +1,13 @@
+Summary: A lab to learn how to use Development Hub from creating a issue to seeing the change in CI.
+URL: /CodeLabs/
+Category: ALM
+Environment: Web
+Status: Draft
+Feedback Link: 
+Analytics Account:
+Authors: Tom Ashworth and Luke Philips
+Id: alm-development-hub-usage
+
 ## Tutorial - Development Hub usage
 This lab will take you through the functionality of Development Hub and it's usage.
 
@@ -16,7 +26,7 @@ An Issue record must be created to begin working on a new feature or bug fix.
 | Azure DevOps | Work Item ID | 10001 | Used to link the commit to the correct Work Item in Azure DevOps |
 4. Click 'Save'
 
-![issue.png](/.attachments/issue-6be7dea5-eef6-49bf-b422-878a20652e62.png)
+![issue.png](/../.attachments/issue-6be7dea5-eef6-49bf-b422-878a20652e62.png)
 
 ### Develop the solution to the issue, make a change
 ### Request a merge
