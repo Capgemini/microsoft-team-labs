@@ -1,7 +1,16 @@
+Summary: A lab to generate a project structure to be used as part of our development workflow.
+URL: /CodeLabs/
+Category: ALM
+Environment: Web
+Status: Draft
+Feedback Link:
+Analytics Account:
+Authors: Tom Ashworth and Luke Phillips
+id: powerapps-project-generator
+
 # Generate a new project
 
 ## Introduction
-
 
 ### What you will build
 In this tutorial, you will generate a set of files files for a new project based on a standardised template that will :
@@ -135,13 +144,23 @@ Open Azure DevOps, select **User settings** (user icon with a little cog) and se
 
 ![image.png](/.attachments/image-6ae83cd8-db1d-4052-8338-4a39c7017c17.png)
 
-Select **+ New Token** then enter 'Generator' as the name, select an expiry date of today or tomorrow, and for scopes select Full Access. 
+Select **+ New Token** then enter the following values:
 
 ![image.png](/.attachments/image-abd8861e-bd89-46f7-9988-dc002365f739.png)
 
+| Field | Value |
+|--|--|
+| Name | Generator |
+| Orgnization | Ensure your current Azure DevOps organisation is selected |
+| Expiration (UTC) | select an expiry date of tomorrow |
+| Scopes | Full access |
+
+<br>
+
 ![image.png](/.attachments/image-2639a112-f68f-4850-a14f-e4e0b6e2e4f5.png)
 
-Copy the token to notepad as you'll need this later. 
+Negative:
+**Important:** Copy the token to notepad as you'll need this later. 
 
 <p style="background: #FF4400;">
 If Package Name and Azure DevOps Project name are the same then the generator will fail. In this case, rename the pre-created repo in Azure Devops by: 
@@ -150,13 +169,13 @@ If Package Name and Azure DevOps Project name are the same then the generator wi
 3. For the repo with the same name, use the three dots to rename the repo to '[existing name]_old'
 </p>
 
-Now you are going to set up Azure DevOps by running `yo @capgemini/cdspackage:azuredevops`. You'll be asked the following questions:
+Now you are going to set up Azure DevOps by running `yo @capgemini/cdspackage:azuredevops`. You'll be prompted for the following inputs, after entering the value for each one, press **Enter**:
 
 | Input | Purpose | Example |
 |--|--|--|
 | Azure DevOps URL? | The URL of the Azure DevOps Organisation | https://dev.azure.com/cap-alm-lab |
-| Azure DevOps Auth Token (managed)?| Paste in the PAC token generated before | *** |
-| Azure DevOps project? | Select your project from the dropdown options | ALMLab |
+| Azure DevOps Auth Token (managed)?| Paste in the PAT generated before | *** |
+| Azure DevOps project? | Select your project from the dropdown options by using the down arrow | ALMLab |
 | Name of the client? | Used within naming files and folders produced by the generator | MACE |
 | Name of the package? | Used creating files, folders and PowerApps solutions, entered in the above **Generate solution** step. The command prompt will recognise your previously entered value and suggest the value which you can accept as a default by pressing enter | ALMLAB |
 | CI Environment URL? | The URL of the CI environment used for the solution checker and deploying to CI environment | https://[???].crm11.dynamics.com |
