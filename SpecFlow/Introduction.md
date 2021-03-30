@@ -16,8 +16,12 @@ The aim of this lab and the subsequent labs that you will find a lot of the info
 Some links you might find useful throughout these exercises are as follows:
 
 Easyrepro: https://github.com/microsoft/EasyRepro
+
+
 PowerApps Specflow Bindings: https://github.com/Capgemini/powerapps-specflow-bindings
+
 Specflow: https://docs.specflow.org/en/latest/
+
 Selenium: https://www.selenium.dev/documentation/en/
 
 # What Is Automated Acceptance Testing?
