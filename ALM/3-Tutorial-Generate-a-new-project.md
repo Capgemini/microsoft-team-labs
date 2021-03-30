@@ -14,13 +14,10 @@ id: powerapps-project-generator
 
 ### What you will build
 In this tutorial, you will generate a set of files files for a new project based on a standardised template that will :
-- Generates a set of structured files that hold the base configuration for a new project which is uploaded (pushed) to a new repository in Azure DevOps
+- To create a source repository to store your development changes
 - Create pipelines which builds, validates and deploys code to specified environments
 - Can also generate additional files during the project lifecycle as the solution grows
-- Generate project itself - CMD
-- Generating a solution storage place
-- Install as unmanaged in <Project Name>Master environment
-- Install that solution as managed into the 'build' environment
+- Create unmanaged solutions in <Project Name>Master environment
 - Using the ADO generator to create the pipelines etc - inputs and outputs
 - Setup branch policies and repo permissions
 
@@ -33,9 +30,11 @@ To achieve this, you'll use our internal tool, [Project Generator](https://githu
 
 
 ## Download and install NodeJS & NPM
-- Open the [NodeJS](https://nodejs.org/) website
-- Download the latest LTS version
-- Run the downloaded installer
+Open the [NodeJS](https://nodejs.org/) website
+
+Download the latest LTS version
+
+Run the downloaded installer
 
 ## Clone tool
 First you will need to create a new directory in windows explorer where will install all our project files in this lab. Call the folder **alm-labs** for the purpose of this lab.
@@ -135,6 +134,9 @@ Enter `y` and press **Enter**
 <br>
 Enter `y` and press **Enter**
 
+## Create unmanaged solution in Master environment
+
+
 ## Run automated Azure DevOps setup
 
 
@@ -161,13 +163,11 @@ Select **+ New Token** then enter the following values:
 
 Negative:
 **Important:** Copy the token to notepad as you'll need this later. 
-
-<p style="background: #FF4400;">
+<br>
 If Package Name and Azure DevOps Project name are the same then the generator will fail. In this case, rename the pre-created repo in Azure Devops by: 
 1. Go to the Project Settings
 2. Under Repos, select Repositories
 3. For the repo with the same name, use the three dots to rename the repo to '[existing name]_old'
-</p>
 
 Now you are going to set up Azure DevOps by running `yo @capgemini/cdspackage:azuredevops`. You'll be prompted for the following inputs, after entering the value for each one, press **Enter**:
 
@@ -210,16 +210,35 @@ Done.
 
 ## Set up Branch Policies
 
-Within Azure DevOps navigation to 'Project Settings' then under 'Repos', select 'Repositories'. 
+Within Azure DevOps navigate to **Project Settings** then under **Repos**, select **Repositories**. 
 
 ![image.png](/.attachments/image-b7df5a4a-9f6b-4bdf-b76a-a2052afd8134.png)
 
-Now select your repository called the package name you gave and click on the 'Policies' tab. Under 'Branch Policy' select 'master'.
+Now select your repository called the package name you gave and select the **Policies** tab. Under **Branch Policy** select **master**.
 
 ![image.png](/.attachments/image-c45030e4-3576-4b5c-b4aa-e28e571ce714.png)
 
-Configure the settings as pictured below:
+Turn on:
+- **Require a mininum number of reviewers**
+<br>
+Configure the settings as dsecribed below:
+
+  | Field | Value |
+  |---|---|
+  | Minimum number of reviewers | 2 |
+  | Allow requestors to approve their own changes | Unchecked |
+  | Prohibit the most recent pusher from approving their own changes | Unchecked |
+  | Allow completion even if some reviewers vote to wait or reject | Unchecked |
+  | When new changes are pushed: | Reset all code reviewer votes |
+
+- **Check for linked work items** ensuring **Required** is selected.
+
+- Turn on **Check for comment resolutions** ensuring **Required** is selected.
+
+- Turn on **Limit merge types** ensuring only **Squash merge** is checked.
 
 ![image.png](/.attachments/image-5f3d8f5f-4bb8-49cf-bec1-4aceaadfe134.png)
+
+
 
 ![image.png](/.attachments/image-14f533f8-799f-4780-815e-f01c0db42c5b.png)
