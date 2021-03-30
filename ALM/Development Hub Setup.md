@@ -6,13 +6,15 @@ Status: Draft
 Feedback Link: 
 Analytics Account:
 Authors: Tom Ashworth and Luke Philips
+Id: alm-development-hub-setup
 
-# Introduction
+# How to setup Development Hub
+## Introduction
 In this lab, you will install and configure Development Hub in your newly created Development environment which should take approximately 10-15 minutes. Development Hub was developed by a member of our team to support a team's development workflow by extracting an individual's changes to the Master environment then the entire package into source control. This approach avoids taking other developers unfinished changes while working in a shared environment. 
 
 To learn more, explore the projects [GitHub repository](https://github.com/ewingjm/development-hub) and release [blog post](https://medium.com/capgemini-microsoft-team/continuous-integration-for-power-apps-the-development-hub-7f1b4320ecfd?source=friends_link&sk=c5034f278e70bfd9aa2dce502dd490d9).
 
-## What you will do
+### What you will do
 - Create some flow connections in maker portal - Added
 - Install development package into the development environment - Added
 - Requires ADO org
@@ -23,11 +25,10 @@ To learn more, explore the projects [GitHub repository](https://github.com/ewing
 - Register a master environment - Added
 - Register a solution - Added
 
-## Prerequisites 
+### Prerequisites 
 - At least two Power Platform Environments (with databases and system administration access)
 - An already setup Azure DevOps Project (see [Tutorial - Generate a new project]())
 
-# Steps
 ## Create Flow Connections
 Development Hub utilises two data connections, Approvals and Azure DevOps, which need to be first created before you can install the package.
 
@@ -37,11 +38,11 @@ Click the following link to open the Power Apps Maker Portal:
 
 First, check you are within your Development Environment which is displayed at the top left of the page. If you aren't, select the environment name and then your Development Environment. 
 
-![image.png](/../.attachments/image-cadcf1c1-f71c-40d1-9d5d-305079378c5d.png)
+![image.png](/.attachments/image-cadcf1c1-f71c-40d1-9d5d-305079378c5d.png)
 
 Next, use the left-hand side navigation and select 'Data' then 'Connections'.
 
-![image.png](/../.attachments/image-ee25d480-d6cf-4b3a-8553-300c0addebe2.png)
+![image.png](/.attachments/image-ee25d480-d6cf-4b3a-8553-300c0addebe2.png)
 
 Now click 'New Connection' and search for 'Approvals' if you don't see it in the list. Click the plus button next to it then 'Create' in the open dialog.
 
@@ -49,12 +50,11 @@ Once successful, repeat the last step and search for 'Azure DevOps'. This connec
 
 You will know you are successful if the Connection name has the expected email address.
 
-![image.png](/../.attachments/image-7bd548d2-515a-4c0a-bcab-d607f2ff70af.png)
+![image.png](/.attachments/image-7bd548d2-515a-4c0a-bcab-d607f2ff70af.png)
 
 In the next step, you'll need the Connection IDs which can be retrieved by opening up each Connection and copying the `connectionid` segment from the URL.
 
 `environments/{environmentid}/connections/{apiname}/{connectionid}/details`.
-
 
 
 
@@ -102,19 +102,19 @@ Import-CrmPackage -CrmConnection $conn -PackageDirectory 'C:\Users\tashwort\Down
 
 Open a PowerShell command prompt as an administrator. 
 
-![image.png](/../.attachments/image-d9b37313-a44f-4609-af4c-fcc1950f7785.png)
+![image.png](/.attachments/image-d9b37313-a44f-4609-af4c-fcc1950f7785.png)
 
 Copy your updated PowerShell script and paste it in the PowerShell command prompt. Press enter to run. 
 
 You'll be first asked to sign in. Select 'Display list of organisations' then 'Login'.
 
-![image.png](/../.attachments/image-3fa935a6-7e3d-45d2-b745-d7c0e984b9c8.png)
+![image.png](/.attachments/image-3fa935a6-7e3d-45d2-b745-d7c0e984b9c8.png)
 
 Enter your account details in the login prompt. (It is sometimes hidden behind the window)
 
 Select your development environment then 'Login'
 
-![image.png](/../.attachments/image-28228aca-5e24-4d9f-91a8-e6502beef000.png)
+![image.png](/.attachments/image-28228aca-5e24-4d9f-91a8-e6502beef000.png)
 
 Wait for the install to complete with a successful result then close the PowerShell window.
 
