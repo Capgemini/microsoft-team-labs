@@ -1,95 +1,11 @@
-<!-----
-NEW: Check the "Suppress top comment" option to remove this info from the output.
-
-Conversion time: 1.812 seconds.
-
-
-Using this Markdown file:
-
-1. Paste this output into your source file.
-2. See the notes and action items below regarding this conversion run.
-3. Check the rendered output (headings, lists, code blocks, tables) for proper
-   formatting and use a linkchecker before you publish this page.
-
-Conversion notes:
-
-* Docs to Markdown version 1.0β29
-* Tue Mar 30 2021 06:30:12 GMT-0700 (PDT)
-* Source doc: Writing Simple Scenarios MD
-* Tables are currently converted to HTML tables.
-* This document has images: check for >>>>>  gd2md-html alert:  inline image link in generated source and store images to your server. NOTE: Images in exported zip file from Google Docs may not appear in  the same order as they do in your doc. Please check the images!
-
-
-WARNING:
-You have 9 H1 headings. You may want to use the "H1 -> H2" option to demote all headings by one level.
-
------>
-
-
-<p style="color: red; font-weight: bold">>>>>>  gd2md-html alert:  ERRORs: 0; WARNINGs: 1; ALERTS: 4.</p>
-<ul style="color: red; font-weight: bold"><li>See top comment block for details on ERRORs and WARNINGs. <li>In the converted Markdown or HTML, search for inline alerts that start with >>>>>  gd2md-html alert:  for specific instances that need correction.</ul>
-
-<p style="color: red; font-weight: bold">Links to alert messages:</p><a href="#gdcalert1">alert1</a>
-<a href="#gdcalert2">alert2</a>
-<a href="#gdcalert3">alert3</a>
-<a href="#gdcalert4">alert4</a>
-
-<p style="color: red; font-weight: bold">>>>>> PLEASE check and correct alert issues and delete this message and the inline alerts.<hr></p>
-
-
-
-<table>
-  <tr>
-   <td>Summary
-   </td>
-   <td>A lab to set up a new automated UI testing project using EasyRepro
-   </td>
-  </tr>
-  <tr>
-   <td>URL
-   </td>
-   <td>/CodeLabs/
-   </td>
-  </tr>
-  <tr>
-   <td>Category
-   </td>
-   <td>Automated Testing
-   </td>
-  </tr>
-  <tr>
-   <td>Environment
-   </td>
-   <td>Web
-   </td>
-  </tr>
-  <tr>
-   <td>Status
-   </td>
-   <td>Draft
-   </td>
-  </tr>
-  <tr>
-   <td>Feedback Link
-   </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
-   <td>Analytics Account
-   </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
-   <td>Authors
-   </td>
-   <td>Zoe Dawson and Matthew Hoy
-   </td>
-  </tr>
-</table>
-
-
+Summary: A lab to create and explore basic scenarios using existing bindings.
+URL: /CodeLabs/
+Category: Automated Testing
+Environment: Web
+Status: Draft
+Feedback Link: 
+Analytics Account:
+Authors: Zoe Dawson and Matthew Hoy
 
 # Using Capgemini Bindings - Exercise 1 - Key Steps
 
@@ -98,11 +14,7 @@ The first scenario in this lab will involve verifying that a basic user can view
 Right click the “Features” folder in the project and create a new SpecFlow Feature file named Manage A Contact.feature.
 
 
-
-<p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image1.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image1.png "image_tooltip")
+![alt_text](../attachments/simple-scenarios/image1.png "image_tooltip")
 
 
 Once created, specify the Feature name within the file as “Manage A Contact”. Next comes the definition of a particular scenario for the feature. In this example we will be defining the “Basic user views contact information” scenario. Scenario names we recommend follow a naming convention of &lt;Persona> &lt;Verb> &lt;Object>. With this scenario you can see this as &lt;Basic User> &lt;views> &lt;the contact forms>. Below is a table giving a brief overview of this.
@@ -197,10 +109,7 @@ When it comes to organising your test scenarios the general recommendation we wo
 
 
 
-<p id="gdcalert2" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image2.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert3">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image2.png "image_tooltip")
+![alt_text](../attachments/simple-scenarios/image2.png "image_tooltip")
 
 
 In this case the user story is covering a scenario that fits inside the ‘Manage A Contact’ feature so we would simply add a new scenario into that feature file. For more best practice conventions you can read [this blog.](https://specflow.org/blog/gherkin-conventions-for-readable-specifications/)
@@ -376,11 +285,7 @@ This exercise will cover automatic creation of test data, to ensure that the run
 Create a folder named “Data” in the root of the test project and add a new json file within the folder named “a contact.json”.
 
 
-
-<p id="gdcalert3" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image3.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert4">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image3.png "image_tooltip")
+![alt_text](../attachments/simple-scenarios/image3.png "image_tooltip")
 
 
 Open the newly created json file and add the following information
@@ -399,11 +304,7 @@ Open the newly created json file and add the following information
 The above json specifies that a contact record will be created with the name of “Tom Jones”. The @alias value is used to reference this record in feature or other json files. Ensure that the json file properties in your data folder are set to “Copy if Newer” or “Copy Always”.
 
 
-
-<p id="gdcalert4" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image4.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert5">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image4.png "image_tooltip")
+![alt_text](../attachments/simple-scenarios/image4.png "image_tooltip")
 
 
 The next step is to add a step in the feature file to create this contact record. Now attempt to find an appropriate step in the Capgemini Bindings via IntelliSense or [GitHub repository](https://github.com/Capgemini/powerapps-specflow-bindings/tree/master/bindings/src/Capgemini.PowerApps.SpecFlowBindings/Steps) for each of the below lines in the sample user story.
