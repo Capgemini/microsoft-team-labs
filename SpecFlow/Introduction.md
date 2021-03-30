@@ -8,8 +8,17 @@ Analytics Account:
 Authors: Zoe Dawson and Matthew Hoy
 id: Introduction
 
+
 # Introduction
 
+The aim of this lab and the subsequent labs that you will find a lot of the information you will need to get started with creating an automated test project using PowerApps SpecFlow Bindings along with some guidance on best practices and recommended approaches.
+
+Some links you might find useful throughout these exercises are as follows:
+
+Easyrepro: https://github.com/microsoft/EasyRepro
+PowerApps Specflow Bindings: https://github.com/Capgemini/powerapps-specflow-bindings
+Specflow: https://docs.specflow.org/en/latest/
+Selenium: https://www.selenium.dev/documentation/en/
 
 # What Is Automated Acceptance Testing?
 
@@ -99,6 +108,8 @@ Then The "Followup Call" field contains a value of "3/1/1970"
 
 
 Here you can see how using this shared, behaviour driven approach to defining requirements has resulted in a clear and easy to understand user requirement that can be easily adapted into an automated test with minimal effort from the tester.
+
+For more information on BDD and how we integrate this into our projects you can read the docuementation [here](https://capgeminiuk.visualstudio.com/Microsoft%20Community/_wiki/wikis/Microsoft-Community.wiki/839/Create-and-Sign-Off-Detailed-User-Stories).
 
 
 # What is Power Apps Specflow Bindings?
