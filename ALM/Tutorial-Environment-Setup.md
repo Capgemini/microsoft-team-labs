@@ -1,3 +1,12 @@
+Summary: A lab to setup the Power Platform environments and Azure DevOps.
+URL: /CodeLabs/
+Category: ALM
+Environment: Web
+Status: Draft
+Feedback Link: 
+Analytics Account:
+Authors: Tom Ashworth and Luke Philips
+
 # Environment Setup
 
 ##Introduction
@@ -25,11 +34,11 @@ Open [Power Platform Build Tools](https://marketplace.visualstudio.com/items?ite
 
 Select **Get it free**
 
-![MicrosoftTeams-image (8).png](/.attachments/MicrosoftTeams-image%20(8)-fbf9c5b5-c9b5-4441-bef1-22cd5d5aa941.png)
+![MicrosoftTeams-image (8).png](/../.attachments/MicrosoftTeams-image%20(8)-fbf9c5b5-c9b5-4441-bef1-22cd5d5aa941.png)
 
 You'll then be prompted to **Select an Azure DevOps organization**. Select your Azure DevOps organisation and select **Request**
 
-![MicrosoftTeams-image (9).png](/.attachments/MicrosoftTeams-image%20(9)-e5996451-c431-4439-86e5-fadafa1320fa.png)
+![MicrosoftTeams-image (9).png](/../.attachments/MicrosoftTeams-image%20(9)-e5996451-c431-4439-86e5-fadafa1320fa.png)
 
 Repeat this step for [Sarif Viewer Build Tab](https://marketplace.visualstudio.com/items?itemName=sariftools.sarif-viewer-build-tab)
 
@@ -89,7 +98,7 @@ From the left panel, choose **Azure Active Directory** > **App registrations**
 
 Choose **+ New registration**
 
-![MicrosoftTeams-image (6).png](/.attachments/MicrosoftTeams-image%20(6)-66ad8683-81d7-4af6-9a1b-4610b66e889c.png)
+![MicrosoftTeams-image (6).png](/../.attachments/MicrosoftTeams-image%20(6)-66ad8683-81d7-4af6-9a1b-4610b66e889c.png)
 
 In the **Register an application form** provide a name for your app such as **DevOps User**, select **Accounts in this organizational directory only**, and choose **Register**. A redirect URI is not needed for this walkthrough and the provided sample code.
 
@@ -98,7 +107,7 @@ In the **Register an application form** provide a name for your app such as **De
 On the **Overview** page, select **API permissions**
 
 Choose **+ Add a permission**
-![MicrosoftTeams-image (7).png](/.attachments/MicrosoftTeams-image%20(7)-2b48a06c-02e5-4a5e-99ee-8220079cb641.png)
+![MicrosoftTeams-image (7).png](/../.attachments/MicrosoftTeams-image%20(7)-2b48a06c-02e5-4a5e-99ee-8220079cb641.png)
 
 In the **Microsoft APIs** tab, **choose Dynamics CRM**
 
@@ -112,7 +121,7 @@ On the **API permissions** page select **Grant admin consent for "org-name"** an
 
 Important: Select **Overview** in the navigation panel, record the **Display name**, **Application (client) ID**, and **Directory (tenant) ID** values of the app registration. You will use these later in the lab.
 
-![MicrosoftTeams-image (4).png](/.attachments/MicrosoftTeams-image%20(4)-594fccc7-a353-406b-b0d9-388233c5ccdd.png)
+![MicrosoftTeams-image (4).png](/../.attachments/MicrosoftTeams-image%20(4)-594fccc7-a353-406b-b0d9-388233c5ccdd.png)
 
 In the navigation panel, select **Certificates & secrets**
 
@@ -128,35 +137,35 @@ Open the **[Maker Portal](https://make.powerapps.com/)**.
 
 Select the current environment (in the screenshot this is 'CSD - PP - Development') in the banner on the top right-hand side of the page and choose your Dataverse environment
 
-![image.png](/.attachments/image-ededabb0-f107-454b-b1f2-ac4c5a282d5f.png)
+![image.png](/../.attachments/image-ededabb0-f107-454b-b1f2-ac4c5a282d5f.png)
 
 Once you're in the right environment, choose the **cog icon for Settings** and select **Advanced settings**
 
-![image.png](/.attachments/image-93467f1b-2eac-4a1c-9f74-b4f764dd2286.png)
+![image.png](/../.attachments/image-93467f1b-2eac-4a1c-9f74-b4f764dd2286.png)
 
 Navigate to **Settings** > **Security** > **Users**.
 
 Change the view filter to **Application Users** by selecting **Enabled Users** and choosing **Application Users**
 
-![image.png](/.attachments/image-dcc98e54-7a2a-4e0b-a701-4b3270daaca8.png)
+![image.png](/../.attachments/image-dcc98e54-7a2a-4e0b-a701-4b3270daaca8.png)
 
 Select **+ New**.
 
-![image.png](/.attachments/image-7a12ce98-721b-4856-95ae-edd9075553b9.png)
+![image.png](/../.attachments/image-7a12ce98-721b-4856-95ae-edd9075553b9.png)
 
 Change the Dynamics form by selecting **User** and choosing **Application User**
-![image.png](/.attachments/image-c470dd4b-f6ed-43bb-bb37-d6cc46380f38.png)
+![image.png](/../.attachments/image-c470dd4b-f6ed-43bb-bb37-d6cc46380f38.png)
 
 In the **Application ID** field, enter the **Application ID (Client ID)** of the app you registered earlier in Azure Active Directory which you also copied to a notepad and select **SAVE**
 <IMG  src="https://docs.microsoft.com/en-us/powerapps/developer/data-platform/media/s2s-new-appuser1.png"  alt="New app user"/>
 
 After selecting **SAVE**, if all goes well, the **User Name**, **Application ID URI**, **Azure AD Object Id**, **Full Name**, and **Primary Email** fields will auto-populate with correct values
 
-![image.png](/.attachments/image-ac89d4ae-3604-4869-a638-5fdaaac9f661.png)
+![image.png](/../.attachments/image-ac89d4ae-3604-4869-a638-5fdaaac9f661.png)
 
 Before exiting the user form, choose **MANAGE ROLES** and assign the System Administrator security role.
 
-![image.png](/.attachments/image-8dfe7b73-e27d-4f24-98fa-5e9afc226ae3.png)
+![image.png](/../.attachments/image-8dfe7b73-e27d-4f24-98fa-5e9afc226ae3.png)
 
 Click **OK**
 

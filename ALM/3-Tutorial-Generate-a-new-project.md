@@ -41,10 +41,10 @@ To achieve this, you'll use our internal tool, [Project Generator](https://githu
 First you will need to create a new directory in windows explorer where will install all our project files in this lab. Call the folder **alm-labs** for the purpose of this lab.
 
 Open CMD within your newly created folder by typing CMD in **Windows explorer** and press **Enter**
-![image.png](/.attachments/image-3f67ef89-b190-42ff-8638-73c82d1c1c2e.png)
+![image.png](/../.attachments/image-3f67ef89-b190-42ff-8638-73c82d1c1c2e.png)
 
 A new command prompt window should open with the path pointing to your newly created folder.
-![image.png](/.attachments/image-87e8c70b-6b29-4e85-a42f-99d9a4d355e3.png)
+![image.png](/../.attachments/image-87e8c70b-6b29-4e85-a42f-99d9a4d355e3.png)
 
 All commands throughout the lab will be entered in **Command prompt**
 
@@ -97,7 +97,7 @@ Open the generated project in either VS Code or the file explorer and take this 
 
 To open your project in VS Code from command prompt run `code .`
 
-![image.png](/.attachments/image-3c5c0eb2-7cd2-4514-87b8-b54428a09136.png)
+![image.png](/../.attachments/image-3c5c0eb2-7cd2-4514-87b8-b54428a09136.png)
 
 ## Generate solution
 Now we are going to generate our solution structure by running `yo @capgemini/cdspackage:solution`
@@ -142,11 +142,11 @@ First, you need to create a Personal Access Token (PAT) so that the generator ca
 
 Open Azure DevOps, select **User settings** (user icon with a little cog) and select **Personal access tokens** 
 
-![image.png](/.attachments/image-6ae83cd8-db1d-4052-8338-4a39c7017c17.png)
+![image.png](/../.attachments/image-6ae83cd8-db1d-4052-8338-4a39c7017c17.png)
 
 Select **+ New Token** then enter the following values:
 
-![image.png](/.attachments/image-abd8861e-bd89-46f7-9988-dc002365f739.png)
+![image.png](/../.attachments/image-abd8861e-bd89-46f7-9988-dc002365f739.png)
 
 | Field | Value |
 |--|--|
@@ -157,7 +157,7 @@ Select **+ New Token** then enter the following values:
 
 <br>
 
-![image.png](/.attachments/image-2639a112-f68f-4850-a14f-e4e0b6e2e4f5.png)
+![image.png](/../.attachments/image-2639a112-f68f-4850-a14f-e4e0b6e2e4f5.png)
 
 Negative:
 **Important:** Copy the token to notepad as you'll need this later. 
@@ -212,14 +212,14 @@ Done.
 
 Within Azure DevOps navigation to 'Project Settings' then under 'Repos', select 'Repositories'. 
 
-![image.png](/.attachments/image-b7df5a4a-9f6b-4bdf-b76a-a2052afd8134.png)
+![image.png](/../.attachments/image-b7df5a4a-9f6b-4bdf-b76a-a2052afd8134.png)
 
 Now select your repository called the package name you gave and click on the 'Policies' tab. Under 'Branch Policy' select 'master'.
 
-![image.png](/.attachments/image-c45030e4-3576-4b5c-b4aa-e28e571ce714.png)
+![image.png](/../.attachments/image-c45030e4-3576-4b5c-b4aa-e28e571ce714.png)
 
 Configure the settings as pictured below:
 
-![image.png](/.attachments/image-5f3d8f5f-4bb8-49cf-bec1-4aceaadfe134.png)
+![image.png](/../.attachments/image-5f3d8f5f-4bb8-49cf-bec1-4aceaadfe134.png)
 
-![image.png](/.attachments/image-14f533f8-799f-4780-815e-f01c0db42c5b.png)
+![image.png](/../.attachments/image-14f533f8-799f-4780-815e-f01c0db42c5b.png)
