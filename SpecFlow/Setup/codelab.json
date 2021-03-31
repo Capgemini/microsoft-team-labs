@@ -3,13 +3,13 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2021-03-31T08:58:09+01:00",
+  "updated": "2021-03-31T11:36:04+01:00",
   "id": "Setup",
   "duration": 0,
-  "title": "Installing the SpecFlow Visual Studio Extension",
+  "title": "Installing and Configuring the Capgemini.PowerApps.Bindings",
   "authors": "Zoe Dawson and Matthew Hoy",
   "summary": "A lab to set up a new automated UI testing project using EasyRepro.",
-  "source": ".\\Setup and Installation.md",
+  "source": "Setup and Installation.md",
   "theme": "",
   "status": [
     "draft"

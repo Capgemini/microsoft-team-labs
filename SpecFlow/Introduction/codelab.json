@@ -3,13 +3,13 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2021-03-31T09:43:50+01:00",
+  "updated": "2021-03-31T10:02:06+01:00",
   "id": "Introduction",
   "duration": 0,
   "title": "Introduction",
   "authors": "Zoe Dawson and Matthew Hoy",
   "summary": "A lab to learn the foundations of automated UI testing for Dynamics using Specflow and EasyRepro.",
-  "source": ".\\Introduction.md",
+  "source": "Introduction.md",
   "theme": "",
   "status": [
     "draft"

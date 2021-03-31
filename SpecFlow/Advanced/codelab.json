@@ -3,13 +3,13 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2021-03-31T08:50:12+01:00",
+  "updated": "2021-03-31T12:01:10+01:00",
   "id": "Advanced",
   "duration": 0,
-  "title": "Introduction",
+  "title": "Advanced Scenarios",
   "authors": "Zoe Dawson and Matthew Hoy",
   "summary": "A lab to create more advanced SpecFlow scenarios using custom step bindings.",
-  "source": ".\\More Advanced Scenarios.md",
+  "source": "More Advanced Scenarios.md",
   "theme": "",
   "status": [
     "draft"
