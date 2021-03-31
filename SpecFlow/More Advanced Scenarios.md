@@ -10,9 +10,7 @@ id: Advanced
 
 # Advanced Scenarios
 
-## Extending Steps with EasyRepro
-
-### Data Setup - Getting the Context
+## Data Setup - Getting the CRM Context
 
 The Capgemini Bindings do not currently have a way to access the Dynamics OrganisationServiceContext, so this section will show a way to retrieve it.
 
