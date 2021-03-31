@@ -15,13 +15,13 @@ id: Setup
 The first step in creating a new automated UI testing project is ensuring that the Specflow extension for Visual Studio has been installed. Do this by navigating to Tools and opening the Extensions and Updates window.
 
 
-![alt_text](/.attachments/setup/image1.png "image_tooltip")
+![alt_text](./.attachments/setup/image1.png "image_tooltip")
 
 
 Next, navigate to the “Online” tab on the left of the window, search for “SpecFlow” in the search bar and install “SpecFlow for Visual Studio 2017/2019”.
 
 
-![alt_text](/.attachments/setup/image2.png "image_tooltip")
+![alt_text](./.attachments/setup/image2.png "image_tooltip")
 
 
 Visual Studio may require a restart to complete installation of the extension.
@@ -34,19 +34,19 @@ Visual Studio may require a restart to complete installation of the extension.
 Once the SpecFlow extension has been installed, the option to create a SpecFlow project will be available from the New Project dialog. It can be found under the Visual C# root menu. Enter an appropriate name and location and click Ok.
 
 
-![alt_text](/.attachments/setup/image3.png "image_tooltip")
+![alt_text](./.attachments/setup/image3.png "image_tooltip")
 
 
 A dialog will then be displayed with configuration options for the SpecFlow project. Set the Framework to 4.6.2 and the Test Framework to NUnit.
 
 
-![alt_text](/.attachments/setup/image4.png "image_tooltip")
+![alt_text](./.attachments/setup/image4.png "image_tooltip")
 
 
 The solution will then be opened with the standard folder structure for a SpecFlow project, and some test files which can be deleted. Visual Studio should have also resolved the required NuGet packages for the project.
 
 
-![alt_text](/.attachments/setup/image5.png "image_tooltip")
+![alt_text](./.attachments/setup/image5.png "image_tooltip")
 
 
 ## Installing the Nuget Package
@@ -66,11 +66,11 @@ PM> Install-Package Capgemini.PowerApps.SpecFlowBindings
 
 Right click on the new solution in Solution Explorer and click “Manage NuGet Packages for Solution”.
 
-![alt_text](/.attachments/setup/image6.png "image_tooltip")
+![alt_text](./.attachments/setup/image6.png "image_tooltip")
 
 Once the NuGet Package Manager window has opened, click the Browse tab and search for “Capgemini.PowerApps.Bindings”. Select the package, right click the SpecFlow project and click Install.
 
-![alt_text](/.attachments/setup/image7.png "image_tooltip")
+![alt_text](./.attachments/setup/image7.png "image_tooltip")
 
 ## Project Setup
 
@@ -90,7 +90,7 @@ Once the NuGet package has been installed, create a SpecFlow Configuration JSON 
 To set up a driver for the project, install your preferred browser driver via NuGet. This lab will be using ChromeDriver.
 
 
-![alt_text](/.attachments/setup/image8.png "image_tooltip")
+![alt_text](./.attachments/setup/image8.png "image_tooltip")
 
 
 ## power-apps-bindings.yml Setup
@@ -159,13 +159,13 @@ Scenario: Test Connection Scenario
 Now build the project and run this scenario using the Test Explorer window in Visual Studio.
 
 
-![alt_text](/.attachments/setup/image9.png "image_tooltip")
+![alt_text](./.attachments/setup/image9.png "image_tooltip")
 
 
 After around 30 seconds the test should pass; clicking the test and opening the “Output” link in the test summary should show that the step in the scenario was successfully completed.
 
 
-![alt_text](/.attachments/setup/image10.png "image_tooltip")
+![alt_text](./.attachments/setup/image10.png "image_tooltip")
 
 
 This proves that the connection to Dynamics was successful and the environment variables have been set correctly.
