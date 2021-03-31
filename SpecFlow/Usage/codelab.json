@@ -3,13 +3,13 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2021-03-31T08:50:12+01:00",
+  "updated": "2021-03-31T11:50:41+01:00",
   "id": "Usage",
   "duration": 0,
-  "title": "Using Capgemini Bindings - Exercise 1 - Key Steps",
+  "title": "Using Capgemini Bindings",
   "authors": "Zoe Dawson and Matthew Hoy",
   "summary": "A lab to create and explore basic scenarios using existing bindings.",
-  "source": ".\\WritingSimpleBindings.md",
+  "source": "WritingSimpleBindings.md",
   "theme": "",
   "status": [
     "draft"
