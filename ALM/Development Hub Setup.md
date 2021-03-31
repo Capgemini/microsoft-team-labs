@@ -15,8 +15,8 @@ In this lab, you will install and configure Development Hub in your newly create
 To learn more, explore the project's [GitHub repository](https://github.com/ewingjm/development-hub) and release [blog post](https://medium.com/capgemini-microsoft-team/continuous-integration-for-power-apps-the-development-hub-7f1b4320ecfd?source=friends_link&sk=c5034f278e70bfd9aa2dce502dd490d9).
 
 ### What you will do
-- Create required Flow Connections in the Maker Portal
-- Install Development Hub package into the Development Environment
+- Create the required Flow Connections in the Maker Portal
+- Install the Development Hub package into the Development environment
 - Register your Azure DevOps project 
 - Create new pipeline in Azure DevOps to support Development Hub
 - Register your generated Git Repository
@@ -34,21 +34,20 @@ These should be covered by following the [Environment Setup]() lab.
 ## Create Flow Connections
 Development Hub utilises two data connections, Approvals and Azure DevOps, which need to be first created before you can install the package.
 
-Click the following link to open the Power Apps Maker Portal:
+Open the [Maker Portal](https://make.powerapps.com)
 
-[Open Maker Portal](https://make.powerapps.com)
-
-First, check you are within your Development Environment which is displayed at the top left of the page. If you aren't, select the environment name and then your Development Environment. 
+First, check you are within your Development environment which is displayed at the top right of the page. If you aren't, select the environment name and then your Development environment. 
 
 ![image.png](/.attachments/image-cadcf1c1-f71c-40d1-9d5d-305079378c5d.png)
 
-Next, use the left-hand side navigation and select 'Data' then 'Connections'.
+Next, use the left-hand side navigation and select **Data** then **Connections**.
 
 ![image.png](/.attachments/image-ee25d480-d6cf-4b3a-8553-300c0addebe2.png)
 
-Now click 'New Connection' and search for 'Approvals' if you don't see it in the list. Click the plus button next to it then 'Create' in the open dialog.
+Now to create our connections by selecting **New Connection** and search for **Approvals** if you don't see it in the list. 
+Click the plus button next to it then **Create** in the open dialog.
 
-Once successful, repeat the last step and search for 'Azure DevOps'. 
+Once successful, repeat the previous instruction searching for **Azure DevOps**. 
 
 
 Important: This connection must be signed into an account with access to your Azure DevOps project - in many cases our clients have separate development tenants and production which have different accounts. If this is the case for you, a suggestion is to ensure you are signed into that Azure DevOps project in the same browser window you signed into the Power Platform. Please see this [GitHub issue](https://github.com/ewingjm/development-hub/issues/69) for more details if you face this problem.
