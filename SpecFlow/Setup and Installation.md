@@ -8,7 +8,9 @@ Analytics Account:
 Authors: Zoe Dawson and Matthew Hoy
 id: Setup
 
-# Installing the SpecFlow Visual Studio Extension
+# Installing and Configuring the Capgemini.PowerApps.Bindings
+
+## Installing the SpecFlow Visual Studio Extension
 
 The first step in creating a new automated UI testing project is ensuring that the Specflow extension for Visual Studio has been installed. Do this by navigating to Tools and opening the Extensions and Updates window.
 
@@ -25,10 +27,9 @@ Next, navigate to the “Online” tab on the left of the window, search for “
 Visual Studio may require a restart to complete installation of the extension.
 
 
-# Creating a Project
+## Creating a Project
 
-
-## A New SpecFlow Project
+### A New SpecFlow Project
 
 Once the SpecFlow extension has been installed, the option to create a SpecFlow project will be available from the New Project dialog. It can be found under the Visual C# root menu. Enter an appropriate name and location and click Ok.
 
@@ -48,7 +49,7 @@ The solution will then be opened with the standard folder structure for a SpecFl
 ![alt_text](/.attachments/setup/image5.png "image_tooltip")
 
 
-## Installing Capgemini.PowerApps.Bindings
+## Installing the Nuget Package
 
 The next step in creation of the project is installing the Capgemini PowerApps Bindings from NuGet. This can be done either through the command line or through the UI.
 
@@ -57,12 +58,9 @@ The next step in creation of the project is installing the Capgemini PowerApps B
 
 Enter the following into the Package Manager Console in Visual Studio:
 
-
 ```
 PM> Install-Package Capgemini.PowerApps.SpecFlowBindings
 ```
-
-
 
 ### UI
 
@@ -70,18 +68,13 @@ Right click on the new solution in Solution Explorer and click “Manage NuGet P
 
 ![alt_text](/.attachments/setup/image6.png "image_tooltip")
 
-
 Once the NuGet Package Manager window has opened, click the Browse tab and search for “Capgemini.PowerApps.Bindings”. Select the package, right click the SpecFlow project and click Install.
-
 
 ![alt_text](/.attachments/setup/image7.png "image_tooltip")
 
-
-
-### Capgemini Project Setup
+## Project Setup
 
 Once the NuGet package has been installed, create a SpecFlow Configuration JSON file named specflow.json in the root of the project. The below code must be added to the specflow.json file to allow the external bindings to be used in the project. Create or update the specflow.json file with the below code.
-
 
 ```
 {
@@ -92,11 +85,7 @@ Once the NuGet package has been installed, create a SpecFlow Configuration JSON 
 }
 ```
 
-
-Next, create a file called “power-apps-bindings.yml” in the root directory of the project. This is the file used to configure settings used by the Capgemini.PowerApps.Bindings project.
-
-
-### Driver Setup
+## Driver Setup
 
 To set up a driver for the project, install your preferred browser driver via NuGet. This lab will be using ChromeDriver.
 
@@ -104,10 +93,11 @@ To set up a driver for the project, install your preferred browser driver via Nu
 ![alt_text](/.attachments/setup/image8.png "image_tooltip")
 
 
-# Connecting to a Dynamics Instance
+## power-apps-bindings.yml Setup
 
-Connecting to Dynamics is handled by the Capgemini bindings, using the login and data setup steps. The connection is configured using the power-apps-bindings.yml file. It is recommended to use environment variables in this file rather than actual values, to avoid storing sensitive information in a shared repository. Create or update the  power-apps-bindings.yml file with the following information:
+Next, create a file called “power-apps-bindings.yml” in the root directory of the project. This is the file used to configure settings used by the Capgemini.PowerApps.Bindings project. It is recommended to use environment variables in this file rather than actual values, to avoid storing sensitive information in a shared repository. 
 
+Populate the file with the following information:
 
 ```
 url: SPECFLOW_LAB_URL
@@ -129,8 +119,6 @@ users:
     alias: an impersonated user
 
 ```
-
-
 
 ## Environment Variables
 
