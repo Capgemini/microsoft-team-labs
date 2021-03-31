@@ -1,0 +1,238 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Using Capgemini Bindings - Exercise 1 - Key Steps</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="Usage"
+                  title="Using Capgemini Bindings - Exercise 1 - Key Steps"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Sample Answer" duration="0">
+        <p> Below is a sample answer for this exercise. These steps most closely match the sample user story and therefore work well for BDD.   &#34;` Feature: Manage A Contact  Scenario: Basic user views the contact forms </p>
+<pre><code>Given I am logged in to the &#39;UI Test App&#39; app as &#39;a basic user&#39;
+When I open the sub area &#39;Contacts&#39; under the &#39;Organisation Details&#39; area
+And I open the record at position &#39;0&#39; in the grid
+Then I am presented with a &#39;Contact&#39; form for the &#39;contact&#39; entity
+</code></pre>
+<p> &#34;`   A major downfall of the above test is that it relies on manually created data. If this test were run on a clean organisation with no data, it would fail even though the functionality may be working as intended. The solution to this issue is to have the test create all of the data that it needs for the test to run successfully.   </p>
+<p>Using Capgemini Bindings - Exercise 2 - Updating form data </p>
+<p> Now that we know how to open a record the next step would be changing the values on the form. Let&#39;s say for example we had a user story that covers updating the email address field for the contact record.   <br><code>Given I log into the app as a basic user<br>When I navigate to a Contact record<br>And I update the contact&#39;s email address and save<br>Then the new email address is retained.</code><br>   Based on this new story you can see that we need a new test scenario to cover updating the email field as the user journey is not the same as with the test we&#39;ve already written.   When it comes to organising your test scenarios the general recommendation we would give is that you sort your feature files by Entity type into folders and then into features by the user journey. This may not work for every project, we don&#39;t want your folders to be overly specific or too broad. It might make sense on your project to group feature files by Epic or Feature for example. An example of what this may look like is below.    <img alt="alt_text" title="image_tooltip" src="img\f7e9ba6232833b5b.png">   In this case the user story is covering a scenario that fits inside the ‘Manage A Contact&#39; feature so we would simply add a new scenario into that feature file. For more best practice conventions you can read <a href="https://specflow.org/blog/gherkin-conventions-for-readable-specifications/" target="_blank">this blog.</a>  Now try creating a new scenario that opens a contact form then populates a value in the Email Address field and saves. Note that in the vast majority of cases you will need to know the field&#39;s logical name to do this, rather than the display name. Now attempt to find the appropriate steps in the Capgemini Bindings via IntelliSense or the <a href="https://github.com/Capgemini/powerapps-specflow-bindings/tree/master/bindings/src/Capgemini.PowerApps.SpecFlowBindings/Steps" target="_blank">GitHub repository</a>.    </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Sample Answer" duration="0">
+        <p> Below is a sample answer for this exercise.   &#34;` Scenario: Basic user updates the contact email </p>
+<pre><code>Given I am logged in to the &#39;UI Test App&#39; app as &#39;a basic user&#39;
+When I open the sub area &#39;Contacts&#39; under the &#39;Organisation Details&#39; area
+And I open the record at position &#39;0&#39; in the grid
+And I enter &#39;tomjones@google.com&#39; into the &#39;emailaddress1&#39; text field on the form
+And I save the record
+Then I can see a value of &#39;tomjones@google.com&#39; in the &#39;emailaddress1&#39; text field
+</code></pre>
+<p>&#34;`    </p>
+<p>Using Capgemini Bindings - Exercise 3 - Table Methods </p>
+<p> This exercise will cover a scenario in which you need to populate or validate a large number of the same thing. Let&#39;s say for example you were working with this user story.   <br><code>Given I log into the app as a basic user<br>When I open a contact record<br>Then I can see the Job Title, Email, Business Phone, Mobile Phone and Fax fields to capture contact details</code><br>   Using what we have already learnt we could create a scenario that executes this line by line as follows.   &#34;` Scenario: Basic user validates the contact form fields </p>
+<pre><code>Given I am logged in to the &#39;UI Test App&#39; app as &#39;a basic user&#39;
+When I open the sub area &#39;Contacts&#39; under the &#39;Organisation Details&#39; area
+And I open the record at position &#39;0&#39; in the grid
+Then I can see the &#39;jobtitle&#39; field
+And I can see the &#39;emailaddress1&#39; field
+And I can see the &#39;telephone1&#39; field
+And I can see the &#39;mobilephone&#39; field
+And I can see the &#39;fax&#39; field
+</code></pre>
+<p><code><br><br><br>Hopefully you will agree that while this would work it&#39;s not the most easy to read and understand and could be improved. Here we turn to table methods. Table methods are a way of structuring your data inputs into the form of a table so that one step binding is repeated for each row in the table. Table methods have some specific formatting rules you need to pay attention to, for one you will need to create a row containing the table headers. In the case of SpecFlow and the PowerApps Bindings there will be some variables defined inside the step definition that will correspond to your table headers.</code> <br><br><br> [When(@&#34;I enter the following into the quick create&#34;)] </p>
+<pre><code>    public static void WhenIEnterTheFollowingIntoTheQuickCreate(Table fields)
+    {
+        fields = fields ?? throw new ArgumentNullException(nameof(fields));
+</code></pre>
+<pre><code>        foreach (TableRow row in fields.Rows)
+        {
+            WhenIEnterInTheFieldOnTheQuickCreate(row[&#34;Value&#34;], row[&#34;Field&#34;], row[&#34;Type&#34;]);
+        }
+    }
+</code></pre>
+<p><code><br><br><br>In this example you can see the table headers that would be needed within the foreach loop &#34;Value&#34;, &#34;Field&#34; and &#34;Type&#34;. If the step definition does not explicitly define a table header for you in this way you can just use anything you&#39;d like, just make sure it makes sense in the context of your scenario.<br><br>When it comes to putting this data down in your scenario each &#34;cell&#34; of the table needs to be surrounded with |&#39;s. To use the previous example we would write the table as follows:</code><br><br><br> When I enter the following into the quick create </p>
+<pre><code>| Value | Field      | Type  |
+| 12345 | telephone1 | field |
+</code></pre>
+<p>&#34;`   SpecFlow will format your table for you when you place your |&#39;s on each side of your cells so you don&#39;t have to worry about making it look neat.   Now go through the Capgemini Bindings via IntelliSense or the <a href="https://github.com/Capgemini/powerapps-specflow-bindings/tree/master/bindings/src/Capgemini.PowerApps.SpecFlowBindings/Steps" target="_blank">GitHub repository</a> and see if you can find a step binding to cover checking that the fields in the story are there and editable.    </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Sample Answer" duration="0">
+        <p> Below is a sample answer for this exercise.   &#34;` Scenario: Basic user validates the contact form fields </p>
+<pre><code>Given I am logged in to the &#39;UI Test App&#39; app as &#39;a basic user&#39;
+When I open the sub area &#39;Contacts&#39; under the &#39;Organisation Details&#39; area
+And I open the record at position &#39;0&#39; in the grid
+Then I can edit the following fields
+| fields        |
+| jobtitle      |
+| emailaddress1 |
+| telephone1    |
+| mobilephone   |
+| fax           |
+</code></pre>
+<p>&#34;`    </p>
+<p>Using Capgemini Bindings - Exercise 4 - Backgrounds </p>
+<p> You may have noticed that so far all of our scenarios repeat the same 3 steps at the start:   <br><code>Given I am logged in to the &#39;UI Test App&#39; app as &#39;a basic user&#39;<br>When I open the sub area &#39;Contacts&#39; under the &#39;Organisation Details&#39; area<br>And I open the record at position &#39;0&#39; in the grid</code><br>   Now there are a couple of ways that we can go about streamlining this, one way that will be covered later could be writing a custom step binding to do all of these actions as part of 1 step. What we&#39;re going to cover here though is some out of the box SpecFlow functionality: Feature Backgrounds.   Feature backgrounds allow us to define a shared set of steps that every scenario in a feature file will follow when the test is executed. It is important to note that you cannot exempt any of your scenarios from running the feature background steps so be sure when you add background steps that they definitely apply to _all _of your scenarios or you may be creating problems for yourself.   You can add a background to your scenario by simply adding \    <br><code>Background:</code> <br>   after you name your feature and before your scenarios start. Try updating your Manage A Contact feature file now to include a set of background step instead of repeating the same step bindings in each scenario.   </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Sample Answer" duration="0">
+        <p> Your feature file should now look something like this:   &#34;` Feature: Manage A Contact  Background:  </p>
+<pre><code>Given I am logged in to the &#39;UI Test App&#39; app as &#39;a basic user&#39;
+When I open the sub area &#39;Contacts&#39; under the &#39;Organisation Details&#39; area
+And I open the record at position &#39;0&#39; in the grid
+</code></pre>
+<p> Scenario: Basic user views the contact forms </p>
+<pre><code>Then I am presented with a &#39;Contact&#39; form for the &#39;contact&#39; entity
+</code></pre>
+<p> Scenario: Basic user updates the contact email </p>
+<pre><code>When I enter &#39;tomjones@google.com&#39; into the &#39;emailaddress1&#39; text field on the form
+And I save the record
+Then I can see a value of &#39;tomjones@google.com&#39; in the &#39;emailaddress1&#39; text field
+</code></pre>
+<p> Scenario: Basic user validates the contact form fields </p>
+<pre><code>Then I can edit the following fields
+| fields        |
+| jobtitle      |
+| emailaddress1 |
+| telephone1    |
+| mobilephone   |
+| fax           |
+</code></pre>
+<p>&#34;`    </p>
+<p>Test Data - Exercise 1 - Creating a Contact </p>
+<p> This exercise will cover automatic creation of test data, to ensure that the running of the test will not be reliant on data already existing in the system. Before beginning this exercise ensure that there are no contacts in the My Active Contacts view for your Dynamics user.  Create a folder named &#34;Data&#34; in the root of the test project and add a new json file within the folder named &#34;a contact.json&#34;.   <img alt="alt_text" title="image_tooltip" src="img\a285b3715f79c7ae.png">   Open the newly created json file and add the following information   <br><code>{<br>  &#34;@logicalName&#34;: &#34;contact&#34;,<br>  &#34;@alias&#34;: &#34;a contact&#34;,<br>  &#34;firstname&#34;: &#34;Tom&#34;,<br>  &#34;lastname&#34;: &#34;Jones&#34;<br>}</code><br>   The above json specifies that a contact record will be created with the name of &#34;Tom Jones&#34;. The @alias value is used to reference this record in feature or other json files. Ensure that the json file properties in your data folder are set to &#34;Copy if Newer&#34; or &#34;Copy Always&#34;.   <img alt="alt_text" title="image_tooltip" src="img\d826e82d6c355e82.png">   The next step is to add a step in the feature file to create this contact record. Now attempt to find an appropriate step in the Capgemini Bindings via IntelliSense or <a href="https://github.com/Capgemini/powerapps-specflow-bindings/tree/master/bindings/src/Capgemini.PowerApps.SpecFlowBindings/Steps" target="_blank">GitHub repository</a> for each of the below lines in the sample user story.   <br><code>Given I log into the app as a basic user<br>And a contact has been created<br>When I navigate to the Contacts subarea<br>And I open the first record<br>Then I can see the contact form</code><br>    </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Sample Answer" duration="0">
+        <p>  &#34;` Feature: Contact Management  Scenario: Basic user views created contact information </p>
+<pre><code>Given I am logged in to the &#39;UI Test App&#39; app as &#39;a basic user&#39;
+And I have created &#39;a contact&#39;
+When I open the sub area &#39;Contacts&#39; under the &#39;Organisation Details&#39; area
+And I open the record at position &#39;0&#39; in the grid
+Then I am presented with a &#39;Contact&#39; form for the &#39;contact&#39; entity
+</code></pre>
+<p>&#34;`    </p>
+<p>Test Data - Exercise 2 - Creating a Randomized Contact </p>
+<p> The Capgemini PowerApps Bindings also include support for randomised data using Faker. Update the contact json used in Exercise 1 with the following faker attributes for first name and last name:   <br><code>{<br>&#34;firstname&#34;: &#34;&#123;&#123;name.firstName}}&#34;,<br>&#34;lastname&#34;: &#34;&#123;&#123;name.lastName}}&#34;<br>}</code><br>   Run the test scenario out of headless mode by updating the headless attribute to &#34;false&#34; in the power-apps-bindings.yml file, to verify that the contact first name and last name are being randomised successfully.   </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Sample Answer" duration="0">
+        <p> Your &#34;a contact.json&#34; file should now look like this:   <br><code>{<br>  &#34;@logicalName&#34;: &#34;contact&#34;,<br>  &#34;@alias&#34;: &#34;a contact&#34;,<br>  &#34;firstname&#34;:  &#34;&#123;&#123;name.firstName}}&#34;,<br>  &#34;lastname&#34;:  &#34;&#123;&#123;name.lastName}}&#34; <br>}</code><br>    </p>
+<p>Test Data - Exercise 3 - Creating Hierarchical Data </p>
+<p> The data files you have already created can be further improved to cover more detailed data setup requirements without necessitating adding in large numbers of data files and steps in your scenario as below.   <br><code>And I have created &#39;a contact&#39;</code><br>   One way in which we can do this is by adding related/child entities into the data file for a given record. This can be done in multiple ways, for example if we wanted to create an Account record linked to a contact record in the Primary Contact field we could reuse the data file you have created for exercise 2 as follows by using its alias in the data file.   <br><code>{<br>  &#34;@logicalName&#34;: &#34;account&#34;,<br>  &#34;@alias&#34;: &#34;an account&#34;,<br>  &#34;name&#34;: &#34;Test Account&#34;,<br>  &#34;primarycontactid@alias.bind&#34;: &#34;a contact&#34;<br>}</code><br>   In the above example you can see that by adding ‘@alias.bind&#39; to the field we want to populate with data from another file we can just use the alias name of the data file we&#39;re referencing. When creating data this way it is important to remember that for the test to be able to use the data it has to be created before the test tries to create the record referencing it. In this example that means we need to create the contact record before the account record as follows.   &#34;` Given I am logged in to the ‘UI Test App&#39; app as ‘a basic user&#39; </p>
+<pre><code>And I have created &#39;a contact&#39;
+And I have created &#39;an account&#39;
+</code></pre>
+<p><code><br><br><br>The second way in which we can create child records is by populating the data for the child record directly inside the data file. If we again use the account and primary contact example this means adding the ‘firstname&#39; and ‘lastname&#39; fields as the data for the ‘primarycontactid&#39; field</code> as follows.<br><br><br> {   &#34;@logicalName&#34;: &#34;account&#34;,   &#34;@alias&#34;: &#34;a hierarchical account&#34;,   &#34;name&#34;: &#34;Test Account&#34;,   &#34;primarycontactid&#34;: { </p>
+<pre><code>&#34;@alias&#34;: &#34;a child account&#34;,
+&#34;firstname&#34;: &#34;Tom&#34;,
+&#34;lastname&#34;: &#34;Jones&#34;
+</code></pre>
+<p>} } <br><br><br><code>You might notice in the above example that I have added an alias to the contact record we&#39;re creating in this new way. This works much the same as any other alias and can now be called at a later data in other data files or in feature files. Creating the data this way means we no longer need to chain creating data files in our test scenario which would now look like this.</code><br><br><br> @Regression Scenario: Basic user creates hierarchical test data </p>
+<pre><code>Given I am logged in to the &#39;UI Test App&#39; app as &#39;a basic user&#39;
+And I have created &#39;a hierarchical account&#39;
+</code></pre>
+<p>&#34;`   Your task now will be to try and write a test scenario in which a basic user logs into dynamics and the API creates an Account record with a primary contact set and 2 child lead records using only 1 data file. Your test scenario should then navigate to and open the account record. To help you on the way, when creating multiple records for a 1-to-many relationship, instead of a field name in your data file you use the relationship name. Don&#39;t forget it&#39;ll be an array of leads.   </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Sample Answer" duration="0">
+        <p> Your data file should look something like this:   &#34;` {   &#34;@logicalName&#34;: &#34;account&#34;,   &#34;@alias&#34;: &#34;a hierarchical account&#34;,   &#34;name&#34;: &#34;Test Account&#34;,   &#34;primarycontactid&#34;: { </p>
+<pre><code>&#34;@alias&#34;: &#34;a child account&#34;,
+&#34;firstname&#34;: &#34;Tom&#34;,
+&#34;lastname&#34;: &#34;Jones&#34;
+</code></pre>
+<p>},   &#34;lead_customer_accounts&#34;: [ </p>
+<pre><code>{
+  &#34;firstname&#34;: &#34;lead&#34;,
+  &#34;lastname&#34;: &#34;number 1&#34;
+},
+{
+  &#34;firstname&#34;: &#34;lead&#34;,
+  &#34;lastname&#34;: &#34;number 2&#34;
+}
+</code></pre>
+<p>] } <br><br><br><code>Your test scenario should look something like this:</code><br><br><br> @Regression Scenario: Basic user creates hierarchical test data </p>
+<pre><code>Given I am logged in to the &#39;UI Test App&#39; app as &#39;a basic user&#39;
+And I have created &#39;a hierarchical account&#39;
+When I open the sub area &#39;Accounts&#39; under the &#39;Organisation Details&#39; area
+And I open the record at position &#39;0&#39; in the grid
+Then I am presented with a &#39;Account&#39; form for the &#39;account&#39; entity
+</code></pre>
+<p>&#34;`    </p>
+<p>Test Data - Exercise 4 - Extending Existing Data </p>
+<p> Using the Capgemini PowerApps bindings an existing json file can be extended using the @extends tag. Create a folder within the data folder of the project named &#34;a contact&#34;. Within this folder create a json file named &#34;with a birthday.json&#34;.   <br><code>{<br>  &#34;@extends&#34;: &#34;../a contact&#34;,<br>  &#34;birthdate&#34;: &#34;1997-01-30&#34;<br>}</code><br>   Now create a scenario in the test feature file based on the following user story.   <br><code>Given I log into the app as a basic user<br>And a contact with a birthday has been created<br>When I navigate to the Contacts subarea<br>And I open the first record<br>And I open the Details tab<br>Then I can see the contact&#39;s birthday</code><br>    </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Sample Answer" duration="0">
+        <p> Below is a sample answer for the above user story. Note that although the data format is different, the Capgemini Bindings compare dates based on actual value rather than format.   &#34;` Scenario: Basic user views a contact birthday </p>
+<pre><code>Given I am logged in to the &#39;UI Test App&#39; app as &#39;a basic user&#39;
+And I have created &#39;a contact with a birthday&#39;
+When I open the sub area &#39;Contacts&#39; under the &#39;Organisation Details&#39; area
+And I open the record at position &#39;0&#39; in the grid
+And I select the &#39;Details&#39; tab
+Then I can see a value of &#39;1997-01-30&#39; in the &#39;birthdate&#39; datetime field
+</code></pre>
+<p>&#34;`    </p>
+<p>Test Data - Exercise 5 - Impersonating Users </p>
+<p> The Capgemini PowerApps bindings can also be used to impersonate users when creating data. This is useful when it is expected that data will be created by a non standard user or an integration with another application. To impersonate a user, an applicationUser entry in the power-apps-bindings.yml file is required, as well as the username of the user to impersonate.  Now create a scenario called &#34;Basic user validates contact owner&#34; that logs into the app as &#34;a basic user&#34; but uses &#34;an impersonated user&#34; to create &#34;a contact with a birthday&#34;. Then, the scenario should check that the owner field is set to the user of &#34;an impersonated user&#34;.   </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Sample Answer" duration="0">
+        <p> Below is a sample scenario meeting the above requirements   &#34;` Scenario: Basic user validates contact owner </p>
+<pre><code>Given I am logged in to the &#39;UI Test App&#39; app as &#39;a basic user&#39;
+And &#39;an impersonated user&#39; has created &#39;a contact&#39;
+And I have opened &#39;a contact&#39;
+Then I can see a value of &#39;Matthew Hoy&#39; in the &#39;ownerid&#39; lookup header field
+</code></pre>
+<p>&#34;`  </p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
