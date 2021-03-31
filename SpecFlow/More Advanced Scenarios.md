@@ -31,7 +31,7 @@ These packages provide access to the required SDK classes to connect to and upda
 
 As it is possible that a number of different Steps files will require access to the Dynamics context, it is useful to put this logic in a helper file that can be accessed by all step files. Create an Extensions folder in the project root and add a ContextHelper.cs file to the folder.
 
-![alt_text](/.attachments/advanced-scenarios/image1.png "image_tooltip")
+![alt_text](./.attachments/advanced-scenarios/image1.png "image_tooltip")
 
 Next, add `: PowerAppsStepDefiner `after the class name in the file to inherit from the Capgemini Bindings class.
 
