@@ -141,12 +141,12 @@ Navigate to **Solutions** in the left-hand pane and select **+ New solution**
 
 Enter the following details:
 
-| Field | Value |
-|--|--|
-| Display name |  |
-| Name |  |
-| Publisher |  |
-| Version |  |
+| Field | Value | Example |
+|--|--| -- |
+| Display name | This should be the name of the package followed by the name of the solution. | ALMLAB Sample |
+| Name | This should be the name of the created solution folder | MSACE_ALMLAB_Sample |
+| Publisher | Please create this yourself with the prefix given for the question 'Publisher prefix?' |  |
+| Version | The intial solution version. | 1.0.0 |
 
 Select **Create**
 
