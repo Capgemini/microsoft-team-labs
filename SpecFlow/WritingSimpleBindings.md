@@ -3,7 +3,7 @@ URL: /CodeLabs/
 Category: Automated Testing
 Environment: Web
 Status: Draft
-Feedback Link: 
+Feedback Link:
 Analytics Account:
 Authors: Zoe Dawson and Matthew Hoy
 id: Usage
