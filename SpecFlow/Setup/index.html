@@ -28,121 +28,52 @@
                   feedback-link="">
     
       <google-codelab-step label="Installing the SpecFlow Visual Studio Extension" duration="0">
-        <p>The first step in creating a new automated UI testing project is ensuring that the Specflow extension for Visual Studio has been installed. Do this by navigating to Tools and opening the Extensions and Updates window.</p>
-<p class="image-container"><img alt="alt_text" title="image_tooltip" src="img\bd386b195d2ba7c4.png"></p>
-<p>Next, navigate to the &#34;Online&#34; tab on the left of the window, search for &#34;SpecFlow&#34; in the search bar and install &#34;SpecFlow for Visual Studio 2017/2019&#34;.</p>
-<p class="image-container"><img alt="alt_text" title="image_tooltip" src="img\142bdd7ebc32cddb.png"></p>
-<p>Visual Studio may require a restart to complete installation of the extension.</p>
+        <p> The first step in creating a new automated UI testing project is ensuring that the Specflow extension for Visual Studio has been installed. Do this by navigating to Tools and opening the Extensions and Updates window.   <img alt="alt_text" title="image_tooltip" src="img\bd386b195d2ba7c4.png">   Next, navigate to the &#34;Online&#34; tab on the left of the window, search for &#34;SpecFlow&#34; in the search bar and install &#34;SpecFlow for Visual Studio 2017/2019&#34;.   <img alt="alt_text" title="image_tooltip" src="img\142bdd7ebc32cddb.png">   Visual Studio may require a restart to complete installation of the extension.   </p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Creating a Project" duration="0">
-        <h2 is-upgraded>A New SpecFlow Project</h2>
-<p>Once the SpecFlow extension has been installed, the option to create a SpecFlow project will be available from the New Project dialog. It can be found under the Visual C# root menu. Enter an appropriate name and location and click Ok.</p>
-<p class="image-container"><img alt="alt_text" title="image_tooltip" src="img\5e4552b4938e759b.png"></p>
-<p>A dialog will then be displayed with configuration options for the SpecFlow project. Set the Framework to 4.6.2 and the Test Framework to NUnit.</p>
-<p class="image-container"><img alt="alt_text" title="image_tooltip" src="img\11334334830466a.png"></p>
-<p>The solution will then be opened with the standard folder structure for a SpecFlow project, and some test files which can be deleted. Visual Studio should have also resolved the required NuGet packages for the project.</p>
-<p class="image-container"><img alt="alt_text" title="image_tooltip" src="img\43197ca0a1506953.png"></p>
+        <h2 is-upgraded>A New SpecFlow Project </h2>
+<p> Once the SpecFlow extension has been installed, the option to create a SpecFlow project will be available from the New Project dialog. It can be found under the Visual C# root menu. Enter an appropriate name and location and click Ok.   <img alt="alt_text" title="image_tooltip" src="img\5e4552b4938e759b.png">   A dialog will then be displayed with configuration options for the SpecFlow project. Set the Framework to 4.6.2 and the Test Framework to NUnit.   <img alt="alt_text" title="image_tooltip" src="img\11334334830466a.png">   The solution will then be opened with the standard folder structure for a SpecFlow project, and some test files which can be deleted. Visual Studio should have also resolved the required NuGet packages for the project.   <img alt="alt_text" title="image_tooltip" src="img\43197ca0a1506953.png">   </p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Installing the Nuget Package" duration="0">
-        <p>The next step in creation of the project is installing the Capgemini PowerApps Bindings from NuGet. This can be done either through the command line or through the UI.</p>
-<h2 is-upgraded>Command Line</h2>
-<p>Enter the following into the Package Manager Console in Visual Studio:</p>
-<pre><code>PM&gt; Install-Package Capgemini.PowerApps.SpecFlowBindings
-</code></pre>
-<h2 is-upgraded>UI</h2>
-<p>Right click on the new solution in Solution Explorer and click &#34;Manage NuGet Packages for Solution&#34;.</p>
-<p class="image-container"><img alt="alt_text" title="image_tooltip" src="img\49b365c6b68379dd.png"></p>
-<p>Once the NuGet Package Manager window has opened, click the Browse tab and search for &#34;Capgemini.PowerApps.Bindings&#34;. Select the package, right click the SpecFlow project and click Install.</p>
-<p class="image-container"><img alt="alt_text" title="image_tooltip" src="img\1688c9d203302de6.png"></p>
+        <p> The next step in creation of the project is installing the Capgemini PowerApps Bindings from NuGet. This can be done either through the command line or through the UI.   </p>
+<h2 is-upgraded>Command Line </h2>
+<p> Enter the following into the Package Manager Console in Visual Studio:  <br><code>PM&gt; Install-Package Capgemini.PowerApps.SpecFlowBindings</code><br>  </p>
+<h2 is-upgraded>UI </h2>
+<p> Right click on the new solution in Solution Explorer and click &#34;Manage NuGet Packages for Solution&#34;.  <img alt="alt_text" title="image_tooltip" src="img\49b365c6b68379dd.png">  Once the NuGet Package Manager window has opened, click the Browse tab and search for &#34;Capgemini.PowerApps.Bindings&#34;. Select the package, right click the SpecFlow project and click Install.  <img alt="alt_text" title="image_tooltip" src="img\1688c9d203302de6.png">  </p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Project Setup" duration="0">
-        <p>Once the NuGet package has been installed, create a SpecFlow Configuration JSON file named specflow.json in the root of the project. The below code must be added to the specflow.json file to allow the external bindings to be used in the project. Create or update the specflow.json file with the below code.</p>
-<pre><code>{
-    &#34;stepAssemblies&#34;: [
-        { &#34;assembly&#34;: &#34;Capgemini.PowerApps.SpecFlowBindings&#34; }
-    ]
-    //additional json attributes as required
-}
+        <p> Once the NuGet package has been installed, create a SpecFlow Configuration JSON file named specflow.json in the root of the project. The below code must be added to the specflow.json file to allow the external bindings to be used in the project. Create or update the specflow.json file with the below code.  &#34;` { </p>
+<pre><code>&#34;stepAssemblies&#34;: [
+    { &#34;assembly&#34;: &#34;Capgemini.PowerApps.SpecFlowBindings&#34; }
+]
+//additional json attributes as required
 </code></pre>
+<p>} &#34;`  </p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Driver Setup" duration="0">
-        <p>To set up a driver for the project, install your preferred browser driver via NuGet. This lab will be using ChromeDriver.</p>
-<p class="image-container"><img alt="alt_text" title="image_tooltip" src="img\57430e1a1358db3c.png"></p>
+        <p> To set up a driver for the project, install your preferred browser driver via NuGet. This lab will be using ChromeDriver.   <img alt="alt_text" title="image_tooltip" src="img\57430e1a1358db3c.png">   </p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="power-apps-bindings.yml Setup" duration="0">
-        <p>Next, create a file called &#34;power-apps-bindings.yml&#34; in the root directory of the project. This is the file used to configure settings used by the Capgemini.PowerApps.Bindings project. It is recommended to use environment variables in this file rather than actual values, to avoid storing sensitive information in a shared repository.</p>
-<p>Populate the file with the following information:</p>
-<pre><code>url: SPECFLOW_LAB_URL
-browserOptions:
-  browserType: Chrome #If using another driver, update this here
-  headless: true
-  width: 1920
-  height: 1080
-  startMaximized: false
-applicationUser:
-  tenantId: SPECFLOW_LAB_TENANTID
-  clientId: SPECFLOW_LAB_CLIENTID
-  clientSecret: SPECFLOW_LAB_CLIENTSECRET
-users:
-  - username: SPECFLOW_LAB_USERNAME
-    password: SPECFLOW_LAB_PASSWORD
-    alias: a basic user
-  - username: SPECFLOW_LAB_IMPERSONATED
-    alias: an impersonated user
-
-</code></pre>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Environment Variables" duration="0">
-        <p>The environment variables for this lab should be set to the details of the test Dynamics instance provided. Visual Studio must be restarted for changes to environment variables to take effect.</p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="BrowserOptions" duration="0">
-        <p>The parameters in the browserOptions section are used to determine how the tests will be executed. For this lab, ChromeDriver will be used, so the browserType is set to Chrome. The headless parameter defines whether the test will be visible to the user in a Chrome window when running. When using automated UI testing as part of a DevOps pipeline, this should always be set back to true before committing to the repository. However, changing this setting to false is a useful way to debug failing or flaky tests.</p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Users" duration="0">
-        <p>The application user in this instance must have the permissions to impersonate users, and uses a client id and secret rather than username and password. Users to be impersonated do not require a password in the yml file.</p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Testing the Dynamics Connection" duration="0">
-        <p>The Dynamics connection can be tested by creating a scenario and including the below step:</p>
-<pre><code>Given I am logged in to the &#39;UI Test App&#39; app as &#39;a basic user&#39;
-</code></pre>
-<p>To do this, create a new SpecFlow Feature file in the Features folder of the project as below:</p>
-<pre><code>Feature: Test Connection
-
-Scenario: Test Connection Scenario
-	Given I am logged in to the &#39;UI Test App&#39; app as &#39;a basic user&#39;
-</code></pre>
-<p>Now build the project and run this scenario using the Test Explorer window in Visual Studio.</p>
-<p class="image-container"><img alt="alt_text" title="image_tooltip" src="img\ebc71b2153de6049.png"></p>
-<p>After around 30 seconds the test should pass; clicking the test and opening the &#34;Output&#34; link in the test summary should show that the step in the scenario was successfully completed.</p>
-<p class="image-container"><img alt="alt_text" title="image_tooltip" src="img\d0f2f3b19425eff7.png"></p>
-<p>This proves that the connection to Dynamics was successful and the environment variables have been set correctly.</p>
+        <p> Next, create a file called &#34;power-apps-bindings.yml&#34; in the root directory of the project. This is the file used to configure settings used by the Capgemini.PowerApps.Bindings project. It is recommended to use environment variables in this file rather than actual values, to avoid storing sensitive information in a shared repository.   Populate the file with the following information:  &#34;` url: SPECFLOW_LAB_URL browserOptions:   browserType: Chrome #If using another driver, update this here   headless: true   width: 1920   height: 1080   startMaximized: false applicationUser:   tenantId: SPECFLOW_LAB_TENANTID   clientId: SPECFLOW_LAB_CLIENTID   clientSecret: SPECFLOW_LAB_CLIENTSECRET users: </p>
+<ul>
+<li>username: SPECFLOW_LAB_USERNAME password: SPECFLOW_LAB_PASSWORD alias: a basic user </li>
+<li>username: SPECFLOW_LAB_IMPERSONATED alias: an impersonated user  &#34;`    Environment Variables    The environment variables for this lab should be set to the details of the test Dynamics instance provided. Visual Studio must be restarted for changes to environment variables to take effect.     BrowserOptions    The parameters in the browserOptions section are used to determine how the tests will be executed. For this lab, ChromeDriver will be used, so the browserType is set to Chrome. The headless parameter defines whether the test will be visible to the user in a Chrome window when running. When using automated UI testing as part of a DevOps pipeline, this should always be set back to true before committing to the repository. However, changing this setting to false is a useful way to debug failing or flaky tests.     Users    The application user in this instance must have the permissions to impersonate users, and uses a client id and secret rather than username and password. Users to be impersonated do not require a password in the yml file.     Testing the Dynamics Connection    The Dynamics connection can be tested by creating a scenario and including the below step:   <br><code>Given I am logged in to the &#39;UI Test App&#39; app as &#39;a basic user&#39;</code><br>   To do this, create a new SpecFlow Feature file in the Features folder of the project as below:    <br><code>Feature: Test Connection<br><br>Scenario: Test Connection Scenario<br>Given I am logged in to the &#39;UI Test App&#39; app as &#39;a basic user&#39;</code><br>   Now build the project and run this scenario using the Test Explorer window in Visual Studio.   <img alt="alt_text" title="image_tooltip" src="img\ebc71b2153de6049.png">   After around 30 seconds the test should pass; clicking the test and opening the &#34;Output&#34; link in the test summary should show that the step in the scenario was successfully completed.   <img alt="alt_text" title="image_tooltip" src="img\d0f2f3b19425eff7.png">   This proves that the connection to Dynamics was successful and the environment variables have been set correctly. </li>
+</ul>
 
 
       </google-codelab-step>
