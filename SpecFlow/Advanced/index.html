@@ -28,97 +28,155 @@
                   feedback-link="">
     
       <google-codelab-step label="Data Setup - Getting the CRM Context" duration="0">
-        <p> The Capgemini Bindings do not currently have a way to access the Dynamics OrganisationServiceContext, so this section will show a way to retrieve it.  </p>
-<h2 is-upgraded>Installing Dynamics NuGet Packages </h2>
-<p> Navigate to the NuGet packages for the solution and add the following:   <br><code>Microsoft.CrmSdk.XrmTooling.CoreAssembly<br>Microsoft.CrmSdk.CoreAssemblies</code><br>  These packages provide access to the required SDK classes to connect to and update data in a Dynamics instance.  </p>
-<h2 is-upgraded>Helper Class </h2>
-<p> As it is possible that a number of different Steps files will require access to the Dynamics context, it is useful to put this logic in a helper file that can be accessed by all step files. Create an Extensions folder in the project root and add a ContextHelper.cs file to the folder.  <img alt="alt_text" title="image_tooltip" src="img\293c430e2051bbf5.png">  Next, add <code>: PowerAppsStepDefiner</code>after the class name in the file to inherit from the Capgemini Bindings class.  This class will initially require two methods, one that returns a ServiceClient based on standard user credentials, and one that returns a ServiceClient in the context of an application user, which uses a clientid and secret.  Create a method in the ContextHelper class that returns a CrmServiceClient based on the below code outline. As this class inherits from PowerAppStepDefiner, its methods will have access to helpful methods within the TestConfig class. Use the <a href="https://docs.microsoft.com/en-us/powerapps/developer/data-platform/xrm-tooling/use-connection-strings-xrm-tooling-connect" target="_blank">SDK documentation</a> to help you.  &#34;` public static CrmServiceClient GetServiceClient(UserConfiguration user) { </p>
-<pre><code>return new CrmServiceClient($&#34;Replace this text with the required values to create a connection.&#34;);
+        <p>The Capgemini Bindings do not currently have a way to access the Dynamics OrganisationServiceContext, so this section will show a way to retrieve it.</p>
+<h2 is-upgraded>Installing Dynamics NuGet Packages</h2>
+<p>Navigate to the NuGet packages for the solution and add the following:</p>
+<pre><code>Microsoft.CrmSdk.XrmTooling.CoreAssembly
+Microsoft.CrmSdk.CoreAssemblies
 </code></pre>
-<p>} <br><br><code>Below is a sample connection string, though this will be different across different environment configurations, such as those using IFD.</code><br><br> return new CrmServiceClient($&#34;Url={TestConfig.GetTestUrl()}; Username={user.Username}; Password={user.Password}; AuthType=Office365; RequireNewInstance=true&#34;); <br><br><code>The next method to create for this class should return a CrmServiceClient for an application user, using a clientid and secret in the connection string rather than a username and password. Using what you have learned from the above method, create a new method based on the below code outline, using a connection string for an application user. Remember to utilise the TestConfig class.</code><br><br> public static CrmServiceClient GetServiceClient() { </p>
-<pre><code>ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+<p>These packages provide access to the required SDK classes to connect to and update data in a Dynamics instance.</p>
+<h2 is-upgraded>Helper Class</h2>
+<p>As it is possible that a number of different Steps files will require access to the Dynamics context, it is useful to put this logic in a helper file that can be accessed by all step files. Create an Extensions folder in the project root and add a ContextHelper.cs file to the folder.</p>
+<p class="image-container"><img alt="alt_text" title="image_tooltip" src="img\293c430e2051bbf5.png"></p>
+<p>Next, add <code>: PowerAppsStepDefiner</code>after the class name in the file to inherit from the Capgemini Bindings class.</p>
+<p>This class will initially require two methods, one that returns a ServiceClient based on standard user credentials, and one that returns a ServiceClient in the context of an application user, which uses a clientid and secret.</p>
+<p>Create a method in the ContextHelper class that returns a CrmServiceClient based on the below code outline. As this class inherits from PowerAppStepDefiner, its methods will have access to helpful methods within the TestConfig class. Use the <a href="https://docs.microsoft.com/en-us/powerapps/developer/data-platform/xrm-tooling/use-connection-strings-xrm-tooling-connect" target="_blank">SDK documentation</a> to help you.</p>
+<pre><code>public static CrmServiceClient GetServiceClient(UserConfiguration user)
+{
+    return new CrmServiceClient($&#34;Replace this text with the required values to create a connection.&#34;);
+}
 </code></pre>
-<pre><code>return new CrmServiceClient($&#34;Replace this text with the required values to create a connection&#34;);
+<p>Below is a sample connection string, though this will be different across different environment configurations, such as those using IFD.</p>
+<pre><code>return new CrmServiceClient($&#34;Url={TestConfig.GetTestUrl()}; Username={user.Username}; Password={user.Password}; AuthType=Office365; RequireNewInstance=true&#34;);
 </code></pre>
-<p>} <br><br><code>Below is a sample connection string for an application user.</code><br><br> return new CrmServiceClient($&#34;Url={TestConfig.GetTestUrl()}; ClientId={TestConfig.ApplicationUser.ClientId}; ClientSecret={TestConfig.ApplicationUser.ClientSecret}; AuthType=ClientSecret; RequireNewInstance=true&#34;); <br><br><code>This concludes the basic functionality required for this class, though there may be other methods that would be useful to add, such as creating a ServiceClient based on a given string containing a username rather than requiring creation of a UserConfiguration object. An example of this is given below.</code><br><br> public static CrmServiceClient GetServiceClient(string user) { </p>
-<pre><code>return GetServiceClient(TestConfig.GetUser(user));
+<p>The next method to create for this class should return a CrmServiceClient for an application user, using a clientid and secret in the connection string rather than a username and password. Using what you have learned from the above method, create a new method based on the below code outline, using a connection string for an application user. Remember to utilise the TestConfig class.</p>
+<pre><code>public static CrmServiceClient GetServiceClient()
+{
+    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+ 
+    return new CrmServiceClient($&#34;Replace this text with the required values to create a connection&#34;);
+}
 </code></pre>
-<p>} <br><br><code>To use the ServiceClient in a Steps class and retrieve the context from it, wrap any API operations in the below using statements.</code><br><br> using (var svc = ContextHelper.GetServiceClient(TestConfig.GetUser(&#34;&#34;))) using (var context = new OrganizationServiceContext(svc)) &#34;`  It is important to remember that any records created here will not be cleaned up as part of the Capgemini Bindings after test cleanup functionality.  </p>
+<p>Below is a sample connection string for an application user.</p>
+<pre><code>return new CrmServiceClient($&#34;Url={TestConfig.GetTestUrl()}; ClientId={TestConfig.ApplicationUser.ClientId}; ClientSecret={TestConfig.ApplicationUser.ClientSecret}; AuthType=ClientSecret; RequireNewInstance=true&#34;);
+</code></pre>
+<p>This concludes the basic functionality required for this class, though there may be other methods that would be useful to add, such as creating a ServiceClient based on a given string containing a username rather than requiring creation of a UserConfiguration object. An example of this is given below.</p>
+<pre><code>public static CrmServiceClient GetServiceClient(string user)
+{
+    return GetServiceClient(TestConfig.GetUser(user));
+}
+</code></pre>
+<p>To use the ServiceClient in a Steps class and retrieve the context from it, wrap any API operations in the below using statements.</p>
+<pre><code>using (var svc = ContextHelper.GetServiceClient(TestConfig.GetUser(&#34;&lt;user alias here&gt;&#34;)))
+using (var context = new OrganizationServiceContext(svc))
+</code></pre>
+<p>It is important to remember that any records created here will not be cleaned up as part of the Capgemini Bindings after test cleanup functionality.</p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Using the CRM Context" duration="0">
-        <p> Next we will be practicing using the CRM Context to set up data required for tests. In this scenario, we will be deactivating a contact as part of a Given step and validating that it appears in the &#34;Inactive Contacts&#34; view. In a real world scenario, data setup would be far more complex, involving updating multiple records to advance in the business process in order to reach the precondition for the user story.  First, create a SpecFlow Step Definition file named &#34;DataSetupSteps.cs&#34; in the Steps folder of the project. Delete the auto generated steps and write a new Given step method declaration based on the following:   <br><code>Given a contact has been deactivated</code><br>  Within this method, use the TestDriver class to retrieve the EntityReference of the ‘a contact&#39; entity, then use the ServiceClient to execute a SetStateRequest to deactivate the contact. Use the SDK Documentation to help you.  &#34;` [Given(&#34;a contact has been deactivated&#34;)] public void GivenContactIsDeactivated() { </p>
-<pre><code>var contact = TestDriver.GetTestRecordReference(&#34;a contact&#34;);
-using (var svc = ContextHelper.GetServiceClient(TestConfig.GetUser(&#34;a basic user&#34;)))
-using (var context = new OrganizationServiceContext(svc))
-{
-    var updateStatus = new SetStateRequest()
-    {
-        EntityMoniker = contact,
-        State = new OptionSetValue(1),
-        Status = new OptionSetValue(2),
-    };
+        <p>Next we will be practicing using the CRM Context to set up data required for tests. In this scenario, we will be deactivating a contact as part of a Given step and validating that it appears in the &#34;Inactive Contacts&#34; view. In a real world scenario, data setup would be far more complex, involving updating multiple records to advance in the business process in order to reach the precondition for the user story.</p>
+<p>First, create a SpecFlow Step Definition file named &#34;DataSetupSteps.cs&#34; in the Steps folder of the project. Delete the auto generated steps and write a new Given step method declaration based on the following:</p>
+<pre><code>Given a contact has been deactivated
 </code></pre>
-<pre><code>    context.Execute(updateStatus);
-    context.SaveChanges();
+<p>Within this method, use the TestDriver class to retrieve the EntityReference of the ‘a contact&#39; entity, then use the ServiceClient to execute a SetStateRequest to deactivate the contact. Use the SDK Documentation to help you.</p>
+<pre><code>[Given(&#34;a contact has been deactivated&#34;)]
+public void GivenContactIsDeactivated()
+{
+    var contact = TestDriver.GetTestRecordReference(&#34;a contact&#34;);
+    using (var svc = ContextHelper.GetServiceClient(TestConfig.GetUser(&#34;a basic user&#34;)))
+    using (var context = new OrganizationServiceContext(svc))
+    {
+        var updateStatus = new SetStateRequest()
+        {
+            EntityMoniker = contact,
+            State = new OptionSetValue(1),
+            Status = new OptionSetValue(2),
+        };
+ 
+        context.Execute(updateStatus);
+        context.SaveChanges();
+    }
 }
 </code></pre>
-<p>} <br><br><code>Once the step has been created, it can now be used in scenarios. Create a new scenario in the ContactManagement feature file named &#34;Basic user validates inactive contacts view&#34; based on the below user story.</code><br><br> Given I log into the app as a basic user And I create a contact And the contact has been deactivated When I navigate to the Contacts subarea And I select the Inactive Contacts view Then I can see the contact <br><br><code>Below is a sample scenario for the above user story:</code><br><br> Scenario: Basic user validates inactive contacts view </p>
-<pre><code>Given I am logged in to the &#39;UI Test App&#39; app as &#39;a basic user&#39;
-And I have created &#39;a contact&#39;
-And a contact has been deactivated
-When I open the sub area &#39;Contacts&#39; under the &#39;Organisation Details&#39; area
-And I switch to the &#39;Inactive Contacts&#39; view in the grid
-Then the grid contains &#39;a contact&#39;
+<p>Once the step has been created, it can now be used in scenarios. Create a new scenario in the ContactManagement feature file named &#34;Basic user validates inactive contacts view&#34; based on the below user story.</p>
+<pre><code>Given I log into the app as a basic user
+And I create a contact
+And the contact has been deactivated
+When I navigate to the Contacts subarea
+And I select the Inactive Contacts view
+Then I can see the contact
 </code></pre>
-<p><code><br><br>Now update this step to work for any alias passed to the step. Below is a sample of how this could be implemented.</code><br><br> [Given(&#34;‘(.*)&#39; has been deactivated&#34;)] public void GivenContactIsDeactivated(string recordAlias) { </p>
-<pre><code>var recordRef = TestDriver.GetTestRecordReference(recordAlias);
-using (var svc = ContextHelper.GetServiceClient(TestConfig.GetUser(&#34;a basic user&#34;)))
-using (var context = new OrganizationServiceContext(svc))
+<p>Below is a sample scenario for the above user story:</p>
+<pre><code>Scenario: Basic user validates inactive contacts view
+	Given I am logged in to the &#39;UI Test App&#39; app as &#39;a basic user&#39;
+	And I have created &#39;a contact&#39;
+	And a contact has been deactivated
+	When I open the sub area &#39;Contacts&#39; under the &#39;Organisation Details&#39; area
+	And I switch to the &#39;Inactive Contacts&#39; view in the grid
+	Then the grid contains &#39;a contact&#39;
+</code></pre>
+<p>Now update this step to work for any alias passed to the step. Below is a sample of how this could be implemented.</p>
+<pre><code>[Given(&#34;&#39;(.*)&#39; has been deactivated&#34;)]
+public void GivenContactIsDeactivated(string recordAlias)
 {
-    var updateStatus = new SetStateRequest()
+    var recordRef = TestDriver.GetTestRecordReference(recordAlias);
+    using (var svc = ContextHelper.GetServiceClient(TestConfig.GetUser(&#34;a basic user&#34;)))
+    using (var context = new OrganizationServiceContext(svc))
     {
-        EntityMoniker = recordRef,
-        State = new OptionSetValue(1),
-        Status = new OptionSetValue(2),
-    };
-</code></pre>
-<pre><code>    context.Execute(updateStatus);
-    context.SaveChanges();
+        var updateStatus = new SetStateRequest()
+        {
+            EntityMoniker = recordRef,
+            State = new OptionSetValue(1),
+            Status = new OptionSetValue(2),
+        };
+ 
+        context.Execute(updateStatus);
+        context.SaveChanges();
+    }
 }
 </code></pre>
-<p>} &#34;`  </p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Writing Custom Steps" duration="0">
-        <p> When using SpecFlow on a project, it is expected that you will be able to write custom steps to expand on those of EasyRepro and the Capgemini Bindings. At the time of writing, there are some areas of the Dynamics UI that are not compatible with EasyRepro, such as editable grids and certain dialog boxes. In this section you will be required to write custom steps that interact with these UI elements.  </p>
-<h2 is-upgraded>Using XPath </h2>
-<p> One of the most common ways to interact with elements on the web page as part of SpecFlow testing is using XPath. XPath is a syntax that is used to navigate through and retrieve elements in an XML document.  </p>
-<h2 is-upgraded>Finding the XPath of an Element </h2>
-<p> An easy way to find the XPath of an element is by opening Chrome Developer Tools, right clicking a HTML element and clicking &#34;Copy XPath&#34;. This XPath can then be used in the Chrome Console to return this specific element, by using the following function:  <br><code>$x(&#34;&lt;Paste XPath here&#34;)</code><br>  To execute this XPath in C#, the following method is used:  <br><code>Driver.FindElement(By.XPath($&#34;Paste XPath here&#34;));</code><br>  This is helpful for finding elements that are not accessible as part of the XrmApp EasyRepro object. For more information on XPath, see <a href="https://www.w3schools.com/xml/xpath_intro.asp" target="_blank">here</a>.  </p>
+        <p>When using SpecFlow on a project, it is expected that you will be able to write custom steps to expand on those of EasyRepro and the Capgemini Bindings. At the time of writing, there are some areas of the Dynamics UI that are not compatible with EasyRepro, such as editable grids and certain dialog boxes. In this section you will be required to write custom steps that interact with these UI elements.</p>
+<h2 is-upgraded>Using XPath</h2>
+<p>One of the most common ways to interact with elements on the web page as part of SpecFlow testing is using XPath. XPath is a syntax that is used to navigate through and retrieve elements in an XML document.</p>
+<h2 is-upgraded>Finding the XPath of an Element</h2>
+<p>An easy way to find the XPath of an element is by opening Chrome Developer Tools, right clicking a HTML element and clicking &#34;Copy XPath&#34;. This XPath can then be used in the Chrome Console to return this specific element, by using the following function:</p>
+<pre><code>$x(&#34;&lt;Paste XPath here&#34;)
+</code></pre>
+<p>To execute this XPath in C#, the following method is used:</p>
+<pre><code>Driver.FindElement(By.XPath($&#34;Paste XPath here&#34;));
+</code></pre>
+<p>This is helpful for finding elements that are not accessible as part of the XrmApp EasyRepro object. For more information on XPath, see <a href="https://www.w3schools.com/xml/xpath_intro.asp" target="_blank">here</a>.</p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Exercise 1 - Writing Custom Steps using XPath" duration="0">
-        <p> In this exercise we will be validating the title shown on the out of the box Contact Delete Confirmation dialog.  Write a custom step in a new Steps file, which asserts that the dialog text is equal to &#34;Contact Delete Confirmation&#34;.  Then add a scenario using this step called &#34;Basic user deletes a contact&#34;. Please note that the &#34;I select the ‘Delete&#39; command&#34; should be used instead of the &#34;I delete the record&#34;, as the latter does not trigger the dialog to appear.  </p>
-<h2 is-upgraded>Sample Answer </h2>
-<p> Below is a sample step and scenario for the above exercise.  &#34;` [Then(&#34;a dialog is displayed with a title of ‘(.*)&#39;&#34;)] public void ThenADialogIsDisplayedWithTitle(string title) { </p>
-<pre><code>var actual = Driver.FindElement(By.XPath(&#34;//h1[@id=&#39;dialogTitleText&#39;]&#34;));
-actual.Should().Be(title);
+        <p>In this exercise we will be validating the title shown on the out of the box Contact Delete Confirmation dialog.</p>
+<p>Write a custom step in a new Steps file, which asserts that the dialog text is equal to &#34;Contact Delete Confirmation&#34;.</p>
+<p>Then add a scenario using this step called &#34;Basic user deletes a contact&#34;. Please note that the &#34;I select the ‘Delete&#39; command&#34; should be used instead of the &#34;I delete the record&#34;, as the latter does not trigger the dialog to appear.</p>
+<h2 is-upgraded>Sample Answer</h2>
+<p>Below is a sample step and scenario for the above exercise.</p>
+<pre><code>[Then(&#34;a dialog is displayed with a title of &#39;(.*)&#39;&#34;)]
+public void ThenADialogIsDisplayedWithTitle(string title)
+{
+    var actual = Driver.FindElement(By.XPath(&#34;//h1[@id=&#39;dialogTitleText&#39;]&#34;));
+    actual.Should().Be(title);
+}
 </code></pre>
-<p>} <br><br> Scenario: Basic user deletes a contact </p>
-<pre><code>Given I am logged in to the &#39;UI Test App&#39; app as &#39;a basic user&#39;
-And I have created &#39;a contact&#39;
-And I have opened &#39;a contact&#39;
-When I select the &#39;Delete&#39; command
-Then a dialog is displayed with a title of &#39;Contact Delete Confirmation&#39;
+<pre><code>Scenario: Basic user deletes a contact
+	Given I am logged in to the &#39;UI Test App&#39; app as &#39;a basic user&#39;
+	And I have created &#39;a contact&#39;
+	And I have opened &#39;a contact&#39;
+	When I select the &#39;Delete&#39; command
+	Then a dialog is displayed with a title of &#39;Contact Delete Confirmation&#39;
 </code></pre>
-<p>&#34;` </p>
 
 
       </google-codelab-step>
