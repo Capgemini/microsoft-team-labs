@@ -6,3 +6,8 @@ steps:
   displayName: 'Use latest Go '
   inputs:
     version: '1.16.3'
+
+- task: CmdLine@2
+  displayName: 'Get CLAAT'
+  inputs:
+    script: 'go get github.com/googlecodelabs/tools/claat'  
