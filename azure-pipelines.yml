@@ -4,8 +4,5 @@ pool:
 steps:
 - task: GoTool@0
   displayName: 'Use latest Go '
-
-- task: Go@0
-  displayName: 'go get'
   inputs:
-    arguments: '-d'
+    version: '1.16.3'
