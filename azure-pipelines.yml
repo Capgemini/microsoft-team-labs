@@ -9,13 +9,6 @@ steps:
   inputs:
     version: '1.16.3'
 
-- task: CmdLine@2
-  displayName: 'Configure GO environment'
-  inputs:
-    script: |
-      export GOPATH=$HOME/gocode
-      export PATH=$PATH:$GOPATH/bin
-
 - task: Go@0
   displayName: 'Get CLAAT'
   inputs:
@@ -26,7 +19,7 @@ steps:
   displayName: 'Copy markdown files and attachments to public folder'
   inputs:
     script: |
-      ls -a /opt/hostedtoolcache/go/1.16.3/x64/bin
+      ls -a 
       mkdir public 
       cp -R ALM/ SpecFlow/ public
       tree -a public
