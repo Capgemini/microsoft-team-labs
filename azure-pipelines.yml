@@ -21,4 +21,4 @@ steps:
       mkdir public 
       cp alm/*.md public
       cp specflow/*.md public
-      ls -a
+      ls public -a
