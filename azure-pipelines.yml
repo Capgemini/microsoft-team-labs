@@ -8,13 +8,12 @@ steps:
   displayName: 'Use latest Go '
   inputs:
     version: '1.16.3'
-    goPath: '$HOME/gopath'
-    goBin: '$HOME/gobin'
-
+    
 - task: Go@0
   displayName: 'Get CLAAT'
   inputs:    
-    command: 'get'
+    command: 'custom'
+    customCommand: 'install'
     arguments: 'github.com/googlecodelabs/tools/claat'
     
 - task: CmdLine@2
