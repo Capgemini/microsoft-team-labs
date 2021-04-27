@@ -19,7 +19,7 @@ steps:
   displayName: 'Copy markdown files and attachments to public folder'
   inputs:
     script: |
-      ls -a $GOPATH/src/github.com/googlecodelabs/tools
+      claat -h 
       mkdir public 
       cp -R ALM/ SpecFlow/ public
       tree -a public
