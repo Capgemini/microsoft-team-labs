@@ -19,6 +19,6 @@ steps:
   inputs:
     script: |
       mkdir public 
-      cp alm/*.md public
-      cp specflow/*.md public
+      cp ALM/*.md public
+      cp SpecFlow/*.md public
       ls public -a
