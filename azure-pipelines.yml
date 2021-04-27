@@ -21,7 +21,7 @@ steps:
     script: |
       mkdir public 
       cp -R ALM/ public
-      ls public -a
-      ls public/.attachments -a
+      ls public/ALM -a
+      ls public/ALM/.attachments -a
 
 
