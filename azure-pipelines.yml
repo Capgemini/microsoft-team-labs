@@ -17,4 +17,8 @@ steps:
     
 - task: CmdLine@2
   inputs:
-    script: 'ls -a'
+    script: |
+      mkdir public 
+      cp alm/*.md public
+      cp specflow/*.md public
+      ls -a
