@@ -28,7 +28,7 @@ steps:
   inputs:
     script: |
       for i in `find public -name "*.md" -type f`; do
-        ./claat export "$i"
+        claat export "$i"
         echo "$i"
       done
       tree -a public
