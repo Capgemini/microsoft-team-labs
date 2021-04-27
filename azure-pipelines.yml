@@ -13,12 +13,13 @@ steps:
   displayName: 'Get CLAAT'
   inputs:
     command: 'get'
-    arguments: '-v github.com/googlecodelabs/tools/claat'
+    arguments: 'github.com/googlecodelabs/tools/claat'
     
 - task: CmdLine@2
   displayName: 'Copy markdown files and attachments to public folder'
   inputs:
     script: |
+      ls -a 
       mkdir public 
       cp -R ALM/ SpecFlow/ public
       tree -a public
