@@ -15,6 +15,7 @@ steps:
     script: |
       export GOPATH=$HOME/gocode
       export PATH=$PATH:$GOPATH/bin
+      ls -a /opt/hostedtoolcache/go/1.16.3/x64/bin
 
 - task: Go@0
   displayName: 'Get CLAAT'
