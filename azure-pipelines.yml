@@ -20,8 +20,7 @@ steps:
   inputs:
     script: |
       mkdir public 
-      cp -R ALM/ public
-      ls public/ALM -a
-      ls public/ALM/.attachments -a
+      cp -R ALM/ SpecFlow/ public
+      tree public
 
 
