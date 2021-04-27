@@ -20,7 +20,7 @@ steps:
   inputs:
     script: |
       mkdir public 
-      cp -R -v ALM/ SpecFlow/ public
+      cp -R ALM/ SpecFlow/ public
       tree -a public
 
 
