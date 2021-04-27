@@ -1,8 +1,6 @@
 variables:
   GOBIN:  '$(GOPATH)/bin' # Go binaries path
-  GOROOT: '/usr/local/go1.16' # Go installation path
   GOPATH: '$(system.defaultWorkingDirectory)/gopath' # Go workspace path
-  modulePath: '$(GOPATH)/src/github.com/$(build.repository.name)' # Path to the module's code
 
 trigger: none
 
@@ -26,8 +24,6 @@ steps:
   displayName: 'Copy markdown files and attachments to public folder'
   inputs:
     script: |
-      ls -a /opt/hostedtoolcache/go/1.16.3/x64/bin
-      go env 
       mkdir public 
       cp -R ALM/ SpecFlow/ public
       tree -a public
@@ -36,8 +32,6 @@ steps:
   displayName: 'Compile markdown files'
   inputs:
     script: |
-      export GOPATH=$HOME/gocode
-      export PATH=$PATH:$GOPATH/bin
       for i in `find public -name "*.md" -type f`; do
         $(GOBIN)/claat export "$i"
         echo "$i"
