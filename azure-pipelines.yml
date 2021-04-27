@@ -16,7 +16,7 @@ steps:
     arguments: 'github.com/googlecodelabs/tools/claat'
     
 - task: CmdLine@2
-  displayName: 'Copy markdown files and attachments publicto  folder'
+  displayName: 'Copy markdown files and attachments to public folder'
   inputs:
     script: |
       mkdir public 
@@ -29,5 +29,6 @@ steps:
     script: |
       for i in `find public -name "*.md" -type f`; do
         claat export "$i"
+        echo "$i"
       done
       tree -a public
