@@ -1,3 +1,5 @@
+trigger: none
+
 pool:
   vmImage: 'ubuntu-latest'
 
@@ -7,7 +9,7 @@ steps:
   inputs:
     version: '1.16.3'
 
-- task: CmdLine@2
-  displayName: 'Get CLAAT'
+- task: Go@0
   inputs:
-    script: 'go get github.com/googlecodelabs/tools/claat'  
+    command: 'get'
+    arguments: 'github.com/googlecodelabs/tools/claat'
