@@ -21,6 +21,6 @@ steps:
     script: |
       mkdir public 
       cp -R -v ALM/ SpecFlow/ public
-      tree public
+      tree -a public
 
 
