@@ -21,12 +21,7 @@ steps:
     script: |
       mkdir public 
       cp -R ALM/*.* public
-      cp -R SpecFlow/*.* public
       ls public -a
-      ls public/ALM -a
-      ls public/SpecFlow -a
-      ls public/ALM/.attachments -a
-      ls public/SpecFlow/.attachments -a
-
+      ls public/.attachments -a
 
 
