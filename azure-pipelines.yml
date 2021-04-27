@@ -14,7 +14,7 @@ steps:
   inputs:    
     command: 'custom'
     customCommand: 'install'
-    arguments: 'github.com/googlecodelabs/tools/claat'
+    arguments: 'github.com/googlecodelabs/tools/claat@latest'
     
 - task: CmdLine@2
   displayName: 'Copy markdown files and attachments to public folder'
