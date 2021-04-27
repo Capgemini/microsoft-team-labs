@@ -22,7 +22,7 @@ steps:
   displayName: 'Copy markdown files and attachments to public folder'
   inputs:
     script: |
-      ls -a 
+      go env 
       mkdir public 
       cp -R ALM/ SpecFlow/ public
       tree -a public
@@ -34,7 +34,7 @@ steps:
       export GOPATH=$HOME/gocode
       export PATH=$PATH:$GOPATH/bin
       for i in `find public -name "*.md" -type f`; do
-        claat export "$i"
+        $GOPATH/bin/claat export "$i"
         echo "$i"
       done
       tree -a public
