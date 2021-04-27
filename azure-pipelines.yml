@@ -15,7 +15,6 @@ steps:
     script: |
       export GOPATH=$HOME/gocode
       export PATH=$PATH:$GOPATH/bin
-      ls -a /opt/hostedtoolcache/go/1.16.3/x64/bin
 
 - task: Go@0
   displayName: 'Get CLAAT'
@@ -27,6 +26,7 @@ steps:
   displayName: 'Copy markdown files and attachments to public folder'
   inputs:
     script: |
+      ls -a /opt/hostedtoolcache/go/1.16.3/x64/bin
       mkdir public 
       cp -R ALM/ SpecFlow/ public
       tree -a public
