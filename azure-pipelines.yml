@@ -16,9 +16,17 @@ steps:
     arguments: 'github.com/googlecodelabs/tools/claat'
     
 - task: CmdLine@2
+  displayName: 'Copy lab files'
   inputs:
     script: |
       mkdir public 
-      cp ALM/*.md public
-      cp SpecFlow/*.md public
+      cp ALM/*.* public
+      cp SpecFlow/*.* public
       ls public -a
+      ls public/ALM -a
+      ls public/SpecFlow -a
+      ls public/ALM/.attachments -a
+      ls public/SpecFlow/.attachments -a
+
+
+
