@@ -16,11 +16,18 @@ steps:
     arguments: 'github.com/googlecodelabs/tools/claat'
     
 - task: CmdLine@2
-  displayName: 'Copy lab files'
+  displayName: 'Copy markdown files and attachments publicto  folder'
   inputs:
     script: |
       mkdir public 
       cp -R ALM/ SpecFlow/ public
       tree -a public
 
-
+- task: CmdLine@2
+  displayName: 'Compile markdown files'
+  inputs:
+    script: |
+      for i in `find public -name "*.md" -type f`; do
+        claat export "$i"
+      done
+      tree -a public
