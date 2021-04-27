@@ -20,7 +20,7 @@ steps:
   inputs:
     script: |
       mkdir public 
-      cp -R ALM/*.* public
+      cp -R ALM/ public
       ls public -a
       ls public/.attachments -a
 
