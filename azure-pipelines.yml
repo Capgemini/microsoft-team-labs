@@ -18,22 +18,13 @@ steps:
     arguments: 'github.com/googlecodelabs/tools/claat@latest'
     
 - task: CmdLine@2
-  displayName: 'Copy markdown files and attachments to codelabs folder'
-  inputs:
-    script: |
-      mkdir codelabs 
-      cp -R ALM/ SpecFlow/ codelabs
-      tree -a codelabs
-- task: CmdLine@2
   displayName: 'Compile markdown files'
   inputs:
     script: |
+      mkdir codelabs 
       cd codelabs
-      for i in `find . -name "*.md" -type f`; do
+      for i in `find /ALM /SpecFlow -name "*.md" -type f`; do
         $(GOBIN)/claat export "$i"
-        echo "$i"
-        rm "$i"
+        echo "$i"        
       done
-      rm -r ALM/.attachments
-      rm -r SpecFlow/.attachments
       tree -a .
