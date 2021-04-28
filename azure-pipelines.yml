@@ -1,6 +1,6 @@
 variables:
-  GOBIN:  '$(GOPATH)/bin' # Go binaries path
   GOPATH: '$(system.defaultWorkingDirectory)/gopath' # Go workspace path
+  GOBIN:  '$(GOPATH)/bin' # Go binaries path
 
 trigger: none
 
@@ -26,6 +26,14 @@ steps:
     script: |
       mkdir public 
       cp -R ALM/ SpecFlow/ public
+      tree -a public
+
+- task: CmdLine@2
+  displayName: 'Rename SpecFlow files'
+  inputs:
+    script: |
+      mv "public/SpecFlow/More Advanced Scenarios.md" "public/SpecFlow/More-Advanced-Scenarios.md"
+      mv "public/SpecFlow/Setup and Installation.md" "public/SpecFlow/Setup-and-Installation.md"
       tree -a public
 
 - task: CmdLine@2
