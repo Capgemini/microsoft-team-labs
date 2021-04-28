@@ -37,4 +37,4 @@ steps:
         $(GOBIN)/claat export "$i"
         echo "$i"
       done
-      tree -a public
+      tree -a .
