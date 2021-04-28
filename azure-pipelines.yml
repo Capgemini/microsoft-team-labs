@@ -29,14 +29,6 @@ steps:
       tree -a public
 
 - task: CmdLine@2
-  displayName: 'Rename SpecFlow files'
-  inputs:
-    script: |
-      mv "public/SpecFlow/More Advanced Scenarios.md" "public/SpecFlow/More-Advanced-Scenarios.md"
-      mv "public/SpecFlow/Setup and Installation.md" "public/SpecFlow/Setup-and-Installation.md"
-      tree -a public
-
-- task: CmdLine@2
   displayName: 'Compile markdown files'
   inputs:
     script: |
