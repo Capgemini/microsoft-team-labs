@@ -24,17 +24,15 @@ steps:
   displayName: 'Copy markdown files and attachments to public folder'
   inputs:
     script: |
-      mkdir public 
-      cp -R ALM/ SpecFlow/ public
-      tree -a public
+      mkdir codelabs 
 
 - task: CmdLine@2
   displayName: 'Compile markdown files'
   inputs:
     script: |
-      cd public
-      for i in `find . -name "*.md" -type f`; do
-        $(GOBIN)/claat export "$i"
+      for i in `find ALM SpecFlow -name "*.md" -type f`; do
+        $(GOBIN)/claat export "$i" -o codelabs
         echo "$i"
       done
-      tree -a .
+      tree -a codelabs 
+
