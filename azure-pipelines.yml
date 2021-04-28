@@ -1,12 +1,9 @@
 variables:
   GOPATH: '$(system.defaultWorkingDirectory)/gopath' # Go workspace path
   GOBIN:  '$(GOPATH)/bin' # Go binaries path
-
 trigger: none
-
 pool:
   vmImage: 'ubuntu-latest'
-
 steps:
 - task: GoTool@0
   displayName: 'Use latest Go '
@@ -24,15 +21,16 @@ steps:
   displayName: 'Copy markdown files and attachments to public folder'
   inputs:
     script: |
-      mkdir codelabs 
-
+      mkdir public 
+      cp -R ALM/ SpecFlow/ public
+      tree -a public
 - task: CmdLine@2
   displayName: 'Compile markdown files'
   inputs:
     script: |
-      for i in `find ALM SpecFlow -name "*.md" -type f`; do
-        $(GOBIN)/claat export "$i" -o codelabs
+      cd public
+      for i in `find . -name "*.md" -type f`; do
+        $(GOBIN)/claat export "$i"
         echo "$i"
       done
-      tree -a codelabs 
-
+      tree -a .
