@@ -27,7 +27,6 @@ steps:
         $(GOBIN)/claat export "$i"
         echo "$i"        
       done
-      tree -a .
 
 - task: CopyFiles@2
   inputs:
