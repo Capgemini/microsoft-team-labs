@@ -23,7 +23,7 @@ steps:
     script: |
       mkdir codelabs 
       cd codelabs
-      for i in `find /ALM /SpecFlow -name "*.md" -type f`; do
+      for i in `find ../ALM ../SpecFlow -name "*.md" -type f`; do
         $(GOBIN)/claat export "$i"
         echo "$i"        
       done
