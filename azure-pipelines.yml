@@ -32,6 +32,7 @@ steps:
   displayName: 'Compile markdown files'
   inputs:
     script: |
+      cd public
       for i in `find public -name "*.md" -type f`; do
         $(GOBIN)/claat export "$i"
         echo "$i"
