@@ -31,6 +31,8 @@ steps:
 
 - task: CopyFiles@2
   inputs:
+    SourceFolder: '$(system.defaultWorkingDirectory)/codelabs'
+    Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
