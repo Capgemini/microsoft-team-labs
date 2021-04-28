@@ -33,7 +33,7 @@ steps:
   inputs:
     script: |
       cd public
-      for i in `find public -name "*.md" -type f`; do
+      for i in `find . -name "*.md" -type f`; do
         $(GOBIN)/claat export "$i"
         echo "$i"
       done
