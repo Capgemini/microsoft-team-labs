@@ -62,12 +62,6 @@ steps:
     Contents: '**'
     RemoveSourceFolder: true
 
-- task: DeleteFiles@1
-  inputs:
-    SourceFolder: './gopath'
-    Contents: '**'
-    RemoveSourceFolder: true
-
 - script: |
     echo "commit all changes"
     git config --global user.email "$(Build.RequestedForEmail)"
