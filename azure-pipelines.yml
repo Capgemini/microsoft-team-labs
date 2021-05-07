@@ -8,27 +8,40 @@ pool:
   vmImage: 'ubuntu-latest'
   
 steps:
+- checkout: self
+  persistCredentials: true
+  
 - task: GoTool@0
   displayName: 'Use latest Go '
   inputs:
     version: '1.16.3'
-    
+
 - task: Go@0
   displayName: 'Get CLAAT'
   inputs:    
     command: 'custom'
     customCommand: 'install'
     arguments: 'github.com/googlecodelabs/tools/claat@latest'
-    
+
 - task: CmdLine@2
   displayName: 'Compile markdown files'
   inputs:
     script: |
-      mkdir codelabs 
+      mkdir codelabs
       cd codelabs
-      for i in `find ../ALM ../SpecFlow -name "*.md" -type f`; do
-        $(GOBIN)/claat export "$i"
-        echo "$i"        
+      for value in ./ALM ./SpecFlow
+      do
+        echo "Finding files in ${value}"
+        fn=$(basename "$value")
+        echo "Folder name is ${fn}"
+        mkdir $fn
+        cd $fn
+        for i in `find $value -name "*.md" -type f`; 
+        do
+          echo "$i"
+          $(GOBIN)/claat export "$i"
+        done
+        cd ..
       done
 
 - task: CopyFiles@2
@@ -42,3 +55,24 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'codelabs'
     publishLocation: 'Container'
+
+- script: |
+    echo "commit all changes"
+    git config --global user.email "$(Build.RequestedForEmail)"
+    git config --global user.name "$(Build.RequestedFor)"
+    git checkout -b jz-gh-pages --track origin/jz-gh-pages
+  displayName: 'checkout the target branch'
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.ArtifactStagingDirectory)/codelabs'
+    Contents: '**'
+    TargetFolder: '$(system.defaultWorkingDirectory)'
+    OverWrite: true
+
+- script: |
+    git add -A
+    git commit -m "Azure Pipeline Release"
+    git push --force --set-upstream origin "jz-gh-pages"
+  displayName: 'Commit/Push changes to target Branch'
+
