@@ -3,13 +3,13 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2021-04-07T15:35:04+01:00",
+  "updated": "2021-05-07T15:42:31Z",
   "id": "Setup",
   "duration": 0,
   "title": "Installing and Configuring the Capgemini.PowerApps.Bindings",
   "authors": "Zoe Dawson and Matthew Hoy",
   "summary": "A lab to set up a new automated UI testing project using EasyRepro.",
-  "source": "Setup and Installation.md",
+  "source": "../../SpecFlow/2-Setup-and-Installation.md",
   "theme": "",
   "status": [
     "draft"

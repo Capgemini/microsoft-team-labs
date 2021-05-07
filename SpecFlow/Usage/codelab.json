@@ -3,13 +3,13 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2021-04-07T15:34:59+01:00",
+  "updated": "2021-05-07T15:42:31Z",
   "id": "Usage",
   "duration": 0,
   "title": "Using Capgemini Bindings",
   "authors": "Zoe Dawson and Matthew Hoy",
   "summary": "A lab to create and explore basic scenarios using existing bindings.",
-  "source": "WritingSimpleBindings.md",
+  "source": "../../SpecFlow/3-Writing-Simple-Bindings.md",
   "theme": "",
   "status": [
     "draft"

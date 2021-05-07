@@ -3,13 +3,13 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2021-03-31T14:45:36+01:00",
+  "updated": "2021-05-07T15:42:31Z",
   "id": "alm-introduction",
   "duration": 0,
   "title": "Introduction to ALM",
   "authors": "Luke Phillips and Tom Ashworth",
   "summary": "Introduction to ALM.",
-  "source": "1-Introduction-What-is-ALM.md",
+  "source": "../../ALM/1-Introduction-What-is-ALM.md",
   "theme": "",
   "status": [
     "draft"

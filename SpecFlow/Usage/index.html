@@ -30,7 +30,7 @@
       <google-codelab-step label="Exercise 1 - Key Steps" duration="0">
         <p>The first scenario in this lab will involve verifying that a basic user can view the contact form. This will entirely rely on the Capgemini PowerApps Bindings, so no custom steps will be created. Before undertaking this exercise, manually create a contact in your test environment.</p>
 <p>Right click the &#34;Features&#34; folder in the project and create a new SpecFlow Feature file named Manage A Contact.feature.</p>
-<p class="image-container"><img alt="alt_text" title="image_tooltip" src="img\efbe34a4396dc25c.png"></p>
+<p class="image-container"><img alt="alt_text" title="image_tooltip" src="img/efbe34a4396dc25c.png"></p>
 <p>Once created, specify the Feature name within the file as &#34;Manage A Contact&#34;. Next comes the definition of a particular scenario for the feature. In this example we will be defining the &#34;Basic user views contact information&#34; scenario. Scenario names we recommend follow a naming convention of &lt;Persona&gt; &lt;Verb&gt; &lt;Object&gt;. With this scenario you can see this as &lt;Basic User&gt; &lt;views&gt; &lt;the contact forms&gt;. Below is a table giving a brief overview of this.</p>
 <table>
 <tr><td colspan="1" rowspan="1"><p><strong>Placeholder    </strong></p>
@@ -82,7 +82,7 @@ Then the new email address is retained.
 </code></pre>
 <p>Based on this new story you can see that we need a new test scenario to cover updating the email field as the user journey is not the same as with the test we&#39;ve already written.</p>
 <p>When it comes to organising your test scenarios the general recommendation we would give is that you sort your feature files by Entity type into folders and then into features by the user journey. This may not work for every project, we don&#39;t want your folders to be overly specific or too broad. It might make sense on your project to group feature files by Epic or Feature for example. An example of what this may look like is below.</p>
-<p class="image-container"><img alt="alt_text" title="image_tooltip" src="img\f7e9ba6232833b5b.png"></p>
+<p class="image-container"><img alt="alt_text" title="image_tooltip" src="img/f7e9ba6232833b5b.png"></p>
 <p>In this case the user story is covering a scenario that fits inside the ‘Manage A Contact&#39; feature so we would simply add a new scenario into that feature file. For more best practice conventions you can read <a href="https://specflow.org/blog/gherkin-conventions-for-readable-specifications/" target="_blank">this blog.</a></p>
 <p>Now try creating a new scenario that opens a contact form then populates a value in the Email Address field and saves. Note that in the vast majority of cases you will need to know the field&#39;s logical name to do this, rather than the display name. Now attempt to find the appropriate steps in the Capgemini Bindings via IntelliSense or the <a href="https://github.com/Capgemini/powerapps-specflow-bindings/tree/master/bindings/src/Capgemini.PowerApps.SpecFlowBindings/Steps" target="_blank">GitHub repository</a>.</p>
 <h2 is-upgraded>Sample Answer</h2>
@@ -199,7 +199,7 @@ Scenario: Basic user validates the contact form fields
       <google-codelab-step label="Exercise 5 - Creating a Contact" duration="0">
         <p>This exercise will cover automatic creation of test data, to ensure that the running of the test will not be reliant on data already existing in the system. Before beginning this exercise ensure that there are no contacts in the My Active Contacts view for your Dynamics user.</p>
 <p>Create a folder named &#34;Data&#34; in the root of the test project and add a new json file within the folder named &#34;a contact.json&#34;.</p>
-<p class="image-container"><img alt="alt_text" title="image_tooltip" src="img\a285b3715f79c7ae.png"></p>
+<p class="image-container"><img alt="alt_text" title="image_tooltip" src="img/a285b3715f79c7ae.png"></p>
 <p>Open the newly created json file and add the following information</p>
 <pre><code>{
   &#34;@logicalName&#34;: &#34;contact&#34;,
@@ -209,7 +209,7 @@ Scenario: Basic user validates the contact form fields
 }
 </code></pre>
 <p>The above json specifies that a contact record will be created with the name of &#34;Tom Jones&#34;. The @alias value is used to reference this record in feature or other json files. Ensure that the json file properties in your data folder are set to &#34;Copy if Newer&#34; or &#34;Copy Always&#34;.</p>
-<p class="image-container"><img alt="alt_text" title="image_tooltip" src="img\d826e82d6c355e82.png"></p>
+<p class="image-container"><img alt="alt_text" title="image_tooltip" src="img/d826e82d6c355e82.png"></p>
 <p>The next step is to add a step in the feature file to create this contact record. Now attempt to find an appropriate step in the Capgemini Bindings via IntelliSense or <a href="https://github.com/Capgemini/powerapps-specflow-bindings/tree/master/bindings/src/Capgemini.PowerApps.SpecFlowBindings/Steps" target="_blank">GitHub repository</a> for each of the below lines in the sample user story.</p>
 <pre><code>Given I log into the app as a basic user
 And a contact has been created

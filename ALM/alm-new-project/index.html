@@ -64,8 +64,8 @@
     
       <google-codelab-step label="Clone tool" duration="0">
         <p>First you will need to create a new directory in windows explorer where will install all our project files in this lab. Call the folder <strong>alm-labs</strong> for the purpose of this lab.</p>
-<p>Open CMD within your newly created folder by typing CMD in <strong>Windows explorer</strong> and press <strong>Enter</strong><img alt="image.png" src="img\e725bda75e9b0be6.png"></p>
-<p>A new command prompt window should open with the path pointing to your newly created folder. <img alt="image.png" src="img\9b1ffdf1887d9b6c.png"></p>
+<p>Open CMD within your newly created folder by typing CMD in <strong>Windows explorer</strong> and press <strong>Enter</strong><img alt="image.png" src="img/e725bda75e9b0be6.png"></p>
+<p>A new command prompt window should open with the path pointing to your newly created folder. <img alt="image.png" src="img/9b1ffdf1887d9b6c.png"></p>
 <p>All commands throughout the lab will be entered in <strong>Command prompt</strong></p>
 <p>Clone the PowerApps project template Github repository to your local machine by running <br><code>git clone https://github.com/Capgemini/powerapps-project-template.git<br></code></p>
 <p>When prompted to sign into Github, please sign in.</p>
@@ -115,7 +115,7 @@ Updating files: 100% (165/165), done.
 </table>
 <p>Open the generated project in either VS Code or the file explorer and take this opportunity to browse through the files seeing what was created and how the values you&#39;ve entered have been passed into the naming of files and folders.</p>
 <p>To open your project in VS Code from command prompt run <code>code .</code></p>
-<p class="image-container"><img alt="image.png" src="img\c4cce2099d17f700.png"></p>
+<p class="image-container"><img alt="image.png" src="img/c4cce2099d17f700.png"></p>
 
 
       </google-codelab-step>
@@ -167,10 +167,10 @@ Updating files: 100% (165/165), done.
       <google-codelab-step label="Run automated Azure DevOps setup" duration="0">
         <p>First, you need to create a Personal Access Token (PAT) so that the generator can talk to Azure DevOps on behalf of your account.</p>
 <p>Open Azure DevOps, select <strong>User settings</strong> (user icon with a little cog) and select <strong>Personal access tokens</strong></p>
-<p class="image-container"><img alt="image.png" src="img\b4b6788ac82b63de.png"></p>
+<p class="image-container"><img alt="image.png" src="img/b4b6788ac82b63de.png"></p>
 <p>Select <strong>+ New Token</strong> then enter ‘Generator&#39; as the name, select an expiry date of today or tomorrow, and for scopes select Full Access.</p>
-<p class="image-container"><img alt="image.png" src="img\a1789bab018edca1.png"></p>
-<p class="image-container"><img alt="image.png" src="img\5635f583f27849a.png"></p>
+<p class="image-container"><img alt="image.png" src="img/a1789bab018edca1.png"></p>
+<p class="image-container"><img alt="image.png" src="img/5635f583f27849a.png"></p>
 <p>Copy the token to notepad as you&#39;ll need this later.</p>
 <p> If Package Name and Azure DevOps Project name are the same then the generator will fail. In this case, rename the pre-created repo in Azure Devops by:  1. Go to the Project Settings 2. Under Repos, select Repositories 3. For the repo with the same name, use the three dots to rename the repo to &#39;[existing name]_old&#39; </p>
 <p>Now you are going to set up Azure DevOps by running <code>yo @capgemini/cdspackage:azuredevops</code>. You&#39;ll be asked the following questions:</p>
@@ -250,12 +250,12 @@ Done.
     
       <google-codelab-step label="Set up Branch Policies" duration="0">
         <p>Within Azure DevOps navigation to ‘Project Settings&#39; then under ‘Repos&#39;, select ‘Repositories&#39;.</p>
-<p class="image-container"><img alt="image.png" src="img\9bb53c183d251010.png"></p>
+<p class="image-container"><img alt="image.png" src="img/9bb53c183d251010.png"></p>
 <p>Now select your repository called the package name you gave and click on the ‘Policies&#39; tab. Under ‘Branch Policy&#39; select ‘master&#39;.</p>
-<p class="image-container"><img alt="image.png" src="img\b3c18de0d9ca36d.png"></p>
+<p class="image-container"><img alt="image.png" src="img/b3c18de0d9ca36d.png"></p>
 <p>Configure the settings as pictured below:</p>
-<p class="image-container"><img alt="image.png" src="img\c108cd8fdbb71750.png"></p>
-<p class="image-container"><img alt="image.png" src="img\2062dfd55cee8e3.png"></p>
+<p class="image-container"><img alt="image.png" src="img/c108cd8fdbb71750.png"></p>
+<p class="image-container"><img alt="image.png" src="img/2062dfd55cee8e3.png"></p>
 
 
       </google-codelab-step>

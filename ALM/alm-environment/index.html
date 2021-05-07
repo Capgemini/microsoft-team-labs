@@ -58,9 +58,9 @@
         <p><strong>Important:</strong> Only required if you only have Project administrator access to Azure DevOps</p>
 <p>Open <a href="https://marketplace.visualstudio.com/items?itemName=microsoft-IsvExpTools.PowerPlatform-BuildTools" target="_blank">Power Platform Build Tools</a></p>
 <p>Select <strong>Get it free</strong></p>
-<p class="image-container"><img alt="image.png" src="img\22c8d34d23cba23f.png"></p>
+<p class="image-container"><img alt="image.png" src="img/22c8d34d23cba23f.png"></p>
 <p>You&#39;ll then be prompted to <strong>Select an Azure DevOps organization</strong>. Select your Azure DevOps organisation and select <strong>Request</strong></p>
-<p class="image-container"><img alt="image.png" src="img\7f482178a8c10492.png"></p>
+<p class="image-container"><img alt="image.png" src="img/7f482178a8c10492.png"></p>
 <p>Repeat this step for <a href="https://marketplace.visualstudio.com/items?itemName=sariftools.sarif-viewer-build-tab" target="_blank">Sarif Viewer Build Tab</a></p>
 
 
@@ -70,7 +70,7 @@
         <p>Open up the <a href="https://admin.powerplatform.microsoft.com/" target="_blank">‘Power Platform admin center&#39;</a> as an admin (Dynamics 365 admin, Global admin, or Power Platform admin).</p>
 <p>If not automatically re-directed, navigate to <strong>Environments</strong> in the left-hand pane</p>
 <p>Click <strong>New</strong></p>
-<p><img alt="new-environment.png" src="img\b278f24c555cc66a.png"> You will then be prompted to enter the following details:</p>
+<p><img alt="new-environment.png" src="img/b278f24c555cc66a.png"> You will then be prompted to enter the following details:</p>
 <table>
 <tr><td colspan="1" rowspan="1"><p>             Field         </p>
 </td><td colspan="1" rowspan="1"><p>             Value         </p>
@@ -92,7 +92,7 @@
 </td><td colspan="1" rowspan="1"><p>             Yes         </p>
 </td></tr>
 </table>
-<p>Select <strong>Next</strong> to move onto next set of fields <img alt="new-environment-page1.png" src="img\cdc5c5bcf3fc3ad8.png"></p>
+<p>Select <strong>Next</strong> to move onto next set of fields <img alt="new-environment-page1.png" src="img/cdc5c5bcf3fc3ad8.png"></p>
 <p>               No         </p>
 <table>
 <tr><td colspan="1" rowspan="1"><p>             Field         </p>
@@ -116,7 +116,7 @@
 </td><td colspan="1" rowspan="1"><p>             Not applicable         </p>
 </td></tr>
 </table>
-<p class="image-container"><img alt="new-environment-page2-enable-apps.png" src="img\38b1702e7af4c361.png"></p>
+<p class="image-container"><img alt="new-environment-page2-enable-apps.png" src="img/38b1702e7af4c361.png"></p>
 <p>Select <strong>Save</strong> Repeat steps above for the below two environments swapping out the details as necessary:</p>
 <p><strong>Master</strong></p>
 <table>
@@ -152,18 +152,18 @@
 <p>Navigate to <a href="https://aad.portal.azure.com/" target="_blank">Azure Active Directory</a></p>
 <p>From the left panel, choose <strong>Azure Active Directory</strong> &gt; <strong>App registrations</strong></p>
 <p>Choose <strong>+ New registration</strong></p>
-<p class="image-container"><img alt="image.png" src="img\91b9c9dde1667455.png"></p>
+<p class="image-container"><img alt="image.png" src="img/91b9c9dde1667455.png"></p>
 <p>In the <strong>Register an application form</strong> provide a name for your app such as <strong>DevOps User</strong>, select <strong>Accounts in this organizational directory only</strong>, and choose <strong>Register</strong>. A redirect URI is not needed for this walkthrough and the provided sample code.</p>
-<p class="image-container"><img alt="s2s-app-registration-started.png" src="img\a4209a8dd3596658.png"></p>
+<p class="image-container"><img alt="s2s-app-registration-started.png" src="img/a4209a8dd3596658.png"></p>
 <p>On the <strong>Overview</strong> page, select <strong>API permissions</strong></p>
-<p>Choose <strong>+ Add a permission</strong><img alt="image.png" src="img\485cd41ed1658574.png"></p>
+<p>Choose <strong>+ Add a permission</strong><img alt="image.png" src="img/485cd41ed1658574.png"></p>
 <p>In the <strong>Microsoft APIs</strong> tab, <strong>choose Dynamics CRM</strong></p>
 <p>In the <strong>Request API permission</strong> form, select <strong>Delegated permissions</strong>, check <strong>user_impersonation</strong>, and select <strong>Add permissions</strong></p>
-<p class="image-container"><img alt="s2s-api-permission-started.png" src="img\30c2310169b1b4b9.png"></p>
+<p class="image-container"><img alt="s2s-api-permission-started.png" src="img/30c2310169b1b4b9.png"></p>
 <p>On the <strong>API permissions</strong> page select <strong>Grant admin consent for &#34;org-name&#34;</strong> and when prompted choose <strong>Yes</strong></p>
-<p class="image-container"><img alt="s2s-api-permission-completed.png" src="img\f388c7d919129027.png"></p>
+<p class="image-container"><img alt="s2s-api-permission-completed.png" src="img/f388c7d919129027.png"></p>
 <p>Important: Select <strong>Overview</strong> in the navigation panel, record the <strong>Display name</strong>, <strong>Application (client) ID</strong>, and <strong>Directory (tenant) ID</strong> values of the app registration. You will use these later in the lab.</p>
-<p class="image-container"><img alt="image.png" src="img\ebe2acd861b79888.png"></p>
+<p class="image-container"><img alt="image.png" src="img/ebe2acd861b79888.png"></p>
 <p>In the navigation panel, select <strong>Certificates &amp; secrets</strong></p>
 <p>Below <strong>Client secrets</strong>, choose <strong>+ New client secret</strong> to create a secret</p>
 <p>In the form, enter a description and select <strong>Add</strong>.</p>
@@ -175,20 +175,20 @@
       <google-codelab-step label="Application user creation" duration="0">
         <p>Open the <a href="https://make.powerapps.com/" target="_blank"><strong>Maker Portal</strong></a>.</p>
 <p>Select the current environment (in the screenshot this is ‘CSD - PP - Development&#39;) in the banner on the top right-hand side of the page and choose your Dataverse environment</p>
-<p class="image-container"><img alt="image.png" src="img\849fba14dcc457b3.png"></p>
+<p class="image-container"><img alt="image.png" src="img/849fba14dcc457b3.png"></p>
 <p>Once you&#39;re in the right environment, choose the <strong>cog icon for Settings</strong> and select <strong>Advanced settings</strong></p>
-<p class="image-container"><img alt="image.png" src="img\cc9592c58ae31bc1.png"></p>
+<p class="image-container"><img alt="image.png" src="img/cc9592c58ae31bc1.png"></p>
 <p>Navigate to <strong>Settings</strong> &gt; <strong>Security</strong> &gt; <strong>Users</strong>.</p>
 <p>Change the view filter to <strong>Application Users</strong> by selecting <strong>Enabled Users</strong> and choosing <strong>Application Users</strong></p>
-<p class="image-container"><img alt="image.png" src="img\85e9a612de950aaa.png"></p>
+<p class="image-container"><img alt="image.png" src="img/85e9a612de950aaa.png"></p>
 <p>Select <strong>+ New</strong>.</p>
-<p class="image-container"><img alt="image.png" src="img\6cd23da5abc87f5a.png"></p>
-<p>Change the Dynamics form by selecting <strong>User</strong> and choosing <strong>Application User</strong><img alt="image.png" src="img\a7eb6a4046c7857f.png"></p>
-<p>In the <strong>Application ID</strong> field, enter the <strong>Application ID (Client ID)</strong> of the app you registered earlier in Azure Active Directory which you also copied to a notepad and select <strong>SAVE</strong><img alt="s2s-new-appuser1.png" src="img\8780869039c13047.png"></p>
+<p class="image-container"><img alt="image.png" src="img/6cd23da5abc87f5a.png"></p>
+<p>Change the Dynamics form by selecting <strong>User</strong> and choosing <strong>Application User</strong><img alt="image.png" src="img/a7eb6a4046c7857f.png"></p>
+<p>In the <strong>Application ID</strong> field, enter the <strong>Application ID (Client ID)</strong> of the app you registered earlier in Azure Active Directory which you also copied to a notepad and select <strong>SAVE</strong><img alt="s2s-new-appuser1.png" src="img/8780869039c13047.png"></p>
 <p>After selecting <strong>SAVE</strong>, if all goes well, the <strong>User Name</strong>, <strong>Application ID URI</strong>, <strong>Azure AD Object Id</strong>, <strong>Full Name</strong>, and <strong>Primary Email</strong> fields will auto-populate with correct values</p>
-<p class="image-container"><img alt="image.png" src="img\48f0c04390d6fca1.png"></p>
+<p class="image-container"><img alt="image.png" src="img/48f0c04390d6fca1.png"></p>
 <p>Before exiting the user form, choose <strong>MANAGE ROLES</strong> and assign the System Administrator security role.</p>
-<p class="image-container"><img alt="image.png" src="img\e6b32593e29b97bf.png"></p>
+<p class="image-container"><img alt="image.png" src="img/e6b32593e29b97bf.png"></p>
 <p>Click <strong>OK</strong></p>
 <p>Repeat the this (Application user creation) step for the other two Power Platform environments you created earlier on:</p>
 <ul>

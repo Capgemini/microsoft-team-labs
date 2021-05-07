@@ -3,13 +3,13 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2021-03-31T15:50:48+01:00",
+  "updated": "2021-05-07T15:42:31Z",
   "id": "alm-environment",
   "duration": 0,
   "title": "Environment Setup",
   "authors": "Luke Phillips and Tom Ashworth",
   "summary": "Environment Setup.",
-  "source": "2-Tutorial-Environment-Setup.md",
+  "source": "../../ALM/2-Tutorial-Environment-Setup.md",
   "theme": "",
   "status": [
     "draft"

@@ -3,13 +3,13 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2021-03-31T16:25:43+01:00",
+  "updated": "2021-05-07T15:42:31Z",
   "id": "alm-new-project",
   "duration": 0,
   "title": "Generate a new project",
   "authors": "Luke Phillips and Tom Ashworth",
   "summary": "Generate a new project.",
-  "source": "3-Tutorial-Generate-a-new-project.md",
+  "source": "../../ALM/3-Tutorial-Generate-a-new-project.md",
   "theme": "",
   "status": [
     "draft"

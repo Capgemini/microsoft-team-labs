@@ -3,13 +3,13 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2021-03-31T16:43:36+01:00",
+  "updated": "2021-05-07T15:42:31Z",
   "id": "alm-developer-hub",
   "duration": 0,
   "title": "Install and configure Development Hub",
   "authors": "Luke Phillips and Tom Ashworth",
   "summary": "Install and configure Development Hub.",
-  "source": "4-Tutorial-Setup-Development-Hub.md",
+  "source": "../../ALM/4-Tutorial-Setup-Development-Hub.md",
   "theme": "",
   "status": [
     "draft"
