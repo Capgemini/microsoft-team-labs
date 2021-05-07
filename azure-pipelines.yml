@@ -3,7 +3,10 @@ variables:
   GOBIN:  '$(GOPATH)/bin' # Go binaries path
   GHPAGES: 'gh-pages'
 
-trigger: none
+trigger:
+  branches:
+    include:
+    - main
 
 pool:
   vmImage: 'ubuntu-latest'
