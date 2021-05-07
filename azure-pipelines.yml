@@ -1,7 +1,7 @@
 variables:
   GOPATH: '$(system.defaultWorkingDirectory)/gopath' # Go workspace path
   GOBIN:  '$(GOPATH)/bin' # Go binaries path
-  GHPAGES: 'jz-gh-pages'
+  GHPAGES: 'gh-pages'
 
 trigger: none
 
