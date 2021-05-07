@@ -29,14 +29,14 @@ steps:
     script: |
       mkdir codelabs
       cd codelabs
-      for value in ./ALM ./SpecFlow
+      for value in ../ALM ../SpecFlow
       do
         echo "Finding files in ${value}"
-        fn=$(basename "$value")
-        echo "Folder name is ${fn}"
-        mkdir $fn
-        cd $fn
-        for i in `find $value -name "*.md" -type f`; 
+        fd=$(basename "$value")
+        echo "Creating a folder ${fd}"
+        mkdir $fd
+        cd $fd
+        for i in `find ../../$fd -name "*.md" -type f`; 
         do
           echo "$i"
           $(GOBIN)/claat export "$i"
@@ -56,6 +56,12 @@ steps:
     ArtifactName: 'codelabs'
     publishLocation: 'Container'
 
+- task: DeleteFiles@1
+  inputs:
+    SourceFolder: './codelabs'
+    Contents: '**'
+    RemoveSourceFolder: true
+
 - script: |
     echo "commit all changes"
     git config --global user.email "$(Build.RequestedForEmail)"
@@ -65,7 +71,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.ArtifactStagingDirectory)/codelabs'
+    SourceFolder: '$(Build.ArtifactStagingDirectory)'
     Contents: '**'
     TargetFolder: '$(system.defaultWorkingDirectory)'
     OverWrite: true
