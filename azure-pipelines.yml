@@ -1,6 +1,7 @@
 variables:
   GOPATH: '$(system.defaultWorkingDirectory)/gopath' # Go workspace path
   GOBIN:  '$(GOPATH)/bin' # Go binaries path
+  GHPAGES: 'jz-gh-pages'
 
 trigger: none
 
@@ -66,7 +67,7 @@ steps:
     echo "commit all changes"
     git config --global user.email "$(Build.RequestedForEmail)"
     git config --global user.name "$(Build.RequestedFor)"
-    git checkout -b jz-gh-pages --track origin/jz-gh-pages
+    git checkout -b $(GHPAGES) --track origin/$(GHPAGES)
   displayName: 'checkout the target branch'
 
 - task: CopyFiles@2
@@ -79,6 +80,6 @@ steps:
 - script: |
     git add -A
     git commit -m "Azure Pipeline Release"
-    git push --force --set-upstream origin "jz-gh-pages"
+    git push --force --set-upstream origin $(GHPAGES)
   displayName: 'Commit/Push changes to target Branch'
 
