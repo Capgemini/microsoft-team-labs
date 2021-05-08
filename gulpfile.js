@@ -560,7 +560,7 @@ const generateView = () => {
 
     let locals = {
       baseUrl: BASE_URL,
-      basePath: BASE_URL === "https://" + path.basename(BASE_URL) ? "" : path.basename(BASE_URL),
+      basePath: BASE_URL === "https://" + path.basename(BASE_URL) ? "" : "/" + path.basename(BASE_URL),
       categories: categories,
       codelabs: codelabs,
       ga: ga,
@@ -576,6 +576,8 @@ const generateView = () => {
       codelabUrl: viewFuncs.codelabUrl(codelabUrlParams),
       levelledCategory: viewFuncs.levelledCategory(),
     };
+
+    console.log(locals)
 
     const html = swig.render(template.toString(), { locals: locals });
     file.contents = new Buffer.from(html);
