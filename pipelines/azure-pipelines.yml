@@ -59,6 +59,14 @@ steps:
       TargetFolder: "$(Build.ArtifactStagingDirectory)/codelabs"
       OverWrite: true
 
+  - task: CopyFiles@2
+    displayName: "Artifact: Copy .gitignore"
+    inputs:
+      SourceFolder: "$(system.defaultWorkingDirectory)"
+      Contents: ".gitignore"
+      TargetFolder: "$(Build.ArtifactStagingDirectory)"
+      OverWrite: true
+
   - task: PublishBuildArtifacts@1
     displayName: "Artifact: Publish"
     inputs:
