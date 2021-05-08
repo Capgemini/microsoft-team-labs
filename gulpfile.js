@@ -35,6 +35,7 @@ const gcs = require('./tasks/helpers/gcs');
 const glob = require('glob');
 const opts = require('./tasks/helpers/opts');
 const path = require('path');
+const relative = require('./tasks/helpers/document-relative');
 const serveStatic = require('serve-static');
 const spawn = childprocess.spawn;
 const swig = require('swig-templates');
@@ -233,6 +234,12 @@ gulp.task('copy', (callback) => {
   fs.rename('build', 'dist', callback);
 });
 
+gulp.task('relative-urls', function () {
+  return gulp.src('build/**/*.html')
+    .pipe(relative({ directory: 'build' }))
+    .pipe(gulp.dest('build'));
+});
+
 // minify:css minifies the css
 gulp.task('minify:css', () => {
   const srcs = [
@@ -280,6 +287,7 @@ gulp.task('minify', gulp.parallel(
 // appropriate.
 gulp.task('dist', gulp.series(
   'build',
+  'relative-urls',
   'copy',
   'minify',
 ));
