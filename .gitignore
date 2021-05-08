@@ -18,3 +18,4 @@ app/js/bundle
 /build/
 /dist/
 /codelabs-rendered/
+/gopath/
