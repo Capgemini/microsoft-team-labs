@@ -27,6 +27,10 @@ steps:
       command: "custom"
       customCommand: "install"
       arguments: "github.com/googlecodelabs/tools/claat@latest"
+    
+  - task: Npm@1
+    inputs:
+      command: 'install'
 
   - task: CmdLine@2
     displayName: "Compile markdown files"
