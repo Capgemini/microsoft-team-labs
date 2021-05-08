@@ -52,7 +52,7 @@ steps:
       OverWrite: true
 
   - task: CopyFiles@2
-    displayName: "Arifact: Copy Labs"
+    displayName: "Artifact: Copy Labs"
     inputs:
       SourceFolder: "$(system.defaultWorkingDirectory)/codelabs-rendered"
       Contents: "**"
@@ -66,13 +66,14 @@ steps:
       ArtifactName: "site"
       publishLocation: "Container"
 
-  - script: |
-      echo "commit all changes"
-      git config --global user.email "$(Build.RequestedForEmail)"
-      git config --global user.name "$(Build.RequestedFor)"
-      git checkout -b $(GHPAGES) --track origin/$(GHPAGES)
-      displayName: "checkout the target branch"
+  - task: CmdLine@2
     displayName: "GH Pages: Checkout to $(GHPAGES)"
+    inputs:
+      script: |
+        echo "commit all changes"
+        git config --global user.email "$(Build.RequestedForEmail)"
+        git config --global user.name "$(Build.RequestedFor)"
+        git checkout -b $(GHPAGES) --track origin/$(GHPAGES)
 
   - task: CopyFiles@2
     displayName: "GH Pages: Copy build"
@@ -82,8 +83,10 @@ steps:
       TargetFolder: "$(system.defaultWorkingDirectory)"
       OverWrite: true
 
-  - script: |
-      git add -A
-      git commit -m "$(Build.SourceVersionMessage)"
-      git push --force --set-upstream origin $(GHPAGES)
+  - task: CmdLine@2
     displayName: "GH Pages: Commit & push to $(GHPAGES)"
+    inputs:
+      script: |
+        git add -A
+        git commit -m "$(Build.SourceVersionMessage)"
+        git push --force --set-upstream origin $(GHPAGES)
