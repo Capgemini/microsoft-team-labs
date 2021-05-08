@@ -17,32 +17,34 @@ steps:
     persistCredentials: true
 
   - task: GoTool@0
-    displayName: "Use latest Go "
+    displayName: "Dependency: Get Go"
     inputs:
       version: "1.16.3"
 
   - task: Go@0
-    displayName: "Get CLAAT"
+    displayName: "Dependency: Get CLAAT"
     inputs:
       command: "custom"
       customCommand: "install"
       arguments: "github.com/googlecodelabs/tools/claat@latest"
-    
+
   - task: Npm@1
+    displayName: "Build: Restore NPM"
     inputs:
-      command: 'install'
+      command: "install"
 
   - task: CmdLine@2
-    displayName: "Compile markdown files"
+    displayName: "Build: Labs"
     inputs:
       script: npx gulp codelabs:export --codelabs-dir=./codelabs-rendered --source=./codelabs/*.md
 
   - task: CmdLine@2
-    displayName: "Build site"
+    displayName: "Build: Site"
     inputs:
       script: npx gulp dist --codelabs-dir=./codelabs-rendered --base-url $(GHPAGESURL)
 
   - task: CopyFiles@2
+    displayName: "Artifact: Copy Site"
     inputs:
       SourceFolder: "$(system.defaultWorkingDirectory)/dist"
       Contents: "**"
@@ -50,6 +52,7 @@ steps:
       OverWrite: true
 
   - task: CopyFiles@2
+    displayName: "Arifact: Copy Labs"
     inputs:
       SourceFolder: "$(system.defaultWorkingDirectory)/codelabs-rendered"
       Contents: "**"
@@ -57,6 +60,7 @@ steps:
       OverWrite: true
 
   - task: PublishBuildArtifacts@1
+    displayName: "Artifact: Publish"
     inputs:
       PathtoPublish: "$(Build.ArtifactStagingDirectory)"
       ArtifactName: "site"
@@ -68,9 +72,10 @@ steps:
       git config --global user.name "$(Build.RequestedFor)"
       git checkout -b $(GHPAGES) --track origin/$(GHPAGES)
       displayName: "checkout the target branch"
-    displayName: "Checkout to $(GHPAGES)"
+    displayName: "GH Pages: Checkout to $(GHPAGES)"
 
   - task: CopyFiles@2
+    displayName: "GH Pages: Copy build"
     inputs:
       SourceFolder: "$(Build.ArtifactStagingDirectory)"
       Contents: "**"
@@ -81,4 +86,4 @@ steps:
       git add -A
       git commit -m "$(Build.SourceVersionMessage)"
       git push --force --set-upstream origin $(GHPAGES)
-    displayName: "Commit/Push changes to target Branch"
+    displayName: "GH Pages: Commit & push to $(GHPAGES)"
