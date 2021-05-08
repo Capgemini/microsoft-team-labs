@@ -14,7 +14,7 @@
     app.kioskTags = [];
 
     // template is="dom-bind" has stamped its content.
-    app.addEventListener('dom-change', function(e) {
+    app.addEventListener('dom-change', function (e) {
       // Use element's protected _readied property to signal if a dom-change
       // has already happened.
       if (app._readied) {
@@ -23,7 +23,7 @@
 
       // Calculate category offsets.
       var cards = document.querySelectorAll('.codelab-card');
-      Array.prototype.forEach.call(cards, function(card, i) {
+      Array.prototype.forEach.call(cards, function (card, i) {
         var category = card.getAttribute('data-category');
         if (app.categoryStartCards[category] === undefined) {
           app.categoryStartCards[category] = card;
@@ -31,7 +31,7 @@
       });
     });
 
-    app.codelabUrl = function(view, codelab) {
+    app.codelabUrl = function (view, codelab) {
       var codelabUrlParams = 'index=' + encodeURIComponent('../..' + view.url);
       if (view.ga) {
         codelabUrlParams += '&viewga=' + view.ga;
@@ -39,12 +39,12 @@
       return codelab.url + '?' + codelabUrlParams;
     };
 
-    app.sortBy = function(e, detail) {
+    app.sortBy = function (e, detail) {
       var order = detail.item.textContent.trim().toLowerCase();
       this.$.cards.sort(order);
     };
 
-    app.filterBy = function(e, detail) {
+    app.filterBy = function (e, detail) {
       if (detail.hasOwnProperty('selected')) {
         this.$.cards.filterByCategory(detail.selected);
         return;
@@ -53,21 +53,21 @@
       this.$.cards.filter(detail);
     };
 
-    app.onCategoryActivate = function(e, detail) {
+    app.onCategoryActivate = function (e, detail) {
       var item = e.target.selectedItem;
       if (item && item.getAttribute('filter') === detail.selected) {
         detail.selected = null;
       }
       if (!detail.selected) {
-        this.async(function() { e.target.selected = null; });
+        this.async(function () { e.target.selected = null; });
       }
-      this.filterBy(e, {selected: detail.selected});
+      this.filterBy(e, { selected: detail.selected });
 
       // Update URL deep link to filter.
       var params = new URLSearchParams(window.location.search.slice(1));
       params.delete('cat'); // delete all cat params
       if (detail.selected) {
-        params.set('cat',  detail.selected);
+        params.set('cat', detail.selected);
       }
 
       // record in browser history to make the back button work
@@ -120,7 +120,7 @@
     }
 
     if (chips) {
-      chips.addEventListener('click', function(e) {
+      chips.addEventListener('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
 
@@ -142,18 +142,18 @@
         }
         // Re-run the filter and select a new random codelab
         // from the filtered subset.
-        app.filterBy(null, {tags: tags});
+        app.filterBy(null, { tags: tags });
         updateLuckyLink();
       });
     }
 
-    app.reconstructFromURL = function() {
+    app.reconstructFromURL = function () {
       var params = new URLSearchParams(window.location.search.slice(1));
       var cat = params.get('cat');
       var tags = params.getAll('tags');
       var filter = params.get('filter');
       var i = tags.length;
-      while(i--) {
+      while (i--) {
         if (tags[i] === 'kiosk' || tags[i].substr(0, 6) === 'kiosk-') {
           app.kioskTags.push(tags[i]);
           tags.splice(i, 1);
@@ -169,7 +169,7 @@
       if (tags) {
         selectChip(tags);
       }
-      this.filterBy(null, {cat: cat, tags: tags});
+      this.filterBy(null, { cat: cat, tags: tags });
       if (filter) {
         app.searchVal = filter;
         app.onSearchKeyDown();
@@ -178,10 +178,10 @@
     };
 
     // Prevent immediate link navigation.
-    app.navigate = function(event) {
+    app.navigate = function (event) {
       event.preventDefault();
 
-      var go = function(href) {
+      var go = function (href) {
         window.location.href = href;
       };
 
@@ -194,13 +194,13 @@
       }
     };
 
-    app.clearSearch = function(e, detail) {
+    app.clearSearch = function (e, detail) {
       this.searchVal = null;
       this.$.cards.filterByText(null);
     };
 
-    app.onSearchKeyDown = function(e, detail) {
-      this.debounce('search', function() {
+    app.onSearchKeyDown = function (e, detail) {
+      this.debounce('search', function () {
         this.$.cards.filterByText(app.searchVal);
       }, 250);
     };
@@ -234,7 +234,7 @@
     } else {
       let script = document.createElement('script');
       script.async = true;
-      script.src = '/bower_components/webcomponentsjs/webcomponents-lite.min.js';
+      script.src = 'bower_components/webcomponentsjs/webcomponents-lite.min.js';
       document.head.appendChild(script);
     }
   }
