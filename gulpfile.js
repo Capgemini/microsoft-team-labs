@@ -364,6 +364,7 @@ gulp.task('codelabs:export', (callback) => {
   const source = args.source;
 
   if (!fs.existsSync(CODELABS_DIR)) {
+    console.log(`Creating ${path.resolve(CODELABS_DIR)}`);
     fs.mkdirSync(CODELABS_DIR);
   }
 
