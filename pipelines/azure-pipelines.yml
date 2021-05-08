@@ -58,8 +58,8 @@ steps:
 
   - task: PublishBuildArtifacts@1
     inputs:
-      PathtoPublish: "$(Build.ArtifactStagingDirectory)/dist"
-      ArtifactName: "dist"
+      PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+      ArtifactName: "site"
       publishLocation: "Container"
 
   - script: |
