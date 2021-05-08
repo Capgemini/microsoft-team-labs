@@ -573,6 +573,7 @@ const generateView = () => {
 
     let locals = {
       baseUrl: BASE_URL,
+      basePath: BASE_URL === "https://" + path.basename(BASE_URL) ? "" : path.basename(BASE_URL),
       categories: categories,
       codelabs: codelabs,
       ga: ga,
