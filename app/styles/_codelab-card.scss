@@ -83,6 +83,12 @@ $card-col-height: 200px; // column mode
     color: #212121;
     -webkit-font-smoothing: antialiased;
   }
+
+  .summary {
+    padding: $keyline * 2 $keyline * 2 0 $keyline * 2;
+    flex: 1 0 auto;
+    -webkit-font-smoothing: antialiased;
+  }
 }
 
 .card-footer {
@@ -95,6 +101,7 @@ $card-col-height: 200px; // column mode
   paper-button {
     @include md-font-button();
     color: #fff;
+    background-color: $blueGrey700;
     text-transform: none;
     padding: 13px 25px;
   }

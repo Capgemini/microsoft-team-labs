@@ -57,6 +57,7 @@ const DEFAULT_CATEGORY = 'Default';
 // always include the protocol (http:// or https://) and NOT including a
 // trailing slash.
 const BASE_URL = args.baseUrl || 'https://example.com';
+const BASE_PATH = BASE_URL === "https://" + path.basename(BASE_URL) ? "" : "/" + path.basename(BASE_URL);
 
 // CODELABS_DIR is the directory where the actual codelabs exist on disk.
 // Despite being a constant, this can be overridden with the --codelabs-dir
@@ -404,7 +405,7 @@ const parseViewMetadata = (filepath) => {
   const meta = JSON.parse(fs.readFileSync(filepath));
 
   meta.id = path.basename(dirname);
-  meta.url = viewFilename(meta.id).replace(/\.html$/, '');
+  meta.url = BASE_PATH + "/" + viewFilename(meta.id).replace(/\.html$/, '').replace('index', '');
 
   if (meta.sort === undefined) {
     meta.sort = meta.id === 'default' ? 'mainCategory' : 'title';
@@ -568,7 +569,7 @@ const generateView = () => {
 
     let locals = {
       baseUrl: BASE_URL,
-      basePath: BASE_URL === "https://" + path.basename(BASE_URL) ? "" : "/" + path.basename(BASE_URL),
+      basePath: BASE_PATH,
       categories: categories,
       codelabs: codelabs,
       ga: ga,
