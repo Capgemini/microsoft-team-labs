@@ -237,7 +237,7 @@ gulp.task('copy', (callback) => {
 
 gulp.task('relative-urls', function () {
   return gulp.src('build/**/*.html')
-    .pipe(relative({ directory: 'build' }))
+    .pipe(relative({ directory: 'build', basePath: BASE_PATH }))
     .pipe(gulp.dest('build'));
 });
 
@@ -569,7 +569,6 @@ const generateView = () => {
 
     let locals = {
       baseUrl: BASE_URL,
-      basePath: BASE_PATH,
       categories: categories,
       codelabs: codelabs,
       ga: ga,

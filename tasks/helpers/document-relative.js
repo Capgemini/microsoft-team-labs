@@ -20,6 +20,7 @@ module.exports = function (options) {
 
   // Cleanup options
   const base_dir = strip_slashes(options.directory);
+  const base_path = strip_slashes(options.basePath) + '/';
   const url = strip_slashes(options.url) + '/';
 
   return through({
@@ -62,6 +63,7 @@ module.exports = function (options) {
 
         // Add ../ for nth number of paths in array
         let rel_path = paths.length === 0 ? '' : ('../'.repeat(paths.length));
+        rel_path = "/" + base_path + rel_path;
 
         // Replace dom attributes (e.g. href="/page/example")
         html = html.replace(/(?:(?!="\/\/)="\/)/g, '="' + rel_path);
