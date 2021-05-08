@@ -2,7 +2,7 @@ variables:
   GOPATH: "$(system.defaultWorkingDirectory)/gopath" # Go workspace path
   GOBIN: "$(GOPATH)/bin" # Go binaries path
   GHPAGES: "tda/gh-pages"
-  GHPAGESURL: "https://capgemini.github.io/microsoft-team-labs/"
+  GHPAGESURL: "https://capgemini.github.io/microsoft-team-labs"
 
 trigger:
   branches:

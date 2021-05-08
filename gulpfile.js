@@ -363,6 +363,10 @@ gulp.task('serve:dist', gulp.series('dist', () => {
 gulp.task('codelabs:export', (callback) => {
   const source = args.source;
 
+  if (!fs.existsSync(CODELABS_DIR)) {
+    fs.mkdirSync(CODELABS_DIR);
+  }
+
   if (source !== undefined) {
     const sources = Array.isArray(source) ? source : glob.sync(path.join('..', source), { cwd: CODELABS_DIR });
     claat.run(CODELABS_DIR, 'export', CODELABS_ENVIRONMENT, CODELABS_FORMAT, DEFAULT_GA, sources, callback);
