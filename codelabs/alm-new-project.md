@@ -8,14 +8,14 @@ authors: Luke Phillips and Tom Ashworth
 # Generate a new project
 
 ## Introduction
+
 ### What you will build
 
 In this tutorial, you will generate a set of files files for a new project based on a standardised template that will:
-
 - To create a source repository to store your development changes
 - Create pipelines which builds, validates and deploys code to specified environments
 - Can also generate additional files during the project lifecycle as the solution grows
-- Create unmanaged solutions in Master environment
+- Create unmanaged solutions in <Project Name>Master environment
 - Using the ADO generator to create the pipelines etc - inputs and outputs
 - Setup branch policies and repo permissions
 
