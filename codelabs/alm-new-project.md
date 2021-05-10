@@ -1,5 +1,5 @@
 id: alm-new-project
-summary: Generate a new project.
+summary: A lab to generate a project structure to be used as part of our development workflow.
 categories: ALM
 environment: Web
 status: Draft

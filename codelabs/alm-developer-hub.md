@@ -1,5 +1,5 @@
 id: alm-developer-hub
-summary: Install and configure Development Hub.
+summary: A lab to setup Development Hub after you've setup your environments.
 categories: ALM
 environment: Web
 status: Draft

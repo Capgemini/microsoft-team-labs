@@ -1,5 +1,5 @@
 id: alm-environment-setup
-summary: Environment Setup.
+summary: A lab to setup the Power Platform environments and Azure DevOps.
 categories: ALM
 environment: Web
 status: Draft
