@@ -1,0 +1,105 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Introduction to ALM</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="alm-introduction"
+                  title="Introduction to ALM"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Why this is important" duration="0">
+        <p>Modern software is increasingly complex and almost impossible to guarantee repeatable, predictable and consistent results using a manual approach for release and deployment of code across environments. This is only made more complicated by solutions being made up of a greater number of components than ever before.</p>
+<p>Having well established processes and automated pipelines help us to increase quality of delivery achieving higher customer satisfaction.</p>
+<p>The tools covered in this lab, PowerApps Project Generator and Development Hub will form the basis for all our projects which deliver solutions built on the Power Platform.</p>
+<p>Our goal is for the whole team to be able to setup and configure these tools for projects and understand our approach to delivering software.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Definition ALM" duration="0">
+        <h2 is-upgraded>What is ALM?</h2>
+<p>ALM (Application Lifecycle Management) tools provide a standardised system for communication and collaboration between software development teams and related departments, such as test and operations. These tools can also automate the process of software development and delivery. To that end, ALM combines the disciplines concerned with all aspects of the process to achieve the goal of driving efficiency through predictable and repeatable software delivery.</p>
+<p class="image-container"><img alt="image.png" src="img/ec7e4e4c9918b82a.png"></p>
+<p>ALM includes these disciplines:</p>
+<ul>
+<li>requirements management</li>
+<li>software architecture</li>
+<li>development</li>
+<li>testing</li>
+<li>software maintenance</li>
+<li>change management</li>
+<li>continuous integration</li>
+<li>project management</li>
+<li>deployment</li>
+<li>and release management</li>
+</ul>
+<p>This lab will <strong>only cover the development, continuous integration, deployment and release management</strong> aspects of ALM.</p>
+<p>For further reading on ALM please visit <a href="https://docs.microsoft.com/en-us/power-platform/alm/overview-alm" target="_blank">here</a></p>
+<h2 is-upgraded>What is DevOps?</h2>
+<p class="image-container"><img alt="lifecycle.png" src="img/79f2d35ad223c0fc.png"></p>
+<p>A compound of development (Dev) and operations (Ops), DevOps is the union of people, processes and technology to continually provide value to customers.</p>
+<p>What does DevOps mean for teams? DevOps enables formerly siloed roles – development, IT operations, quality engineering and security – to coordinate and collaborate to produce better, more reliable products. By adopting a DevOps culture along with DevOps practices and tools, teams gain the ability to better respond to customer needs, increase confidence in the applications they build and achieve business goals faster.</p>
+<p>We as a team are keen to have people skilled in both development and operations to provide to better understand the complete picture of solutions we implement.</p>
+<p>For further reading on DevOps please visit <a href="https://azure.microsoft.com/en-gb/overview/what-is-devops/" target="_blank">here</a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Tooling" duration="0">
+        <p><img alt="image.png" src="img/480c15804fcf9bb8.png"> )</p>
+<h2 is-upgraded>Azure DevOps</h2>
+<p>Azure DevOps (ADO) is a Software as a service (SaaS - meaning you pay a subscription fee for the provider to host, in this case Microsoft) platform from Microsoft that provides an end-to-end DevOps toolchain for developing and deploying software.</p>
+<ul>
+<li>Boards - A place to record and collaborate all of a projects work similar to Trello</li>
+<li>Repos - Advanced file management for project files and code, similar to Github</li>
+<li>Pipelines - Build solution artefacts, run automated tests and deploy across environments similar to Github actions</li>
+<li>Test Plans - Create test cases and record outputs of your manual / exploratory testing execution</li>
+</ul>
+<h2 is-upgraded>Project generator</h2>
+<p>An internal tool used to scaffold the necessary resources for a new project including:</p>
+<ul>
+<li>Generates a set of structured files that hold the base configuration for a new project which is uploaded (pushed) to a new repository in Azure DevOps</li>
+<li>Creates pipelines which builds, validates and deploys code to specified environments</li>
+<li>Can also generate additional files during the project lifecycle as the solution grows</li>
+</ul>
+<p>For more info on the tool please visit the <a href="https://github.com/Capgemini/powerapps-project-template" target="_blank">Github project</a></p>
+<h3 is-upgraded>Development Hub</h3>
+<p>A <a href="https://docs.microsoft.com/en-us/powerapps/maker/model-driven-apps/model-driven-app-overview" target="_blank">model-driven Power App</a> that supports a teams development workflow within a shared development environment. It integrates with Azure DevOps to enable continuous integration by automatically creating pull requests or commits for an individual developer&#39;s changes.</p>
+<p>For more info on the tool please visit the <a href="https://github.com/ewingjm/development-hub#development-hub-" target="_blank">Github project</a></p>
+<h3 is-upgraded>Package deployer template</h3>
+<p>An extension of Microsoft&#39;s PowerApps package deployer which includes common functionality used across projects when deploying PowerApps solutions across environments</p>
+<p>For more info on the tool please visit the <a href="https://github.com/Capgemini/powerapps-packagedeployer-" target="_blank">Github project</a></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

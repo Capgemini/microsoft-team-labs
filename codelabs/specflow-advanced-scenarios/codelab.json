@@ -1,0 +1,23 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2021-05-10T09:14:11Z",
+  "id": "specflow-advanced-scenarios",
+  "duration": 0,
+  "title": "Advanced Scenarios",
+  "authors": "Zoe Dawson and Matthew Hoy",
+  "summary": "A lab to create more advanced SpecFlow scenarios using custom step bindings.",
+  "source": "../codelabs/specflow-advanced-scenarios.md",
+  "theme": "",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "automated testing",
+    "specflow"
+  ],
+  "tags": [],
+  "url": "specflow-advanced-scenarios"
+}

@@ -1,0 +1,23 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2021-05-10T09:14:11Z",
+  "id": "specflow-setup",
+  "duration": 0,
+  "title": "Installing and Configuring the Capgemini.PowerApps.Bindings",
+  "authors": "Zoe Dawson and Matthew Hoy",
+  "summary": "A lab to set up a new automated UI testing project using EasyRepro.",
+  "source": "../codelabs/specflow-setup.md",
+  "theme": "",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "automated testing",
+    "specflow"
+  ],
+  "tags": [],
+  "url": "specflow-setup"
+}

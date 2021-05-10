@@ -1,0 +1,272 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Generate a new project</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="alm-new-project"
+                  title="Generate a new project"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="0">
+        <h2 is-upgraded>What you will build</h2>
+<p>In this tutorial, you will generate a set of files files for a new project based on a standardised template that will :</p>
+<ul>
+<li>Generates a set of structured files that hold the base configuration for a new project which is uploaded (pushed) to a new repository in Azure DevOps</li>
+<li>Create pipelines which builds, validates and deploys code to specified environments</li>
+<li>Can also generate additional files during the project lifecycle as the solution grows</li>
+<li>Generate project itself - CMD</li>
+<li>Generating a solution storage place</li>
+<li>Install as unmanaged in Master environment</li>
+<li>Install that solution as managed into the ‘build&#39; environment</li>
+<li>Using the ADO generator to create the pipelines etc - inputs and outputs</li>
+<li>Setup branch policies and repo permissions</li>
+</ul>
+<p>To achieve this, you&#39;ll use our internal tool, <a href="https://github.com/Capgemini/powerapps-project-template" target="_blank">Project Generator</a>.</p>
+<h2 is-upgraded>Prerequisites</h2>
+<ul>
+<li>Ensure you have access to our MACE team in Github</li>
+<li>Download the LTS version of NPM from this link</li>
+<li>Install VS Code</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Download and install NodeJS &amp; NPM" duration="0">
+        <ul>
+<li>Open the <a href="https://nodejs.org/" target="_blank">NodeJS</a> website</li>
+<li>Download the latest LTS version</li>
+<li>Run the downloaded installer</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Clone tool" duration="0">
+        <p>First you will need to create a new directory in windows explorer where will install all our project files in this lab. Call the folder <strong>alm-labs</strong> for the purpose of this lab.</p>
+<p>Open CMD within your newly created folder by typing CMD in <strong>Windows explorer</strong> and press <strong>Enter</strong><img alt="image.png" src="img/e725bda75e9b0be6.png"></p>
+<p>A new command prompt window should open with the path pointing to your newly created folder. <img alt="image.png" src="img/9b1ffdf1887d9b6c.png"></p>
+<p>All commands throughout the lab will be entered in <strong>Command prompt</strong></p>
+<p>Clone the PowerApps project template Github repository to your local machine by running <br><code>git clone https://github.com/Capgemini/powerapps-project-template.git<br></code></p>
+<p>When prompted to sign into Github, please sign in.</p>
+<p>If successful, the output should be as illustrated below</p>
+<pre><code>Cloning into &#39;powerapps-project-template&#39;...
+remote: Enumerating objects: 1253, done.
+remote: Counting objects: 100% (1253/1253), done.
+remote: Compressing objects: 100% (622/622), done.
+Rremote: Total 1253 (delta 532), reused 1204 (delta 487), pack-reused 0eceiving                1228/125
+Receiving objects: 100% (1253/1253), 538.01 KiB | 3.18 MiB/s, done.
+Resolving deltas: 100% (532/532), done.
+Updating files: 100% (165/165), done.
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Build the generator" duration="0">
+        <p>In command prompt change directory into the project folder you created in the <strong>Clone tool</strong> step of this lab by entering <code>cd powerapps-project-template</code></p>
+<p>Install <strong>Yomen</strong> with the command <code>npm install yo -g</code></p>
+<p>First we need the project dependencies, to get these run <code>npm install</code></p>
+<p>Now we&#39;re going to build <strong>powerapps-project-template</strong> tool by running <code>npm run build</code></p>
+<p>Finally run <code>npm link</code> to install the local package as a global tool, to be used in the next step</p>
+<p>You may see a few warnings when running the above commands but these can be ignored.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Generate base project" duration="0">
+        <p>Stay in command prompt but go back to the directory <strong>alm-labs</strong> using <code>cd ../</code></p>
+<p>Create a new directory where we will be storing our generated files <code>mkdir sample-project</code> and change directory into the newly created project folder using <code>cd sample-project</code></p>
+<p>Now we are going to generate the base file structure for our project by running <code>yo @capgemini/cdspackage</code></p>
+<p>It may take a few seconds for you to be prompted, but eventually you will be prompted for several inputs:</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>             Input         </p>
+</td><td colspan="1" rowspan="1"><p>             Purpose         </p>
+</td><td colspan="1" rowspan="1"><p>             Example         </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>             Name of the client?         </p>
+</td><td colspan="1" rowspan="1"><p>             Used within naming files and folders produced by the generator         </p>
+</td><td colspan="1" rowspan="1"><p>             MACE         </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>             Name of the package?         </p>
+</td><td colspan="1" rowspan="1"><p>             Used creating files, folders and PowerApps solutions         </p>
+</td><td colspan="1" rowspan="1"><p>             ALMLAB         </p>
+</td></tr>
+</table>
+<p>Open the generated project in either VS Code or the file explorer and take this opportunity to browse through the files seeing what was created and how the values you&#39;ve entered have been passed into the naming of files and folders.</p>
+<p>To open your project in VS Code from command prompt run <code>code .</code></p>
+<p class="image-container"><img alt="image.png" src="img/c4cce2099d17f700.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Generate solution" duration="0">
+        <p>Now we are going to generate our solution structure by running <code>yo @capgemini/cdspackage:solution</code> You will again be prompted for several inputs:</p>
+<p>               Used within naming files and folders produced by the generator, entered in the above **Generate solution** step. The command prompt will recognise your previously entered value and suggest the value which you can accept as a default by pressing enter         </p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>             Input         </p>
+</td><td colspan="1" rowspan="1"><p>             Purpose         </p>
+</td><td colspan="1" rowspan="1"><p>             Example         </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>             Publisher prefix?         </p>
+</td><td colspan="1" rowspan="1"><p>             Used to prefix components in PowerApps and is mapped to the solution prefix         </p>
+</td><td colspan="1" rowspan="1"><p>             MACE         </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>             Name of the client?         </p>
+</td><td colspan="1" rowspan="1"><p>             MACE         </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>             Name of the package?         </p>
+</td><td colspan="1" rowspan="1"><p>             Used creating files, folders and PowerApps solutions, entered in the above **Generate solution** step. The command prompt will recognise your previously entered value and suggest the value which you can accept as a default by pressing enter         </p>
+</td><td colspan="1" rowspan="1"><p>             ALMLAB         </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>             Name of the solution?         </p>
+</td><td colspan="1" rowspan="1"><p>             Used to create the name of your solution in PowerApps         </p>
+</td><td colspan="1" rowspan="1"><p>             Sample         </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>             Development environment URL?         </p>
+</td><td colspan="1" rowspan="1"><p>             Stored within the repository to be used for local extractions  of solutions and config e.g. code generation. **Be sure to prefix URL with https://**         </p>
+</td><td colspan="1" rowspan="1"><p>             _Paste the Development environment URL from notepad which we copied earlier in the lab_         </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>             Are changes to this promoted using a staging environment?         </p>
+</td><td colspan="1" rowspan="1"><p>             Y         </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>             Staging environment URL?         </p>
+</td><td colspan="1" rowspan="1"><p>             Used for extracting the solution locally or in the generated pipeline  **Be sure to prefix URL with https://**         </p>
+</td><td colspan="1" rowspan="1"><p>             _Paste the Master environment URL from notepad which we copied earlier in the lab_         </p>
+</td></tr>
+</table>
+<p>You will then be prompted to overwrite the following files:</p>
+<ul>
+<li>tasks.json <br><code>Writing solution configuration...<br>Updating tasks.json...<br>Updating import config to include new solution.<br>create src\solutions\&#123;&#123;prefix}}_&#123;&#123;Package}}_&#123;&#123;Solution}}\MappingFile.xml<br>create src\solutions\&#123;&#123;prefix}}_&#123;&#123;Package}}_&#123;&#123;Solution}}\spkl.json<br>create src\solutions\&#123;&#123;prefix}}_&#123;&#123;Package}}_&#123;&#123;Solution}}\solution.json<br>conflict .vscode\tasks.json<br>? Overwrite .vscode\tasks.json? (ynaxdH)</code><br> Enter <code>y</code> and press <strong>Enter</strong></li>
+<li>ImportConfig.xml <br><code>force .vscode\tasks.json<br>conflict deploy\PkgFolder\ImportConfig.xml<br>? Overwrite deploy\PkgFolder\ImportConfig.xml? (ynaxdH)</code><br> Enter <code>y</code> and press <strong>Enter</strong></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Run automated Azure DevOps setup" duration="0">
+        <p>First, you need to create a Personal Access Token (PAT) so that the generator can talk to Azure DevOps on behalf of your account.</p>
+<p>Open Azure DevOps, select <strong>User settings</strong> (user icon with a little cog) and select <strong>Personal access tokens</strong></p>
+<p class="image-container"><img alt="image.png" src="img/b4b6788ac82b63de.png"></p>
+<p>Select <strong>+ New Token</strong> then enter ‘Generator&#39; as the name, select an expiry date of today or tomorrow, and for scopes select Full Access.</p>
+<p class="image-container"><img alt="image.png" src="img/a1789bab018edca1.png"></p>
+<p class="image-container"><img alt="image.png" src="img/5635f583f27849a.png"></p>
+<p>Copy the token to notepad as you&#39;ll need this later.</p>
+<p> If Package Name and Azure DevOps Project name are the same then the generator will fail. In this case, rename the pre-created repo in Azure Devops by:  1. Go to the Project Settings 2. Under Repos, select Repositories 3. For the repo with the same name, use the three dots to rename the repo to &#39;[existing name]_old&#39; </p>
+<p>Now you are going to set up Azure DevOps by running <code>yo @capgemini/cdspackage:azuredevops</code>. You&#39;ll be asked the following questions:</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>             Input         </p>
+</td><td colspan="1" rowspan="1"><p>             Purpose         </p>
+</td><td colspan="1" rowspan="1"><p>             Example         </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p> 		    Azure DevOps URL?         </p>
+</td><td colspan="1" rowspan="1"><p> 	        The URL of the Azure DevOps Organisation         </p>
+</td><td colspan="1" rowspan="1"><p> 	        https://dev.azure.com/cap-alm-lab          </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p> 		    Azure DevOps Auth Token (managed)?         </p>
+</td><td colspan="1" rowspan="1"><p> 		    Paste in the PAC token generated before         </p>
+</td><td colspan="1" rowspan="1"><p> 		    ***         </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p> 		    Azure DevOps project?         </p>
+</td><td colspan="1" rowspan="1"><p> 		    Select your project from the dropdown options         </p>
+</td><td colspan="1" rowspan="1"><p> 		    ALMLab          </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p> 		    Name of the client?         </p>
+</td><td colspan="1" rowspan="1"><p> 		    Used within naming files and folders produced by the generator         </p>
+</td><td colspan="1" rowspan="1"><p> 		    MACE         </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p> 		    Name of the package?         </p>
+</td><td colspan="1" rowspan="1"><p> 		    Used creating files, folders and PowerApps solutions, entered in the above **Generate solution** step. The command prompt will recognise your previously entered value and suggest the value which you can accept as a default by pressing enter         </p>
+</td><td colspan="1" rowspan="1"><p> 		    ALMLAB          </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p> 		    CI Environment URL?         </p>
+</td><td colspan="1" rowspan="1"><p> 		    The URL of the CI environment used for the solution checker and deploying to CI environment         </p>
+</td><td colspan="1" rowspan="1"><p> 		    https://[???].crm11.dynamics.com         </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p> 		    Service Account Email?         </p>
+</td><td colspan="1" rowspan="1"><p> 		    The email address to use for the UI automation tests and running the extract pipeline. This user needs access to the 3 Power Platform Environments         </p>
+</td><td colspan="1" rowspan="1"><p> 		    If you don&#39;t have a service account, you can use your own for now and update these details later.         </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p> 		    Service Account Password?         </p>
+</td><td colspan="1" rowspan="1"><p> 		    Used in conjunction with the Service Account Username.         </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p> 		    enant ID?         </p>
+</td><td colspan="1" rowspan="1"><p> 		    Used for creating the Service Connection in Azure DevOps which is used for the solution checker and deploying to CI environment         </p>
+</td><td colspan="1" rowspan="1"><p> 		    _Paste value from notepad which copied earlier in the lab_         </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p> 		    Application ID?         </p>
+</td><td colspan="1" rowspan="1"><p> 		    Used in conjunction with Tenent ID         </p>
+</td><td colspan="1" rowspan="1"><p> 		    _Paste value from notepad which copied earlier in the lab_         </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p> 		    Client Secret?         </p>
+</td><td colspan="1" rowspan="1"><p> 		    Used in conjunction with Tenent ID         </p>
+</td><td colspan="1" rowspan="1"><p> 		    _Paste value from notepad which copied earlier in the lab_         </p>
+</td></tr>
+</table>
+<p>If the generation was successful, the output should look like this:</p>
+<pre><code>Setting up Azure DevOps...
+Generating variable groups...
+Creating Package - ALMLAB variable group...
+Creating Integration Tests - ALMLAB variable group...
+Creating Cake - ALMLAB variable group...
+Generating repository...
+Creating almlab repository...
+Pushing initial commit to https://cap-alm-lab@dev.azure.com/cap-alm-lab/ALMLab/_git/almlab
+Generating builds definitions...
+Found 2 YAML builds.
+Creating pipelines/azure-pipelines-dynamics-365-extract.yml build...
+Creating pipelines/azure-pipelines.yml build...
+Extension: PowerPlatform-BuildTools is already installed.
+Extension: sarif-viewer-build-tab is already installed.
+Generating service connections...
+Generating release definition...
+Creating ALMLAB release...
+Finished setting up Azure DevOps.
+Done.
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Set up Branch Policies" duration="0">
+        <p>Within Azure DevOps navigation to ‘Project Settings&#39; then under ‘Repos&#39;, select ‘Repositories&#39;.</p>
+<p class="image-container"><img alt="image.png" src="img/9bb53c183d251010.png"></p>
+<p>Now select your repository called the package name you gave and click on the ‘Policies&#39; tab. Under ‘Branch Policy&#39; select ‘master&#39;.</p>
+<p class="image-container"><img alt="image.png" src="img/b3c18de0d9ca36d.png"></p>
+<p>Configure the settings as pictured below:</p>
+<p class="image-container"><img alt="image.png" src="img/c108cd8fdbb71750.png"></p>
+<p class="image-container"><img alt="image.png" src="img/2062dfd55cee8e3.png"></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2021-05-10T09:14:11Z",
+  "id": "alm-new-project",
+  "duration": 0,
+  "title": "Generate a new project",
+  "authors": "Luke Phillips and Tom Ashworth",
+  "summary": "Generate a new project.",
+  "source": "../codelabs/alm-new-project.md",
+  "theme": "",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "alm"
+  ],
+  "tags": [],
+  "url": "alm-new-project"
+}
