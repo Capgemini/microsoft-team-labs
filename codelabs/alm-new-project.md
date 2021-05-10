@@ -485,7 +485,7 @@ Turn on:
 
 Select the **+** (Add new build policy) button associated with **Build Validation**
 
-![Add new build policy](/.attachments/alm-new-project/add-build-validation.png)
+![Add new build policy](.attachments/alm-new-project/add-build-validation.png)
 
 Input the following values:
 | Field | Value |
