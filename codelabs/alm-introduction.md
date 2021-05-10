@@ -1,5 +1,5 @@
 id: alm-introduction
-summary: Introduction to ALM.
+summary: A lab to learn the foundations of what ALM is and the tools we use.
 categories: ALM
 environment: Web
 status: Draft

@@ -1,5 +1,5 @@
 id: alm-developer-hub
-summary: Install and configure Development Hub.
+summary: A lab to setup Development Hub after you've setup your environments.
 categories: ALM
 environment: Web
 status: Draft
@@ -11,44 +11,44 @@ authors: Luke Phillips and Tom Ashworth
 
 In this lab, you will install and configure Development Hub in your newly created Development environment which should take approximately 10-15 minutes. Development Hub was developed by a member of our team to support a team's development workflow by extracting an individual's changes to the Master environment then the entire package into source control. This approach avoids taking other developers unfinished changes while working in a shared environment.
 
-To learn more, explore the projects [GitHub repository](https://github.com/ewingjm/development-hub) and release [blog post](https://medium.com/capgemini-microsoft-team/continuous-integration-for-power-apps-the-development-hub-7f1b4320ecfd?source=friends_link&sk=c5034f278e70bfd9aa2dce502dd490d9).
+To learn more, explore the project's [GitHub repository](https://github.com/ewingjm/development-hub) and release [blog post](https://medium.com/capgemini-microsoft-team/continuous-integration-for-power-apps-the-development-hub-7f1b4320ecfd?source=friends_link&sk=c5034f278e70bfd9aa2dce502dd490d9).
 
-## What you will do
+### What you will do
+- Create the required Flow Connections in the Maker Portal
+- Install the Development Hub package into the Development environment
+- Register your Azure DevOps project 
+- Create new pipeline in Azure DevOps to support Development Hub
+- Register your generated Git Repository
+- Register your master environment
+- Register your solution
 
-- Create some flow connections in maker portal - Added
-- Install development package into the development environment - Added
-- Requires ADO org
-- Solution prefix
-- Create a Azure DevOps project in Development Hub - Added
-- Create new pipeline in Azure DevOps to do the extract
-- Register a git repo - Added
-- Register a master environment - Added
-- Register a solution - Added
-
-## Prerequisites
+### Prerequisites
 
 - At least two Power Platform Environments (with databases and system administration access)
 - An already setup Azure DevOps Project (see [Tutorial - Generate a new project]())
+
+These should be covered by following the [Environment Setup](../alm-environment-setup/index.html?index=..%2F..%2Fmicrosoft-team-labs%2F#4) lab.
 
 ## Create Flow Connections
 
 Development Hub utilises two data connections, Approvals and Azure DevOps, which need to be first created before you can install the package.
 
-Click the following link to open the Power Apps Maker Portal:
+Open the [Maker Portal](https://make.powerapps.com)
 
-[Open Maker Portal](https://make.powerapps.com)
-
-First, check you are within your Development Environment which is displayed at the top left of the page. If you aren't, select the environment name and then your Development Environment.
+First, check you are within your Development environment which is displayed at the top right of the page. If you aren't, select the environment name and then your Development environment.
 
 ![image.png](.attachments/alm-developer-hub/image1.png)
 
-Next, use the left-hand side navigation and select 'Data' then 'Connections'.
+Next, use the left-hand side navigation and select **Data** then **Connections**.
 
 ![image.png](.attachments/alm-developer-hub/image2.png)
 
-Now click 'New Connection' and search for 'Approvals' if you don't see it in the list. Click the plus button next to it then 'Create' in the open dialog.
+Now to create our connections by selecting **New Connection** and search for **Approvals** if you don't see it in the list. 
+Click the plus button next to it then **Create** in the open dialog.
 
-Once successful, repeat the last step and search for 'Azure DevOps'. This connection must be signed into an account with access to your Azure DevOps project - in many cases our clients have separate development tenants and production which have different accounts. If this is the case for you, a suggestion is to ensure you are signed into that Azure DevOps project in the same browser window you signed into the Power Platform. Please see this [GitHub issue](https://github.com/ewingjm/development-hub/issues/69) for more details if you face this problem.
+Once successful, repeat the previous instruction searching for **Azure DevOps**. 
+
+Important: This connection must be signed into an account with access to your Azure DevOps project - in many cases our clients have separate development tenants and production which have different accounts. If this is the case for you, a suggestion is to ensure you are signed into that Azure DevOps project in the same browser window you signed into the Power Platform. Please see this [GitHub issue](https://github.com/ewingjm/development-hub/issues/69) for more details if you face this problem.
 
 You will know you are successful if the Connection name has the expected email address.
 
@@ -70,7 +70,7 @@ Once downloaded, unzip the file and open the 'Development Hub' folder inside.
 
 Follow Microsoft's guide to downloading and installing the PowerShell tools [here](https://docs.microsoft.com/en-us/power-platform/admin/deploy-packages-using-package-deployer-windows-powershell#import-the-package-deployer-powershell-module).
 
-Copy the below PowerShell into a notepad and replace the four parameters denoted by `<...>`
+Copy the below PowerShell into a notepad and replace the four parameters and the package location denoted by `<...>`.
 
 ```
 $conn = Get-CrmConnection -InteractiveMode
@@ -114,9 +114,9 @@ You'll be first asked to sign in. Select 'Display list of organisations' then 'L
 
 ![image.png](.attachments/alm-developer-hub/image6.png)
 
-Enter your account details in the login prompt. (It is sometimes hidden behind the window)
+Enter your account details in the login prompt (it is sometimes hidden behind the window).
 
-Select your development environment then 'Login'
+Select your development environment then 'Login'.
 
 ![image.png](.attachments/alm-developer-hub/image7.png)
 
@@ -135,15 +135,13 @@ PackageDeployer Information: 8 : Message: ****** PACKAGE DEPLOYMENT PROCESS COMP
 
 Development Hub requires a pre-made pipeline to handle the merge of extracted changes into the code repository.
 
-First, open this [link](https://github.com/ewingjm/development-hub/blob/master/samples/scripts/Merge-SolutionMerge.ps1) and copy the contents into a new file within the repo in Azure DevOps created in Tutorial - Generate a new project. The file should be within a `scripts` folder and called `Merge-SolutionMerge.ps1`. Save the file and commit to the main branch.
-
-Next, open [this](https://github.com/ewingjm/development-hub/blob/master/samples/azure-pipelines-extract.yml) link to the pipeline template and copy the contents, you'll use this later. Within Azure DevOps go to the `Pipelines` section and click `Create Pipeline`.
+First, open this [link](https://github.com/ewingjm/development-hub/blob/master/samples/scripts/Merge-SolutionMerge.ps1) and copy the contents into a new file within the repo in Azure DevOps created in Generate a new project lab. The file should be within a `scripts` folder and called `Merge-SolutionMerge.ps1`. Save the file and commit to the main branch.
 
 ![image.png](.attachments/alm-developer-hub/image8.png)
 
 ![image.png](.attachments/alm-developer-hub/image9.png)
 
-![image.png](.attachments/alm-developer-hub/image21.png)
+Next, open [this](https://github.com/ewingjm/development-hub/blob/master/samples/azure-pipelines-extract.yml) link to the pipeline template and copy the contents into a new file within a `pipelines` folder and called `azure-pipelines-extract.yml`. Save the file and commit to the main branch.
 
 Now that you have the supporting files in the repo, you can create the build. Within Azure DevOps, go to the 'Pipelines' section then click 'New Pipeline'.
 
@@ -153,7 +151,7 @@ Select 'Azure Repos Git' then your repo.
 
 Select 'Existing Azure Pipeline YAML file' then select the pipeline file you just created.
 
-![image.png](.attachments/alm-developer-hub/image11.png)
+![image.png](.attachments/alm-developer-hub/image21.png)
 
 Then select 'Save', you don't need to run this.
 
@@ -169,7 +167,7 @@ Next, you need to ensure that permissions are configured correctly for this repo
 
 ![image.png](.attachments/alm-developer-hub/image13.png)
 
-## Create an Azure DevOps project record
+## Register your Azure DevOps project
 
 Back in the Maker Portal, using the navigation on the left, click on 'Apps' then select the 'Development Hub' app.
 
@@ -185,23 +183,23 @@ This record only requires a name which should be the name of your Azure DevOps p
 
 ![image.png](.attachments/alm-developer-hub/image16.png)
 
-## Register a git repository
+## Register your git repository
 
 Next, register a Git repository within the project you've just created by creating a new Repository record.
 
-| Field                       | Value Description                                                                                        |
-| --------------------------- | -------------------------------------------------------------------------------------------------------- |
-| Project                     | This should be pre-populated when creating from the Project record.                                      |
-| Name                        | The name **must** match the repository name on Azure DevOps and it **must** exist in the chosen project. |
-| Extract Build Definition ID | The definition ID of the pipeline you just created.                                                      |
-| Target Branch               | The branch you would like to either push to or create pull requests into.                                |
-| Source Control Strategy     | This should be Pull Request for most projects.                                                           |
+| Field                       | Value Description                                                                                                         |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Project                     | This should be pre-populated when creating from the Project record.                                                       |
+| Name                        | The name **must** match the repository name on Azure DevOps and it **must** exist in the chosen project.                  |
+| Extract Build Definition ID | The definition ID of the pipeline you just created.                                                                       |
+| Target Branch               | The branch you would like to either push to or create pull requests into.                                                 |
+| Source Control Strategy     | This should be 'Pull Request' for most projects although you can use 'Commit' if you don't intend to review code changes. |
 
 ![image.png](.attachments/alm-developer-hub/image17.png)
 
 Click 'Save and close' to confirm this.
 
-## Register a master environment
+## Register your master environment
 
 The next step is to register the master environment by creating a new Environment record. Staying in Development Hub, select 'Environments' under 'Develop' on the left.
 
@@ -210,16 +208,16 @@ The next step is to register the master environment by creating a new Environmen
 Select 'New' along the top then populate the following details.
 
 | Field         | Value Description                                                                                         |
-| ------------- | --------------------------------------------------------------------------------------------------------- |
-| Name          | This can be anything but Master would be consistent.                                                      |
-| URL           | This should be the URL of the Master Environment created in Tutorial - Environment Setup.                 |
-| Tenant ID     | This should be the Tenant ID from the Azure App Registration created in Tutorial - Environment Setup.     |
-| Client ID     | This should be the Client ID from the Azure App Registration created in Tutorial - Environment Setup.     |
-| Client Secret | This should be the Client Secret from the Azure App Registration created in Tutorial - Environment Setup. |
+|---------------|-----------------------------------------------------------------------------------------------------------|
+| Name          | This can be anything but 'Master' would be consistent.                                                      |
+| URL           | This should be the URL of the Master Environment created in Environment Setup lab.                 |
+| Tenant ID     | This should be the **Tenant ID** from the Azure App Registration created in Environment Setup lab.     |
+| Client ID     | This should be the **Client ID** from the Azure App Registration created in Environment Setup lab.     |
+| Client Secret | This should be the **Client Secret** from the Azure App Registration created in Environment Setup lab. |
 
 ![image.png](.attachments/alm-developer-hub/image19.png)
 
-## Register a solution
+## Register your solution
 
 The last step is to register a solution within a repository by creating a new Solution record. Go back to the Repository record you created ('Repositories' on the left then select the record you created) and find the 'Active Solutions' grid on the 'General' tab.
 

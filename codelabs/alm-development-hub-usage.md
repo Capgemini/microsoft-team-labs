@@ -1,5 +1,5 @@
 id: alm-development-hub-usage
-summary: Development Hub usage.
+summary: A lab to learn how to use Development Hub from creating a issue to seeing the change in CI.
 categories: ALM
 environment: Web
 status: Draft
