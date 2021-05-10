@@ -29,46 +29,37 @@
     
       <google-codelab-step label="Introduction" duration="0">
         <p>In this lab, you will install and configure Development Hub in your newly created Development environment which should take approximately 10-15 minutes. Development Hub was developed by a member of our team to support a team&#39;s development workflow by extracting an individual&#39;s changes to the Master environment then the entire package into source control. This approach avoids taking other developers unfinished changes while working in a shared environment.</p>
-<p>To learn more, explore the projects <a href="https://github.com/ewingjm/development-hub" target="_blank">GitHub repository</a> and release <a href="https://medium.com/capgemini-microsoft-team/continuous-integration-for-power-apps-the-development-hub-7f1b4320ecfd?source=friends_link&sk=c5034f278e70bfd9aa2dce502dd490d9" target="_blank">blog post</a>.</p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="What you will do" duration="0">
-        <ul>
-<li>Create some flow connections in maker portal - Added</li>
-<li>Install development package into the development environment - Added</li>
-<li>Requires ADO org</li>
-<li>Solution prefix</li>
-<li>Create a Azure DevOps project in Development Hub - Added</li>
-<li>Create new pipeline in Azure DevOps to do the extract</li>
-<li>Register a git repo - Added</li>
-<li>Register a master environment - Added</li>
-<li>Register a solution - Added</li>
+<p>To learn more, explore the project&#39;s <a href="https://github.com/ewingjm/development-hub" target="_blank">GitHub repository</a> and release <a href="https://medium.com/capgemini-microsoft-team/continuous-integration-for-power-apps-the-development-hub-7f1b4320ecfd?source=friends_link&sk=c5034f278e70bfd9aa2dce502dd490d9" target="_blank">blog post</a>.</p>
+<h2 is-upgraded>What you will do</h2>
+<ul>
+<li>Create the required Flow Connections in the Maker Portal</li>
+<li>Install the Development Hub package into the Development environment</li>
+<li>Register your Azure DevOps project</li>
+<li>Create new pipeline in Azure DevOps to support Development Hub</li>
+<li>Register your generated Git Repository</li>
+<li>Register your master environment</li>
+<li>Register your solution</li>
 </ul>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Prerequisites" duration="0">
-        <ul>
+<h2 is-upgraded>Prerequisites</h2>
+<ul>
 <li>At least two Power Platform Environments (with databases and system administration access)</li>
 <li>An already setup Azure DevOps Project (see [Tutorial - Generate a new project]())</li>
 </ul>
+<p>These should be covered by following the <a href="../alm-environment-setup/index.html?index=..%2F..%2Fmicrosoft-team-labs%2F#4" target="_blank">Environment Setup</a> lab.</p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Create Flow Connections" duration="0">
         <p>Development Hub utilises two data connections, Approvals and Azure DevOps, which need to be first created before you can install the package.</p>
-<p>Click the following link to open the Power Apps Maker Portal:</p>
-<p><a href="https://make.powerapps.com" target="_blank">Open Maker Portal</a></p>
-<p>First, check you are within your Development Environment which is displayed at the top left of the page. If you aren&#39;t, select the environment name and then your Development Environment.</p>
+<p>Open the <a href="https://make.powerapps.com" target="_blank">Maker Portal</a></p>
+<p>First, check you are within your Development environment which is displayed at the top right of the page. If you aren&#39;t, select the environment name and then your Development environment.</p>
 <p class="image-container"><img alt="image.png" src="img/203c5d756b3496c8.png"></p>
-<p>Next, use the left-hand side navigation and select ‘Data&#39; then ‘Connections&#39;.</p>
+<p>Next, use the left-hand side navigation and select <strong>Data</strong> then <strong>Connections</strong>.</p>
 <p class="image-container"><img alt="image.png" src="img/281e52e1a832983e.png"></p>
-<p>Now click ‘New Connection&#39; and search for ‘Approvals&#39; if you don&#39;t see it in the list. Click the plus button next to it then ‘Create&#39; in the open dialog.</p>
-<p>Once successful, repeat the last step and search for ‘Azure DevOps&#39;. This connection must be signed into an account with access to your Azure DevOps project - in many cases our clients have separate development tenants and production which have different accounts. If this is the case for you, a suggestion is to ensure you are signed into that Azure DevOps project in the same browser window you signed into the Power Platform. Please see this <a href="https://github.com/ewingjm/development-hub/issues/69" target="_blank">GitHub issue</a> for more details if you face this problem.</p>
+<p>Now to create our connections by selecting <strong>New Connection</strong> and search for <strong>Approvals</strong> if you don&#39;t see it in the list. Click the plus button next to it then <strong>Create</strong> in the open dialog.</p>
+<p>Once successful, repeat the previous instruction searching for <strong>Azure DevOps</strong>.</p>
+<p>Important: This connection must be signed into an account with access to your Azure DevOps project - in many cases our clients have separate development tenants and production which have different accounts. If this is the case for you, a suggestion is to ensure you are signed into that Azure DevOps project in the same browser window you signed into the Power Platform. Please see this <a href="https://github.com/ewingjm/development-hub/issues/69" target="_blank">GitHub issue</a> for more details if you face this problem.</p>
 <p>You will know you are successful if the Connection name has the expected email address.</p>
 <p class="image-container"><img alt="image.png" src="img/d692cdbedd6eda33.png"></p>
 <p>In the next step, you&#39;ll need the Connection IDs which can be retrieved by opening up each Connection and copying the <code>connectionid</code> segment from the URL.</p>
@@ -83,7 +74,7 @@
 <p class="image-container"><img alt="image.png" src="img/991577e1e1bf1f7.png"></p>
 <p>Once downloaded, unzip the file and open the ‘Development Hub&#39; folder inside.</p>
 <p>Follow Microsoft&#39;s guide to downloading and installing the PowerShell tools <a href="https://docs.microsoft.com/en-us/power-platform/admin/deploy-packages-using-package-deployer-windows-powershell#import-the-package-deployer-powershell-module" target="_blank">here</a>.</p>
-<p>Copy the below PowerShell into a notepad and replace the four parameters denoted by <code>&lt;...&gt;</code></p>
+<p>Copy the below PowerShell into a notepad and replace the four parameters and the package location denoted by <code>&lt;...&gt;</code>.</p>
 <pre><code>$conn = Get-CrmConnection -InteractiveMode
 
 $settings = [PSCustomObject]@{
@@ -116,8 +107,8 @@ Import-CrmPackage -CrmConnection $conn -PackageDirectory &#39;C:\Users\tashwort\
 <p>Copy your updated PowerShell script and paste it in the PowerShell command prompt. Press enter to run.</p>
 <p>You&#39;ll be first asked to sign in. Select ‘Display list of organisations&#39; then ‘Login&#39;.</p>
 <p class="image-container"><img alt="image.png" src="img/93611e4f6ffec5d1.png"></p>
-<p>Enter your account details in the login prompt. (It is sometimes hidden behind the window)</p>
-<p>Select your development environment then ‘Login&#39;</p>
+<p>Enter your account details in the login prompt (it is sometimes hidden behind the window).</p>
+<p>Select your development environment then ‘Login&#39;.</p>
 <p class="image-container"><img alt="image.png" src="img/4e3667e06baeb577.png"></p>
 <p>Wait for the install to complete with a successful result then close the PowerShell window.</p>
 <pre><code>PackageDeployer Information: 8 : Message: PackageTemplateBase.AfterPrimaryImport completed.
@@ -133,16 +124,15 @@ PackageDeployer Information: 8 : Message: ****** PACKAGE DEPLOYMENT PROCESS COMP
     
       <google-codelab-step label="Create the supporting extract pipeline within Azure DevOps" duration="0">
         <p>Development Hub requires a pre-made pipeline to handle the merge of extracted changes into the code repository.</p>
-<p>First, open this <a href="https://github.com/ewingjm/development-hub/blob/master/samples/scripts/Merge-SolutionMerge.ps1" target="_blank">link</a> and copy the contents into a new file within the repo in Azure DevOps created in Tutorial - Generate a new project. The file should be within a <code>scripts</code> folder and called <code>Merge-SolutionMerge.ps1</code>. Save the file and commit to the main branch.</p>
-<p>Next, open <a href="https://github.com/ewingjm/development-hub/blob/master/samples/azure-pipelines-extract.yml" target="_blank">this</a> link to the pipeline template and copy the contents, you&#39;ll use this later. Within Azure DevOps go to the <code>Pipelines</code> section and click <code>Create Pipeline</code>.</p>
+<p>First, open this <a href="https://github.com/ewingjm/development-hub/blob/master/samples/scripts/Merge-SolutionMerge.ps1" target="_blank">link</a> and copy the contents into a new file within the repo in Azure DevOps created in Generate a new project lab. The file should be within a <code>scripts</code> folder and called <code>Merge-SolutionMerge.ps1</code>. Save the file and commit to the main branch.</p>
 <p class="image-container"><img alt="image.png" src="img/420d638293f77622.png"></p>
 <p class="image-container"><img alt="image.png" src="img/515f639a7fac9b2d.png"></p>
-<p class="image-container"><img alt="image.png" src="img/457ad54818634e0c.png"></p>
+<p>Next, open <a href="https://github.com/ewingjm/development-hub/blob/master/samples/azure-pipelines-extract.yml" target="_blank">this</a> link to the pipeline template and copy the contents into a new file within a <code>pipelines</code> folder and called <code>azure-pipelines-extract.yml</code>. Save the file and commit to the main branch.</p>
 <p>Now that you have the supporting files in the repo, you can create the build. Within Azure DevOps, go to the ‘Pipelines&#39; section then click ‘New Pipeline&#39;.</p>
 <p>Select ‘Azure Repos Git&#39; then your repo.</p>
 <p class="image-container"><img alt="image.png" src="img/457ad54818634e0c.png"></p>
 <p>Select ‘Existing Azure Pipeline YAML file&#39; then select the pipeline file you just created.</p>
-<p class="image-container"><img alt="image.png" src="img/9db3c489c7c43c7f.png"></p>
+<p class="image-container"><img alt="image.png" src="img/457ad54818634e0c.png"></p>
 <p>Then select ‘Save&#39;, you don&#39;t need to run this.</p>
 <p class="image-container"><img alt="image.png" src="img/9044226d1fb04680.png"></p>
 <p>Take note of the <code>definitionId</code> within the URL. For example <code>5</code> in the URL <code>https://dev.azure.com/cap-alm-lab/ALMLab/_build?definitionId=5</code>.</p>
@@ -157,7 +147,7 @@ PackageDeployer Information: 8 : Message: ****** PACKAGE DEPLOYMENT PROCESS COMP
 
       </google-codelab-step>
     
-      <google-codelab-step label="Create an Azure DevOps project record" duration="0">
+      <google-codelab-step label="Register your Azure DevOps project" duration="0">
         <p>Back in the Maker Portal, using the navigation on the left, click on ‘Apps&#39; then select the ‘Development Hub&#39; app.</p>
 <p class="image-container"><img alt="image.png" src="img/7603a7ff2016009a.png"></p>
 <p><strong><em>Welcome to Development Hub!</em></strong></p>
@@ -169,7 +159,7 @@ PackageDeployer Information: 8 : Message: ****** PACKAGE DEPLOYMENT PROCESS COMP
 
       </google-codelab-step>
     
-      <google-codelab-step label="Register a git repository" duration="0">
+      <google-codelab-step label="Register your git repository" duration="0">
         <p>Next, register a Git repository within the project you&#39;ve just created by creating a new Repository record.</p>
 <table>
 <tr><td colspan="1" rowspan="1"><p>Field</p>
@@ -188,7 +178,7 @@ PackageDeployer Information: 8 : Message: ****** PACKAGE DEPLOYMENT PROCESS COMP
 </td><td colspan="1" rowspan="1"><p>The branch you would like to either push to or create pull requests into.</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>Source Control Strategy</p>
-</td><td colspan="1" rowspan="1"><p>This should be Pull Request for most projects.</p>
+</td><td colspan="1" rowspan="1"><p>This should be ‘Pull Request&#39; for most projects although you can use ‘Commit&#39; if you don&#39;t intend to review code changes.</p>
 </td></tr>
 </table>
 <p class="image-container"><img alt="image.png" src="img/7b8ded7747cbb576.png"></p>
@@ -197,7 +187,7 @@ PackageDeployer Information: 8 : Message: ****** PACKAGE DEPLOYMENT PROCESS COMP
 
       </google-codelab-step>
     
-      <google-codelab-step label="Register a master environment" duration="0">
+      <google-codelab-step label="Register your master environment" duration="0">
         <p>The next step is to register the master environment by creating a new Environment record. Staying in Development Hub, select ‘Environments&#39; under ‘Develop&#39; on the left.</p>
 <p class="image-container"><img alt="image.png" src="img/d5e973786917a481.png"></p>
 <p>Select ‘New&#39; along the top then populate the following details.</p>
@@ -206,19 +196,19 @@ PackageDeployer Information: 8 : Message: ****** PACKAGE DEPLOYMENT PROCESS COMP
 </td><td colspan="1" rowspan="1"><p>Value Description</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>Name</p>
-</td><td colspan="1" rowspan="1"><p>This can be anything but Master would be consistent.</p>
+</td><td colspan="1" rowspan="1"><p>This can be anything but ‘Master&#39; would be consistent.</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>URL</p>
-</td><td colspan="1" rowspan="1"><p>This should be the URL of the Master Environment created in Tutorial - Environment Setup.</p>
+</td><td colspan="1" rowspan="1"><p>This should be the URL of the Master Environment created in Environment Setup lab.</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>Tenant ID</p>
-</td><td colspan="1" rowspan="1"><p>This should be the Tenant ID from the Azure App Registration created in Tutorial - Environment Setup.</p>
+</td><td colspan="1" rowspan="1"><p>This should be the <strong>Tenant ID</strong> from the Azure App Registration created in Environment Setup lab.</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>Client ID</p>
-</td><td colspan="1" rowspan="1"><p>This should be the Client ID from the Azure App Registration created in Tutorial - Environment Setup.</p>
+</td><td colspan="1" rowspan="1"><p>This should be the <strong>Client ID</strong> from the Azure App Registration created in Environment Setup lab.</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>Client Secret</p>
-</td><td colspan="1" rowspan="1"><p>This should be the Client Secret from the Azure App Registration created in Tutorial - Environment Setup.</p>
+</td><td colspan="1" rowspan="1"><p>This should be the <strong>Client Secret</strong> from the Azure App Registration created in Environment Setup lab.</p>
 </td></tr>
 </table>
 <p class="image-container"><img alt="image.png" src="img/a589852e20c4b84b.png"></p>
@@ -226,7 +216,7 @@ PackageDeployer Information: 8 : Message: ****** PACKAGE DEPLOYMENT PROCESS COMP
 
       </google-codelab-step>
     
-      <google-codelab-step label="Register a solution" duration="0">
+      <google-codelab-step label="Register your solution" duration="0">
         <p>The last step is to register a solution within a repository by creating a new Solution record. Go back to the Repository record you created (‘Repositories&#39; on the left then select the record you created) and find the ‘Active Solutions&#39; grid on the ‘General&#39; tab.</p>
 <p>Click ‘New Solution&#39; and enter the following details.</p>
 <table>

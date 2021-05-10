@@ -29,15 +29,12 @@
     
       <google-codelab-step label="Introduction" duration="0">
         <h2 is-upgraded>What you will build</h2>
-<p>In this tutorial, you will generate a set of files files for a new project based on a standardised template that will :</p>
+<p>In this tutorial, you will generate a set of files files for a new project based on a standardised template that will:</p>
 <ul>
-<li>Generates a set of structured files that hold the base configuration for a new project which is uploaded (pushed) to a new repository in Azure DevOps</li>
+<li>To create a source repository to store your development changes</li>
 <li>Create pipelines which builds, validates and deploys code to specified environments</li>
 <li>Can also generate additional files during the project lifecycle as the solution grows</li>
-<li>Generate project itself - CMD</li>
-<li>Generating a solution storage place</li>
-<li>Install as unmanaged in Master environment</li>
-<li>Install that solution as managed into the ‘build&#39; environment</li>
+<li>Create unmanaged solutions in Master environment</li>
 <li>Using the ADO generator to create the pipelines etc - inputs and outputs</li>
 <li>Setup branch policies and repo permissions</li>
 </ul>
@@ -53,11 +50,9 @@
       </google-codelab-step>
     
       <google-codelab-step label="Download and install NodeJS &amp; NPM" duration="0">
-        <ul>
-<li>Open the <a href="https://nodejs.org/" target="_blank">NodeJS</a> website</li>
-<li>Download the latest LTS version</li>
-<li>Run the downloaded installer</li>
-</ul>
+        <p>Open the <a href="https://nodejs.org/" target="_blank">NodeJS</a> website</p>
+<p>Download the latest LTS version</p>
+<p>Run the downloaded installer</p>
 
 
       </google-codelab-step>
@@ -67,7 +62,7 @@
 <p>Open CMD within your newly created folder by typing CMD in <strong>Windows explorer</strong> and press <strong>Enter</strong><img alt="image.png" src="img/e725bda75e9b0be6.png"></p>
 <p>A new command prompt window should open with the path pointing to your newly created folder. <img alt="image.png" src="img/9b1ffdf1887d9b6c.png"></p>
 <p>All commands throughout the lab will be entered in <strong>Command prompt</strong></p>
-<p>Clone the PowerApps project template Github repository to your local machine by running <br><code>git clone https://github.com/Capgemini/powerapps-project-template.git<br></code></p>
+<p>Clone the PowerApps project template Github repository to your local machine by running <code>git clone https://github.com/Capgemini/powerapps-project-template.git</code></p>
 <p>When prompted to sign into Github, please sign in.</p>
 <p>If successful, the output should be as illustrated below</p>
 <pre><code>Cloning into &#39;powerapps-project-template&#39;...
@@ -157,9 +152,39 @@ Updating files: 100% (165/165), done.
 </table>
 <p>You will then be prompted to overwrite the following files:</p>
 <ul>
-<li>tasks.json <br><code>Writing solution configuration...<br>Updating tasks.json...<br>Updating import config to include new solution.<br>create src\solutions\&#123;&#123;prefix}}_&#123;&#123;Package}}_&#123;&#123;Solution}}\MappingFile.xml<br>create src\solutions\&#123;&#123;prefix}}_&#123;&#123;Package}}_&#123;&#123;Solution}}\spkl.json<br>create src\solutions\&#123;&#123;prefix}}_&#123;&#123;Package}}_&#123;&#123;Solution}}\solution.json<br>conflict .vscode\tasks.json<br>? Overwrite .vscode\tasks.json? (ynaxdH)</code><br> Enter <code>y</code> and press <strong>Enter</strong></li>
-<li>ImportConfig.xml <br><code>force .vscode\tasks.json<br>conflict deploy\PkgFolder\ImportConfig.xml<br>? Overwrite deploy\PkgFolder\ImportConfig.xml? (ynaxdH)</code><br> Enter <code>y</code> and press <strong>Enter</strong></li>
+<li>tasks.json <br><code>Writing solution configuration... Updating tasks.json... Updating import config to include new solution. create src\solutions\&#123;&#123;prefix}}_&#123;&#123;Package}}_&#123;&#123;Solution}}\MappingFile.xml create src\solutions\&#123;&#123;prefix}}_&#123;&#123;Package}}_&#123;&#123;Solution}}\spkl.json create src\solutions\&#123;&#123;prefix}}_&#123;&#123;Package}}_&#123;&#123;Solution}}\solution.json conflict .vscode\tasks.json ? Overwrite .vscode\tasks.json? (ynaxdH)</code><br> Enter <code>y</code> and press <strong>Enter</strong></li>
+<li>ImportConfig.xml <br><code>force .vscode\tasks.json conflict deploy\PkgFolder\ImportConfig.xml ? Overwrite deploy\PkgFolder\ImportConfig.xml? (ynaxdH)</code><br> Enter <code>y</code> and press <strong>Enter</strong></li>
 </ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Create unmanaged solution in Master environment" duration="0">
+        <p>Open the <a href="https://make.powerapps.com" target="_blank">Maker portal</a> and switch environments to the Master</p>
+<p>Navigate to <strong>Solutions</strong> in the left-hand pane and select <strong>+ New solution</strong></p>
+<p>Enter the following details:</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>Field</p>
+</td><td colspan="1" rowspan="1"><p>Value</p>
+</td><td colspan="1" rowspan="1"><p>Example</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Display name</p>
+</td><td colspan="1" rowspan="1"><p>This should be the name of the package followed by the name of the solution.</p>
+</td><td colspan="1" rowspan="1"><p>ALMLAB Sample</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Name</p>
+</td><td colspan="1" rowspan="1"><p>This should be the name of the created solution folder</p>
+</td><td colspan="1" rowspan="1"><p>MSACE_ALMLAB_Sample</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Publisher</p>
+</td><td colspan="1" rowspan="1"><p>Please create this yourself with the prefix given for the question ‘Publisher prefix?&#39;</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Version</p>
+</td><td colspan="1" rowspan="1"><p>The intial solution version.</p>
+</td><td colspan="1" rowspan="1"><p>1.0.0</p>
+</td></tr>
+</table>
+<p>Select <strong>Create</strong></p>
 
 
       </google-codelab-step>
@@ -168,12 +193,29 @@ Updating files: 100% (165/165), done.
         <p>First, you need to create a Personal Access Token (PAT) so that the generator can talk to Azure DevOps on behalf of your account.</p>
 <p>Open Azure DevOps, select <strong>User settings</strong> (user icon with a little cog) and select <strong>Personal access tokens</strong></p>
 <p class="image-container"><img alt="image.png" src="img/b4b6788ac82b63de.png"></p>
-<p>Select <strong>+ New Token</strong> then enter ‘Generator&#39; as the name, select an expiry date of today or tomorrow, and for scopes select Full Access.</p>
+<p>Select <strong>+ New Token</strong> then enter the following values:</p>
 <p class="image-container"><img alt="image.png" src="img/a1789bab018edca1.png"></p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>Field</p>
+</td><td colspan="1" rowspan="1"><p>Value</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Name</p>
+</td><td colspan="1" rowspan="1"><p>Generator</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Orgnization</p>
+</td><td colspan="1" rowspan="1"><p>Ensure your current Azure DevOps organisation is selected</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Expiration (UTC)</p>
+</td><td colspan="1" rowspan="1"><p>select an expiry date of tomorrow</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Scopes</p>
+</td><td colspan="1" rowspan="1"><p>Full access</p>
+</td></tr>
+</table>
 <p class="image-container"><img alt="image.png" src="img/5635f583f27849a.png"></p>
-<p>Copy the token to notepad as you&#39;ll need this later.</p>
+<p>Negative: <strong>Important:</strong> Copy the token to notepad as you&#39;ll need this later. <br></p>
 <p> If Package Name and Azure DevOps Project name are the same then the generator will fail. In this case, rename the pre-created repo in Azure Devops by:  1. Go to the Project Settings 2. Under Repos, select Repositories 3. For the repo with the same name, use the three dots to rename the repo to &#39;[existing name]_old&#39; </p>
-<p>Now you are going to set up Azure DevOps by running <code>yo @capgemini/cdspackage:azuredevops</code>. You&#39;ll be asked the following questions:</p>
+<p>Now you are going to set up Azure DevOps by running <code>yo @capgemini/cdspackage:azuredevops</code>. You&#39;ll be prompted for the following inputs, after entering the value for each one, press <strong>Enter</strong>:</p>
 <table>
 <tr><td colspan="1" rowspan="1"><p>             Input         </p>
 </td><td colspan="1" rowspan="1"><p>             Purpose         </p>
@@ -184,11 +226,11 @@ Updating files: 100% (165/165), done.
 </td><td colspan="1" rowspan="1"><p> 	        https://dev.azure.com/cap-alm-lab          </p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p> 		    Azure DevOps Auth Token (managed)?         </p>
-</td><td colspan="1" rowspan="1"><p> 		    Paste in the PAC token generated before         </p>
+</td><td colspan="1" rowspan="1"><p> 		    Paste in the PAC generated before         </p>
 </td><td colspan="1" rowspan="1"><p> 		    ***         </p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p> 		    Azure DevOps project?         </p>
-</td><td colspan="1" rowspan="1"><p> 		    Select your project from the dropdown options         </p>
+</td><td colspan="1" rowspan="1"><p> 		    Select your project from the dropdown options by using the down arrows         </p>
 </td><td colspan="1" rowspan="1"><p> 		    ALMLab          </p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p> 		    Name of the client?         </p>
@@ -249,12 +291,25 @@ Done.
       </google-codelab-step>
     
       <google-codelab-step label="Set up Branch Policies" duration="0">
-        <p>Within Azure DevOps navigation to ‘Project Settings&#39; then under ‘Repos&#39;, select ‘Repositories&#39;.</p>
+        <p>Within Azure DevOps navigate to <strong>Project Settings</strong> then under <strong>Repos</strong>, select <strong>Repositories</strong>.</p>
 <p class="image-container"><img alt="image.png" src="img/9bb53c183d251010.png"></p>
-<p>Now select your repository called the package name you gave and click on the ‘Policies&#39; tab. Under ‘Branch Policy&#39; select ‘master&#39;.</p>
+<p>Now select your repository called the package name you gave and select the <strong>Policies</strong> tab. Under <strong>Branch Policy</strong> select <strong>master</strong>.</p>
 <p class="image-container"><img alt="image.png" src="img/b3c18de0d9ca36d.png"></p>
-<p>Configure the settings as pictured below:</p>
+<p>Turn on:</p>
+<ul>
+<li><strong>Require a mininum number of reviewers<br></strong> Configure the settings as dsecribed below:</li>
+</ul>
+<p>| Field                                                            | Value                         |   | —————————————————————- | —————————– |   | Minimum number of reviewers                                      | 2                             |   | Allow requestors to approve their own changes                    | Unchecked                     |   | Prohibit the most recent pusher from approving their own changes | Unchecked                     |   | Allow completion even if some reviewers vote to wait or reject   | Unchecked                     |   | When new changes are pushed:                                     | Reset all code reviewer votes |</p>
+<ul>
+<li><strong>Check for linked work items</strong> ensuring <strong>Required</strong> is selected.</li>
+<li>Turn on <strong>Check for comment resolutions</strong> ensuring <strong>Required</strong> is selected.</li>
+<li>Turn on <strong>Limit merge types</strong> ensuring only <strong>Squash merge</strong> is checked.</li>
+</ul>
 <p class="image-container"><img alt="image.png" src="img/c108cd8fdbb71750.png"></p>
+<p>Select the <strong>+</strong> (Add new build policy) button associated with <strong>Build Validation</strong></p>
+<p class="image-container"><img alt="Add new build policy" src="img/86dd67e8a24003b0.png"></p>
+<p>Input the following values: | Field | Value | |–|–| | Build pipeline |  - Package Build (PackageName) | | Path filter (optional) | N/A | | Trigger | Automatic (whenever the source branch is updated) | | Policy requirement | Required | | Build expiration | Immediately when master is updated | | Display name | N/A</p>
+<p>Select <strong>Save</strong></p>
 <p class="image-container"><img alt="image.png" src="img/2062dfd55cee8e3.png"></p>
 
 
