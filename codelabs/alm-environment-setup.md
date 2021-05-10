@@ -313,7 +313,7 @@ Before exiting the user form, choose **MANAGE ROLES** and assign the System Admi
 
 Click **OK**
 
-Repeat the this (Application user creation) step for the other two Power Platform environments you created earlier on:
+Repeat this (Application user creation) step for the other two Power Platform environments you created earlier on:
 
 - [Project name]Master
 - [Project name]CI
