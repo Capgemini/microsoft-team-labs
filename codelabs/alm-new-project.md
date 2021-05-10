@@ -8,25 +8,24 @@ authors: Luke Phillips and Tom Ashworth
 # Generate a new project
 
 ## Introduction
-
-
 ### What you will build
-In this tutorial, you will generate a set of files files for a new project based on a standardised template that will :
+
+In this tutorial, you will generate a set of files files for a new project based on a standardised template that will:
+
 - To create a source repository to store your development changes
 - Create pipelines which builds, validates and deploys code to specified environments
 - Can also generate additional files during the project lifecycle as the solution grows
-- Create unmanaged solutions in <Project Name>Master environment
+- Create unmanaged solutions in Master environment
 - Using the ADO generator to create the pipelines etc - inputs and outputs
 - Setup branch policies and repo permissions
 
-To achieve this, you'll use our internal tool, [Project Generator](https://github.com/Capgemini/powerapps-project-template). 
+To achieve this, you'll use our internal tool, [Project Generator](https://github.com/Capgemini/powerapps-project-template).
 
 ### Prerequisites
 
 - Ensure you have access to our MACE team in Github
 - Download the LTS version of NPM from this link
 - Install VS Code
-
 
 ## Download and install NodeJS & NPM
 
@@ -49,13 +48,12 @@ A new command prompt window should open with the path pointing to your newly cre
 All commands throughout the lab will be entered in **Command prompt**
 
 Clone the PowerApps project template Github repository to your local machine by running
-`
-git clone https://github.com/Capgemini/powerapps-project-template.git
-`
+`git clone https://github.com/Capgemini/powerapps-project-template.git`
 
 When prompted to sign into Github, please sign in.
 
 If successful, the output should be as illustrated below
+
 ```
 Cloning into 'powerapps-project-template'...
 remote: Enumerating objects: 1253, done.
@@ -66,6 +64,7 @@ Receiving objects: 100% (1253/1253), 538.01 KiB | 3.18 MiB/s, done.
 Resolving deltas: 100% (532/532), done.
 Updating files: 100% (165/165), done.
 ```
+
 ## Build the generator
 
 In command prompt change directory into the project folder you created in the **Clone tool** step of this lab by entering `cd powerapps-project-template`
@@ -228,48 +227,41 @@ You will again be prompted for several inputs:
 </table>
 
 You will then be prompted to overwrite the following files:
+
 - tasks.json
-<br>
-`Writing solution configuration...
-Updating tasks.json...
-Updating import config to include new solution.
-   create src\solutions\{{prefix}}_{{Package}}_{{Solution}}\MappingFile.xml
-   create src\solutions\{{prefix}}_{{Package}}_{{Solution}}\spkl.json
-   create src\solutions\{{prefix}}_{{Package}}_{{Solution}}\solution.json
- conflict .vscode\tasks.json
-? Overwrite .vscode\tasks.json? (ynaxdH)`
-<br>
-Enter `y` and press **Enter**
+  <br>
+  `Writing solution configuration... Updating tasks.json... Updating import config to include new solution. create src\solutions\{{prefix}}_{{Package}}_{{Solution}}\MappingFile.xml create src\solutions\{{prefix}}_{{Package}}_{{Solution}}\spkl.json create src\solutions\{{prefix}}_{{Package}}_{{Solution}}\solution.json conflict .vscode\tasks.json ? Overwrite .vscode\tasks.json? (ynaxdH)`
+  <br>
+  Enter `y` and press **Enter**
 
 - ImportConfig.xml
-<br>
-`force .vscode\tasks.json
- conflict deploy\PkgFolder\ImportConfig.xml
-? Overwrite deploy\PkgFolder\ImportConfig.xml? (ynaxdH)`
-<br>
-Enter `y` and press **Enter**
+  <br>
+  `force .vscode\tasks.json conflict deploy\PkgFolder\ImportConfig.xml ? Overwrite deploy\PkgFolder\ImportConfig.xml? (ynaxdH)`
+  <br>
+  Enter `y` and press **Enter**
 
 ## Create unmanaged solution in Master environment
+
 Open the [Maker portal](https://make.powerapps.com) and switch environments to the Master
 
 Navigate to **Solutions** in the left-hand pane and select **+ New solution**
 
 Enter the following details:
 
-| Field | Value | Example |
-|--|--| -- |
-| Display name | This should be the name of the package followed by the name of the solution. | ALMLAB Sample |
-| Name | This should be the name of the created solution folder | MSACE_ALMLAB_Sample |
-| Publisher | Please create this yourself with the prefix given for the question 'Publisher prefix?' |  |
-| Version | The intial solution version. | 1.0.0 |
+| Field        | Value                                                                                  | Example             |
+| ------------ | -------------------------------------------------------------------------------------- | ------------------- |
+| Display name | This should be the name of the package followed by the name of the solution.           | ALMLAB Sample       |
+| Name         | This should be the name of the created solution folder                                 | MSACE_ALMLAB_Sample |
+| Publisher    | Please create this yourself with the prefix given for the question 'Publisher prefix?' |                     |
+| Version      | The intial solution version.                                                           | 1.0.0               |
 
 Select **Create**
 
 ## Run automated Azure DevOps setup
 
-First, you need to create a Personal Access Token (PAT) so that the generator can talk to Azure DevOps on behalf of your account. 
+First, you need to create a Personal Access Token (PAT) so that the generator can talk to Azure DevOps on behalf of your account.
 
-Open Azure DevOps, select **User settings** (user icon with a little cog) and select **Personal access tokens** 
+Open Azure DevOps, select **User settings** (user icon with a little cog) and select **Personal access tokens**
 
 ![image.png](.attachments/alm-new-project/image4.png)
 
@@ -277,19 +269,19 @@ Select **+ New Token** then enter the following values:
 
 ![image.png](.attachments/alm-new-project/image5.png)
 
-| Field | Value |
-|--|--|
-| Name | Generator |
-| Orgnization | Ensure your current Azure DevOps organisation is selected |
-| Expiration (UTC) | select an expiry date of tomorrow |
-| Scopes | Full access |
+| Field            | Value                                                     |
+| ---------------- | --------------------------------------------------------- |
+| Name             | Generator                                                 |
+| Orgnization      | Ensure your current Azure DevOps organisation is selected |
+| Expiration (UTC) | select an expiry date of tomorrow                         |
+| Scopes           | Full access                                               |
 
 <br>
 
 ![image.png](.attachments/alm-new-project/image6.png)
 
 Negative:
-**Important:** Copy the token to notepad as you'll need this later. 
+**Important:** Copy the token to notepad as you'll need this later.
 <br>
 
 <p style="background: #FF4400;">
@@ -435,7 +427,8 @@ Now you are going to set up Azure DevOps by running `yo @capgemini/cdspackage:az
     </tr>
 </table>
 
-If the generation was successful, the output should look like this: 
+If the generation was successful, the output should look like this:
+
 ```
 Setting up Azure DevOps...
 Generating variable groups...
@@ -460,7 +453,7 @@ Done.
 
 ## Set up Branch Policies
 
-Within Azure DevOps navigate to **Project Settings** then under **Repos**, select **Repositories**. 
+Within Azure DevOps navigate to **Project Settings** then under **Repos**, select **Repositories**.
 
 ![image.png](.attachments/alm-new-project/image7.png)
 
@@ -469,17 +462,18 @@ Now select your repository called the package name you gave and select the **Pol
 ![image.png](.attachments/alm-new-project/image8.png)
 
 Turn on:
-- **Require a mininum number of reviewers**
-<br>
-Configure the settings as dsecribed below:
 
-  | Field | Value |
-  |---|---|
-  | Minimum number of reviewers | 2 |
-  | Allow requestors to approve their own changes | Unchecked |
-  | Prohibit the most recent pusher from approving their own changes | Unchecked |
-  | Allow completion even if some reviewers vote to wait or reject | Unchecked |
-  | When new changes are pushed: | Reset all code reviewer votes |
+- **Require a mininum number of reviewers**
+  <br>
+  Configure the settings as dsecribed below:
+
+  | Field                                                            | Value                         |
+  | ---------------------------------------------------------------- | ----------------------------- |
+  | Minimum number of reviewers                                      | 2                             |
+  | Allow requestors to approve their own changes                    | Unchecked                     |
+  | Prohibit the most recent pusher from approving their own changes | Unchecked                     |
+  | Allow completion even if some reviewers vote to wait or reject   | Unchecked                     |
+  | When new changes are pushed:                                     | Reset all code reviewer votes |
 
 - **Check for linked work items** ensuring **Required** is selected.
 
@@ -491,7 +485,7 @@ Configure the settings as dsecribed below:
 
 Select the **+** (Add new build policy) button associated with **Build Validation**
 
-![Add new build policy](/.attachments/add-build-validation.png)
+![Add new build policy](/.attachments/alm-new-project/add-build-validation.png)
 
 Input the following values:
 | Field | Value |
@@ -501,7 +495,7 @@ Input the following values:
 | Trigger | Automatic (whenever the source branch is updated) |
 | Policy requirement | Required |
 | Build expiration | Immediately when master is updated |
-| Display name | N/A 
+| Display name | N/A
 
 Select **Save**
 
