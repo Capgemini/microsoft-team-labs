@@ -27,7 +27,7 @@ To learn more, explore the project's [GitHub repository](https://github.com/ewin
 - At least two Power Platform Environments (with databases and system administration access)
 - An already setup Azure DevOps Project (see [Tutorial - Generate a new project]())
 
-These should be covered by following the [Environment Setup]() lab.
+These should be covered by following the [Environment Setup](../alm-environment-setup/index.html?index=..%2F..%2Fmicrosoft-team-labs%2F#4) lab.
 
 ## Create Flow Connections
 
