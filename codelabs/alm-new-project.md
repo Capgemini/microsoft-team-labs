@@ -118,7 +118,7 @@ Enter the following details:
 | Display name | This should be the name of the package followed by the name of the solution.           | ALMLAB Sample       |
 | Name         | This should be the name of the created solution folder                                 | MSACE_ALMLAB_Sample |
 | Publisher    | Please create this yourself with the prefix given for the question 'Publisher prefix?' |                     |
-| Version      | The intial solution version.                                                           | 1.0.0               |
+| Version      | The initial solution version.                                                           | 1.0.0               |
 
 Select **Create**
 
@@ -137,7 +137,7 @@ Select **+ New Token** then enter the following values:
 | Field            | Value                                                     |
 | ---------------- | --------------------------------------------------------- |
 | Name             | Generator                                                 |
-| Orgnization      | Ensure your current Azure DevOps organisation is selected |
+| Organisation      | Ensure your current Azure DevOps organisation is selected |
 | Expiration (UTC) | select an expiry date of tomorrow                         |
 | Scopes           | Full access                                               |
 
@@ -169,8 +169,8 @@ Now you are going to set up Azure DevOps by running `yo @capgeminiuk/powerapps-p
 | Service Account Email? | The email address to use for the UI automation tests and running the extract pipeline. This user needs access to the 3 Power Platform Environments | If you don't have a service account, you can use your own for now and update these details later. |
 | Service Account Password? | Used in conjunction with the Service Account Username. |  |
 | Tenant ID? | Used for creating the Service Connection in Azure DevOps which is used for the solution checker and deploying to CI environment | _Paste value from notepad which copied earlier in the lab_ |
-| Application ID? | Used in conjunction with Tenent ID | _Paste value from notepad which copied earlier in the lab_ |
-| Client Secret? | Used in conjunction with Tenent ID | _Paste value from notepad which copied earlier in the lab_ |
+| Application ID? | Used in conjunction with Tenant ID | _Paste value from notepad which copied earlier in the lab_ |
+| Client Secret? | Used in conjunction with Tenant ID | _Paste value from notepad which copied earlier in the lab_ |
 
 If the generation was successful, the output should look like this:
 
@@ -208,9 +208,9 @@ Now select your repository called the package name you gave and select the **Pol
 
 Turn on:
 
-- **Require a mininum number of reviewers**
+- **Require a minimum number of reviewers**
   <br>
-  Configure the settings as dsecribed below:
+  Configure the settings as described below:
 
   | Field                                                            | Value                         |
   | ---------------------------------------------------------------- | ----------------------------- |
