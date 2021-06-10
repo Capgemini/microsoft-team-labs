@@ -32,8 +32,8 @@ To achieve this, you'll use our tool, [Project Generator](https://github.com/Cap
 - A Power Apps CI Environment
 - A Power Apps Test Environment
 
-Positive:
-For setting up the Power Apps environments, follow [this](./alm-environment-setup) lab.
+Positive
+: For setting up the Power Apps environments, follow [this](../alm-environment-setup) lab.
 
 ## Install the generator
 
@@ -78,7 +78,12 @@ To open your project in VS Code from command prompt run `code .`
 
 ## Generate solution
 
-Now we are going to generate our solution structure by running `yo @capgeminiuk/powerapps-project:solution`
+Now we are going to generate our solution structure by running:
+
+```shell
+yo @capgeminiuk/powerapps-project:solution
+```
+
 You will again be prompted for several inputs:
 
 | Input                                                     | Purpose                                                                                                                                                                                                                                                    | Example                                                                                 |
@@ -93,17 +98,10 @@ You will again be prompted for several inputs:
 
 You will then be prompted to overwrite the following files:
 
-- tasks.json
-  <br>
-  `Writing solution configuration... Updating tasks.json... Updating import config to include new solution. create src\solutions\{{prefix}}_{{Package}}_{{Solution}}\MappingFile.xml create src\solutions\{{prefix}}_{{Package}}_{{Solution}}\spkl.json create src\solutions\{{prefix}}_{{Package}}_{{Solution}}\solution.json conflict .vscode\tasks.json ? Overwrite .vscode\tasks.json? (ynaxdH)`
-  <br>
-  Enter `y` and press **Enter**
+- `.vscode\tasks.json`
+- `deploy\PkgFolder\ImportConfig.xml`
 
-- ImportConfig.xml
-  <br>
-  `force .vscode\tasks.json conflict deploy\PkgFolder\ImportConfig.xml ? Overwrite deploy\PkgFolder\ImportConfig.xml? (ynaxdH)`
-  <br>
-  Enter `y` and press **Enter**
+Enter `y` and press **Enter**
 
 ## Create unmanaged solution in Master environment
 
@@ -118,7 +116,7 @@ Enter the following details:
 | Display name | This should be the name of the package followed by the name of the solution.           | ALMLAB Sample       |
 | Name         | This should be the name of the created solution folder                                 | MSACE_ALMLAB_Sample |
 | Publisher    | Please create this yourself with the prefix given for the question 'Publisher prefix?' |                     |
-| Version      | The initial solution version.                                                           | 1.0.0               |
+| Version      | The initial solution version.                                                          | 1.0.0               |
 
 Select **Create**
 
@@ -137,7 +135,7 @@ Select **+ New Token** then enter the following values:
 | Field            | Value                                                     |
 | ---------------- | --------------------------------------------------------- |
 | Name             | Generator                                                 |
-| Organisation      | Ensure your current Azure DevOps organisation is selected |
+| Organisation     | Ensure your current Azure DevOps organisation is selected |
 | Expiration (UTC) | select an expiry date of tomorrow                         |
 | Scopes           | Full access                                               |
 
@@ -145,32 +143,31 @@ Select **+ New Token** then enter the following values:
 
 ![image.png](.attachments/alm-new-project/image6.png)
 
-Positive:
-**Important:** Copy the token to notepad as you'll need this later.
+Positive
+: **Important:** Copy the token to notepad as you'll need this later.
 
+Negative
+: If Package Name and Azure DevOps Project name are the same then the generator will fail. In this case, rename the pre-created repo in Azure Devops by:
 
-Negative:
-If Package Name and Azure DevOps Project name are the same then the generator will fail. In this case, rename the pre-created repo in Azure Devops by: 
 1. Go to the Project Settings
 2. Under Repos, select Repositories
-3. For the repo with the same name, use the three dots to rename the repo to '[existing name]_old'
-
+3. For the repo with the same name, use the three dots to rename the repo to '[existing name]\_old'
 
 Now you are going to set up Azure DevOps by running `yo @capgeminiuk/powerapps-project:azuredevops`. You'll be prompted for the following inputs, after entering the value for each one, press **Enter**:
 
-| Input                | Purpose                                                        | Example |
-| -------------------- | -------------------------------------------------------------- | ------- |
-| Azure DevOps URL? | The URL of the Azure DevOps Organisation | https://dev.azure.com/cap-alm-lab |
-| Azure DevOps Auth Token (managed)? | Paste in the PAC generated before | *** |
-| Azure DevOps project? | Select your project from the dropdown options by using the down arrows | ALMLab |
-| Name of the client? | Used within naming files and folders produced by the generator | MACE |
-| Name of the package? | Used creating files, folders and PowerApps solutions, entered in the above **Generate solution** step. The command prompt will recognise your previously entered value and suggest the value which you can accept as a default by pressing enter | ALMLAB |
-| CI Environment URL? | The URL of the CI environment used for the solution checker and deploying to CI environment | https://[???].crm11.dynamics.com |
-| Service Account Email? | The email address to use for the UI automation tests and running the extract pipeline. This user needs access to the 3 Power Platform Environments | If you don't have a service account, you can use your own for now and update these details later. |
-| Service Account Password? | Used in conjunction with the Service Account Username. |  |
-| Tenant ID? | Used for creating the Service Connection in Azure DevOps which is used for the solution checker and deploying to CI environment | _Paste value from notepad which copied earlier in the lab_ |
-| Application ID? | Used in conjunction with Tenant ID | _Paste value from notepad which copied earlier in the lab_ |
-| Client Secret? | Used in conjunction with Tenant ID | _Paste value from notepad which copied earlier in the lab_ |
+| Input                              | Purpose                                                                                                                                                                                                                                          | Example                                                                                           |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------- |
+| Azure DevOps URL?                  | The URL of the Azure DevOps Organisation                                                                                                                                                                                                         | https://dev.azure.com/cap-alm-lab                                                                 |
+| Azure DevOps Auth Token (managed)? | Paste in the PAC generated before                                                                                                                                                                                                                | \*\*\*                                                                                            |
+| Azure DevOps project?              | Select your project from the dropdown options by using the down arrows                                                                                                                                                                           | ALMLab                                                                                            |
+| Name of the client?                | Used within naming files and folders produced by the generator                                                                                                                                                                                   | MACE                                                                                              |
+| Name of the package?               | Used creating files, folders and PowerApps solutions, entered in the above **Generate solution** step. The command prompt will recognise your previously entered value and suggest the value which you can accept as a default by pressing enter | ALMLAB                                                                                            |
+| CI Environment URL?                | The URL of the CI environment used for the solution checker and deploying to CI environment                                                                                                                                                      | https://[???].crm11.dynamics.com                                                                  |
+| Service Account Email?             | The email address to use for the UI automation tests and running the extract pipeline. This user needs access to the 3 Power Platform Environments                                                                                               | If you don't have a service account, you can use your own for now and update these details later. |
+| Service Account Password?          | Used in conjunction with the Service Account Username.                                                                                                                                                                                           |                                                                                                   |
+| Tenant ID?                         | Used for creating the Service Connection in Azure DevOps which is used for the solution checker and deploying to CI environment                                                                                                                  | _Paste value from notepad which copied earlier in the lab_                                        |
+| Application ID?                    | Used in conjunction with Tenant ID                                                                                                                                                                                                               | _Paste value from notepad which copied earlier in the lab_                                        |
+| Client Secret?                     | Used in conjunction with Tenant ID                                                                                                                                                                                                               | _Paste value from notepad which copied earlier in the lab_                                        |
 
 If the generation was successful, the output should look like this:
 
@@ -233,14 +230,15 @@ Select the **+** (Add new build policy) button associated with **Build Validatio
 ![Add new build policy](.attachments/alm-new-project/add-build-validation.png)
 
 Input the following values:
-| Field | Value |
-|--|--|
-| Build pipeline | <Package name> - Package Build (PackageName) |
-| Path filter (optional) | N/A |
-| Trigger | Automatic (whenever the source branch is updated) |
-| Policy requirement | Required |
-| Build expiration | Immediately when master is updated |
-| Display name | N/A
+
+| Field                  | Value                                             |
+| ---------------------- | ------------------------------------------------- |
+| Build pipeline         | <Package name> - Package Build (PackageName)      |
+| Path filter (optional) | N/A                                               |
+| Trigger                | Automatic (whenever the source branch is updated) |
+| Policy requirement     | Required                                          |
+| Build expiration       | Immediately when master is updated                |
+| Display name           | N/A                                               |
 
 Select **Save**
 
