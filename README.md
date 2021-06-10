@@ -11,7 +11,7 @@ The project requires the following major dependencies:
 - [Node.js](https://nodejs.org/en/download/) v10+ and [npm](https://www.npmjs.com/get-npm)
 - [claat](https://github.com/googlecodelabs/tools/tree/master/claat#install)
 
-With Node installed, run `npm install` in the root of the `site` (this folder):
+With Node installed, run `npm install` in the root of the repo:
 
 ```text
 $ npm install
@@ -31,25 +31,21 @@ This does pose a mild security risk, so please do so at your own risk.
 
 ### Serve
 
-To serve the site in dev mode, run `gulp serve`, passing a path to a directory
+To serve the site in dev mode, run `npm run serve`, passing a path to a directory
 with the codelabs content as an argument. This will compile all the views and
 codelabs into the `build/` directory and start a web server to serve that
-content.
-
-```text
-$ gulp serve
-```
+content. Additionally, all files will be watched and the site will rebuild when they change. 
 
 The output will include the address where the server is running
 (http://localhost:8000 by default).
 
 You can also serve the completely compiled and minified (prod) version with the
-`serve:dist` command. Always run this before publishing, as it will show you an
+`npm run serve:dist` command. Always run this before publishing, as it will show you an
 replica of what will appear on staging/production.
 
-```text
-$ gulp serve:dist
-```
+#### Error: EPERM: operation not permitted, symlink '..' -> 'build\codelabs'
+
+This must be run under an admin terminal.
 
 ### Views
 
