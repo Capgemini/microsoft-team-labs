@@ -1,0 +1,8 @@
+trigger: none
+pr: main
+
+pool:
+  vmImage: "ubuntu-latest"
+
+stages:
+  - template: templates/include-build-stage.yml
