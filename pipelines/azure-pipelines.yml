@@ -8,6 +8,6 @@ pr: none
 pool:
   vmImage: "ubuntu-latest"
 
-steps:
+stages:
   - template: templates/include-build-stage.yml
   - template: templates/include-deploy-stage.yml
