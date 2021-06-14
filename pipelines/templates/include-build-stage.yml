@@ -9,6 +9,7 @@ stages:
         variables:
           GOPATH: "$(system.defaultWorkingDirectory)/gopath" # Go workspace path
           GOBIN: "$(GOPATH)/bin/" # Go binaries path
+          GHPAGESURL: "https://capgemini.github.io/microsoft-team-labs"
 
         steps:
           - task: GoTool@0

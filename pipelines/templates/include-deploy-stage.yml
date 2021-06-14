@@ -8,7 +8,6 @@ stages:
         displayName: "Deploy"
         variables:
           GHPAGES: "tda/gh-pages"
-          GHPAGESURL: "https://capgemini.github.io/microsoft-team-labs"
 
         steps:
           - checkout: self
