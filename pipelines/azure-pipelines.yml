@@ -36,14 +36,9 @@ steps:
       command: "install"
 
   - task: CmdLine@2
-    displayName: "Build: Labs"
-    inputs:
-      script: npx gulp codelabs:export --codelabs-dir=./codelabs-rendered --source=./codelabs/*.md
-
-  - task: CmdLine@2
     displayName: "Build: Site"
     inputs:
-      script: npx gulp dist --codelabs-dir=./codelabs-rendered --base-url $(GHPAGESURL)
+      script: npx gulp dist --codelabs-dir=./codelabs-rendered --source=./codelabs/*.md --base-url $(GHPAGESURL)
 
   - task: CopyFiles@2
     displayName: "Artifact: Copy Site"
