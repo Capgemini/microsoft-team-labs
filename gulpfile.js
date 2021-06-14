@@ -79,6 +79,11 @@ const CODELABS_NAMESPACE = (args.codelabsNamespace || 'codelabs').replace(/^\/|\
 // VIEWS_FILTER is the filter to use for view inclusion.
 const VIEWS_FILTER = args.viewsFilter || '*';
 
+// clean:codelabs removes the codelabs-rendered directory
+gulp.task('clean:codelabs', (callback) => {
+  return del('codelabs-rendered')
+});
+
 // clean:build removes the build directory
 gulp.task('clean:build', (callback) => {
   return del('build')
@@ -97,9 +102,28 @@ gulp.task('clean:js', (callback) => {
 
 // clean removes all built files
 gulp.task('clean', gulp.parallel(
+  'clean:codelabs',
   'clean:build',
   'clean:dist',
 ));
+
+// codelabs:export exports the codelabs
+gulp.task('codelabs:export', (callback) => {
+  const source = args.source;
+
+  if (!fs.existsSync(CODELABS_DIR)) {
+    console.log(`Creating ${path.resolve(CODELABS_DIR)}`);
+    fs.mkdirSync(CODELABS_DIR);
+  }
+
+  if (source == undefined) {
+    console.log('No source defined for codelabs. Please specify using the `--source` flag.');
+    return;
+  }
+
+  const sources = Array.isArray(source) ? source : glob.sync(path.join('..', source), { cwd: CODELABS_DIR });
+  claat.run(CODELABS_DIR, 'export', CODELABS_ENVIRONMENT, CODELABS_FORMAT, DEFAULT_GA, sources, callback);
+});
 
 // build:codelabs copies the codelabs from the directory into build.
 gulp.task('build:codelabs', (done) => {
@@ -219,6 +243,7 @@ gulp.task('build:vulcanize', () => {
 // build builds all the assets
 gulp.task('build', gulp.series(
   'clean',
+  'codelabs:export',
   'build:codelabs',
   'build:css',
   'build:scss',
@@ -360,28 +385,6 @@ gulp.task('serve:dist', gulp.series('dist', () => {
   return gulp.src('dist')
     .pipe(webserver(opts.webserver()));
 }));
-
-//
-// Codelabs
-//
-// codelabs:export exports the codelabs
-gulp.task('codelabs:export', (callback) => {
-  const source = args.source;
-
-  if (!fs.existsSync(CODELABS_DIR)) {
-    console.log(`Creating ${path.resolve(CODELABS_DIR)}`);
-    fs.mkdirSync(CODELABS_DIR);
-  }
-
-  if (source !== undefined) {
-    const sources = Array.isArray(source) ? source : glob.sync(path.join('..', source), { cwd: CODELABS_DIR });
-    claat.run(CODELABS_DIR, 'export', CODELABS_ENVIRONMENT, CODELABS_FORMAT, DEFAULT_GA, sources, callback);
-  } else {
-    const codelabIds = collectCodelabs().map((c) => { return c.id });
-    claat.run(CODELABS_DIR, 'update', CODELABS_ENVIRONMENT, CODELABS_FORMAT, DEFAULT_GA, codelabIds, callback);
-  }
-});
-
 
 
 //

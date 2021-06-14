@@ -41,5 +41,10 @@
   },
   "engines": {
     "node": ">=0.10.0"
+  },
+  "scripts": {
+    "build": "gulp build --codelabs-dir=./codelabs-rendered --source=./codelabs/*.md",
+    "serve": "gulp serve --codelabs-dir=./codelabs-rendered --source=./codelabs/*.md",
+    "serve:dist": "gulp serve:dist --codelabs-dir=./codelabs-rendered"
   }
 }
