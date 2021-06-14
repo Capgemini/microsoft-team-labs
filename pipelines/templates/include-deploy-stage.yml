@@ -7,7 +7,7 @@ stages:
       - job: DeployJob
         displayName: "Deploy"
         variables:
-          GHPAGES: "tda/gh-pages"
+          GHPAGES: "gh-pages"
 
         steps:
           - checkout: self
