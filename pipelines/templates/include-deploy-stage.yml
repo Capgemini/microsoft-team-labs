@@ -1,0 +1,50 @@
+stages:
+  - stage: Deploy
+    displayName: "Deploy"
+    pool:
+      vmImage: "ubuntu-latest"
+    jobs:
+      - job: DeployJob
+        displayName: "Deploy"
+        variables:
+          GHPAGES: "gh-pages"
+
+        steps:
+          - checkout: self
+            persistCredentials: true
+
+          - task: CmdLine@2
+            displayName: "GH Pages: Checkout to $(GHPAGES)"
+            inputs:
+              script: |
+                echo "commit all changes"
+                git config --global user.email "$(Build.RequestedForEmail)"
+                git config --global user.name "$(Build.RequestedFor)"
+                git checkout -b $(GHPAGES) --track origin/$(GHPAGES)
+
+          - download: current
+            artifact: 'site'
+            displayName: 'Download site'
+          
+          - task: DeleteFiles@1
+            displayName: "GH Pages: Wipe codelab directory"
+            inputs:
+              SourceFolder: "./codelabs"
+              Contents: '**'
+              RemoveSourceFolder: true
+
+          - task: CopyFiles@2
+            displayName: "GH Pages: Copy build"
+            inputs:
+              SourceFolder: "$(Pipeline.Workspace)/site"
+              Contents: "**"
+              TargetFolder: "$(system.defaultWorkingDirectory)"
+              OverWrite: true
+
+          - task: CmdLine@2
+            displayName: "GH Pages: Commit & push to $(GHPAGES)"
+            inputs:
+              script: |
+                git add -A
+                git commit -m "$(Build.SourceVersionMessage)"
+                git push --force --set-upstream origin $(GHPAGES)

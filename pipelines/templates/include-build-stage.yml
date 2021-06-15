@@ -1,0 +1,66 @@
+stages:
+  - stage: Build
+    displayName: "Build"
+    pool:
+      vmImage: "ubuntu-latest"
+    jobs:
+      - job: BuildJob
+        displayName: "Build"
+        variables:
+          GOPATH: "$(system.defaultWorkingDirectory)/gopath" # Go workspace path
+          GOBIN: "$(GOPATH)/bin/" # Go binaries path
+          GHPAGESURL: "https://capgemini.github.io/microsoft-team-labs"
+
+        steps:
+          - task: GoTool@0
+            displayName: "Dependency: Get Go"
+            inputs:
+              version: "1.16.3"
+
+          - task: Go@0
+            displayName: "Dependency: Get CLAAT"
+            inputs:
+              command: "custom"
+              customCommand: "install"
+              arguments: "github.com/googlecodelabs/tools/claat@v0.0.0-20200918190358-3cc6629c4d3d"
+
+          - task: Npm@1
+            displayName: "Build: Restore NPM"
+            inputs:
+              command: "install"
+
+          - task: CmdLine@2
+            displayName: "Build: Site"
+            inputs:
+              script: npx gulp dist --codelabs-dir=./codelabs-rendered --source=./codelabs/*.md --base-url $(GHPAGESURL)
+                
+          - task: CopyFiles@2
+            displayName: "Artifact: Copy Site"
+            inputs:
+              SourceFolder: "$(system.defaultWorkingDirectory)/dist"
+              Contents: "**"
+              TargetFolder: "$(Build.ArtifactStagingDirectory)"
+              OverWrite: true
+
+          - task: CopyFiles@2
+            displayName: "Artifact: Copy Labs"
+            inputs:
+              SourceFolder: "$(system.defaultWorkingDirectory)/codelabs-rendered"
+              Contents: "**"
+              TargetFolder: "$(Build.ArtifactStagingDirectory)/codelabs"
+              OverWrite: true
+
+          - task: CopyFiles@2
+            displayName: "Artifact: Copy .gitignore"
+            inputs:
+              SourceFolder: "$(system.defaultWorkingDirectory)"
+              Contents: ".gitignore"
+              TargetFolder: "$(Build.ArtifactStagingDirectory)"
+              OverWrite: true
+
+          - task: PublishBuildArtifacts@1
+            displayName: "Artifact: Publish"
+            inputs:
+              PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+              ArtifactName: "site"
+              publishLocation: "Container"
