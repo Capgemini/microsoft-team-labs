@@ -31,9 +31,75 @@ An Issue record must be created to begin working on a new feature or bug fix.
 
 ## Develop the solution to the issue, make a change
 
+In order to develop a solution to the Issue we created an unmanaged development solution is required. The unmanaged solution will be named using the name of the Issue.
+
+1. Clicking the 'Develop' button in the command ribbon will trigger the creation of the unmanaged solution and set the status of the Issue to 'In Progress'.
+![issue.png](.attachments/alm-hub-usage/develop.png)
+
+2. Open the [Power Platform Maker Portal](https://make.powerapps.com/) and select the environment which Development Hub is installed. To change environment you select the Environment dropdown in the top right corner of the portal.
+![issue.png](.attachments/alm-hub-usage/maker-portal-change-environment.png)
+
+3. Select 'Solutions' from the navigation panel on the left side of the portal. This will display all the solutions installed into the environment. You will see a solution with a display name that matches the name given to the issue you created earlier. Clicking the display name will open the solution which will be empty.
+![issue.png](.attachments/alm-hub-usage/maker-portal-select-solution.png)
+
+4. This is where you can add new and existing artifacts to your solution and make changes needed to resolve the Issue.
+![issue.png](.attachments/alm-hub-usage/maker-portal-empty-solution.png)
+
+### Example - Add a new table
+
+1. To add a new table, select the **+ New** button in the toolbar and select **Table** from the dropdown list.
+![issue.png](.attachments/alm-hub-usage/maker-portal-solution-add-new-item.png)
+
+2. This opens a pane on the right side of the portal where you can define the properties of the new table.
+![issue.png](.attachments/alm-hub-usage/maker-portal-solution-add-new-table.png)
+
+3. Once the table is created you will see a list of the standard Dataverse columns. You can now add further customisations to the table.
+
+### Recommended steps to complete before requesting a merge
+
+1. Run any potentially impacted tests locally against the development environment. This allows early identification of any issues that may have been introduced and is the optimum time to find and resolve issues.
+2. If you are making code changes, raising a draft pull request so team members can give feedback is useful. This means your code review takes place outside of the solution merge process. If the code review happens during the merge process and issues are found then this will block other solution merges until you PR is approved.
+
 ## Request a merge
 
+To add your changes to the master solution and have them deployed into the other environments you need to create a **Solution Merge**.
+
+1. Open the **Development Hub** app, and navigate to the Issue. Select the **Development** tab where you will see a view called **Solution Merges**. Click **+ New Solution Merge**
+![issue.png](.attachments/alm-hub-usage/dev-hub-create-new-solution-merge.png)
+
+2. The **Quick Create: Solution Merge** pane will be displayed on the right side of the portal.
+
+![issue.png](.attachments/alm-hub-usage/dev-hub-quick-create-solution-merge.png)
+
+| Field | Example | Explanation |
+|--|--|--|
+| Issue | Automatically email quote to customer | Link to the related solution. This will already be populated. |
+| Target Solution | ALMLAB ALM_Core | The solution to merge the changes into.|
+| Manual Merge Activities | No | If set to **Yes** then the merge process will pause once your development solution has been installed to the **Master** environment. Once manual activities have been completed the process will continue.  |
+|Source Branch |Empty| Adding a Branch name here will merge that branches changes into the Pull Request branch that is created in ADO. Used to include code and test files in the same PR as the customisations. |
+
+3. You will now see a record in the **Solution Merges** view for the merge record you created.
+![issue.png](.attachments/alm-hub-usage/dev-hub-solution-merge-view-with-record.png)
+
+4. Select the record and click **Edit** or double click the row to open the **Solution Merge** form. You can now copy the URL and send it to someone to review and **Approve**.
+
 ## Approve the merge
+
+To start the process of merging the developed changes into the master solution the **Solution Merge** record must be approved. On a project you would ask another team member to review your solution. When reviewing a solution some of the things to look out for are:
+
+- Does the solution contain everything it would need to allow a merge to be successful. For example Dependencies, Plugin Steps etc.
+- Does the solution contain items that it does not need. For example when adding an existing **Table** to your solution, did all the components unexpectedly get included?
+
+1. Open the solution merge form and click **Approve** in the toolbar. This will change the **Status Reason** from **Awaiting Review** to **Approved**
+![issue.png](.attachments/alm-hub-usage/dev-hub-solution-merge-approval.png)
+
+- If there are no solution merges in progress then the status reason will change to **Merging**. If another merge is in progress then it will be set to **Queued**. Queued solution merges will start as soon as the merges ahead of it have been complete.
+
+- If the solution merge fails for any reason the **Status Reason** will be set to **Failed**.
+
+- Once a solution has been merged into master it is extracted into a branch named the same as the **Issue**. A Pull Request is raised in.
+
+## Azure Devops - Pull Request
 
 ## Watch the process do it's magic - walk-through
 

@@ -52,7 +52,7 @@ A compound of development (Dev) and operations (Ops), DevOps is the union of peo
 
 What does DevOps mean for teams? DevOps enables formerly siloed roles – development, IT operations, quality engineering and security – to coordinate and collaborate to produce better, more reliable products. By adopting a DevOps culture along with DevOps practices and tools, teams gain the ability to better respond to customer needs, increase confidence in the applications they build and achieve business goals faster.
 
-We as a team are keen to have people skilled in both development and operations to provide to better understand the complete picture of solutions we implement.
+We as a team are keen to have people skilled in both development and operations to provide a better understanding of the complete picture of solutions we implement.
 
 For further reading on DevOps please visit [here](https://azure.microsoft.com/en-gb/overview/what-is-devops/)
 
@@ -90,4 +90,4 @@ For more info on the tool please visit the [Github project](https://github.com/e
 
 An extension of Microsoft's PowerApps package deployer which includes common functionality used across projects when deploying PowerApps solutions across environments
 
-For more info on the tool please visit the [Github project](https://github.com/Capgemini/powerapps-packagedeployer-)
+For more info on the tool please visit the [Github project](https://github.com/Capgemini/powerapps-packagedeployer-template)
