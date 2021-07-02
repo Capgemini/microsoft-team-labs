@@ -162,8 +162,8 @@ Select **Next** to move onto next set of fields
         <td>
             Deploy sample apps and data
         </td>
-            No
         <td>
+            No
         </td>
     </tr>
     <tr>

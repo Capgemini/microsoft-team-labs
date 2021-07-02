@@ -11,7 +11,7 @@ authors: Luke Phillips and Tom Ashworth
 
 ### What you will build
 
-In this tutorial, you will generate a set of files files for a new project based on a standardised template that will:
+In this tutorial, you will generate a set of files for a new project based on a standardised template that will:
 
 - To create a source repository to store your development changes
 - Create pipelines which builds, validates and deploys code to specified environments
