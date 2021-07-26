@@ -85,7 +85,7 @@ To add your changes to the master solution and have them deployed into the other
 
 ## Approve the merge
 
-To start the process of merging the developed changes into the master solution the **Solution Merge** record must be approved. On a project you would ask another team member to review your solution. When reviewing a solution some of the things to look out for are:
+To start the process of merging the developed changes into the master solution the **Solution Merge** record must be approved. On a project you would ask another team member to review your solution merge. When reviewing a merge some of the things to look out for are:
 
 - Does the solution contain everything it would need to allow a merge to be successful. For example Dependencies, Plugin Steps etc.
 - Does the solution contain items that it does not need. For example when adding an existing **Table** to your solution, did all the components unexpectedly get included?
@@ -95,13 +95,63 @@ To start the process of merging the developed changes into the master solution t
 
 - If there are no solution merges in progress then the status reason will change to **Merging**. If another merge is in progress then it will be set to **Queued**. Queued solution merges will start as soon as the merges ahead of it have been complete.
 
-- If the solution merge fails for any reason the **Status Reason** will be set to **Failed**.
+- If the solution merge fails for any reason the **Status Reason** will be set to **Failed**. Details of the error will be added to the **Timeline**.
 
-- Once a solution has been merged into master it is extracted into a branch named the same as the **Issue**. A Pull Request is raised in.
+- Once a solution has been merged into master it is extracted into a branch with the same name as the **Issue** and A Pull Request is raised in Azure Devops with a link to the Work Item ID that was set on the Issue. The **Status Reason** of the solution merge is set to **Awaiting PR Merge**.
 
-## Azure Devops - Pull Request
+## Pull Request
+
+The customisations have now been extracted into the Git repository and a Pull Request has been created ready for review. To view the PR, open the Azure Devops (ADO) project, expand the **Repos** section of the navigation on the left of the portal and select **Pull requests**. Select the **Active** tab and you will see the PR related to your changes. Click on the PR to open up the details.
+
+![image.png](.attachments/alm-hub-usage/ado-pull-request-open-pr.png)
+
+The **Overview** tab contains the details of a PR such as required checks that must be completed before a PR can be completed, a list of required and optional reviewers and and comments that have been made. There is also a **Work items** section where you will see a link to the work item linked to the Dev Hub Issue.
+
+![image.png](.attachments/alm-hub-usage/ado-pull-request-tabs-overview.png)
+
+Select the **Files** tab to view all of the files that have been changed as part of this PR. This is where you can make comments against lines of code which the owner of the PR will be notified about.
+
+![image.png](.attachments/alm-hub-usage/ado-pull-request-tabs-files.png)
+
+### Approving the PR
+
+1. When you have checked the changes you approve the PR using the **Approve** button at the top right of the page.
+![image.png](.attachments/alm-hub-usage/ado-pull-request-approve.png)
+
+2. Once all of the required checks have been successful you will be able to complete the PR using the **Approve** button.
+![image.png](.attachments/alm-hub-usage/ado-pull-request-complete-pr-1.png)
+
+3. You will then see a **Complete pull request** dialog where you can select merge type and post completion options. You do not need to change any of the default settings. Selecting **Complete merge** will merge the PR branch into the Master branch and start the process of releasing the changes to the CI environment.
+
+![image.png](.attachments/alm-hub-usage/ado-pull-request-complete-pr-2.png)
 
 ## Watch the process do it's magic - walk-through
+
+### Dev Hub **Solution Merge** approved
+
+1. Cloud Flow exports dev solution from development environment
+
+1. Cloud Flow imports dev solution into master environment
+
+1. Cloud flow adds the dev solution changes to the master solution.
+
+1. Extract pipeline exports master solution from the master environment
+
+1. Feature branch created
+
+1. Pull Request Raised
+
+1. Build Pipeline runs against the PR branch
+
+1. Pull Request completed
+
+1. PR Branch merged into Master
+
+1. Build Pipeline runs against Master
+
+1. Release to CI
+
+### ADO **Pull Request** completed
 
 # Create a further reading section in pages if applicable
 
