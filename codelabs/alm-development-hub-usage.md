@@ -127,30 +127,6 @@ Select the **Files** tab to view all of the files that have been changed as part
 
 ## Watch the process do it's magic - walk-through
 
-### Dev Hub **Solution Merge** approved
-
-1. Cloud Flow exports dev solution from development environment
-
-1. Cloud Flow imports dev solution into master environment
-
-1. Cloud flow adds the dev solution changes to the master solution.
-
-1. Extract pipeline exports master solution from the master environment
-
-1. Feature branch created
-
-1. Pull Request Raised
-
-1. Build Pipeline runs against the PR branch
-
-1. Pull Request completed
-
-1. PR Branch merged into Master
-
-1. Build Pipeline runs against Master
-
-1. Release to CI
-
 ### ADO **Pull Request** completed
 
 # Create a further reading section in pages if applicable
