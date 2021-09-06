@@ -121,15 +121,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <header id="banner" {% if view.id !='default' -%}down{%- else %}down$="[[_toBoolean(selectedFilter)]]" {%- endif %}>
       <div class="site-width">
         {% if view.id == 'default' %}
-        <h2 class="banner-title">Welcome to Codelabs!</h2>
+        <h2 class="banner-title">Welcome to Microsoft Labs by Capgemini!</h2>
         <div class="banner-description" data-filter-selected$="{% raw %}[[_toBoolean(selectedFilter)]]{% endraw %}">
           <p class="banner-info">
-            Codelabs provide a guided, tutorial, hands-on
-            coding experience. Most codelabs will step you through the process
-            of building a small application, or adding a new feature to an
-            existing application.
-            <br>
-            <a href="https://github.com/googlecodelabs/tools">Codelab tools on GitHub</a>
+            The Microsoft Labs provide hands-on coding experience on Microsoft products e.g. Power Apps, Power Platform, Azure DevOps, SpecFlow.
           </p>
           {%- else -%}
           <div class="banner-description">
@@ -216,45 +211,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         Loading Codelabs, please wait...
       </div>
     </main>
-
-    <footer id="footer">
-      <div class="footer-wrapper site-width">
-        <div class="link-list">
-          <label>Connect</label>
-          <ul>
-            <li><a href="https://www.example.com/">Example</a></li>
-          </ul>
-        </div>
-        <div class="link-list">
-          <label>Programs</label>
-          <ul>
-            <li><a href="https://www.example.com/">Example</a></li>
-          </ul>
-        </div>
-        <div class="link-list">
-          <label>Developer Consoles</label>
-          <ul>
-            <li><a href="https://www.example.com/">Example</a></li>
-          </ul>
-        </div>
-        <div class="link-list">
-          <label>Explore</label>
-          <ul>
-            <li><a href="https://www.example.com/">Example</a></li>
-          </ul>
-        </div>
-      </div>
-    </footer>
-
-    <div class="footerbar">
-      <div class="site-width layout horizontal center justified">
-        <span>
-          <a href="https://example.com">Terms</a>
-          &nbsp; | &nbsp;
-          <a href="https://example.com">Privacy</a>
-        </span>
-      </div>
-    </div>
 
   </paper-header-panel>
 

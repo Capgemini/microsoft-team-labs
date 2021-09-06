@@ -101,7 +101,7 @@ $card-col-height: 200px; // column mode
   paper-button {
     @include md-font-button();
     color: #fff;
-    background-color: $blueGrey700;
+    background-color: $capgeminiDarkGrey;
     text-transform: none;
     padding: 13px 25px;
   }
