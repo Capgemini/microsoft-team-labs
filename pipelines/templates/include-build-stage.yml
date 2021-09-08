@@ -22,7 +22,7 @@ stages:
             inputs:
               command: "custom"
               customCommand: "install"
-              arguments: "github.com/googlecodelabs/tools/claat@v0.0.0-20200918190358-3cc6629c4d3d"
+              arguments: "github.com/googlecodelabs/tools/claat"
 
           - task: Npm@1
             displayName: "Build: Restore NPM"
