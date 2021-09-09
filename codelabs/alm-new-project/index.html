@@ -29,7 +29,7 @@
     
       <google-codelab-step label="Introduction" duration="0">
         <h2 is-upgraded>What you will build</h2>
-<p>In this tutorial, you will generate a set of files files for a new project based on a standardised template that will:</p>
+<p>In this tutorial, you will generate a set of files for a new project based on a standardised template that will:</p>
 <ul>
 <li>To create a source repository to store your development changes</li>
 <li>Create pipelines which builds, validates and deploys code to specified environments</li>
@@ -49,8 +49,7 @@
 <li>A Power Apps CI Environment</li>
 <li>A Power Apps Test Environment</li>
 </ul>
-<aside class="special"><p>For setting up the Power Apps environments, follow <a href="../alm-environment-setup" target="_blank">this</a> lab.</p>
-</aside>
+<p>Positive : For setting up the Power Apps environments, follow <a href="../alm-environment-setup" target="_blank">this</a> lab.</p>
 
 
       </google-codelab-step>
@@ -163,8 +162,8 @@ cd my-project
 </td><td colspan="1" rowspan="1"><p>MSACE_ALMLAB_Sample</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>Publisher</p>
-</td><td colspan="1" rowspan="1"><p>Please create this yourself with the prefix given for the question ‘Publisher prefix?&#39;</p>
-</td></tr>
+</td><td colspan="2" rowspan="1"><p>Please create this yourself with the prefix given for the question ‘Publisher prefix?&#39;</p>
+</td><td colspan="1" rowspan="1"></td></tr>
 <tr><td colspan="1" rowspan="1"><p>Version</p>
 </td><td colspan="1" rowspan="1"><p>The initial solution version.</p>
 </td><td colspan="1" rowspan="1"><p>1.0.0</p>
@@ -199,10 +198,8 @@ cd my-project
 </td></tr>
 </table>
 <p class="image-container"><img alt="image.png" src="img/5635f583f27849a.png"></p>
-<aside class="special"><p><strong>Important:</strong> Copy the token to notepad as you&#39;ll need this later.</p>
-</aside>
-<aside class="warning"><p>If Package Name and Azure DevOps Project name are the same then the generator will fail. In this case, rename the pre-created repo in Azure Devops by:</p>
-</aside>
+<p>Positive : <strong>Important:</strong> Copy the token to notepad as you&#39;ll need this later.</p>
+<p>Negative : If Package Name and Azure DevOps Project name are the same then the generator will fail. In this case, rename the pre-created repo in Azure Devops by:</p>
 <ol type="1">
 <li>Go to the Project Settings</li>
 <li>Under Repos, select Repositories</li>
@@ -243,8 +240,8 @@ cd my-project
 </td><td colspan="1" rowspan="1"><p>If you don&#39;t have a service account, you can use your own for now and update these details later.</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>Service Account Password?</p>
-</td><td colspan="1" rowspan="1"><p>Used in conjunction with the Service Account Username.</p>
-</td></tr>
+</td><td colspan="2" rowspan="1"><p>Used in conjunction with the Service Account Username.</p>
+</td><td colspan="1" rowspan="1"></td></tr>
 <tr><td colspan="1" rowspan="1"><p>Tenant ID?</p>
 </td><td colspan="1" rowspan="1"><p>Used for creating the Service Connection in Azure DevOps which is used for the solution checker and deploying to CI environment</p>
 </td><td colspan="1" rowspan="1"><p><em>Paste value from notepad which copied earlier in the lab</em></p>
@@ -290,10 +287,27 @@ Done.
 <p class="image-container"><img alt="image.png" src="img/b3c18de0d9ca36d.png"></p>
 <p>Turn on:</p>
 <ul>
-<li><strong>Require a minimum number of reviewers<br></strong> Configure the settings as described below:</li>
-</ul>
-<p>| Field                                                            | Value                         |   | —————————————————————- | —————————– |   | Minimum number of reviewers                                      | 2                             |   | Allow requestors to approve their own changes                    | Unchecked                     |   | Prohibit the most recent pusher from approving their own changes | Unchecked                     |   | Allow completion even if some reviewers vote to wait or reject   | Unchecked                     |   | When new changes are pushed:                                     | Reset all code reviewer votes |</p>
-<ul>
+<li><strong>Require a minimum number of reviewers<br></strong> Configure the settings as described below:<table>
+<tr><td colspan="1" rowspan="1"><p>Field</p>
+</td><td colspan="1" rowspan="1"><p>Value</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Minimum number of reviewers</p>
+</td><td colspan="1" rowspan="1"><p>2</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Allow requestors to approve their own changes</p>
+</td><td colspan="1" rowspan="1"><p>Unchecked</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Prohibit the most recent pusher from approving their own changes</p>
+</td><td colspan="1" rowspan="1"><p>Unchecked</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Allow completion even if some reviewers vote to wait or reject</p>
+</td><td colspan="1" rowspan="1"><p>Unchecked</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>When new changes are pushed:</p>
+</td><td colspan="1" rowspan="1"><p>Reset all code reviewer votes</p>
+</td></tr>
+</table>
+</li>
 <li><strong>Check for linked work items</strong> ensuring <strong>Required</strong> is selected.</li>
 <li>Turn on <strong>Check for comment resolutions</strong> ensuring <strong>Required</strong> is selected.</li>
 <li>Turn on <strong>Limit merge types</strong> ensuring only <strong>Squash merge</strong> is checked.</li>

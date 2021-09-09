@@ -40,8 +40,34 @@
 <li>Click ‘New&#39;</li>
 <li>You will then need to complete the following fields:</li>
 </ol>
-<p>| Tab | Field | Example Value | Explanation | |–|–|–|–| | General | Name | Automatically email quote to customer  | The name of the issue. | | General | Type | Feature | Either ‘Feature&#39; or ‘Bug&#39;. | | General | Description | Automatically emails a quote to the customer when made active. | A longer description for the issue. | | Azure DevOps | Work Item ID | 10001 | Used to link the commit to the correct Work Item in Azure DevOps |</p>
-<ol type="1">
+<table>
+<tr><td colspan="1" rowspan="1"><p>Tab</p>
+</td><td colspan="1" rowspan="1"><p>Field</p>
+</td><td colspan="1" rowspan="1"><p>Example Value</p>
+</td><td colspan="1" rowspan="1"><p>Explanation</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>General</p>
+</td><td colspan="1" rowspan="1"><p>Name</p>
+</td><td colspan="1" rowspan="1"><p>Automatically email quote to customer</p>
+</td><td colspan="1" rowspan="1"><p>The name of the issue.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>General</p>
+</td><td colspan="1" rowspan="1"><p>Type</p>
+</td><td colspan="1" rowspan="1"><p>Feature</p>
+</td><td colspan="1" rowspan="1"><p>Either ‘Feature&#39; or ‘Bug&#39;.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>General</p>
+</td><td colspan="1" rowspan="1"><p>Description</p>
+</td><td colspan="1" rowspan="1"><p>Automatically emails a quote to the customer when made active.</p>
+</td><td colspan="1" rowspan="1"><p>A longer description for the issue.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Azure DevOps</p>
+</td><td colspan="1" rowspan="1"><p>Work Item ID</p>
+</td><td colspan="1" rowspan="1"><p>10001</p>
+</td><td colspan="1" rowspan="1"><p>Used to link the commit to the correct Work Item in Azure DevOps</p>
+</td></tr>
+</table>
+<ol type="1" start="4">
 <li>Click ‘Save&#39;</li>
 </ol>
 <p class="image-container"><img alt="issue.png" src="img/c93b4f6f254a0a9a.png"></p>
@@ -50,29 +76,98 @@
       </google-codelab-step>
     
       <google-codelab-step label="Develop the solution to the issue, make a change" duration="0">
-        
+        <p>In order to develop a solution to the Issue we created an unmanaged development solution is required. The unmanaged solution will be named using the name of the Issue.</p>
+<ol type="1">
+<li>Clicking the ‘Develop&#39; button in the command ribbon will trigger the creation of the unmanaged solution and set the status of the Issue to ‘In Progress&#39;. <img alt="issue.png" src="img/49cc4e099d335f97.png"></li>
+<li>Open the <a href="https://make.powerapps.com/" target="_blank">Power Platform Maker Portal</a> and select the environment which Development Hub is installed. To change environment you select the Environment dropdown in the top right corner of the portal. <img alt="issue.png" src="img/81ad609f3ebec4f2.png"></li>
+<li>Select ‘Solutions&#39; from the navigation panel on the left side of the portal. This will display all the solutions installed into the environment. You will see a solution with a display name that matches the name given to the issue you created earlier. Clicking the display name will open the solution which will be empty. <img alt="issue.png" src="img/c1b196a8af8689bc.png"></li>
+<li>This is where you can add new and existing artifacts to your solution and make changes needed to resolve the Issue. <img alt="issue.png" src="img/b91a7e7e703dd007.png"></li>
+</ol>
+<h2 is-upgraded>Example - Add a new table</h2>
+<ol type="1">
+<li>To add a new table, select the <strong>+ New</strong> button in the toolbar and select <strong>Table</strong> from the dropdown list. <img alt="issue.png" src="img/7861e6a4ff5baa6d.png"></li>
+<li>This opens a pane on the right side of the portal where you can define the properties of the new table. <img alt="issue.png" src="img/20d325adb35d8f65.png"></li>
+<li>Once the table is created you will see a list of the standard Dataverse columns. You can now add further customisations to the table.</li>
+</ol>
+<h2 is-upgraded>Recommended steps to complete before requesting a merge</h2>
+<ol type="1">
+<li>Run any potentially impacted tests locally against the development environment. This allows early identification of any issues that may have been introduced and is the optimum time to find and resolve issues.</li>
+<li>If you are making code changes, raising a draft pull request so team members can give feedback is useful. This means your code review takes place outside of the solution merge process. If the code review happens during the merge process and issues are found then this will block other solution merges until you PR is approved.</li>
+</ol>
+
 
       </google-codelab-step>
     
       <google-codelab-step label="Request a merge" duration="0">
-        
+        <p>To add your changes to the master solution and have them deployed into the other environments you need to create a <strong>Solution Merge</strong>.</p>
+<ol type="1">
+<li>Open the <strong>Development Hub</strong> app, and navigate to the Issue. Select the <strong>Development</strong> tab where you will see a view called <strong>Solution Merges</strong>. Click <strong>+ New Solution Merge</strong><img alt="issue.png" src="img/20fe21f368cbf135.png"></li>
+<li>The <strong>Quick Create: Solution Merge</strong> pane will be displayed on the right side of the portal.</li>
+</ol>
+<p class="image-container"><img alt="issue.png" src="img/81e7fded253bb361.png"></p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>Field</p>
+</td><td colspan="1" rowspan="1"><p>Example</p>
+</td><td colspan="1" rowspan="1"><p>Explanation</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Issue</p>
+</td><td colspan="1" rowspan="1"><p>Automatically email quote to customer</p>
+</td><td colspan="1" rowspan="1"><p>Link to the related solution. This will already be populated.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Target Solution</p>
+</td><td colspan="1" rowspan="1"><p>ALMLAB ALM_Core</p>
+</td><td colspan="1" rowspan="1"><p>The solution to merge the changes into.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Manual Merge Activities</p>
+</td><td colspan="1" rowspan="1"><p>No</p>
+</td><td colspan="1" rowspan="1"><p>If set to <strong>Yes</strong> then the merge process will pause once your development solution has been installed to the <strong>Master</strong> environment. Once manual activities have been completed the process will continue.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Source Branch</p>
+</td><td colspan="1" rowspan="1"><p>Empty</p>
+</td><td colspan="1" rowspan="1"><p>Adding a Branch name here will merge that branches changes into the Pull Request branch that is created in ADO. Used to include code and test files in the same PR as the customisations.</p>
+</td></tr>
+</table>
+<ol type="1" start="3">
+<li>You will now see a record in the <strong>Solution Merges</strong> view for the merge record you created. <img alt="issue.png" src="img/643d420301c0effb.png"></li>
+<li>Select the record and click <strong>Edit</strong> or double click the row to open the <strong>Solution Merge</strong> form. You can now copy the URL and send it to someone to review and <strong>Approve</strong>.</li>
+</ol>
+
 
       </google-codelab-step>
     
       <google-codelab-step label="Approve the merge" duration="0">
-        
+        <p>To start the process of merging the developed changes into the master solution the <strong>Solution Merge</strong> record must be approved. On a project you would ask another team member to review your solution merge. When reviewing a merge some of the things to look out for are:</p>
+<ul>
+<li>Does the solution contain everything it would need to allow a merge to be successful. For example Dependencies, Plugin Steps etc.</li>
+<li>Does the solution contain items that it does not need. For example when adding an existing <strong>Table</strong> to your solution, did all the components unexpectedly get included?</li>
+</ul>
+<ol type="1">
+<li>Open the solution merge form and click <strong>Approve</strong> in the toolbar. This will change the <strong>Status Reason</strong> from <strong>Awaiting Review</strong> to <strong>Approved</strong><img alt="issue.png" src="img/f969c44b7bb9aad4.png"></li>
+</ol>
+<ul>
+<li>If there are no solution merges in progress then the status reason will change to <strong>Merging</strong>. If another merge is in progress then it will be set to <strong>Queued</strong>. Queued solution merges will start as soon as the merges ahead of it have been complete.</li>
+<li>If the solution merge fails for any reason the <strong>Status Reason</strong> will be set to <strong>Failed</strong>. Details of the error will be added to the <strong>Timeline</strong>.</li>
+<li>Once a solution has been merged into master it is extracted into a branch with the same name as the <strong>Issue</strong> and A Pull Request is raised in Azure Devops with a link to the Work Item ID that was set on the Issue. The <strong>Status Reason</strong> of the solution merge is set to <strong>Awaiting PR Merge</strong>.</li>
+</ul>
+
 
       </google-codelab-step>
     
-      <google-codelab-step label="Watch the process do it&#39;s magic - walk-through" duration="0">
-        <p>Create a further reading section in pages if applicable</p>
-<h2 is-upgraded>Trigger build</h2>
+      <google-codelab-step label="Pull Request" duration="0">
+        <p>The customisations have now been extracted into the Git repository and a Pull Request has been created ready for review. To view the PR, open the Azure Devops (ADO) project, expand the <strong>Repos</strong> section of the navigation on the left of the portal and select <strong>Pull requests</strong>. Select the <strong>Active</strong> tab and you will see the PR related to your changes. Click on the PR to open up the details.</p>
+<p class="image-container"><img alt="image.png" src="img/4d193fe455c82595.png"></p>
+<p>The <strong>Overview</strong> tab contains the details of a PR such as required checks that must be completed before a PR can be completed, a list of required and optional reviewers and and comments that have been made. There is also a <strong>Work items</strong> section where you will see a link to the work item linked to the Dev Hub Issue.</p>
+<p class="image-container"><img alt="image.png" src="img/2e4178cd00e662d7.png"></p>
+<p>Select the <strong>Files</strong> tab to view all of the files that have been changed as part of this PR. This is where you can make comments against lines of code which the owner of the PR will be notified about.</p>
+<p class="image-container"><img alt="image.png" src="img/38ed0aa16e8d8282.png"></p>
+<h2 is-upgraded>Approving the PR</h2>
+<ol type="1">
+<li>When you have checked the changes you approve the PR using the <strong>Approve</strong> button at the top right of the page. <img alt="image.png" src="img/f6d20624fd14ef66.png"></li>
+<li>Once all of the required checks have been successful you will be able to complete the PR using the <strong>Approve</strong> button. <img alt="image.png" src="img/fadc1084ffb82538.png"></li>
+<li>You will then see a <strong>Complete pull request</strong> dialog where you can select merge type and post completion options. You do not need to change any of the default settings. Selecting <strong>Complete merge</strong> will merge the PR branch into the Master branch and start the process of releasing the changes to the CI environment.</li>
+</ol>
+<p class="image-container"><img alt="image.png" src="img/6e86cff7bcb6abc0.png"></p>
 
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Verify code changes are pulled down" duration="0">
-        
 
       </google-codelab-step>
     

@@ -38,7 +38,7 @@ Microsoft.CrmSdk.CoreAssemblies
 <h2 is-upgraded>Helper Class</h2>
 <p>As it is possible that a number of different Steps files will require access to the Dynamics context, it is useful to put this logic in a helper file that can be accessed by all step files. Create an Extensions folder in the project root and add a ContextHelper.cs file to the folder.</p>
 <p class="image-container"><img alt="alt_text" title="image_tooltip" src="img/293c430e2051bbf5.png"></p>
-<p>Next, add <code>: PowerAppsStepDefiner</code>after the class name in the file to inherit from the Capgemini Bindings class.</p>
+<p>Next, add <code>: PowerAppsStepDefiner</code> after the class name in the file to inherit from the Capgemini Bindings class.</p>
 <p>This class will initially require two methods, one that returns a ServiceClient based on standard user credentials, and one that returns a ServiceClient in the context of an application user, which uses a clientid and secret.</p>
 <p>Create a method in the ContextHelper class that returns a CrmServiceClient based on the below code outline. As this class inherits from PowerAppStepDefiner, its methods will have access to helpful methods within the TestConfig class. Use the <a href="https://docs.microsoft.com/en-us/powerapps/developer/data-platform/xrm-tooling/use-connection-strings-xrm-tooling-connect" target="_blank">SDK documentation</a> to help you.</p>
 <pre><code>public static CrmServiceClient GetServiceClient(UserConfiguration user)

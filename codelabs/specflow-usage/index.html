@@ -162,7 +162,7 @@ And I open the record at position &#39;0&#39; in the grid
 </code></pre>
 <p>Now there are a couple of ways that we can go about streamlining this, one way that will be covered later could be writing a custom step binding to do all of these actions as part of 1 step. What we&#39;re going to cover here though is some out of the box SpecFlow functionality: Feature Backgrounds.</p>
 <p>Feature backgrounds allow us to define a shared set of steps that every scenario in a feature file will follow when the test is executed. It is important to note that you cannot exempt any of your scenarios from running the feature background steps so be sure when you add background steps that they definitely apply to _all _of your scenarios or you may be creating problems for yourself.</p>
-<p>You can add a background to your scenario by simply adding </p>
+<p>You can add a background to your scenario by simply adding \</p>
 <pre><code>Background: 
 </code></pre>
 <p>After you name your feature and before your scenarios start. Try updating your Manage A Contact feature file now to include a set of background step instead of repeating the same step bindings in each scenario.</p>
