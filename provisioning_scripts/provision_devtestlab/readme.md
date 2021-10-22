@@ -9,7 +9,7 @@ An example of calling the script with the required arguments is:
     ```
     .\provisionLab.ps1 -SubscriptionId 0fbe9ddf-04bf-4b96-bdc6-032844dfaa9c -ResourceGroupName "rg-capgemini-devtestlab" -ResourceGroupLocation "UK South" -LabName "examplelab001" -ConfigCsvLocation ".\example_machines.csv" 
     ```
-As a note the first time the script is run if you do not currently have the Az powershell module installed it will take quite a while to install so be patient.
+    As a note the first time the script is run if you do not currently have the Az powershell module installed it will take quite a while to install so be patient.
 
 3. Once the script has started running if you have not included -AzureUsername and -AzurePassword as part of the parameters you will be prompted to enter credentials for the azure account that has admin access to the previously specified subscription.
 4. The script should then attempt to provision the lab and VMs. This will take some time so be patient.
