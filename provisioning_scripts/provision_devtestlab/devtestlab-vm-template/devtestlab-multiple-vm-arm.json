@@ -1,0 +1,71 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "labName": {
+        "type": "string",
+        "metadata": {
+          "description": "The name of an existing lab where the new vm will be created."
+        }
+      },
+      "vmSize": {
+        "type": "string",
+        "metadata": {
+          "description": "The size of the new vm to be created."
+        }
+      },
+      "multipleVmInformation": {
+        "type": "array",
+        "metadata": {
+            "description": "This contains an array consisting of information for each VM getting created. each object should contain vmName, vmUserName, and vmPassword"
+        }
+      }
+    },
+    "variables": {
+      "labSubnetName": "[concat(variables('labVirtualNetworkName'), 'Subnet')]",
+      "labVirtualNetworkId": "[resourceId('Microsoft.DevTestLab/labs/virtualnetworks', parameters('labName'), variables('labVirtualNetworkName'))]",
+      "labVirtualNetworkName": "[concat('Dtl', parameters('labName'))]"
+    },
+    "resources": [
+      {
+        "apiVersion": "2018-10-15-preview",
+        "type": "Microsoft.DevTestLab/labs/virtualMachines",
+        "name": "[concat(parameters('labName'), '/', parameters('multipleVmInformation')[copyIndex()].vmName)]",
+        "location": "[resourceGroup().location]",
+        "properties": {
+          "notes": "Visual Studio 2019 Community (latest release) on Windows 10 Enterprise N (x64)",
+          "galleryImageReference": {
+            "offer": "visualstudio2019latest",
+            "publisher": "microsoftvisualstudio",
+            "sku": "vs-2019-comm-latest-win10-n",
+            "osType": "Windows",
+            "version": "latest"
+          },
+          "size": "[parameters('vmSize')]",
+          "isAuthenticationWithSshKey": false,
+          "userName": "[parameters('multipleVmInformation')[copyIndex()].vmUserName]",
+          "sshKey": "",
+          "password": "[parameters('multipleVmInformation')[copyIndex()].vmPassword]",
+          "labVirtualNetworkId": "[variables('labVirtualNetworkId')]",
+          "labSubnetName": "[variables('labSubnetName')]",
+          "artifacts": [
+            {
+                "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'public repo', 'windows-vscode')]"
+            },
+            {
+                "artifactId": "[resourceId('Microsoft.DevTestLab/labs/artifactSources/artifacts', parameters('labName'), 'public repo', 'windows-chrome')]"
+            }
+          ],
+          "disallowPublicIpAddress": false,
+          "allowClaim": false
+        },
+        "copy": {
+            "name": "virtualmachinecopy",
+            "count": "[length(parameters('multipleVmInformation'))]"
+        }
+      }
+    ],
+    "outputs": {
+
+    }
+  }

@@ -1,0 +1,24 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "labName": {
+          "value": "[InjectedByScript]"
+      },
+      "labVmShutDownTime": {
+        "value": "21:00"
+      },
+      "maxAllowedVmsPerUser": {
+        "value": 10
+      },
+      "maxAllowedVmsPerLab": {
+        "value": 100
+      },
+      "allowedVmSizes": {
+        "value": "\"Standard_DS1_v2\", \"Standard_DS11_v2\""
+      },
+      "timeZoneId": {
+          "value": "UTC"
+      }
+    }
+  }
