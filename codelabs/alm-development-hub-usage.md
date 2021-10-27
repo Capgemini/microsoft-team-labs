@@ -72,12 +72,12 @@ To add your changes to the master solution and have them deployed into the other
 
 ![issue.png](.attachments/alm-hub-usage/dev-hub-quick-create-solution-merge.png)
 
-| Field                   | Example                               | Explanation                                                                                                                                                                                                |
-| ----------------------- | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Issue                   | Automatically email quote to customer | Link to the related solution. This will already be populated.                                                                                                                                              |
-| Target Solution         | ALMLAB ALM_Core                       | The solution to merge the changes into.                                                                                                                                                                    |
-| Manual Merge Activities | No                                    | If set to **Yes** then the merge process will pause once your development solution has been installed to the **Master** environment. Once manual activities have been completed the process will continue. |
-| Source Branch           | Empty                                 | Adding a Branch name here will merge that branches changes into the Pull Request branch that is created in ADO. Used to include code and test files in the same PR as the customisations.                  |
+| Field                   | Example                               | Explanation                                                                                                                                                                                                                                                                                                                                                           |
+| ----------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Issue                   | Automatically email quote to customer | Link to the related solution. This will already be populated.                                                                                                                                                                                                                                                                                                         |
+| Target Solution         | ALMLAB ALM_Core                       | The solution to merge the changes into.                                                                                                                                                                                                                                                                                                                               |
+| Manual Merge Activities | No                                    | Enabling the Manual Merge Activities will cause the merging process to pause before extracting and committing to source control. This is useful where you are merging changes by hand (e.g. where you need to delete components from the solution or modify a component not included in the development solution).<br>_The "Performing a manual merge" section will detail this process further._ |
+| Source Branch           | Empty                                 | If the solution to be merged has associated source code (e.g. you have made changes to plugin assemblies, web resources, tests or deployment logic) then you must provide the branch to be merged in here. <br>_If your repository uses a Push source control strategy, ensure that you perform any manual Git merging required on your source branch before creating the solution merge or you may get merge conflicts that prevent the solution merge being committed. It is recommended to use a Pull request strategy for this reason._|
 
 3. You will now see a record in the **Solution Merges** view for the merge record you created.
    ![issue.png](.attachments/alm-hub-usage/dev-hub-solution-merge-view-with-record.png)
@@ -99,6 +99,28 @@ To start the process of merging the developed changes into the master solution t
 - If the solution merge fails for any reason the **Status Reason** will be set to **Failed**. Details of the error will be added to the **Timeline**.
 
 - Once a solution has been merged into master it is extracted into a branch with the same name as the **Issue** and A Pull Request is raised in Azure Devops with a link to the Work Item ID that was set on the Issue. The **Status Reason** of the solution merge is set to **Awaiting PR Merge**.
+
+## Performing a manual merge
+
+If Manual Merge has been enabled for the solution merge, then the merging process is paused to allow either the solution merge creator or approver to modify the target solution before it is extracted. This is useful for scenarios where the complete set of changes for a given issue couldn't be moved in an unmanaged solution. 
+
+A great example of such a change would be deleting a component since there is no mechanism within an unmanaged solution to delete a component in the target environment. 
+
+When the merging process is in a state where manual merge activities can begin, the solution merge will transition to an **Awaiting Manual Merge Activities** status and a Flow Approval is created for either the solution merge creator or approver to action. 
+
+After the manual activities are complete, follow these steps to resume the merging process. 
+
+1. Navigate to the Power Automate Maker Portal (e.g. https://unitedkingdom.flow.microsoft.com/)
+2. Ensure you are in the correct environment (top left)
+   ![powerautomate-environment-selector.png](.attachments/alm-hub-usage/powerautomate-environment-selector.png)
+3. Select **Action Items** on the left then **Approvals**
+   ![powerautomate-approvals-navigation.png](.attachments/alm-hub-usage/powerautomate-approvals-navigation.png)
+4. Select the created request in the list of "Received" requests
+   ![powerautomate-approvals-list.png](.attachments/alm-hub-usage/powerautomate-approvals-list.png)
+5. Select **Merged** as the response then **Confirm** to the bottom
+   ![powerautomate-approvals-respond.png](.attachments/alm-hub-usage/powerautomate-approvals-respond.png)
+
+To notify the flow that the manual merge activities are complete, navigate to Action items -> Approvals within Power Automate and set the approval status to merged.
 
 ## Pull Request
 
