@@ -119,8 +119,30 @@ After the manual activities are complete, follow these steps to resume the mergi
    ![powerautomate-approvals-list.png](.attachments/alm-hub-usage/powerautomate-approvals-list.png)
 5. Select **Merged** as the response then **Confirm** to the bottom
    ![powerautomate-approvals-respond.png](.attachments/alm-hub-usage/powerautomate-approvals-respond.png)
+6. The merge will now resume by extracting the target solution from the master environment.
 
-To notify the flow that the manual merge activities are complete, navigate to Action items -> Approvals within Power Automate and set the approval status to merged.
+## Handling a merge failure
+
+Not every merge will be successful and therefore an understanding of how to mitigate these proves valuable. This section will cover what Development Hub does to handle these and the steps required to retry the merge. 
+
+Merging your development solution from dev to master could fail for a few reasons although the most common are:
+- missing solution dependencies
+- solution import timeout
+
+In this event, the solution merge with transition into a **Failed** status and a note will be added to a the timeline. If the development solution failed to import the note will include import error resembling this note: 
+
+![solution-merge-import-note.png](.attachments/alm-hub-usage/solution-merge-import-note.png)
+
+Otherwise, if any other error occurs, a more generic note is created with includes a link to the Cloud Flow run which you can you to diagnose the fault. To make the hyperlink clickable, use the expand toggle on the right of the note. 
+
+![solution-merge-generic-note.png](.attachments/alm-hub-usage/solution-merge-generic-note.png)
+
+Once you believe the error to be resolved you can retry the solution merge using the retry button found in the ribbon of the solution merge.
+
+![solution-merge-retry-button.png](.attachments/alm-hub-usage/solution-merge-retry-button.png)
+
+Negative
+: Note that once the solution has begun merge it block all other solution merges until it is complete, including while it is **Failed**. This is because once the development solution is imported in the master environment, the environment is considered "dirty" until the changes are merged into source control. If another solution were to be imported and extracted, it would include the changes of the previous incomplete merge. 
 
 ## Pull Request
 
