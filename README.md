@@ -47,6 +47,10 @@ replica of what will appear on staging/production.
 
 This must be run under an admin terminal.
 
+#### Error: Tables aren't correctly formatted
+
+Change the End of Line Sequence from `CRLF` to `LF`. 
+
 ### Views
 
 Views are themed/styled collections of codelabs, served from the same url.
