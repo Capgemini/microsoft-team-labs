@@ -125,3 +125,94 @@ Select the **Files** tab to view all of the files that have been changed as part
 3. You will then see a **Complete pull request** dialog where you can select merge type and post completion options. You do not need to change any of the default settings. Selecting **Complete merge** will merge the PR branch into the Master branch and start the process of releasing the changes to the CI environment.
 
 ![image.png](.attachments/alm-hub-usage/ado-pull-request-complete-pr-2.png)
+
+# Watch the process do it's magic
+
+When a **Solution Merge** has been approved in Development Hub, a Power Automate Flow called **ADD THE NAME OF THE FLOW** is triggered which executes a series of tasks to create a Pull Request in ADO.
+
+## Overview
+
+The **Issue Solution** in the Development Hub environment is exported as an unmanaged solution and imported into the **Master Environment**. The contents of the **Issue Solution** are then merged into the **Target Solution**
+which is then Extracted from the **Master Environment**.
+## Extract the solution into a Feature Branch
+
+The extraction of the **Target Solution** is carried out by a pipeline in Azure Devops(ADO) which in the following example is called almlab.
+
+1. Login to the ADO project that contains your Repository and Pipelines.
+2. Navigate to the **Pipelines** tab and select the sub item also named **Pipelines** where you will see a list of recently run pipelines and the extract pipeline may still be running.
+
+![image.png](.attachments\alm-hub-usage\ado-extract-pipeline-1.png)
+
+3. Clicking on the almlab pipeline opens up a new view which displays the run history in start time order.
+
+![image.png](.attachments\alm-hub-usage\ado-extract-pipeline-2.png)
+
+4. Clicking on a run will open up its details, where you will see a **Jobs** section on the **Summary** tab.
+
+![image.png](.attachments\alm-hub-usage\ado-extract-pipeline-3.png)
+
+5. Clicking on the Job will show you the steps it contains and the result. This is useful when troubleshooting pipeline failures to complete successfully as you can find the task that failed and once selected you will see debug information in the right hand panel.
+
+![image.png](.attachments\alm-hub-usage\ado-extract-pipeline-4.png)
+
+## Validate the Feature Branch
+
+Once the Extract pipeline (almlab) has successfully completed, the pipeline to build the solution is triggered.
+
+This will build the solution to confirm it compiles with no issues and then run the  [Power Platform Solution Checker](https://docs.microsoft.com/en-us/powerapps/maker/data-platform/use-powerapps-checker) to run a static analysis of the solution against a set of best practice rules and quickly identify any problematic patterns found.
+
+1. Navigate to the **Pipelines** tab and select the sub item also named **Pipelines** where you will see a list of recently run pipelines. The build pipeline (ALMLAB - Package Build) will be listed.
+
+![image.png](.attachments\alm-hub-usage\ado-build-pipeline-1.png)
+
+2. Clicking on the **ALMLAB - Package Build** pipeline opens the run history for the pipeline in start time order.
+
+![image.png](.attachments\alm-hub-usage\ado-build-pipeline-2.png)
+
+3. Clicking on a run will open up the details. You will see a section with 2 tabs **Stages** and **Jobs**. You will see the **Build** stage which confirms the solution builds successfully and a **Solution Checker** stage which runs static code analysis against the solution components.
+
+![image.png](.attachments\alm-hub-usage\ado-build-pipeline-3.png)
+
+4. Clicking on a stage will open up the Job details where you can see the breakdown of tasks for the stages. As with the Extract pipeline this is a great place to start when troubleshooting issues with the pipelines.
+
+![image.png](.attachments\alm-hub-usage\ado-build-pipeline-4.png)
+
+## Approve the Pull Request
+
+Once the PR has been approved the **Feature** branch will be merged into the **Master** branch of the source code.
+
+The **ALMLAB - Package Build** pipeline with be run against the **Master** branch to confirm that the solution builds and the Solution Checker will analyse the solution components.
+
+1. Navigate to the **Pipelines** tab and select the sub item also named **Pipelines** where you will see a list of recently run pipelines. The build pipeline (ALMLAB - Package Build) will be listed.
+
+![image.png](.attachments\alm-hub-usage\ado-pr-complete-package-build-1.png)
+
+2. Clicking on the **ALMLAB - Package Build** pipeline opens the run history for the pipeline in start time order.
+
+![image.png](.attachments\alm-hub-usage\ado-pr-complete-package-build-2.png)
+
+3. Clicking on a run will open up the details. You will see a section with 2 tabs **Stages** and **Jobs**. You will see the **Build** stage which confirms the solution builds successfully and a **Solution Checker** stage which runs static code analysis against the solution components.
+
+![image.png](.attachments\alm-hub-usage\ado-pr-complete-package-build-3.png)
+
+4. Clicking on a stage will open up the Job details where you can see the breakdown of tasks for the stages.
+
+![image.png](.attachments\alm-hub-usage\ado-pr-complete-package-build-4.png)
+
+## Release to the CI Environment
+
+The solution contained in the **Master** branch is now deployed into the **CI Environment**. This is done using a **Release** pipeline in ADO.
+
+1. Navigate to the **Pipelines** tab and select the sub item **Releases**. The examples show a release called **ALMLAB Release** on the left panel where you can search for pipelines if required.
+
+2. Select the release **ALMLAB Release** and you will see a tab on the right hand side with a tab called releases which contains a list of the runs in order of start time.
+
+![image.png](.attachments\alm-hub-usage\ado-release-to-ci-2.png)
+
+2. Clicking a release run will display the **Stages** which the release runs. In this case you will see 1 stage which deploys the solution into the CI Environment.
+
+![image.png](.attachments\alm-hub-usage\ado-release-to-ci-4.png)
+
+4. If you select a Stage you will be given the option to **view logs**. This will show you a list of steps contained in the stage. Selecting a step will display the tasks with the log information.
+
+![image.png](.attachments\alm-hub-usage\ado-release-to-ci-3.png)
