@@ -76,8 +76,8 @@ To add your changes to the master solution and have them deployed into the other
 | ----------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Issue                   | Automatically email quote to customer | Link to the related solution. This will already be populated.                                                                                                                                                                                                                                                                                                         |
 | Target Solution         | ALMLAB ALM_Core                       | The solution to merge the changes into.                                                                                                                                                                                                                                                                                                                               |
-| Manual Merge Activities | No                                    | Enabling the Manual Merge Activities will cause the merging process to pause before extracting and committing to source control. This is useful where you are merging changes by hand (e.g. where you need to delete components from the solution or modify a component not included in the development solution).<br>_The "Performing a manual merge" section will detail this process further._ |
-| Source Branch           | Empty                                 | If the solution to be merged has associated source code (e.g. you have made changes to plugin assemblies, web resources, tests or deployment logic) then you must provide the branch to be merged in here. <br>_If your repository uses a Push source control strategy, ensure that you perform any manual Git merging required on your source branch before creating the solution merge or you may get merge conflicts that prevent the solution merge being committed. It is recommended to use a Pull request strategy for this reason._|
+| Manual Merge Activities | No                                    | Enabling the Manual Merge Activities will cause the merging process to pause before extracting and committing to source control. This is useful where you are merging changes by hand (e.g. where you need to delete components from the solution or modify a component not included in the development solution).<br><br>_The "Performing a manual merge" section will detail this process further._ |
+| Source Branch           | Empty                                 | If the solution to be merged has associated source code (e.g. you have made changes to plugin assemblies, web resources, tests or deployment logic) then you must provide the branch to be merged in here. <br><br>_If your repository uses a Push source control strategy, ensure that you perform any manual Git merging required on your source branch before creating the solution merge or you may get merge conflicts that prevent the solution merge being committed. It is recommended to use a Pull request strategy for this reason._|
 
 3. You will now see a record in the **Solution Merges** view for the merge record you created.
    ![issue.png](.attachments/alm-hub-usage/dev-hub-solution-merge-view-with-record.png)
@@ -111,7 +111,7 @@ When the merging process is in a state where manual merge activities can begin, 
 After the manual activities are complete, follow these steps to resume the merging process. 
 
 1. Navigate to the Power Automate Maker Portal (e.g. https://unitedkingdom.flow.microsoft.com/)
-2. Ensure you are in the correct environment (top left)
+2. Ensure you are in the correct environment (top right)
    ![powerautomate-environment-selector.png](.attachments/alm-hub-usage/powerautomate-environment-selector.png)
 3. Select **Action Items** on the left then **Approvals**
    ![powerautomate-approvals-navigation.png](.attachments/alm-hub-usage/powerautomate-approvals-navigation.png)
@@ -129,11 +129,11 @@ Merging your development solution from dev to master could fail for a few reason
 - missing solution dependencies
 - solution import timeout
 
-In this event, the solution merge with transition into a **Failed** status and a note will be added to a the timeline. If the development solution failed to import the note will include import error resembling this note: 
+In this event, the solution merge will transition into a **Failed** status and a note will be added to a the timeline. If the development solution failed to import the note will include import error resembling this note: 
 
 ![solution-merge-import-note.png](.attachments/alm-hub-usage/solution-merge-import-note.png)
 
-Otherwise, if any other error occurs, a more generic note is created with includes a link to the Cloud Flow run which you can you to diagnose the fault. To make the hyperlink clickable, use the expand toggle on the right of the note. 
+Otherwise, if any other error occurs, a more generic note is created which includes a link to the Cloud Flow run which you can use to diagnose the fault. To make the hyperlink clickable, use the expand toggle on the right of the note. 
 
 ![solution-merge-generic-note.png](.attachments/alm-hub-usage/solution-merge-generic-note.png)
 
@@ -142,7 +142,7 @@ Once you believe the error to be resolved you can retry the solution merge using
 ![solution-merge-retry-button.png](.attachments/alm-hub-usage/solution-merge-retry-button.png)
 
 Negative
-: Note that once the solution has begun merge it block all other solution merges until it is complete, including while it is **Failed**. This is because once the development solution is imported in the master environment, the environment is considered "dirty" until the changes are merged into source control. If another solution were to be imported and extracted, it would include the changes of the previous incomplete merge. 
+: Note that once the solution has begun merge it blocks all other solution merges until it is complete, including while it is **Failed**. This is because once the development solution is imported in the master environment, the environment is considered "dirty" until the changes are merged into source control. If another solution were to be imported and extracted, it would include the changes of the previous incomplete merge. 
 
 ## Pull Request
 
