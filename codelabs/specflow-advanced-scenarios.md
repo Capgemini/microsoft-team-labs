@@ -504,49 +504,49 @@ This scenario is reusable and is not bespoke to our requirements. This means tha
 
 ### Sample Answer - Helper Function
 ```
- public static Dictionary<string, IWebElement> GetFlyoutCommands(IWebDriver webDriver, IWebElement commandButton)
+public static Dictionary<string, IWebElement> GetFlyoutCommands(IWebDriver webDriver, IWebElement commandButton)
+{
+    Dictionary<string, IWebElement> flyoutCommands = null;
+
+    // Create a Web Driver wait that will time out after 15 seconds that ignores No Such Element exceptions
+    var wait = new WebDriverWait(webDriver, new TimeSpan(0, 0, 15));
+    wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+
+    wait.Until(d =>
+    {
+        // Ensure that we have clicked on the flyout button, and the flyout is visible
+        if (!d.HasElement(By.Id("__flyoutRootNode")))
         {
-            Dictionary<string, IWebElement> flyoutCommands = null;
-
-            // Create a Web Driver wait that will time out after 15 seconds that ignores No Such Element exceptions
-            var wait = new WebDriverWait(webDriver, new TimeSpan(0, 0, 15));
-            wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
-
-            wait.Until(d =>
-            {
-                // Ensure that we have clicked on the flyout button, and the flyout is visible
-                if (!d.HasElement(By.Id("__flyoutRootNode")))
-                {
-                    commandButton.Click();
-                    d.WaitForTransaction();
-                }
-
-                // Find the flyout root node
-                var flyout = d.FindElement(By.Id("__flyoutRootNode"));
-
-                // Check we can actually interact with the flyout
-                if (flyout.IsVisible() && flyout.IsClickable())
-                {
-                    // Get the flyout commands and cast the Text of each button as the key
-                    flyoutCommands = flyout
-                        .FindElements(By.TagName("button"))
-                        .Where(e => e.Displayed)
-                        .ToDictionary(e => e.Text, e => e);
-
-                    // Return true when we are done!
-                    return true;
-                }
-                else
-                {
-                    // Return false if we could not interact with the flyout.
-                    return false;
-                }
-                
-            });
-
-            // Return the dictionary
-            return flyoutCommands;
+            commandButton.Click();
+            d.WaitForTransaction();
         }
+
+        // Find the flyout root node
+        var flyout = d.FindElement(By.Id("__flyoutRootNode"));
+
+        // Check we can actually interact with the flyout
+        if (flyout.IsVisible() && flyout.IsClickable())
+        {
+            // Get the flyout commands and cast the Text of each button as the key
+            flyoutCommands = flyout
+                .FindElements(By.TagName("button"))
+                .Where(e => e.Displayed)
+                .ToDictionary(e => e.Text, e => e);
+
+            // Return true when we are done!
+            return true;
+        }
+        else
+        {
+            // Return false if we could not interact with the flyout.
+            return false;
+        }
+        
+    });
+
+    // Return the dictionary
+    return flyoutCommands;
+}
 ```
 ### Sample Answer - Custom Binding
 ```
