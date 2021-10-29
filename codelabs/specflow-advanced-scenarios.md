@@ -397,7 +397,7 @@ For this test to work, we need to add a new custom binding to a `[Step Bindings]
 - Verifies that the count of the items within the dictionary equals the count of the items in the table of command names
 - Validates each command name from the table against the dictionary of flyout commands returned by the helper function
 
-To save time, be sure to include the following libraries in your class:
+To save time, be sure to include the following libraries in your helper class:
 ```
 using System;
 using System.Collections.Generic;
@@ -407,7 +407,6 @@ using FluentAssertions;
 using Microsoft.Dynamics365.UIAutomation.Browser;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using TechTalk.SpecFlow;
 ```
 
 ### Sample Answer - Test
