@@ -216,8 +216,24 @@ Scenario: Basic user deletes a contact
 ```
 
 ## Exercise 2 - Handling Asynchronous Operations
-Some
+
 
 ## Exercise 3 - Using Different By Selector Methods
 
 ## Exercise 4 - Inputting Drawing Into Pen Control
+
+## Exercise 5 - Managing IFrames
+An IFrame (Inline Frame) is an HTML document embedded inside another HTML document on a website. Within Dynamics, this can be seen on the email form. This exercise will involve creating an email, filling in information and validating the content of the form. IFrames are currently not covered by the Capgemini SpecFlow Bindings, so this exercise will use custom XPath selectors.
+
+First, create a new steps C# file and add a new step called using the following binding:
+
+```
+When I enter 'test text' into the email body
+```
+
+Then 
+
+### Sample Answer
+
+
+## Exercise 6 - Traversing the Node Tree
