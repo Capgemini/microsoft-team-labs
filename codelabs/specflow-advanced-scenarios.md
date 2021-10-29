@@ -23,7 +23,8 @@ Microsoft.CrmSdk.CoreAssemblies
 These packages provide access to the required SDK classes to connect to and update data in a Dynamics instance.
 
 ### Step Binding Class Structure
-When creating new classes for step bindings, ensure that you remember to include the TechTalk.SpecFlow library, inherit from the PowerAppsStepDefiner class, and use the Binding attrbiute on the class. Here is an example:
+When creating new classes for step bindings, ensure that you remember to include the TechTalk.SpecFlow library, inherit from the PowerAppsStepDefiner class, and use the Binding attribute on the class. Here is an example:
+
 ```
 using TechTalk.SpecFlow;
 
@@ -248,10 +249,10 @@ Scenario: Basic user deletes a contact
 ## Exercise 2 - Using Different By Selector Methods
 Alongside XPath, Selenium has other types of selectors available for use. This exercise will demonstrate some of the commonly used selectors available in the By class.
 
-For a list of all of the available selectors, refer to the Selenium page: https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/By.html
+For a list of all of the available selectors, refer to the Selenium page: [https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/By.html](https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/By.html)
 
 ### By.ClassName
-The first selector covered by this exercise is the By.ClassName selector:
+The first selector covered by this exercise is the `By.ClassName` selector:
 
 ```
 var element = Driver.FindElement(By.ClassName("className"));
@@ -260,7 +261,7 @@ var element = Driver.FindElement(By.ClassName("className"));
 This selector retrieves all elements where the 'class' attribute is equal to a given value.
 
 ### By.TagName
-A useful selector for retrieving a group of elements is the By.TagName selector:
+A useful selector for retrieving a group of elements is the `By.TagName` selector:
 
 ``` 
 var element = Driver.FindElement(By.TagName("div"));
@@ -271,7 +272,7 @@ This selector retrieves all elements of a given tag. Write a step to run for the
 Then I can see a 'Account Name' label
 ```
 
-Use By.TagName to retrieve all  label elements, then validate whether the given value appears in the list of labels.
+Use `By.TagName` to retrieve all  label elements, then validate whether the given value appears in the list of labels.
 
 Test this on the Accounts view, and validate that the Account Name label is displayed.
 
@@ -286,7 +287,7 @@ public void ThenISeeLabel(string labelName)
 ```
 
 ### By.CssSelector
-The By.CssSelector is similar to the XPath selector in that it allows elements to be retrieved via a particular selection notation. In this case, patterns used by CSS are used to retrieve elements matching the specified criteria. Full documentation on CSS selectors can be found at https://www.w3schools.com/cssref/css_selectors.asp
+The `By.CssSelector` is similar to the XPath selector in that it allows elements to be retrieved via a particular selection notation. In this case, patterns used by CSS are used to retrieve elements matching the specified criteria. Full documentation on CSS selectors can be found at https://www.w3schools.com/cssref/css_selectors.asp
 
 Write a step for the following line:
 
@@ -294,7 +295,7 @@ Write a step for the following line:
 Then I can see 13 editable inputs
 ```
 
-The step should retrieve all editable inputs on a form using By.CssSelector and validate that the number of inputs retrieved matches the number specified in the step parameter. To find the appropriate CSS selector to use, check the CSS selector reference linked above to find a selector that only returns read/writeable input tags.
+The step should retrieve all editable inputs on a form using `By.CssSelector` and validate that the number of inputs retrieved matches the number specified in the step parameter. To find the appropriate CSS selector to use, check the CSS selector reference linked above to find a selector that only returns read/writeable input tags.
 
 Test this step by opening the account form and validating that there are thirteen editable inputs.
 
@@ -309,7 +310,7 @@ Test this step by opening the account form and validating that there are thirtee
 ```
 
 ### By.Id
-For accessing a specific element where the ID is known, the By.Id selector can be used. Use this selector to validate that the timeline on the Account form is visible. Write the below step to validate the account form:
+For accessing a specific element where the ID is known, the `By.Id` selector can be used. Use this selector to validate that the timeline on the Account form is visible. Write the below step to validate the account form:
 
 ```
 I can see the timeline
