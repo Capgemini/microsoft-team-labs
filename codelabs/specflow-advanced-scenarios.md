@@ -366,7 +366,129 @@ This exercise will also build upon Exercise 3 by testing a flyout menu for the b
 ### Web Driver Wait
 Web Driver Wait is a class in Selenium that allows us to halt the execution of the test and wait until specific criteria has been met. Within WebDriverWait, we can call a delegate method that contains our criteria to allow the test to continue. For more detailed information on the class, read the Selenium Documentation: https://www.selenium.dev/documentation/webdriver/waits/
 
+### Requirements
+Create a test that does the following
+- Opens the Customer Service Hub app
+- Clicks the flyout called "Excel Templates" on the Account Entity
+- Checks that these commands are on the flyout menu: Upload Template, Download Template, View All My Templates
 
+For reusability, we will also create a helper method that other step bindings could use. The step binding you add should call this helper method.
+
+This helper function should do the following
+- Ensure the flyout is available, and click the command button if it is not
+- Implement a WebDriverWait with a time out of 15 seconds that ignores `NoSuchElement` exceptions
+- Retries trying to find the buttons on the flyout by using the WebDriverWait.Until() method
+- Returns a dictionary containing the sub-commands within the flyout. The key should be the name. The value should be the Web Element.
+
+Here is an example of what the function and parameters should be:
+```
+public static Dictionary<string, IWebElement> GetFlyoutCommands(IWebDriver webDriver, IWebElement commandButton)
+{
+    // Implementation of the logic
+}
+
+```
+
+For this test to work, we need to add a new custom binding to a `[Step Bindings]` class that does the following:
+- Has a string parameter for the name of the flyout to check
+- Has a table of command names to check for on the flyout menu
+- Calls the helper function defined above and stores the items in a dictionary
+- Verifies that dictionary returned by the helper function is not null
+- Verifies that the count of the items within the dictionary equals the count of the items in the table of command names
+- Validates each command name from the table against the dictionary of flyout commands returned by the helper function
+
+To save time, be sure to include the following libraries in your class:
+```
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Capgemini.PowerApps.SpecFlowBindings;
+using FluentAssertions;
+using Microsoft.Dynamics365.UIAutomation.Browser;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using TechTalk.SpecFlow;
+```
+
+### Sample Answer - Test
+Scenario based on the above requirements
+
+```
+Scenario: Flyout contains the following buttons
+	Given I am logged in to the 'Customer Service Hub' app as 'a basic user'
+	When I open the sub area 'Accounts' under the 'Service' area
+	Then I can see the following buttons on the 'Excel Templates' flyout
+	| Command Name          |
+	| Upload Template      |
+	| Download Template     |
+	| View All My Templates |
+
+```
+
+This scenario is reusable and is not bespoke to our requirements. This means that if we have future requirements to validate other flyouts, we can simply use this binding.
+
+### Sample Answer - Helper Function
+```
+ public static Dictionary<string, IWebElement> GetFlyoutCommands(IWebDriver webDriver, IWebElement commandButton)
+        {
+            Dictionary<string, IWebElement> flyoutCommands = null;
+
+            // Create a Web Driver wait that will time out after 15 seconds that ignores No Such Element exceptions
+            var wait = new WebDriverWait(webDriver, new TimeSpan(0, 0, 15));
+            wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+
+            wait.Until(d =>
+            {
+                // Ensure that we have clicked on the flyout button, and the flyout is visible
+                if (!d.HasElement(By.Id("__flyoutRootNode")))
+                {
+                    commandButton.Click();
+                    d.WaitForTransaction();
+                }
+
+                // Find the flyout root node
+                var flyout = d.FindElement(By.Id("__flyoutRootNode"));
+
+                // Check we can actually interact with the flyout
+                if (flyout.IsVisible() && flyout.IsClickable())
+                {
+                    // Get the flyout commands and cast the Text of each button as the key
+                    flyoutCommands = flyout
+                        .FindElements(By.TagName("button"))
+                        .Where(e => e.Displayed)
+                        .ToDictionary(e => e.Text, e => e);
+
+                    // Return true when we are done!
+                    return true;
+                }
+                else
+                {
+                    // Return false if we could not interact with the flyout.
+                    return false;
+                }
+                
+            });
+
+            // Return the dictionary
+            return flyoutCommands;
+        }
+```
+### Sample Answer - Custom Binding
+```
+[Then("I can see the following buttons on the '(.*)' flyout")]
+public void ThenICanSeeTheFollowingButtonsOnTheFlyout(string flyoutName, Table flyoutButtonNames)
+{
+    var flyoutCommand = Driver.WaitUntilAvailable(By.XPath($"//button[@aria-label='{flyoutName}']"));
+    var menuItems = GetFlyoutCommands(Driver, flyoutCommand);
+    menuItems.Should().NotBeEmpty();
+    menuItems.Should().HaveCount(flyoutButtonNames.Rows.Count);
+
+    foreach (var item in flyoutButtonNames.Rows)
+    {
+        menuItems.Keys.Should().Contain(item["Command Name"]);
+    }
+}
+```
 
 ## Exercise 5 - Managing IFrames
 An IFrame (Inline Frame) is an HTML document embedded inside another HTML document on a website. Within Dynamics, this can be seen on the email form. This exercise will involve creating an email, filling in information and validating the content of the form. IFrames are currently not covered by the Capgemini SpecFlow Bindings, so this exercise will use custom XPath selectors.
