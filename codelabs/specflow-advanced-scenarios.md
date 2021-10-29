@@ -222,10 +222,63 @@ Alongside XPath, Selenium has other types of selectors available for use. One th
 For a list of all of the available selectors, refer to the Selelium page: https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/By.html
 
 
-## Exercise 3 - Handling Asynchronous Operations
+## Exercise 3 - Web Driver Extension Methods
+The Web Driver has various extension methods courtesy of EasyRepro available to help traverse common scenarios found within Dynamics. These methods help to avoid errors and flakiness in tests by cleanly handling common problems such as the test asserting validations before the page has finished loading, which would mean that the web element it needs to assert against might not be available yet on the page.
 
-## Exercise 4 - Inputting Drawing Into Pen Control
+In this exercise, we will test this scenario:
+```
+Scenario: There is a flyout
+	Given I am logged in to the 'Customer Service Hub' app as 'a basic user'
+	When I open the sub area 'Accounts' under the 'Service' area
+	Then there is a flyout called 'Export to Excel'
+```
 
+For this test to work, we need to add a new binding called "Then there is a flyout called 'Export to Excel' to a `[Step Bindings]` class.
+
+```
+[Then("there is a flyout called '(.*)'")]
+public void ThereIsAFlyoutCalled(string flyoutName)
+{
+    var flyoutCommand = Driver.FindElement(By.XPath($"//button[@aria-label='{flyoutName}']"));
+    flyoutCommand.Text.Should().Be(flyoutName);
+}
+```
+
+This binding will find the desired flyout button in theory. However, the potential flaw with this binding is that the flyout button might not actually be available to click. This introduces a problem to our test which results in it being unreliable as it may occassionally fail if the page does not load quick enough. To protect against this, we can opt to use an extension method for the Web Driver that is provided by EasyRepro called `WaitUntilAvailable`. This will help handle exceptions caused by elements that have not loaded, and will retry the operation for us. Replace the line:
+
+```
+var flyoutCommand = Driver.FindElement(By.XPath($"//button[@aria-label='{flyoutName}']"));
+```
+With this:
+```
+var flyoutCommand = Driver.WaitUntilAvailable(By.XPath($"//button[@aria-label='{flyoutName}']"));
+```
+
+### Additional extension methods
+There are other methods that can be used to help us with a variety of Dynamics specific scenarios:
+- WaitUntilClickable
+- WaitUntilVisible
+- WaitForTransaction
+- WaitUntil
+- RepeatUntil
+- ClickWhenAvailable
+- ClickWhenVisible
+- Click
+- DoubleClick
+
+Understanding how to use these methods is useful when writing custom bindings as they will help to avoid unreliable tests. Behind the scenes, they are all ultimately using `FindElement` from Selenium, but they extend the functionality by adding additional logic to prevent errors and to carry out common actions.
+
+Overuse of these methods is not necessary. FindElement is a suitable approach a lot of the time. Understanding the context of your test is vital when considering whether to use these extension methods. Overuse of them will lead to small overheads and slower execution test time. On larger scale projects, this can add up to additonal minutes of test execution time when executing a full suite of acceptance tests.
+
+## Exercise 4 - Handling Asynchronous Operations
+Sometimes there may be a need to handle an operation that is asyncronous. Examples of this include, but are not limited to:
+- Waiting for the output of async workflows
+- Waiting for the output of a flow
+- Waiting for Out Of the Box record generation to complete, such as Work Order Service Task generation in the Field Service App.
+- Waiting for the page to load
+- UI elements that have processes attached to them such as Flyout Menus which must query Dynamics for the available options.
+
+This exercise will cover the use of various Wait function from the Selenium Web Driver that can be used to handle these async operations.
 ## Exercise 5 - Managing IFrames
 An IFrame (Inline Frame) is an HTML document embedded inside another HTML document on a website. Within Dynamics, this can be seen on the email form. This exercise will involve creating an email, filling in information and validating the content of the form. IFrames are currently not covered by the Capgemini SpecFlow Bindings, so this exercise will use custom XPath selectors.
 
@@ -241,3 +294,7 @@ Then
 
 
 ## Exercise 6 - Traversing the Node Tree
+
+## Exercise 7 - Inputting Drawing Into Pen Control
+
+
