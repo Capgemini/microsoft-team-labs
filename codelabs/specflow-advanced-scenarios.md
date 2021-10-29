@@ -214,13 +214,84 @@ Scenario: Basic user deletes a contact
 	When I select the 'Delete' command
 	Then a dialog is displayed with a title of 'Contact Delete Confirmation'
 ```
-
 ## Exercise 2 - Using Different By Selector Methods
-Alongside XPath, Selenium has other types of selectors available for use. One that is quite useful to use is the class selector:
+Alongside XPath, Selenium has other types of selectors available for use. This exercise will demonstrate some of the commonly used selectors available in the By class.
 
+For a list of all of the available selectors, refer to the Selenium page: https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/By.html
 
-For a list of all of the available selectors, refer to the Selelium page: https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/By.html
+### By.ClassName
+The first selector covered by this exercise is the By.ClassName selector:
 
+```
+var element = Driver.FindElement(By.ClassName("className"));
+```
+
+This selector retrieves all elements where the 'class' attribute is equal to a given value.
+
+### By.TagName
+A useful selector for retrieving a group of elements is the By.TagName selector:
+
+``` 
+var element = Driver.FindElement(By.TagName("div"));
+```
+
+This selector retrieves all elements of a given tag. Write a step to run for the following line:
+```
+Then I can see a 'Account Name' label
+```
+
+Use By.TagName to retrieve all  label elements, then validate whether the given value appears in the list of labels.
+
+Test this on the Accounts view, and validate that the Account Name label is displayed.
+
+### Sample Answer
+```
+[Then("I can see a '(.*)' label")]
+public void ThenISeeLabel(string labelName)
+{
+    var inputs = Driver.FindElements(By.TagName("label")).Where(x => x.Text == labelName);
+    inputs.Count().Should().Be(1);
+}
+```
+
+### By.CssSelector
+The By.CssSelector is similar to the XPath selector in that it allows elements to be retrieved via a particular selection notation. In this case, patterns used by CSS are used to retrieve elements matching the specified criteria. Full documentation on CSS selectors can be found at https://www.w3schools.com/cssref/css_selectors.asp
+
+Write a step for the following line:
+
+``` 
+Then I can see 13 editable inputs
+```
+
+The step should retrieve all editable inputs on a form using By.CssSelector and validate that the number of inputs retrieved matches the number specified in the step parameter. To find the appropriate CSS selector to use, check the CSS selector reference linked above to find a selector that only returns read/writeable input tags.
+
+Test this step by opening the account form and validating that there are thirteen editable inputs.
+
+### Sample Answer
+```        
+[Then("I can see (.*) editable inputs")]
+        public void ThenISeeLabel(int inputCount)
+{
+    var inputs = Driver.FindElements(By.CssSelector("input:read-write")).Count;
+    inputs.Should().Be(inputCount);
+}
+```
+
+### By.Id
+For accessing a specific element where the ID is known, the By.Id selector can be used. Use this selector to validate that the timeline on the Account form is visible. Write the below step to validate the account form:
+
+```
+I can see the timeline
+```
+
+### Sample Answer
+```
+[Then("I can see the timeline")]
+public void ThenISeeTimeline()
+{
+    var timeline = Driver.FindElement(By.Id("Timeline"));
+    timeline.Displayed.Should().Be(true);
+}
 
 ## Exercise 3 - Handling Asynchronous Operations
 
@@ -234,8 +305,6 @@ First, create a new steps C# file and add a new step called using the following 
 ```
 When I enter 'test text' into the email body
 ```
-
-Then 
 
 ### Sample Answer
 
