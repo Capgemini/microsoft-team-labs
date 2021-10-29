@@ -278,7 +278,15 @@ Sometimes there may be a need to handle an operation that is asyncronous. Exampl
 - Waiting for the page to load
 - UI elements that have processes attached to them such as Flyout Menus which must query Dynamics for the available options.
 
-This exercise will cover the use of various Wait function from the Selenium Web Driver that can be used to handle these async operations.
+This exercise will cover the use of the WebDriverWait class from Selenium that can be used to handle more complex async operations.
+
+This exercise will also build upon Exercise 3 by testing a flyout menu for the buttons contained within it. Flyouts typicallly need to load the buttons associated to them from Dynamics which can result in slight delays. This has caused issues in real-world implementations where this asyncronous nature was not initially handled and resulted in test failures.
+
+### Web Driver Wait
+Web Driver Wait is a class in Selenium that allows us to halt the execution of the test and wait until specific criteria has been met. Within WebDriverWait, we can call a delegate method that contains our criteria to allow the test to continue. For more detailed information on the class, read the Selenium Documentation: https://www.selenium.dev/documentation/webdriver/waits/
+
+
+
 ## Exercise 5 - Managing IFrames
 An IFrame (Inline Frame) is an HTML document embedded inside another HTML document on a website. Within Dynamics, this can be seen on the email form. This exercise will involve creating an email, filling in information and validating the content of the form. IFrames are currently not covered by the Capgemini SpecFlow Bindings, so this exercise will use custom XPath selectors.
 
