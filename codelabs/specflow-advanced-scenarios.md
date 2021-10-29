@@ -214,3 +214,10 @@ Scenario: Basic user deletes a contact
 	When I select the 'Delete' command
 	Then a dialog is displayed with a title of 'Contact Delete Confirmation'
 ```
+
+## Exercise 2 - Handling Asynchronous Operations
+Some
+
+## Exercise 3 - Using Different By Selector Methods
+
+## Exercise 4 - Inputting Drawing Into Pen Control
