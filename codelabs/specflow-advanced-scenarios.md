@@ -381,7 +381,51 @@ When I enter 'test text' into the email body
 
 
 ## Exercise 6 - Traversing the Node Tree
+## Exercise 6 - Traversing the Node Tree
+When writing tests it is important that selectors always retrieve the correct node, even when run in different contexts to the original test scenario the selector was written to fulfil. A way to achieve this is by using the tree structure of HTML to only look for nodes within the area of the page they are expected to be found in. This avoids accidentally retrieving a different element that also satisfies the requirements of the selector being used. There are two main ways of traversing the node tree - using more complex XPath that validates multiple levels of a node hierarchy, or retrieving a parent element and then using a selector within the context of that element.
 
+### Use Case
+A good example of when node hierarchy is important is when validating that a field appears in a certain section on a form. This exercise will cover using both hierarchical XPath and using selectors in a given element's context. Use the below line to write a step that validates that a given field is visible in a given section.
+
+```
+Then I can see the 'First Name' field in the 'GENERAL INFORMATION' section
+```
+
+### Using XPath
+XPath can be chained to validate parent and child nodes by simply adding the XPath to validate the next level of the tree onto the end of the XPath for the node before it. For example, running the below XPath on the Contact form in Chrome Dev Tools will return all section tags that are children of the div tag with a label of "Summary" (the "Summary" tab). Note that the XPath can be extended to continue down the hierarchy by selecting all child nodes of the section tags using the "/" symbol. Nodes can also be filtered using the square bracket syntax at any level of the hierarchy, not just the first level.
+```
+$x("//div[@aria-label='Summary']/section")
+```
+The above XPath selects direct children of the Summary div - if all descendants are required, "//" should be used instead of a single "/".
+
+Now write the step to validate that a field exists within a section using only one By.XPath call and one string of XPath. Practice traversing the tree in Chrome Dev Tools using `$x("")` to identify the correct XPath to use.
+
+### Sample Answer
+Note: There are multiple valid ways to write this XPath - the key requirements are that it always finds the correct element, does not give false positives and is parameterised to work with any value passed in the step.
+```
+[Then("I can see the '(.*)' field in the '(.*)' section")]
+public void ThenISeeFieldInSection(string fieldName, string sectionName)
+{
+    var label = Driver.FindElement(By.XPath(string.Format("//section[@aria-label='{0}']//label[text()='{1}']", sectionName, fieldName)));
+    label.Displayed.Should().Be(true);
+}
+```
+### Using Element Context
+It may not always be appropriate to use one string of XPath to traverse the node tree; sometimes it will be required to validate multiple levels of the tree separately, so it is important to be able to retrieve intermediate nodes, validate them and then use them to retrieve nodes further down the tree. This is done by first retrieving an intermediate node, then calling a By selector on the returned IWebElement.
+
+First, update the above `ThenISeeFieldInSection()` method to retrieve the section with the given name within the Summary tab on the contact form. Then validate that the section is displayed. Then call FindElements on the section node object to only have the XPath retrieve nodes in the context of the section node. Pass an XPath selector to this method that returns the label node with a given text value. Finally, assert that the label is visible. Test that the step still works when run against the contact form.
+
+### Sample Answer
+```
+[Then("I can see the '(.*)' field in the '(.*)' section")]
+public void ThenISeeFieldInSection(string fieldName, string sectionName)
+{
+    var section = Driver.FindElement(By.XPath(string.Format("//div[@aria-label='Summary']//section[@aria-label='{0}']", sectionName)));
+    section.Displayed.Should().Be(true);
+    var label = section.FindElement(By.XPath(string.Format("//label[text()='{0}']", fieldName)));
+    label.Displayed.Should().Be(true);
+}
+```
 ## Exercise 7 - Inputting Drawing Into Pen Control
 
 
