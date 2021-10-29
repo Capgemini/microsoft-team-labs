@@ -120,11 +120,11 @@
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>Manual Merge Activities</p>
 </td><td colspan="1" rowspan="1"><p>No</p>
-</td><td colspan="1" rowspan="1"><p>If set to <strong>Yes</strong> then the merge process will pause once your development solution has been installed to the <strong>Master</strong> environment. Once manual activities have been completed the process will continue.</p>
+</td><td colspan="1" rowspan="1"><p>Enabling the Manual Merge Activities will cause the merging process to pause before extracting and committing to source control. This is useful where you are merging changes by hand (e.g. where you need to delete components from the solution or modify a component not included in the development solution).<br><br><em>The &#34;Performing a manual merge&#34; section will detail this process further.</em></p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>Source Branch</p>
 </td><td colspan="1" rowspan="1"><p>Empty</p>
-</td><td colspan="1" rowspan="1"><p>Adding a Branch name here will merge that branches changes into the Pull Request branch that is created in ADO. Used to include code and test files in the same PR as the customisations.</p>
+</td><td colspan="1" rowspan="1"><p>If the solution to be merged has associated source code (e.g. you have made changes to plugin assemblies, web resources, tests or deployment logic) then you must provide the branch to be merged in here. <br><br><em>If your repository uses a Push source control strategy, ensure that you perform any manual Git merging required on your source branch before creating the solution merge or you may get merge conflicts that prevent the solution merge being committed. It is recommended to use a Pull request strategy for this reason.</em></p>
 </td></tr>
 </table>
 <ol type="1" start="3">
@@ -153,6 +153,41 @@
 
       </google-codelab-step>
     
+      <google-codelab-step label="Performing a manual merge" duration="0">
+        <p>If Manual Merge has been enabled for the solution merge, then the merging process is paused to allow either the solution merge creator or approver to modify the target solution before it is extracted. This is useful for scenarios where the complete set of changes for a given issue couldn&#39;t be moved in an unmanaged solution.</p>
+<p>A great example of such a change would be deleting a component since there is no mechanism within an unmanaged solution to delete a component in the target environment.</p>
+<p>When the merging process is in a state where manual merge activities can begin, the solution merge will transition to an <strong>Awaiting Manual Merge Activities</strong> status and a Flow Approval is created for either the solution merge creator or approver to action.</p>
+<p>After the manual activities are complete, follow these steps to resume the merging process.</p>
+<ol type="1">
+<li>Navigate to the Power Automate Maker Portal (e.g. https://unitedkingdom.flow.microsoft.com/)</li>
+<li>Ensure you are in the correct environment (top right) <img alt="powerautomate-environment-selector.png" src="img/6b7d4781fb006830.png"></li>
+<li>Select <strong>Action Items</strong> on the left then <strong>Approvals</strong><img alt="powerautomate-approvals-navigation.png" src="img/ef8df531a7641fb4.png"></li>
+<li>Select the created request in the list of &#34;Received&#34; requests <img alt="powerautomate-approvals-list.png" src="img/2e2c530ed35efbd7.png"></li>
+<li>Select <strong>Merged</strong> as the response then <strong>Confirm</strong> to the bottom <img alt="powerautomate-approvals-respond.png" src="img/37bc76e5e1705dca.png"></li>
+<li>The merge will now resume by extracting the target solution from the master environment.</li>
+</ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Handling a merge failure" duration="0">
+        <p>Not every merge will be successful and therefore an understanding of how to mitigate these proves valuable. This section will cover what Development Hub does to handle these and the steps required to retry the merge.</p>
+<p>Merging your development solution from dev to master could fail for a few reasons although the most common are:</p>
+<ul>
+<li>missing solution dependencies</li>
+<li>solution import timeout</li>
+</ul>
+<p>In this event, the solution merge will transition into a <strong>Failed</strong> status and a note will be added to a the timeline. If the development solution failed to import the note will include import error resembling this note:</p>
+<p class="image-container"><img alt="solution-merge-import-note.png" src="img/d0b1811dee021799.png"></p>
+<p>Otherwise, if any other error occurs, a more generic note is created which includes a link to the Cloud Flow run which you can use to diagnose the fault. To make the hyperlink clickable, use the expand toggle on the right of the note.</p>
+<p class="image-container"><img alt="solution-merge-generic-note.png" src="img/d34bbb3d8fca04dc.png"></p>
+<p>Once you believe the error to be resolved you can retry the solution merge using the retry button found in the ribbon of the solution merge.</p>
+<p class="image-container"><img alt="solution-merge-retry-button.png" src="img/88e64c4b23c840f8.png"></p>
+<p>Negative : Note that once the solution has begun merge it blocks all other solution merges until it is complete, including while it is <strong>Failed</strong>. This is because once the development solution is imported in the master environment, the environment is considered &#34;dirty&#34; until the changes are merged into source control. If another solution were to be imported and extracted, it would include the changes of the previous incomplete merge.</p>
+
+
+      </google-codelab-step>
+    
       <google-codelab-step label="Pull Request" duration="0">
         <p>The customisations have now been extracted into the Git repository and a Pull Request has been created ready for review. To view the PR, open the Azure Devops (ADO) project, expand the <strong>Repos</strong> section of the navigation on the left of the portal and select <strong>Pull requests</strong>. Select the <strong>Active</strong> tab and you will see the PR related to your changes. Click on the PR to open up the details.</p>
 <p class="image-container"><img alt="image.png" src="img/4d193fe455c82595.png"></p>
@@ -167,6 +202,50 @@
 <li>You will then see a <strong>Complete pull request</strong> dialog where you can select merge type and post completion options. You do not need to change any of the default settings. Selecting <strong>Complete merge</strong> will merge the PR branch into the Master branch and start the process of releasing the changes to the CI environment.</li>
 </ol>
 <p class="image-container"><img alt="image.png" src="img/6e86cff7bcb6abc0.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Watch the process do it&#39;s magic" duration="0">
+        <p>When a <strong>Solution Merge</strong> has been approved in Development Hub, a Power Automate Flow called <strong>When a solution merge is approved -&gt; Merge the solution</strong> is triggered which executes a series of tasks to create a Pull Request in ADO.</p>
+<h2 is-upgraded>Overview</h2>
+<p>The <strong>Issue Solution</strong> in the Development Hub environment is exported as an unmanaged solution and imported into the <strong>Master Environment</strong>. The contents of the <strong>Issue Solution</strong> are then merged into the <strong>Target Solution</strong> which is then Extracted from the <strong>Master Environment</strong>.</p>
+<h2 is-upgraded>Extract the solution into a Feature Branch</h2>
+<p>The extraction of the <strong>Target Solution</strong> is carried out by a pipeline in Azure Devops(ADO) which in the following example is called almlab.</p>
+<ol type="1">
+<li>Login to the ADO project that contains your Repository and Pipelines.</li>
+<li>Navigate to the <strong>Pipelines</strong> tab and select the sub item also named <strong>Pipelines</strong> where you will see a list of recently run pipelines and the extract pipeline may still be running. <img alt="image.png" src="img/ef95cb49d06eb985.png"></li>
+<li>Clicking on the almlab pipeline opens up a new view which displays the run history in start time order. <img alt="image.png" src="img/10951a230510e260.png"></li>
+<li>Clicking on a run will open up its details, where you will see a <strong>Jobs</strong> section on the <strong>Summary</strong> tab. <img alt="image.png" src="img/1703bd07c5699e4a.png"></li>
+<li>Clicking on the Job will show you the steps it contains and the result. This is useful when troubleshooting pipeline failures to complete successfully as you can find the task that failed and once selected you will see debug information in the right hand panel. <img alt="image.png" src="img/10deca8bfa38254d.png"></li>
+</ol>
+<p>At this point the change will either be committed directly to to the <code>master</code> branch if the source control strategy for the repository is <strong>Push</strong> or create a new pull request if the strategy is <strong>Pull Request</strong>.</p>
+<h2 is-upgraded>Validate the Feature Branch</h2>
+<p>Once the Extract pipeline (almlab) has successfully completed, the pipeline to build the solution is triggered.</p>
+<p>This will build the solution to confirm it compiles with no issues and then run the  <a href="https://docs.microsoft.com/en-us/powerapps/maker/data-platform/use-powerapps-checker" target="_blank">Power Platform Solution Checker</a> to run a static analysis of the solution against a set of best practice rules and quickly identify any problematic patterns found.</p>
+<ol type="1">
+<li>Navigate to the <strong>Pipelines</strong> tab and select the sub item also named <strong>Pipelines</strong> where you will see a list of recently run pipelines. The build pipeline (ALMLAB - Package Build) will be listed. <img alt="image.png" src="img/fbeb803e0aa09e97.png"></li>
+<li>Clicking on the <strong>ALMLAB - Package Build</strong> pipeline opens the run history for the pipeline in start time order. <img alt="image.png" src="img/e36f0724164c9c01.png"></li>
+<li>Clicking on a run will open up the details. You will see a section with 2 tabs <strong>Stages</strong> and <strong>Jobs</strong>. You will see the <strong>Build</strong> stage which confirms the solution builds successfully and a <strong>Solution Checker</strong> stage which runs static code analysis against the solution components. <img alt="image.png" src="img/80340dc924d037c4.png"></li>
+<li>Clicking on a stage will open up the Job details where you can see the breakdown of tasks for the stages. As with the Extract pipeline this is a great place to start when troubleshooting issues with the pipelines. <img alt="image.png" src="img/934335ba670b8092.png"></li>
+</ol>
+<h2 is-upgraded>Approve the Pull Request</h2>
+<p>Once the PR has been approved the <strong>Feature</strong> branch will be merged into the <strong>Master</strong> branch of the source code.</p>
+<p>The <strong>ALMLAB - Package Build</strong> pipeline with be run against the <strong>Master</strong> branch to confirm that the solution builds and the Solution Checker will analyse the solution components.</p>
+<ol type="1">
+<li>Navigate to the <strong>Pipelines</strong> tab and select the sub item also named <strong>Pipelines</strong> where you will see a list of recently run pipelines. The build pipeline (ALMLAB - Package Build) will be listed. <img alt="image.png" src="img/999d7c1590fe8774.png"></li>
+<li>Clicking on the <strong>ALMLAB - Package Build</strong> pipeline opens the run history for the pipeline in start time order. <img alt="image.png" src="img/5c641e705587d3ef.png"></li>
+<li>Clicking on a run will open up the details. You will see a section with 2 tabs <strong>Stages</strong> and <strong>Jobs</strong>. You will see the <strong>Build</strong> stage which confirms the solution builds successfully and a <strong>Solution Checker</strong> stage which runs static code analysis against the solution components. <img alt="image.png" src="img/6354e3882c4c76e4.png"></li>
+<li>Clicking on a stage will open up the Job details where you can see the breakdown of tasks for the stages. <img alt="image.png" src="img/f8a23bc7a44cfbd4.png"></li>
+</ol>
+<h2 is-upgraded>Release to the CI Environment</h2>
+<p>The solution contained in the <strong>Master</strong> branch is now deployed into the <strong>CI Environment</strong>. This is done using a <strong>Release</strong> pipeline in ADO.</p>
+<ol type="1">
+<li>Navigate to the <strong>Pipelines</strong> tab and select the sub item <strong>Releases</strong>. The examples show a release called <strong>ALMLAB Release</strong> on the left panel where you can search for pipelines if required.</li>
+<li>Select the release <strong>ALMLAB Release</strong> and you will see a tab on the right hand side with a tab called releases which contains a list of the runs in order of start time. <img alt="image.png" src="img/f85594beba24964f.png"></li>
+<li>Clicking a release run will display the <strong>Stages</strong> which the release runs. In this case you will see 1 stage which deploys the solution into the CI Environment. <img alt="image.png" src="img/c4b19e7f0ccc2ace.png"></li>
+<li>If you select a Stage you will be given the option to <strong>view logs</strong>. This will show you a list of steps contained in the stage. Selecting a step will display the tasks with the log information. <img alt="image.png" src="img/113ec003d679af05.png"></li>
+</ol>
 
 
       </google-codelab-step>
