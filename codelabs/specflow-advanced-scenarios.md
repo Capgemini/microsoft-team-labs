@@ -292,20 +292,39 @@ public void ThenISeeTimeline()
     var timeline = Driver.FindElement(By.Id("Timeline"));
     timeline.Displayed.Should().Be(true);
 }
-
+```
 ## Exercise 3 - Web Driver Extension Methods
 The Web Driver has various extension methods courtesy of EasyRepro available to help traverse common scenarios found within Dynamics. These methods help to avoid errors and flakiness in tests by cleanly handling common problems such as the test asserting validations before the page has finished loading, which would mean that the web element it needs to assert against might not be available yet on the page.
 
-In this exercise, we will test this scenario:
+Here are examples of the available methods to use:
+- WaitUntil
+- WaitUntilAvailable
+- WaitUntilClickable
+- WaitUntilVisible
+- WaitForTransaction
+- RepeatUntil
+- ClickWhenAvailable
+- ClickWhenVisible
+- Click
+- DoubleClick
+
+### Requirements
+Create a test that does the following
+- Opens the Customer Service Hub app
+- Checks for a flyout called "Export to Excel" on the Account Entity using one of the example methods
+
+For this test to work, we need to add a new custom binding to a `[Step Bindings]` class that accepts 1 parameter, which is the name of the flyout we are looking for.
+
+### Sample Answer
+
+Scenario based on the above requirements
 ```
 Scenario: There is a flyout
 	Given I am logged in to the 'Customer Service Hub' app as 'a basic user'
 	When I open the sub area 'Accounts' under the 'Service' area
 	Then there is a flyout called 'Export to Excel'
 ```
-
-For this test to work, we need to add a new binding called "Then there is a flyout called 'Export to Excel' to a `[Step Bindings]` class.
-
+Sample custom binding with a flaw
 ```
 [Then("there is a flyout called '(.*)'")]
 public void ThereIsAFlyoutCalled(string flyoutName)
@@ -314,8 +333,10 @@ public void ThereIsAFlyoutCalled(string flyoutName)
     flyoutCommand.Text.Should().Be(flyoutName);
 }
 ```
+### Why the Sample Answer is Potentially Problematic
+The binding in the sample answer will find the desired flyout button. However, the potential flaw with this binding is that the flyout button might not actually be immediately available to the Web Driver. This introduces a reliability problem to our test as it may occassionally fail if the page does not load quick enough - a problem we can encounter when running a large suite of tests against an instance of Dynamics. 
 
-This binding will find the desired flyout button in theory. However, the potential flaw with this binding is that the flyout button might not actually be available to click. This introduces a problem to our test which results in it being unreliable as it may occassionally fail if the page does not load quick enough. To protect against this, we can opt to use an extension method for the Web Driver that is provided by EasyRepro called `WaitUntilAvailable`. This will help handle exceptions caused by elements that have not loaded, and will retry the operation for us. Replace the line:
+To protect against flakiness in our tests, we can opt to use an extension method for the Web Driver that is provided by EasyRepro. In this example, the best method to use is `WaitUntilAvailable`. This will help handle exceptions caused by elements that have not loaded, and will retry the operation for us.
 
 ```
 var flyoutCommand = Driver.FindElement(By.XPath($"//button[@aria-label='{flyoutName}']"));
@@ -325,21 +346,10 @@ With this:
 var flyoutCommand = Driver.WaitUntilAvailable(By.XPath($"//button[@aria-label='{flyoutName}']"));
 ```
 
-### Additional extension methods
-There are other methods that can be used to help us with a variety of Dynamics specific scenarios:
-- WaitUntilClickable
-- WaitUntilVisible
-- WaitForTransaction
-- WaitUntil
-- RepeatUntil
-- ClickWhenAvailable
-- ClickWhenVisible
-- Click
-- DoubleClick
+### A Note on WebDriver Extension Methods
+The methods available to us in the WebDriver EasyRepro extensions can be used to help us with a variety of Dynamics specific scenarios. Understanding how to use these methods when writing custom bindings will help to avoid unreliable tests. Behind the scenes, they are all ultimately using `FindElement` from Selenium, but they extend the functionality by adding additional logic to prevent errors and to carry out common actions.
 
-Understanding how to use these methods is useful when writing custom bindings as they will help to avoid unreliable tests. Behind the scenes, they are all ultimately using `FindElement` from Selenium, but they extend the functionality by adding additional logic to prevent errors and to carry out common actions.
-
-Overuse of these methods is not necessary. FindElement is a suitable approach a lot of the time. Understanding the context of your test is vital when considering whether to use these extension methods. Overuse of them will lead to small overheads and slower execution test time. On larger scale projects, this can add up to additonal minutes of test execution time when executing a full suite of acceptance tests.
+One consideration to take into account is that overuse of these methods is not necessary. FindElement is often a suitable approach. Understanding the context of your test is vital when considering whether to use these extension methods. Overuse of them will lead to small overheads and slower execution test time. On larger scale projects, this can add up to additonal minutes of test execution time when executing a full suite of acceptance tests.
 
 ## Exercise 4 - Handling Asynchronous Operations
 Sometimes there may be a need to handle an operation that is asyncronous. Examples of this include, but are not limited to:
