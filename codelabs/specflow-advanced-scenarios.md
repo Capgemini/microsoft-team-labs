@@ -215,10 +215,14 @@ Scenario: Basic user deletes a contact
 	Then a dialog is displayed with a title of 'Contact Delete Confirmation'
 ```
 
-## Exercise 2 - Handling Asynchronous Operations
+## Exercise 2 - Using Different By Selector Methods
+Alongside XPath, Selenium has other types of selectors available for use. One that is quite useful to use is the class selector:
 
 
-## Exercise 3 - Using Different By Selector Methods
+For a list of all of the available selectors, refer to the Selelium page: https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/By.html
+
+
+## Exercise 3 - Handling Asynchronous Operations
 
 ## Exercise 4 - Inputting Drawing Into Pen Control
 
