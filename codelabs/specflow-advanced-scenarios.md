@@ -22,6 +22,37 @@ Microsoft.CrmSdk.CoreAssemblies
 
 These packages provide access to the required SDK classes to connect to and update data in a Dynamics instance.
 
+### Step Binding Class Structure
+When creating new classes for step bindings, ensure that you remember to include the TechTalk.SpecFlow library, inherit from the PowerAppsStepDefiner class, and use the Binding attrbiute on the class. Here is an example:
+```
+using TechTalk.SpecFlow;
+
+namespace ExampleNamespace.Steps
+{
+    [Binding]
+    class FlyoutSteps : PowerAppsStepDefiner
+    {
+        [Given("a thing")]
+        public void GivenAThing()
+        {
+            // Implementation
+        }
+
+        [When("a thing")]
+        public void WhenAThing()
+        {
+            // Implementation
+        }
+
+        [Then("a thing")]
+        public void ThenAThing()
+        {
+            // Implementation
+        }
+    }
+}
+```
+
 ### Helper Class
 
 As it is possible that a number of different Steps files will require access to the Dynamics context, it is useful to put this logic in a helper file that can be accessed by all step files. Create an Extensions folder in the project root and add a ContextHelper.cs file to the folder.
