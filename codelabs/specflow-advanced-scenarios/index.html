@@ -35,6 +35,35 @@
 Microsoft.CrmSdk.CoreAssemblies
 </code></pre>
 <p>These packages provide access to the required SDK classes to connect to and update data in a Dynamics instance.</p>
+<h2 is-upgraded>Step Binding Class Structure</h2>
+<p>When creating new classes for step bindings, ensure that you remember to include the TechTalk.SpecFlow library, inherit from the PowerAppsStepDefiner class, and use the Binding attribute on the class. Here is an example:</p>
+<pre><code>using TechTalk.SpecFlow;
+
+namespace ExampleNamespace.Steps
+{
+    [Binding]
+    class FlyoutSteps : PowerAppsStepDefiner
+    {
+        [Given(&#34;a thing&#34;)]
+        public void GivenAThing()
+        {
+            // Implementation
+        }
+
+        [When(&#34;a thing&#34;)]
+        public void WhenAThing()
+        {
+            // Implementation
+        }
+
+        [Then(&#34;a thing&#34;)]
+        public void ThenAThing()
+        {
+            // Implementation
+        }
+    }
+}
+</code></pre>
 <h2 is-upgraded>Helper Class</h2>
 <p>As it is possible that a number of different Steps files will require access to the Dynamics context, it is useful to put this logic in a helper file that can be accessed by all step files. Create an Extensions folder in the project root and add a ContextHelper.cs file to the folder.</p>
 <p class="image-container"><img alt="alt_text" title="image_tooltip" src="img/293c430e2051bbf5.png"></p>
@@ -176,6 +205,283 @@ public void ThenADialogIsDisplayedWithTitle(string title)
 	And I have opened &#39;a contact&#39;
 	When I select the &#39;Delete&#39; command
 	Then a dialog is displayed with a title of &#39;Contact Delete Confirmation&#39;
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Exercise 2 - Using Different By Selector Methods" duration="0">
+        <p>Alongside XPath, Selenium has other types of selectors available for use. This exercise will demonstrate some of the commonly used selectors available in the By class.</p>
+<p>For a list of all of the available selectors, refer to the Selenium page: <a href="https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/By.html" target="_blank">https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/By.html</a></p>
+<h2 is-upgraded>By.ClassName</h2>
+<p>The first selector covered by this exercise is the <code>By.ClassName</code> selector:</p>
+<pre><code>var element = Driver.FindElement(By.ClassName(&#34;className&#34;));
+</code></pre>
+<p>This selector retrieves all elements where the ‘class&#39; attribute is equal to a given value.</p>
+<h2 is-upgraded>By.TagName</h2>
+<p>A useful selector for retrieving a group of elements is the <code>By.TagName</code> selector:</p>
+<pre><code>var element = Driver.FindElement(By.TagName(&#34;div&#34;));
+</code></pre>
+<p>This selector retrieves all elements of a given tag. Write a step to run for the following line:</p>
+<pre><code>Then I can see a &#39;Account Name&#39; label
+</code></pre>
+<p>Use <code>By.TagName</code> to retrieve all  label elements, then validate whether the given value appears in the list of labels.</p>
+<p>Test this on the Accounts view, and validate that the Account Name label is displayed.</p>
+<h2 is-upgraded>Sample Answer</h2>
+<pre><code>[Then(&#34;I can see a &#39;(.*)&#39; label&#34;)]
+public void ThenISeeLabel(string labelName)
+{
+    var inputs = Driver.FindElements(By.TagName(&#34;label&#34;)).Where(x =&gt; x.Text == labelName);
+    inputs.Count().Should().Be(1);
+}
+</code></pre>
+<h2 is-upgraded>By.CssSelector</h2>
+<p>The <code>By.CssSelector</code> is similar to the XPath selector in that it allows elements to be retrieved via a particular selection notation. In this case, patterns used by CSS are used to retrieve elements matching the specified criteria. Full documentation on CSS selectors can be found at https://www.w3schools.com/cssref/css_selectors.asp</p>
+<p>Write a step for the following line:</p>
+<pre><code>Then I can see 13 editable inputs
+</code></pre>
+<p>The step should retrieve all editable inputs on a form using <code>By.CssSelector</code> and validate that the number of inputs retrieved matches the number specified in the step parameter. To find the appropriate CSS selector to use, check the CSS selector reference linked above to find a selector that only returns read/writeable input tags.</p>
+<p>Test this step by opening the account form and validating that there are thirteen editable inputs.</p>
+<h2 is-upgraded>Sample Answer</h2>
+<pre><code>[Then(&#34;I can see (.*) editable inputs&#34;)]
+        public void ThenISeeLabel(int inputCount)
+{
+    var inputs = Driver.FindElements(By.CssSelector(&#34;input:read-write&#34;)).Count;
+    inputs.Should().Be(inputCount);
+}
+</code></pre>
+<h2 is-upgraded>By.Id</h2>
+<p>For accessing a specific element where the ID is known, the <code>By.Id</code> selector can be used. Use this selector to validate that the timeline on the Account form is visible. Write the below step to validate the account form:</p>
+<pre><code>I can see the timeline
+</code></pre>
+<h2 is-upgraded>Sample Answer</h2>
+<pre><code>[Then(&#34;I can see the timeline&#34;)]
+public void ThenISeeTimeline()
+{
+    var timeline = Driver.FindElement(By.Id(&#34;Timeline&#34;));
+    timeline.Displayed.Should().Be(true);
+}
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Exercise 3 - Traversing the Node Tree" duration="0">
+        <p>When writing tests it is important that selectors always retrieve the correct node, even when run in different contexts to the original test scenario the selector was written to fulfil. A way to achieve this is by using the tree structure of HTML to only look for nodes within the area of the page they are expected to be found in. This avoids accidentally retrieving a different element that also satisfies the requirements of the selector being used. There are two main ways of traversing the node tree - using more complex XPath that validates multiple levels of a node hierarchy, or retrieving a parent element and then using a selector within the context of that element.</p>
+<h2 is-upgraded>Use Case</h2>
+<p>A good example of when node hierarchy is important is when validating that a field appears in a certain section on a form. This exercise will cover using both hierarchical XPath and using selectors in a given element&#39;s context. Use the below line to write a step that validates that a given field is visible in a given section.</p>
+<pre><code>Then I can see the &#39;First Name&#39; field in the &#39;GENERAL INFORMATION&#39; section
+</code></pre>
+<h2 is-upgraded>Using XPath</h2>
+<p>XPath can be chained to validate parent and child nodes by simply adding the XPath to validate the next level of the tree onto the end of the XPath for the node before it. For example, running the below XPath on the Contact form in Chrome Dev Tools will return all section tags that are children of the div tag with a label of &#34;Summary&#34; (the &#34;Summary&#34; tab). Note that the XPath can be extended to continue down the hierarchy by selecting all child nodes of the section tags using the &#34;/&#34; symbol. Nodes can also be filtered using the square bracket syntax at any level of the hierarchy, not just the first level.</p>
+<pre><code>$x(&#34;//div[@aria-label=&#39;Summary&#39;]/section&#34;)
+</code></pre>
+<p>The above XPath selects direct children of the Summary div - if all descendants are required, &#34;//&#34; should be used instead of a single &#34;/&#34;.</p>
+<p>Now write the step to validate that a field exists within a section using only one By.XPath call and one string of XPath. Practice traversing the tree in Chrome Dev Tools using <code>$x("")</code> to identify the correct XPath to use.</p>
+<h2 is-upgraded>Sample Answer</h2>
+<p>Note: There are multiple valid ways to write this XPath - the key requirements are that it always finds the correct element, does not give false positives and is parameterised to work with any value passed in the step.</p>
+<pre><code>[Then(&#34;I can see the &#39;(.*)&#39; field in the &#39;(.*)&#39; section&#34;)]
+public void ThenISeeFieldInSection(string fieldName, string sectionName)
+{
+    var label = Driver.FindElement(By.XPath(string.Format(&#34;//section[@aria-label=&#39;{0}&#39;]//label[text()=&#39;{1}&#39;]&#34;, sectionName, fieldName)));
+    label.Displayed.Should().Be(true);
+}
+</code></pre>
+<h2 is-upgraded>Using Element Context</h2>
+<p>It may not always be appropriate to use one string of XPath to traverse the node tree; sometimes it will be required to validate multiple levels of the tree separately, so it is important to be able to retrieve intermediate nodes, validate them and then use them to retrieve nodes further down the tree. This is done by first retrieving an intermediate node, then calling a By selector on the returned IWebElement.</p>
+<p>First, update the above <code>ThenISeeFieldInSection()</code> method to retrieve the section with the given name within the Summary tab on the contact form. Then validate that the section is displayed. Then call FindElements on the section node object to only have the XPath retrieve nodes in the context of the section node. Pass an XPath selector to this method that returns the label node with a given text value. Finally, assert that the label is visible. Test that the step still works when run against the contact form.</p>
+<h2 is-upgraded>Sample Answer</h2>
+<pre><code>[Then(&#34;I can see the &#39;(.*)&#39; field in the &#39;(.*)&#39; section&#34;)]
+public void ThenISeeFieldInSection(string fieldName, string sectionName)
+{
+    var section = Driver.FindElement(By.XPath(string.Format(&#34;//div[@aria-label=&#39;Summary&#39;]//section[@aria-label=&#39;{0}&#39;]&#34;, sectionName)));
+    section.Displayed.Should().Be(true);
+    var label = section.FindElement(By.XPath(string.Format(&#34;//label[text()=&#39;{0}&#39;]&#34;, fieldName)));
+    label.Displayed.Should().Be(true);
+}
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Exercise 4 - Web Driver Extension Methods" duration="0">
+        <p>The Web Driver has various extension methods courtesy of EasyRepro available to help traverse common scenarios found within Dynamics. These methods help to avoid errors and flakiness in tests by cleanly handling common problems such as the test asserting validations before the page has finished loading, which would mean that the web element it needs to assert against might not be available yet on the page.</p>
+<p>Here are examples of the available methods to use:</p>
+<ul>
+<li>WaitUntil</li>
+<li>WaitUntilAvailable</li>
+<li>WaitUntilClickable</li>
+<li>WaitUntilVisible</li>
+<li>WaitForTransaction</li>
+<li>RepeatUntil</li>
+<li>ClickWhenAvailable</li>
+<li>ClickWhenVisible</li>
+<li>Click</li>
+<li>DoubleClick</li>
+</ul>
+<h2 is-upgraded>Requirements</h2>
+<p>Create a test that does the following</p>
+<ul>
+<li>Opens the Customer Service Hub app</li>
+<li>Checks for a flyout called &#34;Export to Excel&#34; on the Account Entity using one of the example methods</li>
+</ul>
+<p>For this test to work, we need to add a new custom binding to a <code>[Step Bindings]</code> class that accepts 1 parameter, which is the name of the flyout we are looking for.</p>
+<h2 is-upgraded>Sample Answer</h2>
+<p>Scenario based on the above requirements</p>
+<pre><code>Scenario: There is a flyout
+	Given I am logged in to the &#39;Customer Service Hub&#39; app as &#39;a basic user&#39;
+	When I open the sub area &#39;Accounts&#39; under the &#39;Service&#39; area
+	Then there is a flyout called &#39;Export to Excel&#39;
+</code></pre>
+<p>Sample custom binding with a flaw</p>
+<pre><code>[Then(&#34;there is a flyout called &#39;(.*)&#39;&#34;)]
+public void ThereIsAFlyoutCalled(string flyoutName)
+{
+    var flyoutCommand = Driver.FindElement(By.XPath($&#34;//button[@aria-label=&#39;{flyoutName}&#39;]&#34;));
+    flyoutCommand.Text.Should().Be(flyoutName);
+}
+</code></pre>
+<h2 is-upgraded>Why the Sample Answer is Potentially Problematic</h2>
+<p>The binding in the sample answer will find the desired flyout button. However, the potential flaw with this binding is that the flyout button might not actually be immediately available to the Web Driver. This introduces a reliability problem to our test as it may occassionally fail if the page does not load quick enough - a problem we can encounter when running a large suite of tests against an instance of Dynamics.</p>
+<p>To protect against flakiness in our tests, we can opt to use an extension method for the Web Driver that is provided by EasyRepro. In this example, the best method to use is <code>WaitUntilAvailable</code>. This will help handle exceptions caused by elements that have not loaded, and will retry the operation for us.</p>
+<pre><code>var flyoutCommand = Driver.FindElement(By.XPath($&#34;//button[@aria-label=&#39;{flyoutName}&#39;]&#34;));
+</code></pre>
+<p>With this:</p>
+<pre><code>var flyoutCommand = Driver.WaitUntilAvailable(By.XPath($&#34;//button[@aria-label=&#39;{flyoutName}&#39;]&#34;));
+</code></pre>
+<h2 is-upgraded>A Note on WebDriver Extension Methods</h2>
+<p>The methods available to us in the WebDriver EasyRepro extensions can be used to help us with a variety of Dynamics specific scenarios. Understanding how to use these methods when writing custom bindings will help to avoid unreliable tests. Behind the scenes, they are all ultimately using <code>FindElement</code> from Selenium, but they extend the functionality by adding additional logic to prevent errors and to carry out common actions.</p>
+<p>One consideration to take into account is that overuse of these methods is not necessary. FindElement is often a suitable approach. Understanding the context of your test is vital when considering whether to use these extension methods. Overuse of them will lead to small overheads and slower execution test time. On larger scale projects, this can add up to additonal minutes of test execution time when executing a full suite of acceptance tests.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Exercise 5 - Handling Asynchronous Operations" duration="0">
+        <p>Sometimes there may be a need to handle an operation that is asyncronous. Examples of this include, but are not limited to:</p>
+<ul>
+<li>Waiting for the output of async workflows</li>
+<li>Waiting for the output of a flow</li>
+<li>Waiting for Out Of the Box record generation to complete, such as Work Order Service Task generation in the Field Service App.</li>
+<li>Waiting for the page to load</li>
+<li>UI elements that have processes attached to them such as Flyout Menus which must query Dynamics for the available options.</li>
+</ul>
+<p>This exercise will cover the use of the WebDriverWait class from Selenium that can be used to handle more complex async operations.</p>
+<p>This exercise will also build upon Exercise 3 by testing a flyout menu for the buttons contained within it. Flyouts typicallly need to load the buttons associated to them from Dynamics which can result in slight delays. This has caused issues in real-world implementations where this asyncronous nature was not initially handled and resulted in test failures.</p>
+<h2 is-upgraded>Web Driver Wait</h2>
+<p>Web Driver Wait is a class in Selenium that allows us to halt the execution of the test and wait until specific criteria has been met. Within WebDriverWait, we can call a delegate method that contains our criteria to allow the test to continue. For more detailed information on the class, read the Selenium Documentation: https://www.selenium.dev/documentation/webdriver/waits/</p>
+<h2 is-upgraded>Requirements</h2>
+<p>Create a test that does the following</p>
+<ul>
+<li>Opens the Customer Service Hub app</li>
+<li>Clicks the flyout called &#34;Excel Templates&#34; on the Account Entity</li>
+<li>Checks that these commands are on the flyout menu: Upload Template, Download Template, View All My Templates</li>
+</ul>
+<p>For reusability, we will also create a helper method that other step bindings could use. The step binding you add should call this helper method.</p>
+<p>This helper function should do the following</p>
+<ul>
+<li>Ensure the flyout is available, and click the command button if it is not</li>
+<li>Implement a WebDriverWait with a time out of 15 seconds that ignores <code>NoSuchElement</code> exceptions</li>
+<li>Retries trying to find the buttons on the flyout by using the WebDriverWait.Until() method</li>
+<li>Returns a dictionary containing the sub-commands within the flyout. The key should be the name. The value should be the Web Element.</li>
+</ul>
+<p>Here is an example of what the function and parameters should be:</p>
+<pre><code>public static Dictionary&lt;string, IWebElement&gt; GetFlyoutCommands(IWebDriver webDriver, IWebElement commandButton)
+{
+    // Implementation of the logic
+}
+
+</code></pre>
+<p>For this test to work, we need to add a new custom binding to a <code>[Step Bindings]</code> class that does the following:</p>
+<ul>
+<li>Has a string parameter for the name of the flyout to check</li>
+<li>Has a table of command names to check for on the flyout menu</li>
+<li>Calls the helper function defined above and stores the items in a dictionary</li>
+<li>Verifies that dictionary returned by the helper function is not null</li>
+<li>Verifies that the count of the items within the dictionary equals the count of the items in the table of command names</li>
+<li>Validates each command name from the table against the dictionary of flyout commands returned by the helper function</li>
+</ul>
+<p>To save time, be sure to include the following libraries in your helper class:</p>
+<pre><code>using System;
+using System.Collections.Generic;
+using System.Linq;
+using Capgemini.PowerApps.SpecFlowBindings;
+using FluentAssertions;
+using Microsoft.Dynamics365.UIAutomation.Browser;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+</code></pre>
+<h2 is-upgraded>Sample Answer - Test</h2>
+<p>Scenario based on the above requirements</p>
+<pre><code>Scenario: Flyout contains the following buttons
+	Given I am logged in to the &#39;Customer Service Hub&#39; app as &#39;a basic user&#39;
+	When I open the sub area &#39;Accounts&#39; under the &#39;Service&#39; area
+	Then I can see the following buttons on the &#39;Excel Templates&#39; flyout
+	| Command Name          |
+	| Upload Template      |
+	| Download Template     |
+	| View All My Templates |
+
+</code></pre>
+<p>This scenario is reusable and is not bespoke to our requirements. This means that if we have future requirements to validate other flyouts, we can simply use this binding.</p>
+<h2 is-upgraded>Sample Answer - Helper Function</h2>
+<pre><code>public static Dictionary&lt;string, IWebElement&gt; GetFlyoutCommands(IWebDriver webDriver, IWebElement commandButton)
+{
+    Dictionary&lt;string, IWebElement&gt; flyoutCommands = null;
+
+    // Create a Web Driver wait that will time out after 15 seconds that ignores No Such Element exceptions
+    var wait = new WebDriverWait(webDriver, new TimeSpan(0, 0, 15));
+    wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+
+    wait.Until(d =&gt;
+    {
+        // Ensure that we have clicked on the flyout button, and the flyout is visible
+        if (!d.HasElement(By.Id(&#34;__flyoutRootNode&#34;)))
+        {
+            commandButton.Click();
+            d.WaitForTransaction();
+        }
+
+        // Find the flyout root node
+        var flyout = d.FindElement(By.Id(&#34;__flyoutRootNode&#34;));
+
+        // Check we can actually interact with the flyout
+        if (flyout.IsVisible() &amp;&amp; flyout.IsClickable())
+        {
+            // Get the flyout commands and cast the Text of each button as the key
+            flyoutCommands = flyout
+                .FindElements(By.TagName(&#34;button&#34;))
+                .Where(e =&gt; e.Displayed)
+                .ToDictionary(e =&gt; e.Text, e =&gt; e);
+
+            // Return true when we are done!
+            return true;
+        }
+        else
+        {
+            // Return false if we could not interact with the flyout.
+            return false;
+        }
+        
+    });
+
+    // Return the dictionary
+    return flyoutCommands;
+}
+</code></pre>
+<h2 is-upgraded>Sample Answer - Custom Binding</h2>
+<pre><code>[Then(&#34;I can see the following buttons on the &#39;(.*)&#39; flyout&#34;)]
+public void ThenICanSeeTheFollowingButtonsOnTheFlyout(string flyoutName, Table flyoutButtonNames)
+{
+    var flyoutCommand = Driver.WaitUntilAvailable(By.XPath($&#34;//button[@aria-label=&#39;{flyoutName}&#39;]&#34;));
+    var menuItems = GetFlyoutCommands(Driver, flyoutCommand);
+    menuItems.Should().NotBeEmpty();
+    menuItems.Should().HaveCount(flyoutButtonNames.Rows.Count);
+
+    foreach (var item in flyoutButtonNames.Rows)
+    {
+        menuItems.Keys.Should().Contain(item[&#34;Command Name&#34;]);
+    }
+}
 </code></pre>
 
 

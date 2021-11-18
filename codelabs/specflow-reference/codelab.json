@@ -4,12 +4,12 @@
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
   "updated": "2021-11-18T09:54:42Z",
-  "id": "specflow-usage",
+  "id": "specflow-reference",
   "duration": 0,
-  "title": "Using Capgemini Bindings",
-  "authors": "Zoe Dawson and Matthew Hoy",
-  "summary": "A lab to create and explore basic scenarios using existing bindings.",
-  "source": "../codelabs/specflow-usage.md",
+  "title": "Reference",
+  "authors": "Zoe Dawson and Mike Andrews",
+  "summary": "A reference lab containing useful code examples to solve advanced SpecFlow problems.",
+  "source": "../codelabs/specflow-reference.md",
   "theme": "",
   "status": [
     "draft"
@@ -19,5 +19,5 @@
     "specflow"
   ],
   "tags": [],
-  "url": "specflow-usage"
+  "url": "specflow-reference"
 }

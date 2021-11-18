@@ -1,0 +1,65 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Reference</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="specflow-reference"
+                  title="Reference"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Working With Modal Forms" duration="0">
+        <p>In this exercise we will be using selectors on objects which have already been selected, in order to work with modal forms which appear in Dynamics on top of other forms. Attempting to work with modal forms without first establishing their context causes issues with XPath incorrectly retrieving fields and components from the page behind the modal form.</p>
+<p>Below is an example method for retrieving the context of a form. The IWebElement returned by this method can then be queried using XPath, which will only return child values of the modal form element.</p>
+<pre><code>public static IWebElement GetFormContext(IWebDriver webDriver)
+        {
+            webDriver.WaitUntilAvailable(By.XPath(&#34;//div[(contains(@aria-modal, &#39;true&#39;) and contains (@role, &#39;dialog&#39;)) or @data-id=&#39;GridRoot&#39; or @data-id=&#39;editFormRoot&#39;]&#34;), 10.Seconds());
+            var modalForms = webDriver.FindElements(By.XPath(&#34;//div[contains(@aria-modal, &#39;true&#39;) and contains (@role, &#39;dialog&#39;)]&#34;));
+            if (modalForms.Count &gt; 0)
+            {
+                return modalForms.Last();
+            }
+            else if (webDriver.TryFindElement(By.XPath(&#34;//div[@data-id=&#39;GridRoot&#39;]&#34;), out var gridRoot))
+            {
+                return gridRoot;
+            }
+            else if (webDriver.TryFindElement(By.XPath(&#34;//div[@data-id=&#39;editFormRoot&#39;]&#34;), out var editFormRoot))
+            {
+                return editFormRoot;
+            }
+            return null;
+        }
+</code></pre>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
