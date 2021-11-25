@@ -93,15 +93,99 @@ And give your environment a meaningful name. Once environment has been created, 
 
 There is a set of variables required by Postman in order to authenticate to Power Platform using OAuth2.0. These variables are;
 
-**Variable Name**                  **Value**
-url                                 Power App instance url https://<add your instance url>.crm11.dynamics.com
-clientid                            Application Registration Client Id created in pre-requisites
-version                             9.1
-webapiurl                           {{url}}/api/data/v{{version}}/
-callback                            https://callbackurl
-authurl                             https://login.microsoftonline.com/common/oauth2/authorize?resource={{url}}
-clientsecret                        Application Registration Client Secret created in pre-requisites
+<table>
+  <tr>
+   <td><strong>Variable Name</strong>
+   </td>
+   <td><strong>Value</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>url
+   </td>
+   <td>Power App instance url https://<add your instance url>.crm11.dynamics.com
+   </td>
+  </tr>
+  <tr>
+   <td>clientid
+   </td>
+   <td>Application Registration Client Id created in pre-requisites
+   </td>
+  </tr>
+  <tr>
+   <td>version
+   </td>
+   <td>9.1
+   </td>
+  </tr>
+  <tr>
+   <td>webapiurl
+   </td>
+   <td>{{url}}/api/data/v{{version}}/
+   </td>
+  </tr>
+  <tr>
+   <td>callback
+   </td>
+   <td>https://callbackurl
+   </td>
+  </tr>
+  <tr>
+   <td>authurl
+   </td>
+   <td>https://login.microsoftonline.com/common/oauth2/authorize?resource={{url}}
+   </td>
+  </tr>
+  <tr>
+   <td>clientsecret
+   </td>
+   <td>Application Registration Client Secret created in pre-requisites
+   </td>
+  </tr>
+  <tr>
+   <td>tenantid
+   </td>
+   <td>Application Registration tenant id in Azure Active Directory
+   </td>
+  </tr>
+  <tr>
+   <td>authtokenurl
+   </td>
+   <td>https://login.microsoftonline.com/{{tenantid}}/oauth2/v2.0/token
+   </td>
+  </tr>
+</table>
 
-Once you created these in your environment then it should look as shown below
+
+Once you created these in your environment then click on **Save** it should look as shown below
 
 ![image.png](.attachments/postman-with-power-platform/image9.png)
+
+### Generate an access token to use with Environment
+
+There are multiple ways to getting a token in order to connect to Power App instance. First you will need to create a new tab in order to build a request. To do this please follow below:
+
+- Select File > New and from Create New dialog, select **HTTP Request**. This will add a new tab into Request Builder Section . Please make sure you set the environment to the one created in the **Create Environment Step** as shown below.
+
+![image.png](.attachments/postman-with-power-platform/image10.png)
+
+To create a token using **Client Credentials** as **Grant Type**:
+- Select **Authorization** and set Type to **OAuth 2.0** and set the **Grant Type** to Client **Credentials** and then fill in the rest of the fields under **Configure New Token** section with the variables created in **Create Environment Step**. Once all set it should look like below.
+
+![image.png](.attachments/postman-with-power-platform/image11.png)
+
+- Then to generate the token, click **Generate New Access Token** button and you will then be presented with **Get New Access Token** dialog window. Once this shows **Authentication Complete** then click **Proceeed** as shown below.
+
+![image.png](.attachments/postman-with-power-platform/image12.png)
+
+- Then you will be presented with the **Manage Access Token** dialog. Give the token any name and click on **Use Token**
+
+![image.png](.attachments/postman-with-power-platform/image13.png)
+
+- You are now ready to execute your first request against the Power Platform instance using **WhoAmI** request to confirm connection is working. To do this please follow below:
+    - You will add the 'webapiurl' variable created plus 'WhoAmI' into the request URL and then click on Send as shown below
+    
+    ![image.png](.attachments/postman-with-power-platform/image14.png)
+
+    Response code 200 is a success. And we can see the response for the request sent
+
