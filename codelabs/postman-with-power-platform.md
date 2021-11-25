@@ -189,3 +189,85 @@ To create a token using **Client Credentials** as **Grant Type**:
 
     Response code 200 is a success. And we can see the response for the request sent
 
+## Retrieve Records from Power Platform using Postman
+
+This chapter will cover different ways of retrieving records from Power App instance using Postman. We will mainly use contact and account tables for the exercises in this chapter. GET request is used for retrieving records.
+
+[Microsoft Dataverse WebAPI](https://docs.microsoft.com/en-us/powerapps/developer/data-platform/webapi/retrieve-entity-using-web-api) documentation is a really good reference source when building requests.
+
+### 1- Retrieve all fields for specific entity type
+
+Notation used for retrieving all records for an entity type is "organizationurl.crm11.dynamics.com/api/data/v9.1/contacts".
+
+Below is a GET request example to retrieve all contacts and all their properties in a Power App instance
+
+request:
+![image.png](.attachments/postman-with-power-platform/image15.1.png)
+
+response:
+![image.png](.attachments/postman-with-power-platform/image15.2.png)
+
+**value** property of the response is an array where all the returned results are and properties for each contact can be seen there.
+
+### 2- Retrieve all fields for a specific record
+
+Notation used for retrieving all fields for a specific record is "organizationurl.crm11.dynamics.com/api/data/v9.1/contacts(recordid)". 
+
+Below is a GET request example to retrieve all fields for a contact with id (26b4e52d-034e-ec11-8f8e-00224841fc00)
+
+request:
+![image.png](.attachments/postman-with-power-platform/image16.1.png)
+
+response:
+![image.png](.attachments/postman-with-power-platform/image16.2.png)
+
+When executing a request to retrieve only one specific record, the response does not contain a value property.
+
+### 3- Retrieve only selected fields for a record
+
+Notation used for retrieving only selected few fields for a record is "organizationurl.crm11.dynamics.com/api/data/v9.1/contacts(recordid)?$select=field1name,field2name,field3name". 
+
+Below is a GET request example to retrieve selected fields for a contact with id (26b4e52d-034e-ec11-8f8e-00224841fc00)
+
+request:
+![image.png](.attachments/postman-with-power-platform/image17.1.png)
+
+response:
+![image.png](.attachments/postman-with-power-platform/image17.2.png)
+
+As it can be seen from the response above, only requested fields have been returned.
+
+### 4- Retrieve data about lookup fields
+
+**$expand** query option is used to control what data from related entities is returned.
+
+Notation for this request is "organizationurl.crm11.dynamics.com/api/data/v9.1/contacts(recordid)?$select=field1name,field2name,field3name&$expand=lookfield($select=lookup.field1,lookup.field2)". 
+
+Below is a GET request example for **expand** query
+
+request and response:
+![image.png](.attachments/postman-with-power-platform/image18.png)
+
+### 5- Retrieve related entities for an entity by expanding collection-valued navigation
+
+This is achieved by using the **$expand** query again. but the navigation property is not for a look up field but it is for a 1:N relationship on the entity.
+
+Below is a GET request example for this
+
+request and response:
+![image.png](.attachments/postman-with-power-platform/image19.png)
+
+As it can be seen from response both the contacts related to the record has been retrived.
+
+### 6- Retrieve records by running a filter criteria
+
+[Query Data with Web API - Filter Results](https://docs.microsoft.com/en-us/powerapps/developer/data-platform/webapi/query-data-web-api#filter-results) documentation is a really good reference source when building these requests.
+
+**$filter** query option is used to apply a criteria when running a retrieve request.
+
+Notation for this request is "organizationurl.crm11.dynamics.com/api/data/v9.1/contacts(recordid)?$select=field1name,field2name,field3name&$filter=field eq criteria"
+
+Below is a GET request example with filter query
+
+request and response:
+![image.png](.attachments/postman-with-power-platform/image20.png)
