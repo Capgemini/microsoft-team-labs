@@ -129,32 +129,43 @@ Throughout the rest of this lab tutorial you'll learn about how to use the above
 
 ### Visual Studio 2019
 
-- Sign in Visual Studio with your corporate account.
+- Sign in Visual Studio with your account.
 
-- Select the **Manage Connections** button in Team Explorer to open the Connect page. Choose Connect to a Project to select a project to connect to.
+![Signin.png](.attachments/git-basics/signin.png)
 
-  - connect to projects
+- In Team Explorer, open the Connect page by selecting the Connect button. Choose Manage Connections then Connect to Project.
 
-  - Connect to a Project shows the projects you can connect to, along with the repos in those projects.
+![connecttoproject01.png](.attachments/git-basics/connecttoproject01.png)
 
-  - Connect to a Project dialog box
-
-- Select Add Azure DevOps Server to connect to a project in Azure DevOps Services. Enter the URL to your server and select Add.
-
-- Select a project from the list and select Connect.
-
-### VS Code
+- In Connect to a Project, select the repo you want to clone from the list and select Clone. **Note:** I recommend creating a new folder "workspaces" on C drive to keep your code instead of the default path.
+ 
+![connecttoproject02.png](.attachments/git-basics/connecttoproject02.png)
 
 ## Create a new repository
 
-### Visual Studio 2019
+### Create a repo using the web portal
 
-- Open the Connect view in Team Explorer by choosing Projects then Manage Connections from the context menu.
+Navigate to the Repos page in your project.
 
-- Under Local Git Repositories, select New and enter a folder where the repo will be created. This directory must be empty.
+![newrepository](.attachments/git-basics/newrepository01.png)
 
-- Select Create to create the repo.
+From the repo drop-down, select New repository.
 
+![newrepository](.attachments/git-basics/newrepository02.png)
+
+In the Create a new repository dialog, verify that Git is the repo type and enter a name for your new repo. You can also add a README and create a .gitignore for the type of code you plan to manage in the repo. A README contains information about the code in your repo. The .gitignore file tells Git which types of files to ignore, such as temporary build files from your development environment.
+
+Set options for your new repo in the Create a Git repo dialog. When you're happy with the repo name and choices, select Create.
+
+![newrepository](.attachments/git-basics/newrepository03.png)
+
+You will now have a new repository in your project. 
+
+![newrepository](.attachments/git-basics/newrepository04.png)
+
+You can follow the previous step to clone this new repository to your local and start using it.
+
+![newrepository](.attachments/git-basics/newrepository05.png)
 
 ## Create a branch
 
