@@ -182,9 +182,9 @@ To create a token using **Client Credentials** as **Grant Type**:
 
 - Then you will be presented with the **Manage Access Token** dialog. Give the token any name and click on **Use Token**
 
-**IMPORTANT NOTE** Access Tokens DO expire. When expired you will receive 401 response. You can simply in the same tab click **Generate Access Token** button again and grab a new token. You can then continue sending your requests.
-
 ![image.png](.attachments/postman-with-power-platform/image13.png)
+
+**IMPORTANT NOTE** Access Tokens DO expire. When expired you will receive 401 response. You can simply in the same tab click **Generate Access Token** button again and grab a new token. You can then continue sending your requests.
 
 - You are now ready to execute your first request against the Power Platform instance using **WhoAmI** request to confirm connection is working. To do this please follow below:
     **GET** request will be used and request url will be set to **{{webapiurl}}/WhoAmI** as shown below. When you are ready to execute the request then click **Send** button.
