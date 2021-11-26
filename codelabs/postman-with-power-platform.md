@@ -227,7 +227,7 @@ When executing a request to retrieve only one specific record, the response does
 
 ### 3- Retrieve only selected fields for a record
 
-Notation used for retrieving only selected few fields for a record is "organizationurl.crm11.dynamics.com/api/data/v9.1/contacts(recordid)?$select=field1name,field2name,field3name". 
+Notation used for retrieving only selected few fields for a record is "organizationurl.crm11.dynamics.com/api/data/v9.1/contacts(recordid)?$select=field1name,field2name,field3name". Schema names of fields has to be used in webapi requests.
 
 Below is a GET request example to retrieve selected fields for a contact with id (26b4e52d-034e-ec11-8f8e-00224841fc00)
 
@@ -243,7 +243,9 @@ As it can be seen from the response above, only requested fields have been retur
 
 **$expand** query option is used to control what data from related entities is returned.
 
-Notation for this request is "organizationurl.crm11.dynamics.com/api/data/v9.1/contacts(recordid)?$select=field1name,field2name,field3name&$expand=lookfield($select=lookup.field1,lookup.field2)". 
+Notation for this request is "organizationurl.crm11.dynamics.com/api/data/v9.1/contacts(recordid)?$select=field1name,field2name,field3name&$expand=lookfield($select=lookup.field1,lookup.field2)". Schema names of fields has to be used in webapi requests.
+
+Please keep in mind, if you choose to expand on lookup fields like 'Customer - schema name is parentcustomerid' field which can be referencing more than one type of table then while writing webapi queries you will need to use parentcustomerid_account or parentcustomerid_contact to define which entity type you are expanding.
 
 Below is a GET request example for **expand** query
 
@@ -334,7 +336,7 @@ To create records using Postman please do below before trying to create any reco
 ![image.png](.attachments/postman-with-power-platform/image21.png) 
 
 
-**IMPORTANT NOTE** Properties that you want to set when creating the record needs to be added to the request body section as a JSON value. This will be shown in the following examples.
+**IMPORTANT NOTE** Properties that you want to set when creating the record needs to be added to the request **Body** section as a JSON value. Schema names of fields has to be used in request body.
 
 ### 1- Basic Create
 
