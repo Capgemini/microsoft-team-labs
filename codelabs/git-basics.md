@@ -131,15 +131,15 @@ Throughout the rest of this lab tutorial you'll learn about how to use the above
 
 ### Visual Studio 2019
 
-- Sign in Visual Studio with your account.
+- **Sign in** Visual Studio with your account.
 
 ![Signin.png](.attachments/git-basics/signin.png)
 
-- In Team Explorer, open the Connect page by selecting the Connect button. Choose Manage Connections then Connect to Project.
+- In **Team Explorer**, open the Connect page by selecting the Connect button. Choose **Manage Connections** then **Connect to Project**.
 
 ![connecttoproject01.png](.attachments/git-basics/connecttoproject01.png)
 
-- In Connect to a Project, select the repo you want to clone from the list and select Clone. **Note:** I recommend creating a new folder "workspaces" on C drive to keep your code instead of the default path.
+- In **Connect to a Project**, select the repo you want to clone from the list and select **Clone**. **Note:** I recommend creating a new folder "workspaces" on C drive to keep your code instead of the default path.
  
 ![connecttoproject02.png](.attachments/git-basics/connecttoproject02.png)
 
@@ -149,15 +149,15 @@ When a project is created in Azure DevOps, there is a default repository. In som
 
 ### Create a repo using the web portal
 
-Navigate to the Repos page in your project.
+Navigate to the **Repos** page in your project.
 
 ![newrepository](.attachments/git-basics/newrepository01.png)
 
-From the repo drop-down, select New repository.
+From the repo drop-down, select **New repository**.
 
 ![newrepository](.attachments/git-basics/newrepository02.png)
 
-In the Create a new repository dialog, verify that Git is the repo type and enter a name for your new repo. You can also add a README and create a .gitignore for the type of code you plan to manage in the repo. A README contains information about the code in your repo. The .gitignore file tells Git which types of files to ignore, such as temporary build files from your development environment.
+In the Create a new repository dialog, verify that Git is the repo type and enter a name for your new repo. You can also add a **README** and create a **.gitignore** for the type of code you plan to manage in the repo. A README contains information about the code in your repo. The .gitignore file tells Git which types of files to ignore, such as temporary build files from your development environment.
 
 Set options for your new repo in the Create a Git repo dialog. When you're happy with the repo name and choices, select Create.
 
@@ -177,11 +177,11 @@ On the menu, click **Git** and go to **Manage Branches**
 
 ![branch](.attachments/git-basics/branch01.png)
 
-Choose the parent branch (usually main or master) to base your changes, right click and choose New Local Branch From....
+Choose the parent branch (usually main or master) to base your changes, right click and choose **New Local Branch From...**.
 
 ![branch](.attachments/git-basics/branch02.png)
 
-Supply a branch name in the required field and select Create Branch.
+Supply a branch name in the required field and select **Create Branch**.
 
 ![branch](.attachments/git-basics/branch03.png)
 
@@ -197,22 +197,22 @@ Git does not automatically add changed files to the local repository when you cr
 
 ### Stage changes
 
-- Stage individual file changes by right-clicking a file in the 'Change' view and selecting 'Stage', it would create a 'Staged Changes' section in Team Explorer. Only changes in the Staged Changes section are added to the next commit.
+- Stage individual file changes by right-clicking a file in the 'Change' view and selecting **Stage**, it would create a **Staged Changes** section in Team Explorer. Only changes in the **Staged Changes** section are added to the next commit.
 
   ![stage](.attachments/git-basics/stage01.png)
 
-- Stage multiple files or folders by selecting them then right-clicking and choosing Stage or by dragging and dropping files from the Changes list into the Staged Changes list.
+- Stage multiple files or folders by selecting them then right-clicking and choosing Stage or by dragging and dropping files from the Changes list into the **Staged Changes** list.
 
-- Ignore files by right-clicking and selecting Ignore this local item or Ignore this extension. 
+- Ignore files by right-clicking and selecting **Ignore this local item** or **Ignore this extension**. 
 - This adds an entry to the .gitignore file in your local repo. If the ignored file was added to your repo in an earlier commit, ignoring the file will not remove it from the Changes list. 
 
 ### Create a commit
 
-- Open the Git Changes view in Team Explorer.
+- Open the **Git Changes** view in **Team Explorer**.
 
-- Enter a commit message describing your changes and select Commit Staged to create a new commit that includes the changes listed in the Staged Changes section.
+- Enter a commit message describing your changes and select Commit Staged to create a new commit that includes the changes listed in the **Staged Changes** section.
 
-- Skip staging files if you just want to commit all changes listed by entering a commit message and selecting Commit All when you have no staged changes.
+- Skip staging files if you just want to commit all changes listed by entering a commit message and selecting **Commit All** when you have no staged changes.
 
   ![commit](.attachments/git-basics/commit01.png)
 
@@ -222,9 +222,9 @@ When you commit in Visual Studio you can **push** the commit to a remote reposit
 
 ![push](.attachments/git-basics/push01.png)
 
-After you have pushed your first commit, the sync button ![sync](.attachments/git-basics/sync.png) becomes available, it carries out two actions, Push and Pull.
-- Push: Push your local commits
-- Pull: Pull in commits to the remote branch, that others have made
+After you have pushed your first commit, the sync button ![sync](.attachments/git-basics/sync.png) becomes available, it carries out two actions, **Pull** and **Push**.
+- **Pull**: Fetch commits from the remote branch that others have made and merges it into the local branch
+- **Push**: Push your local commits to the remote branch
 
 This helps keep your local branch up to date with the remote branch.
 
@@ -232,11 +232,11 @@ This helps keep your local branch up to date with the remote branch.
 
 ### Create a new PR from the Azure DevOps project website
 
-You can create PRs for any branch from your project's Pull requests page on the web.
+You can create PRs for any branch from your project's **Pull requests** page on the web.
 
 - On the **Repos** > **Pull requests** page, 
-  - select New pull request at upper right. 
-  - **OR** after you push or update a feature branch, Azure Repos displays a prompt to create a PR.
+  - select **New pull request** at upper right. 
+  - **OR** after you push or update a feature branch, Azure Repos displays a prompt to **Create a pull request**.
 
   ![push](.attachments/git-basics/pr01.png)
 
@@ -251,7 +251,7 @@ You can create PRs for any branch from your project's Pull requests page on the 
 
 ## Complete your pull request
 
-You can access PRs for any branch from your project's Pull requests page on the web.
+You can access PRs for any branch from your project's **Pull requests** page on the web.
 
 ![push](.attachments/git-basics/pr04.png)
 
