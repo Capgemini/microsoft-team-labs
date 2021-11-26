@@ -1,0 +1,315 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Git Basics</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="git-basics"
+                  title="Git Basics"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="0">
+        <h2 is-upgraded>What is version control?</h2>
+<ul>
+<li>&#34;Version control is a system that records changes to a file or set of files over time so that you can recall specific versions later. So ideally, we can place any file in the computer on version control.&#34;</li>
+<li>Learn more:</li>
+</ul>
+<p>Why use Version Controls? You can:</p>
+<ul>
+<li>See all the changes made to your project, when the changes were made, and who made them.</li>
+<li>Include a message with each change to explain the reasoning behind it.</li>
+<li>Retrieve past versions of the entire project or of individual files.</li>
+<li>Create branches, where changes can be made experimentally. This feature allows several different sets of changes (for example, features or bug fixes) to be worked on at the same time, possibly by different people, without affecting the main branch. Later, you can merge the changes you want to keep back into the main branch.</li>
+<li>Attach a tag to a version—for example, to mark a new release.</li>
+<li>Synchronise changes in code, between multiple people. If two people are making changes to a file, vc can take the changes they have both made independently and merge them into a single repository.</li>
+</ul>
+<p><a href="https://docs.microsoft.com/en-us/learn/modules/intro-to-git/1-what-is-vc" target="_blank">(Source: What is version control? - Learn | Microsoft Docs) </a></p>
+<h2 is-upgraded>What is Git?</h2>
+<p>Git is an open-source version control system and is the most widely used vcs in the tech industry. Git is also a distributed Version Control System. This means that it does not rely on storing all version of a project file, on a centre server. Instead, users create a clone of the repository on their local machine, which includes the full history of the project.</p>
+<p>There are several ways we can interact with Git:</p>
+<ul>
+<li>Command Line - We can directly input commands into the command line within the relevant directory that contains our local repository (definition in next section)</li>
+<li>Visual Studio GUI/Visual Studio code GUIz - Both versions of visual studio can contain an Git GUI which makes executing Git commands, a lot easier. You will be interacting with this GUi in the exercises to come.</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Fundamentals of Git" duration="0">
+        <p class="image-container"><img alt="gitworkflow.png" src="img/7a905c4249a57681.png"></p>
+<p><a href="https://www.freecodecamp.org/news/learn-the-basics-of-git-in-under-10-minutes-da548267cc91/" target="_blank">(Source: fundamentals of Git) </a></p>
+<ul>
+<li>Staging Area <ul>
+<li>The files that are going to be part of your next commit</li>
+<li>You have made changes to the file but they have not yet been committed to the local repository. So they are held here, in the staging area</li>
+</ul>
+</li>
+<li>Local Repository <ul>
+<li>A git repository stored on your computer</li>
+</ul>
+</li>
+<li>Remote Repository <ul>
+<li>A git repository stored on a remote computer</li>
+</ul>
+</li>
+<li>Working directory <ul>
+<li>A checkout of a version of the project. A file in here can be: <ul>
+<li>Staged: The file with the changes is marked as to be committed to the local repository but not yet committed. (Result of executing ‘git add&#39; command)</li>
+<li>Modified: The file with the changes is not yet stored in the local repository</li>
+<li>Committed: The changes made to the file are stored in the local repository</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Let&#39;s look at some of the commands mentioned in this overview, in abit more detail:</p>
+<ul>
+<li>Git add <ul>
+<li>This command adds the file you have made changes to in your working directory, to the staging area</li>
+<li>Example: <code>git add <file></code></li>
+</ul>
+</li>
+<li>Git commit <ul>
+<li>This command takes your staged file and moves it to the local repository</li>
+<li>Example: <code>git commit -m "commit message</code><ul>
+<li>‘-m&#39; allows you to attach a message to the commit. You can describe the changes made to the files. This is useful for you or others are looking through the history of your project.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Git push <ul>
+<li>This command pushes the file(s) stored in your local repository, to the remote repository</li>
+<li>Example: <code>git push origin main</code><ul>
+<li>Origin is the remote repository</li>
+<li>Main is the specific branch</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Git fetch <ul>
+<li>This command will fetch files from the remote repository and store them in your local directory</li>
+<li>However it will not store them in your working directory. For this you have to merge in the files.</li>
+<li>Example: <code>git fetch <remote> <branch></code></li>
+</ul>
+</li>
+<li>Git merge <ul>
+<li>This command will get the files in your local repository e.g. the ones you have fetched from the remote repository, and bring them into your working directory</li>
+<li>Example: <code>git merge <branch></code></li>
+</ul>
+</li>
+<li>Git pull <ul>
+<li>This command is a combination of git fetch and git merge</li>
+<li>It gets files from the remote repository and bring them into the working directory</li>
+<li>Example: <code>git pull <remote></code></li>
+</ul>
+</li>
+</ul>
+<p>it is also useful to know the following:</p>
+<ul>
+<li>Branch <ul>
+<li>A branch is a way to add to a project without affecting the main part of a project. You create a branch which allows you to develop in isolation. You may then merge the changes in your branch, into the main part of the project. But as long as your changes are in the branch, they will not affect the main project.</li>
+</ul>
+</li>
+<li>Git clone <ul>
+<li>This command allows you get a copy of an existing remote repository and create a local version of it, on your computer</li>
+<li>Every file and update from that branch(typically master, the main branch), is pulled into the folder you initiate git clone in</li>
+<li>Example: <code>git clone <repo> <directory></code></li>
+</ul>
+</li>
+<li>Git status <ul>
+<li>This command gives us the status of the branch you are in. when you have made changes it will show how many you have made and to which files.</li>
+<li>Example: <code>git status</code></li>
+</ul>
+</li>
+</ul>
+<p><a href="https://www.freecodecamp.org/news/learn-the-basics-of-git-in-under-10-minutes-da548267cc91/" target="_blank">(Learn more about the fundamentals of Git here) </a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Azure Repos Git" duration="0">
+        <h2 is-upgraded>Git workflow</h2>
+<p>Version control has a general workflow that most developers use when writing code and sharing it with the team. Git has a version of this workflow using terminology and commands unique to Git.</p>
+<p>These steps are:</p>
+<ul>
+<li>Clone/Create a repository <ul>
+<li><strong>Clone an existing repository</strong> from the project in DevOps.</li>
+<li>If required, you can <strong>Create a new repository</strong> for the project in DevOps.</li>
+</ul>
+</li>
+<li>Get a local copy of code if they don&#39;t have one yet. <ul>
+<li><strong>Create a branch</strong> for the changes you plan to make and give it a name, such as users/jamal/fix-bug-3214 or cool-feature-x.</li>
+</ul>
+</li>
+<li>Make changes to code to fix bugs or add new features. <ul>
+<li><strong>Commit changes</strong> to your branch. People often have multiple commits for a bug fix or feature.</li>
+<li><strong>Push your branch</strong> to the remote repository.</li>
+</ul>
+</li>
+<li>Once the code is ready, make it available for review by your team. <ul>
+<li><strong>Create a pull request</strong> so other people can review your changes. To incorporate feedback, you might need to make more commits and push more changes.</li>
+</ul>
+</li>
+<li>Once the code is reviewed, merge it into the team&#39;s shared codebase. <ul>
+<li><strong>Complete your pull request</strong> and resolve any merge conflicts from changes other people made after you created your branch.</li>
+</ul>
+</li>
+</ul>
+<p class="image-container"><img alt="gitworkflow.png" src="img/359cd4678c2faae8.png"></p>
+<p>Throughout the rest of this lab tutorial you&#39;ll learn about how to use the above commands.</p>
+<p><a href="https://docs.microsoft.com/en-gb/azure/devops/repos/git/gitworkflow?view=azure-devops/" target="_blank">(Source: Azure Repos Git tutorial) </a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Clone an existing repository" duration="0">
+        <h2 is-upgraded>Visual Studio 2019</h2>
+<ul>
+<li><strong>Sign in</strong> Visual Studio with your account.</li>
+</ul>
+<p class="image-container"><img alt="Signin.png" src="img/5398d55409db809c.png"></p>
+<ul>
+<li>In <strong>Team Explorer</strong>, open the Connect page by selecting the Connect button. Choose <strong>Manage Connections</strong> then <strong>Connect to Project</strong>.</li>
+</ul>
+<p class="image-container"><img alt="connecttoproject01.png" src="img/9d235181fb76203b.png"></p>
+<ul>
+<li>In <strong>Connect to a Project</strong>, select the repo you want to clone from the list and select <strong>Clone</strong>. <strong>Note:</strong> I recommend creating a new folder &#34;workspaces&#34; on C drive to keep your code instead of the default path.</li>
+</ul>
+<p class="image-container"><img alt="connecttoproject02.png" src="img/790571c43aba2db2.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Create a new repository" duration="0">
+        <p>When a project is created in Azure DevOps, there is a default repository. In some cases, you may find needs for a new repository, you can simply do so via the web portal.</p>
+<h2 is-upgraded>Create a repo using the web portal</h2>
+<p>Navigate to the <strong>Repos</strong> page in your project.</p>
+<p class="image-container"><img alt="newrepository" src="img/9d46559a10c306a1.png"></p>
+<p>From the repo drop-down, select <strong>New repository</strong>.</p>
+<p class="image-container"><img alt="newrepository" src="img/90c903d8e91f0a31.png"></p>
+<p>In the Create a new repository dialog, verify that Git is the repo type and enter a name for your new repo. You can also add a <strong>README</strong> and create a <strong>.gitignore</strong> for the type of code you plan to manage in the repo. A README contains information about the code in your repo. The .gitignore file tells Git which types of files to ignore, such as temporary build files from your development environment.</p>
+<p>Set options for your new repo in the Create a Git repo dialog. When you&#39;re happy with the repo name and choices, select Create.</p>
+<p class="image-container"><img alt="newrepository" src="img/dbfd23ba0583d9f6.png"></p>
+<p>You will now have a new repository in your project.</p>
+<p class="image-container"><img alt="newrepository" src="img/4b4653cbf5ab1185.png"></p>
+<p>You can follow the previous step to clone this new repository to your local and start using it.</p>
+<p class="image-container"><img alt="newrepository" src="img/6997c853b08d1bfc.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Create a branch" duration="0">
+        <p>On the menu, click <strong>Git</strong> and go to <strong>Manage Branches</strong></p>
+<p class="image-container"><img alt="branch" src="img/7c989d8d93d8bc88.png"></p>
+<p>Choose the parent branch (usually main or master) to base your changes, right click and choose <strong>New Local Branch From...</strong>.</p>
+<p class="image-container"><img alt="branch" src="img/2e521f0d2b872abc.png"></p>
+<p>Supply a branch name in the required field and select <strong>Create Branch</strong>.</p>
+<p class="image-container"><img alt="branch" src="img/3972573bf613d6b.png"></p>
+<p>Visual Studio automatically performs a checkout to the newly created branch.</p>
+<p class="image-container"><img alt="branch" src="img/65f1c423808a3fae.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Commit changes" duration="0">
+        <p>Once you have completed changes or added new files in your branch, in this case, I have created two new files &#34;NewFile 1.txt&#34; and &#34;NewFile 2.txt&#34;, I would like to commit changes.</p>
+<p>Git does not automatically add changed files to the local repository when you create a commit. You must first stage your changes to let Git know which updates you want to add to the next commit. Staging lets you to selectively add files to a commit while excluding changes made in other files.</p>
+<h2 is-upgraded>Stage changes</h2>
+<ul>
+<li>Stage individual file changes by right-clicking a file in the ‘Change&#39; view and selecting <strong>Stage</strong>, it would create a <strong>Staged Changes</strong> section in Team Explorer. Only changes in the <strong>Staged Changes</strong> section are added to the next commit.<img alt="stage" src="img/fc807e91568665cb.png"></li>
+<li>Stage multiple files or folders by selecting them then right-clicking and choosing Stage or by dragging and dropping files from the Changes list into the <strong>Staged Changes</strong> list.</li>
+<li>Ignore files by right-clicking and selecting <strong>Ignore this local item</strong> or <strong>Ignore this extension</strong>.</li>
+<li>This adds an entry to the .gitignore file in your local repo. If the ignored file was added to your repo in an earlier commit, ignoring the file will not remove it from the Changes list.</li>
+</ul>
+<h2 is-upgraded>Create a commit</h2>
+<ul>
+<li>Open the <strong>Git Changes</strong> view in <strong>Team Explorer</strong>.</li>
+<li>Enter a commit message describing your changes and select Commit Staged to create a new commit that includes the changes listed in the <strong>Staged Changes</strong> section.</li>
+<li>Skip staging files if you just want to commit all changes listed by entering a commit message and selecting <strong>Commit All</strong> when you have no staged changes.<img alt="commit" src="img/e832600a6a32c8ce.png"></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Push your branch" duration="0">
+        <p>When you commit in Visual Studio you can <strong>push</strong> the commit to a remote repository.</p>
+<p class="image-container"><img alt="push" src="img/7fbaaf99d8e65c71.png"></p>
+<p>After you have pushed your first commit, the sync button <img alt="sync" src="img/52dc1fa101cf30bf.png"> becomes available, it carries out two actions, <strong>Pull</strong> and <strong>Push</strong>.</p>
+<ul>
+<li><strong>Pull</strong>: Fetch commits from the remote branch that others have made and merges it into the local branch</li>
+<li><strong>Push</strong>: Push your local commits to the remote branch</li>
+</ul>
+<p>This helps keep your local branch up to date with the remote branch.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Create a pull request" duration="0">
+        <h2 is-upgraded>Create a new PR from the Azure DevOps project website</h2>
+<p>You can create PRs for any branch from your project&#39;s <strong>Pull requests</strong> page on the web.</p>
+<ul>
+<li>On the <strong>Repos</strong> &gt; <strong>Pull requests</strong> page,<ul>
+<li>select <strong>New pull request</strong> at upper right.</li>
+<li><strong>OR</strong> after you push or update a feature branch, Azure Repos displays a prompt to <strong>Create a pull request</strong>.</li>
+</ul>
+<img alt="push" src="img/680bbbdb03985cfd.png"></li>
+<li>Select the branch with the changes and the branch you want to merge the changes into, such as the main branch. Enter your PR details below and create the PR.<ul>
+<li><strong>Title</strong>: Overview of your changes</li>
+<li><strong>Description</strong>: Details of your changes</li>
+<li><strong>Reviewers</strong>: One or more reviewers.</li>
+<li><strong>Work items to link</strong>: One or more user stories, tasks, tests, bugs and etc.</li>
+</ul>
+<img alt="push" src="img/78c1e6a3304fc8b3.png"></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Complete your pull request" duration="0">
+        <p>You can access PRs for any branch from your project&#39;s <strong>Pull requests</strong> page on the web.</p>
+<p class="image-container"><img alt="push" src="img/7550d2256c0a11e0.png"></p>
+<p>Once all required reviewers approve your pull request (PR) and the PR meets all branch policy requirements, you have two options:</p>
+<ul>
+<li>You can merge your changes into the target branch and complete the PR.</li>
+<li><strong>OR</strong> if you decide not to proceed with the changes in the PR, you can abandon the PR.</li>
+</ul>
+<p class="image-container"><img alt="push" src="img/d57ebee8d2d7baf7.png"></p>
+<p>To merge your changes into the target branch, click <strong>Complete</strong></p>
+<p class="image-container"><img alt="push" src="img/4a132aab326b142d.png"></p>
+<p>Choose <strong>Squash commit</strong> as the Merge Type and click <strong>Complete merge</strong></p>
+<p class="image-container"><img alt="push" src="img/8cf7bad54b95a056.png"></p>
+<p>Your changes have now been merged into the target branch</p>
+<p class="image-container"><img alt="push" src="img/357e0898098aaf3e.png"></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

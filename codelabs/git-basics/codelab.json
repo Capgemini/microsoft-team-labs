@@ -1,0 +1,22 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2021-11-26T17:10:44Z",
+  "id": "git-basics",
+  "duration": 0,
+  "title": "Git Basics",
+  "authors": "Jie Zeng and Hamzah Rahim",
+  "summary": "A lab to learn Git and Azure DevOps basics.",
+  "source": "../codelabs/git-basics.md",
+  "theme": "",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "git"
+  ],
+  "tags": [],
+  "url": "git-basics"
+}
