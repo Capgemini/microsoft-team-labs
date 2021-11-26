@@ -11,74 +11,78 @@ authors: Jie Zeng and Hamzah Rahim
 
 ### What is version control?
 
-A version control system (VCS) is a program or set of programs that tracks changes to a collection of files. One goal of a VCS is to easily recall earlier versions of individual files or of the entire project. Another goal is to allow several team members to work on a project, even on the same files, at the same time without affecting each other's work. 
+- “Version control is a system that records changes to a file or set of files over time so that you can recall specific versions later. So ideally, we can place any file in the computer on version control.”
+- Learn more: 
 
-With a VCS, you can: 
 
-See all the changes made to your project, when the changes were made, and who made them. 
+Why use Version Controls? You can:
 
-Include a message with each change to explain the reasoning behind it. 
+- See all the changes made to your project, when the changes were made, and who made them. 
 
-Retrieve past versions of the entire project or of individual files. 
+- Include a message with each change to explain the reasoning behind it. 
 
-Create branches, where changes can be made experimentally. This feature allows several different sets of changes (for example, features or bug fixes) to be worked on at the same time, possibly by different people, without affecting the main branch. Later, you can merge the changes you want to keep back into the main branch. 
+- Retrieve past versions of the entire project or of individual files. 
 
-Attach a tag to a version—for example, to mark a new release. 
+- Create branches, where changes can be made experimentally. This feature allows several different sets of changes (for example, features or bug fixes) to be worked on at the same time, possibly by different people, without affecting the main branch. Later, you can merge the changes you want to keep back into the main branch. 
+
+- Attach a tag to a version—for example, to mark a new release. 
+- Synchronise changes in code, between multiple people. If two people are making changes to a file, vc can take the changes they have both made independently and merge them into a single repository.
 
 [(Source: What is version control? - Learn | Microsoft Docs) ](https://docs.microsoft.com/en-us/learn/modules/intro-to-git/1-what-is-vc)
 
 ### What is Git? 
 
-Git is an open-source version control system and is the most widely used vcs in the tech industry.
+Git is an open-source version control system and is the most widely used vcs in the tech industry. Git is also a distributed Version Control System. This means that it does not rely on storing all version of a project file, on a centre server. Instead, users create a clone of the repository on their local machine, which includes the full history of the project.
 
-There are a number of ways we can interact with Git:
+There are several ways we can interact with Git:
+- Command Line
+        - We can directly input commands into the command line within the relevant directory that contains our local repository (definition in next section)
+- Visual Studio GUI/Visual Studio code GUIz
+        - Both versions of visual studio can contain an Git GUI which makes executing Git commands, a lot easier. You will be interacting with this GUi in the exercises to come.
 
--	Command Line
-    - We can directly input commands into the command line within the relevant directory that contains our local repository (definition in next section)
--	Visual Studio GUI/Visual Studio code GUI
-    - Both versions of visual studio can contain an Git GUI which makes executing Git commands, a lot easier. You will be interacting with this GUi in the exercises to come.
  
 
-## Overview of how Git works
+### Fundamentals of Git
 
-1.	Create a "repository" (project) with a git hosting tool (like gitHub)
-2.	Copy (or clone) the repository to your local machine
-3.	Add a file to your local repo and "commit" (save) the changes
-4.	"Push" your changes to your main branch
-5.	Make a change to your file with a git hosting tool and commit
-6.	"Pull" the changes to your local machine
-7.	Create a "branch" (version), make a change, commit the change
-8.	Open a "pull request" (propose changes to the main branch)
-9.	"Merge" your branch to the main branch
-- [(source: Learn Git- Git tutorials, workflows and commands | Atlassian Git Tutorial)]()
+- Staging Area
+    - The files that are going to be part of your next commit
+    - You have made changes to the file but they have not yet been committed to the local repository. So they are held here, in the staging area
+- Local Repository
+    - A git repository stored on your computer
+- Remote Repository
+    - A git repository stored on a remote computer
+- Working directory
+    - A checkout of a version of the project. A file in here can be:
+        - Staged: The file with the changes is marked as to be committed to the local repository but not yet committed. (Result of executing ‘git add’ command)
+        - Modified: The file with the changes is not yet stored in the local repository
+        - Committed: The changes made to the file are stored in the local repository
 
-Let’s look at some of the terms mentioned in this overview, in abit more detail:
+Let’s look at some of the commands mentioned in this overview, in abit more detail:
 
-### Fundamental Git Commands
-- 	Repository
-    - A folder insider a project which tracks all changes made to files, creating a history overtime.
+- Git add
+    - This command adds the file you have made changes to in your working directory, to the staging area
+- Git commit
+    - This command takes your staged file and moves it to the local repository
+- Git push
+    - This command pushes the file(s) stored in your local repository, to the remote repository
+- Git fetch
+    - This command will fetch files from the remote repository and store them in your local directory
+    - However it will not store them in your working directory. For this you have to merge in the files.
+- Git merge
+    - This command will get the files in your local repository e.g. the ones you have fetched from the remote repository, and bring them into your working directory
+- Git pull
+    - This command is a combination of git fetch and git merge
+    - It gets files from the remote repository and bring them into the working directory
+
+it is also useful to know the following:
 - Branch
     - A branch is a way to add to a project without affecting the main part of a project. You create a branch which allows you to develop in isolation. You may then merge the changes in your branch, into the main part of the project. But as long as your changes are in the branch, they will not affect the main project.
 - Git clone
-    -	This command allows you get a copy of an existing remote repository and create a local version of it, on your computer
+    - This command allows you get a copy of an existing remote repository and create a local version of it, on your computer
     - Every file and update from that branch(typically master, the main branch), is pulled into the folder you initiate git clone in
 - Git status
     - This command gives us the status of the branch you are in. when you have made changes it will show how many you have made and to which files.
-- Git Fetch
-    - The git fetch command downloads commits, files, and refs from a remote repository into your local repo. Fetching is what you do when you want to see what everybody else has been working on.
-    - [source: (Git Fetch | Atlassian Git Tutorial)]()
-    - It allows you to see the history of the branch without affecting your local work on the branch
-- Git Commit
-    - This command ‘saves’ a snapshot of your projects state, into the commit history
-- Git Pull
-    - The git pull command is used to fetch and download content from a remote repository and immediately update the local repository to match that content.
-    - [source: ( Git Pull | Atlassian Git Tutorial)]()
-- Git Push
-    - The git push command is used to upload local repository content to a remote repository. Pushing is how you transfer commits from your local repository to a remote repo.
-    - [source: ( Git Push | Atlassian Git Tutorial)]()
-- Git Checkout
-    - Git checkout is used to switch to a specific branch
-    - For example, you may create a new branch and switch from master to the newly created branch
+
 
 ## Azure Repos Git
 
