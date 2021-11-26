@@ -34,12 +34,12 @@ API Client allows you to organize requests into collections to help organize the
 
 ### Environment and Variables in Postman
 
-An environment in Postman is a set of key-value pair variables called 'Environment Variables' that you can reference and use in your requests. When you create an environment inside Postman, any chan**ge to value of the key-value pairs will reflect in the requests so that we do not need to update the requests.
+An environment in Postman is a set of key-value pair variables called 'Environment Variables' that you can reference and use in your requests. When you create an environment inside Postman, any change to value of the key-value pairs will reflect in the requests so that we do not need to update the requests.
 Multiple environments can be created in Postman and each environment can have their own set of variables created. Variables created inside of an environment are 'Local Scope Variables' and they will only work inside the environment they were created in. However Global variables can be created in Postman as well and they do not belong to any specific environment. 
 
 ### Workspaces  
 
-Postman Workspaces help you organize your API work and share with others. You will need to create a Postman Account to be able to use workspaces. In this lab we will be using Personal Workspace and they are degisned for individual work. They contain all the tools required to work with APIs and you can access them between different Postman instances.
+Postman Workspaces help you organize your API work and share with others. You will need to create a Postman Account to be able to use workspaces. In this lab we will be using Personal Workspace and they are designed for individual work. They contain all the tools required to work with APIs and you can access them between different Postman instances.
 
 ### Postman Navigation
 
@@ -229,7 +229,7 @@ When executing a request to retrieve only one specific record, the response does
 
 ### 3- Retrieve only selected fields for a record
 
-Notation used for retrieving only selected few fields for a record is "organizationurl.crm11.dynamics.com/api/data/v9.1/contacts(recordid)?$select=field1name,field2name,field3name". Schema names of fields has to be used in webapi requests.
+Notation used for retrieving only selected few fields for a record is "organizationurl.crm11.dynamics.com/api/data/v9.1/contacts(recordid)?$select=field1name,field2name,field3name". Schema names for fields have to be used in webapi requests.
 
 Below is a GET request example to retrieve selected fields for a contact with id (26b4e52d-034e-ec11-8f8e-00224841fc00)
 
@@ -245,9 +245,9 @@ As it can be seen from the response above, only requested fields have been retur
 
 **$expand** query option is used to control what data from related entities is returned.
 
-Notation for this request is "organizationurl.crm11.dynamics.com/api/data/v9.1/contacts(recordid)?$select=field1name,field2name,field3name&$expand=lookfield($select=lookup.field1,lookup.field2)". Schema names of fields has to be used in webapi requests.
+Notation for this request is "organizationurl.crm11.dynamics.com/api/data/v9.1/contacts(recordid)?$select=field1name,field2name,field3name&$expand=lookfield($select=lookup.field1,lookup.field2)". Schema names for fields have to be used in webapi requests.
 
-Please keep in mind, if you choose to expand on lookup fields like 'Customer - schema name is parentcustomerid' field which can be referencing more than one type of table then while writing webapi queries you will need to use parentcustomerid_account or parentcustomerid_contact to define which entity type you are expanding.
+Please keep in mind, some lookup fields can be referencing more than one type of table. i.e. 'Customer - schema name is parentcustomerid'. And then while writing webapi queries you will need to use parentcustomerid_account or parentcustomerid_contact to define which entity type you are expanding.
 
 Below is a GET request example for **expand** query
 
