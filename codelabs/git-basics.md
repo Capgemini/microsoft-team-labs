@@ -222,7 +222,7 @@ When you commit in Visual Studio you can **push** the commit to a remote reposit
 
 ![push](.attachments/git-basics/push01.png)
 
-After you have pushed your first commit, the sync button ![sync](.attachments/git-basics/sync.png) becomes available, it carries out two actions, **Pull** and **Push**.
+After you have pushed your first commit, the sync button ![sync](.attachments/git-basics/sync01.png) becomes available, it carries out two actions, **Pull** and **Push**.
 - **Pull**: Fetch commits from the remote branch that others have made and merges it into the local branch
 - **Push**: Push your local commits to the remote branch
 
