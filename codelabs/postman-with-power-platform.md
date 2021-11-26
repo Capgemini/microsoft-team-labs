@@ -247,7 +247,7 @@ As it can be seen from the response above, only requested fields have been retur
 
 Notation for this request is "organizationurl.crm11.dynamics.com/api/data/v9.1/contacts(recordid)?$select=field1name,field2name,field3name&$expand=lookfield($select=lookup.field1,lookup.field2)". Schema names for fields have to be used in webapi requests.
 
-Please keep in mind, some lookup fields can be referencing more than one type of table. i.e. 'Customer - schema name is parentcustomerid'. And then while writing webapi queries you will need to use parentcustomerid_account or parentcustomerid_contact to define which entity type you are expanding.
+Please keep in mind, some lookup fields can be referencing more than one type of table. i.e. 'Customer - schema name is parentcustomerid'. And then while writing webapi queries you will need to use "fieldname_entityname" like parentcustomerid_account or parentcustomerid_contact to define which entity type you are expanding.
 
 Below is a GET request example for **expand** query
 
