@@ -1,0 +1,331 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Using Postman with Power Platform</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="postman-with-power-platform"
+                  title="Using Postman with Power Platform"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="0">
+        <p>The aim of this lab is that you will learn how to configure Postman and build basic CRUD (Create, Read, Update and Delete) requests to be used with Power Platform Web API. Postman is one of the most popular third-party tools that can be used to authenticate to Microsoft Dataverse instances and to create and send Web API requests and view responses.</p>
+<h2 is-upgraded>Prerequisites</h2>
+<ul>
+<li>Power Apps Dataverse instance that you can connect to. You can find more information around creating environments in - <a href="https://capgemini.github.io/microsoft-team-labs/codelabs/alm-environment-setup/index.html?index=..%2F..%2Fmicrosoft-team-labs%2F#2" target="_blank">Environment Setup Codelab</a></li>
+<li>Azure Application User - You can find more information in how to register an application user in <a href="https://capgemini.github.io/microsoft-team-labs/codelabs/alm-environment-setup/index.html?index=..%2F..%2Fmicrosoft-team-labs%2F#4" target="_blank">Environment Setup Codelab</a></li>
+<li><a href="https://www.postman.com/downloads/" target="_blank">Download and install the Postman desktop application (Windows 64-bit)</a></li>
+</ul>
+<p>Some links you might find useful through out this lab:</p>
+<ul>
+<li><a href="https://learning.postman.com/docs/getting-started/introduction/" target="_blank">Learning Postman</a></li>
+<li><a href="https://docs.microsoft.com/en-us/powerapps/developer/data-platform/webapi/perform-operations-web-api" target="_blank">Power Platform Web API</a></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="What is Postman?" duration="0">
+        <p>Postman is an API client that makes it easy for developers to create, test and share API requests. It allows users to create and save HTTP/s requests and it allows users to read their responses as well. Postman allows you to either create an account for free or continue to use the app without an account.</p>
+<p>There are few features to point out about Postman before we continue with the rest of this lab.</p>
+<h2 is-upgraded>API Client</h2>
+<p>Postman API Client is the main tool which enabled users to easily to define API requests. It automatically detects the language of response and format the text inside the body to make any inspection easy. The client also includes built-in support for authentication protocals like OAuth 1.2/2.0 and many more. API Client allows you to organize requests into collections to help organize the requests for reuse so you dont have to waste time building everything from scratch.</p>
+<h2 is-upgraded>Environment and Variables in Postman</h2>
+<p>An environment in Postman is a set of key-value pair variables called ‘Environment Variables&#39; that you can reference and use in your requests. When you create an environment inside Postman, any change to value of the key-value pairs will reflect in the requests so that we do not need to update the requests. Multiple environments can be created in Postman and each environment can have their own set of variables created. Variables created inside of an environment are ‘Local Scope Variables&#39; and they will only work inside the environment they were created in. However Global variables can be created in Postman as well and they do not belong to any specific environment.</p>
+<h2 is-upgraded>Workspaces</h2>
+<p>Postman Workspaces help you organize your API work and share with others. You will need to create a Postman Account to be able to use workspaces. In this lab we will be using Personal Workspace and they are designed for individual work. They contain all the tools required to work with APIs and you can access them between different Postman instances.</p>
+<h2 is-upgraded>Postman Navigation</h2>
+<p class="image-container"><img alt="image.png" src="img/efe813af0e69360a.png"></p>
+<h2 is-upgraded>1 - Side Bar Section</h2>
+<p>This box is where you can find environments, history, collections and apis.</p>
+<h2 is-upgraded>2 - Request Builder Section</h2>
+<p>This box is where you can build requests and select which environment to use.</p>
+<h2 is-upgraded>3 - Response Section</h2>
+<p>This box shows the response from the server that you receive after executing a particular request.</p>
+<p>Information on more complex tools in Postman, such as <strong>Collection Runner</strong> can be found in the Learning Postman link above. Collection Runner allows you to save multiple requests in a specific order and execute them.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Setup Postman Environment" duration="0">
+        <p>Once you downloaded and installed postman, you will now need to sign up to a free postman account in order for you to be able to create a workspace and environment for this lab.</p>
+<p>Launch Postman once it is installed and you will get the screen below to create a free account</p>
+<p class="image-container"><img alt="image.png" src="img/1366abe5295d282f.png"></p>
+<p>Go ahead and click Create Free Account and simply follow the steps by providing an email address and a password</p>
+<p>When asked to <strong>Create your own team</strong>, please click on <strong>Continue Without a Team</strong> button as shown below</p>
+<p class="image-container"><img alt="image.png" src="img/94066e187d169ba8.png"></p>
+<p>You should now on the screen below</p>
+<p class="image-container"><img alt="image.png" src="img/20b2dececb62466e.png"></p>
+<p>To access your <strong>‘Private Workspace&#39;</strong> please click on <strong>Workspaces</strong> on the toolbar and select <strong>My Workspace</strong> from the dropdown</p>
+<p class="image-container"><img alt="image.png" src="img/48fb7bd45f16d814.png"></p>
+<p>Once you selected <strong>‘My Workspace&#39;</strong> , you should now see the screen below where you can start to create an environment and adding variables</p>
+<p class="image-container"><img alt="image.png" src="img/6d9ad563c6412be2.png"></p>
+<h2 is-upgraded>Create A Postman Environment</h2>
+<p>Click on <strong>Environments</strong> from the left Side Bar Section and then click on <strong>+ Create New Environment</strong> as shown below</p>
+<p class="image-container"><img alt="image.png" src="img/70d1d86d5f3ddac5.png"></p>
+<p>And give your environment a meaningful name. Once environment has been created, you will see your environment as shown below and now you are ready to add in local variables to your environment</p>
+<p class="image-container"><img alt="image.png" src="img/2210083c967985d7.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="How to connect Postman to Power Platform" duration="0">
+        <p>There is a set of variables required by Postman in order to authenticate to Power Platform using OAuth2.0. These variables are;</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p><strong>Variable Name    </strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Value    </strong></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>url    </p>
+</td><td colspan="1" rowspan="1"><p>Power App instance url https://.crm11.dynamics.com    </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>clientid    </p>
+</td><td colspan="1" rowspan="1"><p>Application Registration Client Id created in pre-requisites    </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>version    </p>
+</td><td colspan="1" rowspan="1"><p>9.1    </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>webapiurl    </p>
+</td><td colspan="1" rowspan="1"><p>&#123;&#123;url}}/api/data/v&#123;&#123;version}}/    </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>callback    </p>
+</td><td colspan="1" rowspan="1"><p>https://callbackurl    </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>authurl    </p>
+</td><td colspan="1" rowspan="1"><p>https://login.microsoftonline.com/common/oauth2/authorize?resource=&#123;&#123;url}}    </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>clientsecret    </p>
+</td><td colspan="1" rowspan="1"><p>Application Registration Client Secret value created in pre-requisites    </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>tenantid    </p>
+</td><td colspan="1" rowspan="1"><p>Application Registration tenant id in Azure Active Directory    </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>authtokenurl    </p>
+</td><td colspan="1" rowspan="1"><p>https://login.microsoftonline.com/&#123;&#123;tenantid}}/oauth2/v2.0/token    </p>
+</td></tr>
+</table>
+<p>Once you created these in your environment then click on <strong>Save</strong> it should look as shown below</p>
+<p class="image-container"><img alt="image.png" src="img/110223fc3eb48985.png"></p>
+<h2 is-upgraded>Generate an access token to use with Environment</h2>
+<p>There are multiple ways to getting a token in order to connect to Power App instance. First you will need to create a new tab in order to build a request. To do this please follow below:</p>
+<ul>
+<li>Select File &gt; New and from <strong>Create New</strong> dialog box, select <strong>HTTP Request</strong>. This will add a new tab into Request Builder Section . Please make sure you set the environment to the one created in the <strong>Create Environment Step</strong> as shown below.</li>
+</ul>
+<p class="image-container"><img alt="image.png" src="img/adfc4aea90e8fd1f.png"></p>
+<p>To create a token using <strong>Client Credentials</strong> as <strong>Grant Type</strong>:</p>
+<ul>
+<li>Select <strong>Authorization</strong> and set Type to <strong>OAuth 2.0</strong> and set the <strong>Grant Type</strong> to Client <strong>Credentials</strong> and then fill in the rest of the fields under <strong>Configure New Token</strong> section with the variables created in <strong>Create Environment Step</strong>. Once all set it should look like below.</li>
+</ul>
+<p class="image-container"><img alt="image.png" src="img/f9aaed74ad39c8cd.png"></p>
+<ul>
+<li>Then to generate the token, click <strong>Generate New Access Token</strong> button and you will then be presented with <strong>Get New Access Token</strong> dialog window. Once this shows <strong>Authentication Complete</strong> then click <strong>Proceeed</strong> as shown below.</li>
+</ul>
+<p class="image-container"><img alt="image.png" src="img/45235d0d9d134f5.png"></p>
+<ul>
+<li>Then you will be presented with the <strong>Manage Access Token</strong> dialog. Give the token any name and click on <strong>Use Token</strong></li>
+</ul>
+<p class="image-container"><img alt="image.png" src="img/ada19a3fe74583f3.png"></p>
+<p><strong>IMPORTANT NOTE</strong> Access Tokens DO expire. When expired you will receive 401 response. You can simply in the same tab click <strong>Generate Access Token</strong> button again and grab a new token. You can then continue sending your requests.</p>
+<ul>
+<li>You are now ready to execute your first request against the Power Platform instance using <strong>WhoAmI</strong> request to confirm connection is working. To do this please follow below: <strong>GET</strong> request will be used and request url will be set to <strong>&#123;&#123;webapiurl}}/WhoAmI</strong> as shown below. When you are ready to execute the request then click <strong>Send</strong> button.<img alt="image.png" src="img/a68020ab6d6c61c.png">Response code 200 is a success. And we can see the response for the request sent</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Retrieve Records from Power Platform using Postman" duration="0">
+        <p>This chapter will cover different ways of retrieving records from Power App instance using Postman. GET request is used for retrieving records.</p>
+<p><a href="https://docs.microsoft.com/en-us/powerapps/developer/data-platform/webapi/retrieve-entity-using-web-api" target="_blank">Microsoft Dataverse WebAPI</a> documentation is a really good reference source when building requests.</p>
+<h2 is-upgraded>1- Retrieve all fields for specific entity type</h2>
+<p>Notation used for retrieving all records for an entity type is &#34;organizationurl.crm11.dynamics.com/api/data/v9.1/contacts&#34;.</p>
+<p>Below is a GET request example to retrieve all contacts and all their properties in a Power App instance</p>
+<p>request: <img alt="image.png" src="img/663593288076d14b.png"></p>
+<p>response: <img alt="image.png" src="img/3655a3756e0d2dc2.png"></p>
+<p><strong>value</strong> property of the response is an array where all the returned results are and properties for each contact can be seen there.</p>
+<h2 is-upgraded>2- Retrieve all fields for a specific record</h2>
+<p>Notation used for retrieving all fields for a specific record is &#34;organizationurl.crm11.dynamics.com/api/data/v9.1/contacts(recordid)&#34;.</p>
+<p>Below is a GET request example to retrieve all fields for a contact with id (26b4e52d-034e-ec11-8f8e-00224841fc00)</p>
+<p>request: <img alt="image.png" src="img/e1ecaa4dfc653b63.png"></p>
+<p>response: <img alt="image.png" src="img/d5e5a898a0df90a6.png"></p>
+<p>When executing a request to retrieve only one specific record, the response does not contain a value property.</p>
+<h2 is-upgraded>3- Retrieve only selected fields for a record</h2>
+<p>Notation used for retrieving only selected few fields for a record is &#34;organizationurl.crm11.dynamics.com/api/data/v9.1/contacts(recordid)?$select=field1name,field2name,field3name&#34;. Schema names for fields have to be used in webapi requests.</p>
+<p>Below is a GET request example to retrieve selected fields for a contact with id (26b4e52d-034e-ec11-8f8e-00224841fc00)</p>
+<p>request: <img alt="image.png" src="img/1d163576c07ce2d.png"></p>
+<p>response: <img alt="image.png" src="img/6d4e6d2dad40b2fc.png"></p>
+<p>As it can be seen from the response above, only requested fields have been returned.</p>
+<h2 is-upgraded>4- Retrieve data about lookup fields</h2>
+<p><strong>$expand</strong> query option is used to control what data from related entities is returned.</p>
+<p>Notation for this request is &#34;organizationurl.crm11.dynamics.com/api/data/v9.1/contacts(recordid)?$select=field1name,field2name,field3name&amp;$expand=lookfield($select=lookup.field1,lookup.field2)&#34;. Schema names for fields have to be used in webapi requests.</p>
+<p>Please keep in mind, some lookup fields can be referencing more than one type of table. i.e. ‘Customer - schema name is parentcustomerid&#39;. And then while writing webapi queries you will need to use &#34;fieldname_entityname&#34; like parentcustomerid_account or parentcustomerid_contact to define which entity type you are expanding.</p>
+<p>Below is a GET request example for <strong>expand</strong> query</p>
+<p>request and response: <img alt="image.png" src="img/67135e4b87dd5da5.png"></p>
+<h2 is-upgraded>5- Retrieve related entities for an entity by expanding collection-valued navigation</h2>
+<p>This is achieved by using the <strong>$expand</strong> query again. The collection-valued navigation property is for a 1:N relationship on the entity. You will need to use the <strong>schema name</strong> of the relationship for this request. This can be found in the Power App Maker Portal.</p>
+<p>Below is a GET request example for this</p>
+<p>request and response: <img alt="image.png" src="img/b36083533a521dd3.png"></p>
+<p>As it can be seen from the response both the contacts related to the record has been retrieved.</p>
+<h2 is-upgraded>6- Retrieve records by running a filter criteria</h2>
+<p><a href="https://docs.microsoft.com/en-us/powerapps/developer/data-platform/webapi/query-data-web-api#filter-results" target="_blank">Query Data with Web API - Filter Results</a> documentation is a really good reference source when building these requests.</p>
+<p><strong>$filter</strong> query option is used to apply a criteria when running a retrieve request.</p>
+<p>Notation for this request is &#34;organizationurl.crm11.dynamics.com/api/data/v9.1/contacts(recordid)?$select=field1name,field2name,field3name&amp;$filter=field eq criteria&#34;</p>
+<p>Below is a GET request example with filter query</p>
+<p>request and response: <img alt="image.png" src="img/611f9608b3479bcf.png"></p>
+<p><strong>IMPORTANT TIP</strong> all the retrieve queries above can be executed in a browser too. To do this please follow below:</p>
+<ul>
+<li>Open a browser session and log into to a Power App instance</li>
+<li>Open a new browser tab and simply put any of the queries above into the url and hit enter as shown below. i.e. https://organizationname.crm11.dynamics.com/api/data/v9.1/contacts(recordid)</li>
+</ul>
+<p class="image-container"><img alt="image.png" src="img/e225d2beeeb64b33.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Create Records in Power Platform using Postman" duration="0">
+        <p>This chapter will cover creation of records in Power Platform instance using Postman. POST request is used for creating records.</p>
+<p><a href="https://docs.microsoft.com/en-us/powerapps/developer/data-platform/webapi/create-entity-web-api" target="_blank">Microsoft Dataverse WebAPI</a> documentation is a really good reference source when building requests.</p>
+<p>To create records using Postman please do below before trying to create any record.</p>
+<ul>
+<li>In Request Builder Section, the query type will need to changed to <strong>POST</strong></li>
+<li>In Request Builder Section, enter <strong>&#123;&#123;webapiurl}}/entitypluralname</strong> into query url section</li>
+<li>Add below key value pairs as shown in the Query Headers</li>
+</ul>
+<table>
+<tr><td colspan="1" rowspan="1"><p><strong>Key    </strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Value    </strong></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>If-None-Match    </p>
+</td><td colspan="1" rowspan="1"><p>null    </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>OData-Version    </p>
+</td><td colspan="1" rowspan="1"><p>4.0    </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Content-Type    </p>
+</td><td colspan="1" rowspan="1"><p>application/json    </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Accept    </p>
+</td><td colspan="1" rowspan="1"><p>application/json    </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>OData-MaxVersion    </p>
+</td><td colspan="1" rowspan="1"><p>4.0    </p>
+</td></tr>
+</table>
+<p class="image-container"><img alt="image.png" src="img/f4eccc32dddfebf1.png"></p>
+<p><strong>IMPORTANT NOTE</strong> Properties that you want to set when creating the record needs to be added to the request <strong>Body</strong> section as a JSON value. Schema names of fields has to be used in request body.</p>
+<h2 is-upgraded>1- Basic Create</h2>
+<p>Below is an example to create an account.</p>
+<p class="image-container"><img alt="image.png" src="img/cce1c3dc4205b638.png"></p>
+<p>As it can be seen from the response, the 204 success is returned which means the request has been executed succesfully.</p>
+<h2 is-upgraded>2- Create records with data returned</h2>
+<p>Data about the created record can be returned in the same request. To be able to do this please add below to the Headers key value pair.</p>
+<ul>
+<li>key = Prefer</li>
+<li>value = return=representation</li>
+</ul>
+<p>and <strong>$select</strong> query needs to be amended to the end of the url. &#34;organizationurl.crm11.dynamics.com/api/data/v9.1/accounts?$select=field1name,field2name,field3name&#34;</p>
+<p>Below is an example to create an account with data returned.</p>
+<p class="image-container"><img alt="image.png" src="img/fa748465a9fcdf44.png"></p>
+<p>As it can be seen from the response, the 201 success is returned which means the request has been executed succesfully and data returned.</p>
+<h2 is-upgraded>3- Create related records - Deep Insert</h2>
+<p>Related records can be created by defining them as navigation properties and this is known as <strong>deep insert</strong>.</p>
+<p><strong>Create a related record using single-valued navigation property</strong></p>
+<p>Below example is a request to create a contact and defining the code_laptopid(lookup) field navigation property as well. Because we defined the code_laptopid property without id, a laptop record should be created as well.</p>
+<p class="image-container"><img alt="image.png" src="img/46ad747279cc6a44.png"></p>
+<p>As it can be seen from the response, the 201 success is returned which means both contact and the laptop record have been created.</p>
+<p><strong>Create related records using collection-valued navigation property</strong></p>
+<p>Below example is a request to create a laptop record and multiple contact records related to it by defining the collection-valued navigation property. Collection-valued navigation property is the schema name of the 1:N relationship between laptop and contact tables. This can be found in the Power App Maker Portal. Collection-valued navigation property is set as a json array as it can be seen in the example below.</p>
+<p class="image-container"><img alt="image.png" src="img/3bf2edfbdc32c95.png"></p>
+<p>As it can be seen from the response, the 201 success is returned which means laptop record and both contact records have been created.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Update Records in Power Platform using Postman" duration="0">
+        <p>This chapter will cover update of records in Power Platform instance using Postman. PATCH request is used for updating records.</p>
+<p><a href="https://docs.microsoft.com/en-us/powerapps/developer/data-platform/webapi/update-delete-entities-using-web-api" target="_blank">Microsoft Dataverse WebAPI</a> documentation is a really good reference source when building requests.</p>
+<p>To update records using Postman please do below before trying to update any record.</p>
+<ul>
+<li>In Request Builder Section, the query type will need to changed to <strong>PATCH</strong></li>
+<li>In Request Builder Section, enter <strong>&#123;&#123;webapiurl}}/entitypluralname(recordid)</strong> into query url section</li>
+<li>Add below key value pairs as shown in the Query Headers</li>
+</ul>
+<table>
+<tr><td colspan="1" rowspan="1"><p><strong>Key    </strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Value    </strong></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>If-None-Match    </p>
+</td><td colspan="1" rowspan="1"><p>null    </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>OData-Version    </p>
+</td><td colspan="1" rowspan="1"><p>4.0    </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Content-Type    </p>
+</td><td colspan="1" rowspan="1"><p>application/json    </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Accept    </p>
+</td><td colspan="1" rowspan="1"><p>application/json    </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>OData-MaxVersion    </p>
+</td><td colspan="1" rowspan="1"><p>4.0    </p>
+</td></tr>
+</table>
+<p class="image-container"><img alt="image.png" src="img/f4eccc32dddfebf1.png"></p>
+<p><strong>IMPORTANT NOTE</strong> Properties that you want to update needs to be added to the request body section as a JSON value. This will be shown in the following examples.</p>
+<h2 is-upgraded>1- Basic Update</h2>
+<p>Below is an example to update an existing record.</p>
+<p class="image-container"><img alt="image.png" src="img/35da127475e1d1e6.png"></p>
+<p>As it can be seen from the response, the 204 success is returned which means request has been executed succesfully.</p>
+<h2 is-upgraded>2- Update records with data returned</h2>
+<p>Data about the updated record can be returned in the same request. To be able to do this please add below to the Headers key value pair.</p>
+<ul>
+<li>key = Prefer</li>
+<li>value = return=representation</li>
+</ul>
+<p>and <strong>$select</strong> query needs to be amended to the end of the url. &#34;organizationurl.crm11.dynamics.com/api/data/v9.1/accounts?$select=field1name,field2name,field3name&#34;</p>
+<p>Below is an example to update a contact with data returned.</p>
+<p class="image-container"><img alt="image.png" src="img/94ea7e622862ee7.png"></p>
+<p>As it can be seen from the response, the 201 success is returned which means request has been executed succesfully and data returned.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Delete Records in Power Platform using Postman" duration="0">
+        <p>This chapter will cover deletion of records in Power Platform instance using Postman. DELETE request is used for deleting records.</p>
+<p><a href="https://docs.microsoft.com/en-us/powerapps/developer/data-platform/webapi/update-delete-entities-using-web-api#basic-delete" target="_blank">Microsoft Dataverse WebAPI</a> documentation is a really good reference source when building requests.</p>
+<p>In Request Builder Section, enter <strong>&#123;&#123;webapiurl}}/entitypluralname(recordid)</strong> into query url section. Request Body is not required to be set for a Delete request.</p>
+<h2 is-upgraded>1- Basic Delete</h2>
+<p>Below is an example to delete an existing record.</p>
+<p class="image-container"><img alt="image.png" src="img/e6e56d8bf750ce2.png"></p>
+<p>As it can be seen from the response, the 204 success is returned which means request has been executed succesfully.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

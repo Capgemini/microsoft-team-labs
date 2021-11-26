@@ -1,0 +1,22 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2021-11-26T17:05:08Z",
+  "id": "postman-with-power-platform",
+  "duration": 0,
+  "title": "Using Postman with Power Platform",
+  "authors": "Ahmet Oztourk",
+  "summary": "A lab to learn the learn how to use Postman with Power Platform Web API.",
+  "source": "../codelabs/postman-with-power-platform.md",
+  "theme": "",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "webapitools"
+  ],
+  "tags": [],
+  "url": "postman-with-power-platform"
+}
