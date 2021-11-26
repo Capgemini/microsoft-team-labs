@@ -43,6 +43,9 @@ There are several ways we can interact with Git:
  
 
 ### Fundamentals of Git
+![gitworkflow.png](.attachments/git-basics/fundamentals_01.png)
+
+[(Source: fundamentals of Git) ](https://www.freecodecamp.org/news/learn-the-basics-of-git-in-under-10-minutes-da548267cc91/)
 
 - Staging Area
     - The files that are going to be part of your next commit
@@ -61,18 +64,27 @@ Let’s look at some of the commands mentioned in this overview, in abit more de
 
 - Git add
     - This command adds the file you have made changes to in your working directory, to the staging area
+    - Example: `git add <file>`
 - Git commit
     - This command takes your staged file and moves it to the local repository
+    - Example: `git commit -m "commit message`
+        - '-m' allows you to attach a message to the commit. You can describe the changes made to the files. This is useful for you or others are looking through the history of your project.
 - Git push
     - This command pushes the file(s) stored in your local repository, to the remote repository
+    - Example: `git push origin main`
+        - Origin is the remote repository 
+        - Main is the specific branch
 - Git fetch
     - This command will fetch files from the remote repository and store them in your local directory
     - However it will not store them in your working directory. For this you have to merge in the files.
+    - Example: `git fetch <remote> <branch>`
 - Git merge
     - This command will get the files in your local repository e.g. the ones you have fetched from the remote repository, and bring them into your working directory
+    - Example: `git merge <branch>`
 - Git pull
     - This command is a combination of git fetch and git merge
     - It gets files from the remote repository and bring them into the working directory
+    - Example: `git pull <remote>`
 
 it is also useful to know the following:
 - Branch
@@ -80,9 +92,12 @@ it is also useful to know the following:
 - Git clone
     - This command allows you get a copy of an existing remote repository and create a local version of it, on your computer
     - Every file and update from that branch(typically master, the main branch), is pulled into the folder you initiate git clone in
+    - Example: `git clone <repo> <directory>`
 - Git status
     - This command gives us the status of the branch you are in. when you have made changes it will show how many you have made and to which files.
+    - Example: `git status`
 
+[(Learn more about the fundamentals of Git here) ](https://www.freecodecamp.org/news/learn-the-basics-of-git-in-under-10-minutes-da548267cc91/)
 
 ## Azure Repos Git
 
