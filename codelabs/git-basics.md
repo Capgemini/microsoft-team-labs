@@ -149,6 +149,8 @@ Throughout the rest of this lab tutorial you'll learn about how to use the above
 
 ## Create a new repository
 
+When a project is created in Azure DevOps, there is a default repository. In some cases, you may find needs for a new repository, you can simply do so via the web portal.
+
 ### Create a repo using the web portal
 
 Navigate to the Repos page in your project.
@@ -193,27 +195,32 @@ Visual Studio automatically performs a checkout to the newly created branch.
 
 ## Commit changes
 
+Once you have completed changes or added new files in your branch, in this case, I have created two new files "NewFile 1.txt" and "NewFile 2.txt", I would like to commit changes.
+
 Git does not automatically add changed files to the snapshot when you create a commit. You must first stage your changes to let Git know which updates you want to add to the next commit. Staging lets you to selectively add files to a commit while excluding changes made in other files.
 
 ### Stage changes
 
-Stage individual file changes by right-clicking a file in the Change view and selecting Stage. Staging a change creates a Staged Changes section in Team Explorer. Only changes in the Staged Changes section are added to the next commit.
+- Stage individual file changes by right-clicking a file in the Change view and selecting Stage. 
+- Staging a change creates a Staged Changes section in Team Explorer. 
+- Only changes in the Staged Changes section are added to the next commit.
 
-![stage](.attachments/git-basics/stage01.png)
+  ![stage](.attachments/git-basics/stage01.png)
 
-Stage multiple files or folders by selecting them then right-clicking and choosing Stage or by dragging and dropping files from the Changes list into the Staged Changes list.
+- Stage multiple files or folders by selecting them then right-clicking and choosing Stage or by dragging and dropping files from the Changes list into the Staged Changes list.
 
-Ignore files by right-clicking and selecting Ignore this local item or Ignore this extension. This adds an entry to the .gitignore file in your local repo. If the ignored file was added to your repo in an earlier commit, ignoring the file will not remove it from the Changes list. See excluding and ignoring files section for more information on how to ignore files already tracked by Git.
+- Ignore files by right-clicking and selecting Ignore this local item or Ignore this extension. 
+- This adds an entry to the .gitignore file in your local repo. If the ignored file was added to your repo in an earlier commit, ignoring the file will not remove it from the Changes list. 
 
 ### Create a commit
 
-Open the Git Changes view in Team Explorer.
+- Open the Git Changes view in Team Explorer.
 
-Enter a commit message describing your changes and select Commit Staged to create a new commit that includes the changes listed in the Staged Changes section.
+- Enter a commit message describing your changes and select Commit Staged to create a new commit that includes the changes listed in the Staged Changes section.
 
-Skip staging files if you just want to commit all changes listed by entering a commit message and selecting Commit All when you have no staged changes.
+- Skip staging files if you just want to commit all changes listed by entering a commit message and selecting Commit All when you have no staged changes.
 
-![commit](.attachments/git-basics/commit01.png)
+  ![commit](.attachments/git-basics/commit01.png)
 
 ## Push your branch
 
@@ -221,7 +228,11 @@ When you commit in Visual Studio you can **push** the commit to a remote reposit
 
 ![push](.attachments/git-basics/push01.png)
 
-For the subsequent changes that you would like to commit, you can sync the branch with a remote repository. You can do this with the ![sync](.attachments/git-basics/sync.png) button. Git makes sure that pushed changes are consistent with the remote branch. Others can pull your commits and merge them into their own local copy of the branch. 
+After you have pushed your first commit, the sync button ![sync](.attachments/git-basics/sync.png) becomes available, it carries out two actions, Push and Pull.
+- Push: Push your local commits
+- Pull: Pull in commits to the remote branch, that others have made
+
+This helps keep your local branch up to date with the remote branch.
 
 ## Create a pull request
 
@@ -229,13 +240,19 @@ For the subsequent changes that you would like to commit, you can sync the branc
 
 You can create PRs for any branch from your project's Pull requests page on the web.
 
-- On the **Repos** > **Pull requests** page, select New pull request at upper right. After you push or update a feature branch, Azure Repos displays a prompt to create a PR.
+- On the **Repos** > **Pull requests** page, 
+  - select New pull request at upper right. 
+  - **OR** after you push or update a feature branch, Azure Repos displays a prompt to create a PR.
 
-![push](.attachments/git-basics/pr01.png)
+  ![push](.attachments/git-basics/pr01.png)
 
-Select the branch with the changes and the branch you want to merge the changes into, such as the main branch. Enter your PR details and create the PR.
+- Select the branch with the changes and the branch you want to merge the changes into, such as the main branch. Enter your PR details below and create the PR.
+  - **Title**: Overview of your changes
+  - **Description**: Details of your changes
+  - **Reviewers**: One or more reviewers.
+  - **Work items to link**: One or more user stories, tasks, tests, bugs and etc.
 
-![push](.attachments/git-basics/pr02.png)
+  ![push](.attachments/git-basics/pr02.png)
 
 
 ## Complete your pull request
@@ -244,11 +261,13 @@ You can access PRs for any branch from your project's Pull requests page on the 
 
 ![push](.attachments/git-basics/pr04.png)
 
-Once all required reviewers approve your pull request (PR) and the PR meets all branch policy requirements, you can merge your changes into the target branch and complete the PR. Or if you decide not to proceed with the changes in the PR, you can abandon the PR.
+Once all required reviewers approve your pull request (PR) and the PR meets all branch policy requirements, you have two options:
+- You can merge your changes into the target branch and complete the PR. 
+- **OR** if you decide not to proceed with the changes in the PR, you can abandon the PR.
 
 ![push](.attachments/git-basics/pr03.png)
 
-To merge your changes into the target branch, click Complete
+To merge your changes into the target branch, click **Complete**
 
 ![push](.attachments/git-basics/pr05.png)
 
