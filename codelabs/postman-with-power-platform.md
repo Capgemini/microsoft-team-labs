@@ -256,7 +256,7 @@ request and response:
 
 ### 5- Retrieve related entities for an entity by expanding collection-valued navigation
 
-This is achieved by using the **$expand** query again. The collection-valued navigation property is for a 1:N relationship on the entity. This can be found in the Power App Maker Portal.
+This is achieved by using the **$expand** query again. The collection-valued navigation property is for a 1:N relationship on the entity. You will need to use the **schema name** of the relationship for this request. This can be found in the Power App Maker Portal. 
 
 Below is a GET request example for this
 
