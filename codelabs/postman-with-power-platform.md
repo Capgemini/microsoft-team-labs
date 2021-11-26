@@ -9,7 +9,7 @@ authors: Ahmet Oztourk
 
 ## Introduction
 
-The aim of this lab is that you will learn how to configure Postman to be used with Power Platform Web API. Postman is one of the most popular third-party tools that can be used to authenticate to Microsoft Dataverse instances and to create and send Web API requests and view responses.
+The aim of this lab is that you will learn how to configure Postman and build basic CRUD (Create, Read, Update and Delete) requests to be used with Power Platform Web API. Postman is one of the most popular third-party tools that can be used to authenticate to Microsoft Dataverse instances and to create and send Web API requests and view responses.
 
 ### Prerequisites
 - Power Apps Dataverse instance that you can connect to. You can find more information around creating environments in - [Environment Setup Codelab](https://capgemini.github.io/microsoft-team-labs/codelabs/alm-environment-setup/index.html?index=..%2F..%2Fmicrosoft-team-labs%2F#2)
@@ -18,7 +18,7 @@ The aim of this lab is that you will learn how to configure Postman to be used w
 
 Some links you might find useful through out this lab:
 
-- [Postman](https://www.postman.com/)
+- [Learning Postman](https://learning.postman.com/docs/getting-started/introduction/)
 - [Power Platform Web API](https://docs.microsoft.com/en-us/powerapps/developer/data-platform/webapi/perform-operations-web-api)
 
 ## What is Postman?
@@ -53,6 +53,8 @@ This box is where you can build requests and select which environment to use.
 
 ### 3 - Response Section
 This box shows the response from the server that you receive after executing a particular request.
+
+Information on more complex tools in Postman, such as **Collection Runner** can be found in the Learning Postman link above. Collection Runner allows you to save multiple requests in a specific order and execute them.
 
 ## Setup Postman Environment
 Once you downloaded and installed postman, you will now need to sign up to a free postman account in order for you to be able to create a workspace and environment for this lab.
@@ -139,7 +141,7 @@ There is a set of variables required by Postman in order to authenticate to Powe
   <tr>
    <td>clientsecret
    </td>
-   <td>Application Registration Client Secret created in pre-requisites
+   <td>Application Registration Client Secret value created in pre-requisites
    </td>
   </tr>
   <tr>
@@ -183,7 +185,7 @@ To create a token using **Client Credentials** as **Grant Type**:
 ![image.png](.attachments/postman-with-power-platform/image13.png)
 
 - You are now ready to execute your first request against the Power Platform instance using **WhoAmI** request to confirm connection is working. To do this please follow below:
-    - You will add the 'webapiurl' variable created plus 'WhoAmI' into the request URL and then click on Send as shown below
+    **GET** request will be used and request url will be set to **{{webapiurl}}/WhoAmI** as shown below. When you are ready to execute the request then click **Send** button.
     
     ![image.png](.attachments/postman-with-power-platform/image14.png)
 
@@ -250,7 +252,7 @@ request and response:
 
 ### 5- Retrieve related entities for an entity by expanding collection-valued navigation
 
-This is achieved by using the **$expand** query again. but the navigation property is not for a look up field but it is for a 1:N relationship on the entity.
+This is achieved by using the **$expand** query again. The collection-valued navigation property is for a 1:N relationship on the entity. This can be found in the Power App Maker Portal.
 
 Below is a GET request example for this
 
@@ -340,7 +342,7 @@ Below is an example to create an account.
 
 ![image.png](.attachments/postman-with-power-platform/image22.png)
 
-As it can be seen from the response, the 204 success is returned which means request has been executed succefully.
+As it can be seen from the response, the 204 success is returned which means request has been executed succesfully.
 
 ### 2- Create records with data returned
 
@@ -355,7 +357,7 @@ Below is an example to create an account with data returned.
 
 ![image.png](.attachments/postman-with-power-platform/image23.png)
 
-As it can be seen from the response, the 201 success is returned which means request has been executed succefully and data returned.
+As it can be seen from the response, the 201 success is returned which means request has been executed succesfully and data returned.
 
 ### 3- Create related records - Deep Insert
 
@@ -434,11 +436,11 @@ To update records using Postman please do below before trying to update any reco
 
 ### 1- Basic Update
 
-Below is an example to update an existing account.
+Below is an example to update an existing record.
 
 ![image.png](.attachments/postman-with-power-platform/image27.png)
 
-As it can be seen from the response, the 204 success is returned which means request has been executed succefully.
+As it can be seen from the response, the 204 success is returned which means request has been executed succesfully.
 
 ### 2- Update records with data returned
 
@@ -451,6 +453,22 @@ and **$select** query needs to be amended to the end of the url. "organizationur
 
 Below is an example to update a contact with data returned.
 
+![image.png](.attachments/postman-with-power-platform/image28.png)
 
+As it can be seen from the response, the 201 success is returned which means request has been executed succesfully and data returned.
 
-As it can be seen from the response, the 201 success is returned which means request has been executed succefully and data returned.
+## Delete Records in Power Platform using Postman
+
+This chapter will cover deletion of records in Power Platform instance using Postman. DELETE request is used for deleting records.
+
+[Microsoft Dataverse WebAPI](https://docs.microsoft.com/en-us/powerapps/developer/data-platform/webapi/update-delete-entities-using-web-api#basic-delete) documentation is a really good reference source when building requests.
+
+In Request Builder Section, enter **{{webapiurl}}/entitypluralname(recordid)** into query url section.
+
+### 1- Basic Delete
+
+Below is an example to delete an existing record.
+
+![image.png](.attachments/postman-with-power-platform/image29.png)
+
+As it can be seen from the response, the 204 success is returned which means request has been executed succesfully.
