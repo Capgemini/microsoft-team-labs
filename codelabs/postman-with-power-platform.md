@@ -465,7 +465,7 @@ This chapter will cover deletion of records in Power Platform instance using Pos
 
 [Microsoft Dataverse WebAPI](https://docs.microsoft.com/en-us/powerapps/developer/data-platform/webapi/update-delete-entities-using-web-api#basic-delete) documentation is a really good reference source when building requests.
 
-In Request Builder Section, enter **{{webapiurl}}/entitypluralname(recordid)** into query url section.
+In Request Builder Section, enter **{{webapiurl}}/entitypluralname(recordid)** into query url section. Request Body is not required to be set for a Delete request.
 
 ### 1- Basic Delete
 
