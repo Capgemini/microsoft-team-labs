@@ -101,10 +101,6 @@ it is also useful to know the following:
 
 ## Azure Repos Git
 
-### About Version Control
-
-What is “version control”, and why should you care? Version control is a system that records changes to a file or set of files over time so that you can recall specific versions later. A Version Control System (VCS) is a very wise thing to use. It allows you to revert selected files back to a previous state, revert the entire project back to a previous state, compare changes over time, see who last modified something that might be causing a problem, who introduced an issue and when, and more.
-
 ### Git workflow
 
 Version control has a general workflow that most developers use when writing code and sharing it with the team. Git has a version of this workflow using terminology and commands unique to Git. 
