@@ -42,7 +42,7 @@ There are several ways we can interact with Git:
 
  
 
-### Fundamentals of Git
+## Fundamentals of Git
 ![gitworkflow.png](.attachments/git-basics/fundamentals_01.png)
 
 [(Source: fundamentals of Git) ](https://www.freecodecamp.org/news/learn-the-basics-of-git-in-under-10-minutes-da548267cc91/)
