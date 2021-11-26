@@ -193,13 +193,11 @@ Visual Studio automatically performs a checkout to the newly created branch.
 
 Once you have completed changes or added new files in your branch, in this case, I have created two new files "NewFile 1.txt" and "NewFile 2.txt", I would like to commit changes.
 
-Git does not automatically add changed files to the snapshot when you create a commit. You must first stage your changes to let Git know which updates you want to add to the next commit. Staging lets you to selectively add files to a commit while excluding changes made in other files.
+Git does not automatically add changed files to the local repository when you create a commit. You must first stage your changes to let Git know which updates you want to add to the next commit. Staging lets you to selectively add files to a commit while excluding changes made in other files.
 
 ### Stage changes
 
-- Stage individual file changes by right-clicking a file in the Change view and selecting Stage. 
-- Staging a change creates a Staged Changes section in Team Explorer. 
-- Only changes in the Staged Changes section are added to the next commit.
+- Stage individual file changes by right-clicking a file in the 'Change' view and selecting 'Stage', it would create a 'Staged Changes' section in Team Explorer. Only changes in the Staged Changes section are added to the next commit.
 
   ![stage](.attachments/git-basics/stage01.png)
 
