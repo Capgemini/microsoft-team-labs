@@ -129,6 +129,8 @@ These steps are:
 
 Throughout the rest of this lab tutorial you'll learn about how to use the above commands.
 
+[(Source: Azure Repos Git tutorial) ](https://docs.microsoft.com/en-gb/azure/devops/repos/git/gitworkflow?view=azure-devops/)
+
 ## Clone an existing repository
 
 ### Visual Studio 2019
