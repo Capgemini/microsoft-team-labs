@@ -150,11 +150,21 @@ You can follow the previous step to clone this new repository to your local and 
 
 ## Create a branch
 
-Open up Team Explorer and go to the Branches view.
+On the menu, click **Git** and go to **Manage Branches**
 
-Right-click the parent branch (usually main) to base your changes and choose New Local Branch From....
+![branch](.attachments/git-basics/branch01.png)
 
-Supply a branch name in the required field and select Create Branch. Visual Studio automatically performs a checkout to the newly created branch.
+Choose the parent branch (usually main or master) to base your changes, right click and choose New Local Branch From....
+
+![branch](.attachments/git-basics/branch02.png)
+
+Supply a branch name in the required field and select Create Branch.
+
+![branch](.attachments/git-basics/branch03.png)
+
+Visual Studio automatically performs a checkout to the newly created branch.
+
+![branch](.attachments/git-basics/branch04.png)
 
 ## Commit changes
 
@@ -164,95 +174,63 @@ Git does not automatically add changed files to the snapshot when you create a c
 
 Stage individual file changes by right-clicking a file in the Change view and selecting Stage. Staging a change creates a Staged Changes section in Team Explorer. Only changes in the Staged Changes section are added to the next commit.
 
+![stage](.attachments/git-basics/stage01.png)
+
 Stage multiple files or folders by selecting them then right-clicking and choosing Stage or by dragging and dropping files from the Changes list into the Staged Changes list.
 
 Ignore files by right-clicking and selecting Ignore this local item or Ignore this extension. This adds an entry to the .gitignore file in your local repo. If the ignored file was added to your repo in an earlier commit, ignoring the file will not remove it from the Changes list. See excluding and ignoring files section for more information on how to ignore files already tracked by Git.
 
 ### Create a commit
 
-Open the Changes view in Team Explorer.
+Open the Git Changes view in Team Explorer.
 
 Enter a commit message describing your changes and select Commit Staged to create a new commit that includes the changes listed in the Staged Changes section.
 
 Skip staging files if you just want to commit all changes listed by entering a commit message and selecting Commit All when you have no staged changes.
 
+![commit](.attachments/git-basics/commit01.png)
+
 ## Push your branch
 
-When you commit in Visual Studio you can **push** the commit and sync the branch with a remote repository. These options are available in the drop-down on the **Commit** button. Git makes sure that pushed changes are consistent with the remote branch. Others can pull your commits and merge them into their own local copy of the branch. 
+When you commit in Visual Studio you can **push** the commit to a remote repository.
 
+![push](.attachments/git-basics/push01.png)
 
-Git makes sure that pushed changes are consistent with the remote branch. Others can pull your commits and merge them into their own local copy of the branch. Pushed branches that have finished work are reviewed and merged into the main branch of your repo through a pull request.
-
-In this tutorial you learn how to:
-
-Share your code with push
-Video overview
-
-
-Share your code with push
-Visual Studio
-Command Line
- Note
-
-If you're using Visual Studio 2019 version 16.8 or later, try the Git version control experience. Learn more about how the Git experience compares with Team Explorer on this Side-by-side comparison page.
-
-In Team Explorer, select Home and then choose Sync to open Synchronization.
-
-Synchronization
-
-You can also go to Synchronization from the Changes view by choosing Sync immediately after making a commit.
-
-Go to Synchronization from the Changes view immediately after making a commit.
-
-Select Push to share your commit with the remote repository.
-
-Push
-
-During your first push to the repository, you'll see the following message in place of the outgoing commits list: The current branch does not track a remote branch. Push your changes to a new branch on the origin remote and set the upstream branch. Select Push to push your changes to a new branch on the remote repository and set the upstream branch. The next time you push changes you'll see the list of commits.
-
-https://docs.microsoft.com/en-gb/azure/devops/repos/git/pushing?view=azure-devops&tabs=visual-studio
+For the subsequent changes that you would like to commit, you can sync the branch with a remote repository. You can do this with the ![sync](.attachments/git-basics/sync.png) button. Git makes sure that pushed changes are consistent with the remote branch. Others can pull your commits and merge them into their own local copy of the branch. 
 
 ## Create a pull request
 
-https://docs.microsoft.com/en-gb/azure/devops/repos/git/pull-requests?view=azure-devops&tabs=browser#create-a-pull-request
+### Create a new PR from the Azure DevOps project website
 
-You can create a new PR from the Azure DevOps project website, from Visual Studio, or from the Azure DevOps CLI.
+You can create PRs for any branch from your project's Pull requests page on the web.
 
-### Visual Studio 2019
+- On the **Repos** > **Pull requests** page, select New pull request at upper right. After you push or update a feature branch, Azure Repos displays a prompt to create a PR.
 
-you can create PRs from Visual Studio Team Explorer:
+![push](.attachments/git-basics/pr01.png)
 
-Connect to your project from Visual Studio.
+Select the branch with the changes and the branch you want to merge the changes into, such as the main branch. Enter your PR details and create the PR.
 
-Select View > Team Explorer to open Team Explorer. You can also press Ctrl+\, Ctrl+M.
-
-From Home, select Pull Requests to view lists of PRs opened by you or assigned to you.
-
-From the Pull Requests view, select New Pull Request.
-
-Screenshot of selecting New Pull Request.
-
-Select the source and target branches, enter a title and optional description, and select Create.
-
-Screenshot of creating a new P R in Visual Studio Team Explorer.
-
-After the PR is created, select Open in browser to open the new PR in the Azure DevOps web portal.
-
-You can also create PRs from the Branches view in Team Explorer by right-clicking the branch name and selecting Create Pull Request.
+![push](.attachments/git-basics/pr02.png)
 
 
 ## Complete your pull request
 
+You can access PRs for any branch from your project's Pull requests page on the web.
+
+![push](.attachments/git-basics/pr04.png)
+
 Once all required reviewers approve your pull request (PR) and the PR meets all branch policy requirements, you can merge your changes into the target branch and complete the PR. Or if you decide not to proceed with the changes in the PR, you can abandon the PR.
 
-You can access PRs from Visual Studio Team Explorer:
+![push](.attachments/git-basics/pr03.png)
 
-Connect to your project from Visual Studio.
+To merge your changes into the target branch, click Complete
 
-Select View > Team Explorer to open Team Explorer. You can also press Ctrl+\, Ctrl+M.
+![push](.attachments/git-basics/pr05.png)
 
-From Home, select Pull Requests to view lists of PRs opened by you or assigned to you.
+Choose **Squash commit** as the Merge Type and click **Complete merge**
 
-To open a PR in the web portal, right-click the PR and select Open in browser.
+![push](.attachments/git-basics/pr06.png)
 
-To complete a PR, open the PR in the browser, and on the Overview page, select Complete or set other options.
+Your changes have now been merged into the target branch
+
+![push](.attachments/git-basics/pr07.png)
