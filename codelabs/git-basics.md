@@ -29,75 +29,56 @@ Attach a tag to a version—for example, to mark a new release.
 
 ### What is Git? 
 
-Git is an open-source version control system and is the most widely used vcs in the tech industry. 
+Git is an open-source version control system and is the most widely used vcs in the tech industry.
 
-There are a number of ways we can interact with Git: 
+There are a number of ways we can interact with Git:
 
-Command Line 
-
-Visual Studio GUI/Visual Studio code GUI 
-
-GitHub desktop app 
-
-Common Git terms: 
-
-Working tree 
-
-Repository 
-
-Branch 
-
-## Git Commands
-
-Intro to Git recap video: Introduction to Git Recap | Learn with Dr G - YouTube 
-
-Introduction to Git - Learn | Microsoft Docs 
-
+-	Command Line
+    - We can directly input commands into the command line within the relevant directory that contains our local repository (definition in next section)
+-	Visual Studio GUI/Visual Studio code GUI
+    - Both versions of visual studio can contain an Git GUI which makes executing Git commands, a lot easier. You will be interacting with this GUi in the exercises to come.
  
 
- 
+## Overview of how Git works
 
-Fundamental Git Commands 
+1.	Create a "repository" (project) with a git hosting tool (like gitHub)
+2.	Copy (or clone) the repository to your local machine
+3.	Add a file to your local repo and "commit" (save) the changes
+4.	"Push" your changes to your main branch
+5.	Make a change to your file with a git hosting tool and commit
+6.	"Pull" the changes to your local machine
+7.	Create a "branch" (version), make a change, commit the change
+8.	Open a "pull request" (propose changes to the main branch)
+9.	"Merge" your branch to the main branch
+- [(source: Learn Git- Git tutorials, workflows and commands | Atlassian Git Tutorial)]()
 
-Git clone 
+Let’s look at some of the terms mentioned in this overview, in abit more detail:
 
-This command allows you get a copy of an existing git repository 
-
-Every file and update from that branch, is pulled into the folder you initiate git clone in 
-
-Git status 
-
-This command gives up the status of the branch you are in e.g. nothing to commit, working tree is clean 
-
-Git Fetch 
-
-The git fetch command downloads commits, files, and refs from a remote repository into your local repo. Fetching is what you do when you want to see what everybody else has been working on. (Git Fetch | Atlassian Git Tutorial) 
-
-It allows you to see the history of the branch without affecting your local work on the branch 
-
-Git add 
-
- 
-
-Git Checkout 
-
-Git checkout is used to switch to a specific branch 
-
-For example, you may create a new branch and switch from master to the newly created branch 
-
-Git Commit 
-
- 
-
-Git Pull 
-
-The git pull command is used to fetch and download content from a remote repository and immediately update the local repository to match that content. 
-
-( Git Pull | Atlassian Git Tutorial) 
-
-Git Push 
-
-The git push command is used to upload local repository content to a remote repository. Pushing is how you transfer commits from your local repository to a remote repo.( Git Push | Atlassian Git Tutorial) 
+### Fundamental Git Commands
+- 	Repository
+    - A folder insider a project which tracks all changes made to files, creating a history overtime.
+- Branch
+    - A branch is a way to add to a project without affecting the main part of a project. You create a branch which allows you to develop in isolation. You may then merge the changes in your branch, into the main part of the project. But as long as your changes are in the branch, they will not affect the main project.
+- Git clone
+    -	This command allows you get a copy of an existing remote repository and create a local version of it, on your computer
+    - Every file and update from that branch(typically master, the main branch), is pulled into the folder you initiate git clone in
+- Git status
+    - This command gives us the status of the branch you are in. when you have made changes it will show how many you have made and to which files.
+- Git Fetch
+    - The git fetch command downloads commits, files, and refs from a remote repository into your local repo. Fetching is what you do when you want to see what everybody else has been working on.
+    - [source: (Git Fetch | Atlassian Git Tutorial)]()
+    - It allows you to see the history of the branch without affecting your local work on the branch
+- Git Commit
+    - This command ‘saves’ a snapshot of your projects state, into the commit history
+- Git Pull
+    - The git pull command is used to fetch and download content from a remote repository and immediately update the local repository to match that content.
+    - [source: ( Git Pull | Atlassian Git Tutorial)]()
+- Git Push
+    - The git push command is used to upload local repository content to a remote repository. Pushing is how you transfer commits from your local repository to a remote repo.
+    - [source: ( Git Push | Atlassian Git Tutorial)]()
+- Git Checkout
+    - Git checkout is used to switch to a specific branch
+    - For example, you may create a new branch and switch from master to the newly created branch
 
 ## Azure Repos Git
 
