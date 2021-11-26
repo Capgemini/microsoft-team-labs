@@ -263,7 +263,7 @@ Below is a GET request example for this
 request and response:
 ![image.png](.attachments/postman-with-power-platform/image19.png)
 
-As it can be seen from response both the contacts related to the record has been retrived.
+As it can be seen from the response both the contacts related to the record has been retrieved.
 
 ### 6- Retrieve records by running a filter criteria
 
@@ -346,7 +346,7 @@ Below is an example to create an account.
 
 ![image.png](.attachments/postman-with-power-platform/image22.png)
 
-As it can be seen from the response, the 204 success is returned which means request has been executed succesfully.
+As it can be seen from the response, the 204 success is returned which means the request has been executed succesfully.
 
 ### 2- Create records with data returned
 
@@ -361,7 +361,7 @@ Below is an example to create an account with data returned.
 
 ![image.png](.attachments/postman-with-power-platform/image23.png)
 
-As it can be seen from the response, the 201 success is returned which means request has been executed succesfully and data returned.
+As it can be seen from the response, the 201 success is returned which means the request has been executed succesfully and data returned.
 
 ### 3- Create related records - Deep Insert
 
