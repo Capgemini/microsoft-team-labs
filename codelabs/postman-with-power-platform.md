@@ -165,7 +165,7 @@ Once you created these in your environment then click on **Save** it should look
 
 There are multiple ways to getting a token in order to connect to Power App instance. First you will need to create a new tab in order to build a request. To do this please follow below:
 
-- Select File > New and from Create New dialog, select **HTTP Request**. This will add a new tab into Request Builder Section . Please make sure you set the environment to the one created in the **Create Environment Step** as shown below.
+- Select File > New and from **Create New** dialog box, select **HTTP Request**. This will add a new tab into Request Builder Section . Please make sure you set the environment to the one created in the **Create Environment Step** as shown below.
 
 ![image.png](.attachments/postman-with-power-platform/image10.png)
 
@@ -191,7 +191,7 @@ To create a token using **Client Credentials** as **Grant Type**:
 
 ## Retrieve Records from Power Platform using Postman
 
-This chapter will cover different ways of retrieving records from Power App instance using Postman. We will mainly use contact, account and custom tables for the exercises in this chapter. GET request is used for retrieving records.
+This chapter will cover different ways of retrieving records from Power App instance using Postman. GET request is used for retrieving records.
 
 [Microsoft Dataverse WebAPI](https://docs.microsoft.com/en-us/powerapps/developer/data-platform/webapi/retrieve-entity-using-web-api) documentation is a really good reference source when building requests.
 
@@ -272,13 +272,16 @@ Below is a GET request example with filter query
 request and response:
 ![image.png](.attachments/postman-with-power-platform/image20.png)
 
-**IMPORTANT TIP** all the retrieve queries above can be executed in a browser too. Make sure you are logged in to a Power Platform instance and then open a new browser and build the query url and hit enter. 
+**IMPORTANT TIP** all the retrieve queries above can be executed in a browser too. To do this please follow below:
 
-i.e. https://organizationname.crm11.dynamics.com/api/data/v9.1/contacts
+- Open a browser session and log into to a Power App instance
+- Open a new browser tab and simply put any of the queries above into the url and hit enter as shown below. i.e. https://organizationname.crm11.dynamics.com/api/data/v9.1/contacts(recordid)
+
+![image.png](.attachments/postman-with-power-platform/image24.png)
 
 ## Create Records in Power Platform using Postman
 
-This chapter will cover creation of records in Power Platform instance using Postman. We will mainly use contact and account tables for the exercises in this chapter. POST request is used for creating records.
+This chapter will cover creation of records in Power Platform instance using Postman. POST request is used for creating records.
 
 [Microsoft Dataverse WebAPI](https://docs.microsoft.com/en-us/powerapps/developer/data-platform/webapi/create-entity-web-api) documentation is a really good reference source when building requests.
 
@@ -326,7 +329,10 @@ To create records using Postman please do below before trying to create any reco
   </tr>
 </table>
 
-![image.png](.attachments/postman-with-power-platform/image21.png)
+![image.png](.attachments/postman-with-power-platform/image21.png) 
+
+
+**IMPORTANT NOTE** Properties that you want to set when creating the record needs to be added to the request body section as a JSON value. This will be shown in the following examples.
 
 ### 1- Basic Create
 
@@ -353,3 +359,98 @@ As it can be seen from the response, the 201 success is returned which means req
 
 ### 3- Create related records - Deep Insert
 
+Related records can be created by defining them as navigation properties and this is known as **deep insert**.
+
+**Create a related record using single-valued navigation property**
+
+Below example is a request to create a contact and defining the code_laptopid(lookup) field navigation property as well. Because we defined the code_laptopid property without id, a laptop record should be created as well.
+
+![image.png](.attachments/postman-with-power-platform/image25.png)
+
+As it can be seen from the response, the 201 success is returned which means both contact and the laptop record have been created.
+
+**Create related records using collection-valued navigation property**
+
+Below example is a request to create a laptop record and multiple contact records related to it by defining the collection-valued navigation property. Collection-valued navigation property is the schema name of the 1:N relationship between laptop and contact tables. This can be found in the Power App Maker Portal.
+Collection-valued navigation property is set as a json array as it can be seen in the example below.
+
+![image.png](.attachments/postman-with-power-platform/image26.png)
+
+As it can be seen from the response, the 201 success is returned which means laptop record and both contact records have been created.
+
+## Update Records in Power Platform using Postman
+
+This chapter will cover update of records in Power Platform instance using Postman. PATCH request is used for updating records.
+
+[Microsoft Dataverse WebAPI](https://docs.microsoft.com/en-us/powerapps/developer/data-platform/webapi/update-delete-entities-using-web-api) documentation is a really good reference source when building requests.
+
+To update records using Postman please do below before trying to update any record.
+- In Request Builder Section, the query type will need to changed to **PATCH**
+- In Request Builder Section, enter **{{webapiurl}}/entitypluralname(recordid)** into query url section
+- Add below key value pairs as shown in the Query Headers
+
+<table>
+  <tr>
+   <td><strong>Key</strong>
+   </td>
+   <td><strong>Value</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>If-None-Match
+   </td>
+   <td>null
+   </td>
+  </tr>
+  <tr>
+   <td>OData-Version
+   </td>
+   <td>4.0
+   </td>
+  </tr>
+  <tr>
+   <td>Content-Type
+   </td>
+   <td>application/json
+   </td>
+  </tr>
+  <tr>
+   <td>Accept
+   </td>
+   <td>application/json
+   </td>
+  </tr>
+  <tr>
+   <td>OData-MaxVersion
+   </td>
+   <td>4.0
+   </td>
+  </tr>
+</table>
+
+![image.png](.attachments/postman-with-power-platform/image21.png)
+
+**IMPORTANT NOTE** Properties that you want to update needs to be added to the request body section as a JSON value. This will be shown in the following examples.
+
+### 1- Basic Update
+
+Below is an example to update an existing account.
+
+![image.png](.attachments/postman-with-power-platform/image27.png)
+
+As it can be seen from the response, the 204 success is returned which means request has been executed succefully.
+
+### 2- Update records with data returned
+
+Data about the updated record can be returned in the same request. To be able to do this please add below to the Headers key value pair.
+
+- key = Prefer
+- value = return=representation
+
+and **$select** query needs to be amended to the end of the url. "organizationurl.crm11.dynamics.com/api/data/v9.1/accounts?$select=field1name,field2name,field3name"
+
+Below is an example to update a contact with data returned.
+
+
+
+As it can be seen from the response, the 201 success is returned which means request has been executed succefully and data returned.
