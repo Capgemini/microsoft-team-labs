@@ -12,12 +12,10 @@ const gulpif = require('gulp-if');
 const htmlmin = require('gulp-htmlmin');
 const merge = require('merge-stream');
 const postcss = require('gulp-html-postcss');
-const rename = require('gulp-rename');
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
 const through = require('through2');
 const useref = require('gulp-useref');
 const vulcanize = require('gulp-vulcanize');
-const watch = require('gulp-watch');
 const webserver = require('gulp-webserver');
 
 // Uglify ES6
@@ -31,15 +29,12 @@ const childprocess = require('child_process');
 const claat = require('./tasks/helpers/claat');
 const del = require('del');
 const fs = require('fs-extra');
-const gcs = require('./tasks/helpers/gcs');
 const glob = require('glob');
 const opts = require('./tasks/helpers/opts');
 const path = require('path');
 const relative = require('./tasks/helpers/document-relative');
-const serveStatic = require('serve-static');
 const spawn = childprocess.spawn;
 const swig = require('swig-templates');
-const url = require('url');
 
 // DEFAULT_GA is the default Google Analytics tracker ID
 const DEFAULT_GA = 'UA-49880327-14';
@@ -58,6 +53,9 @@ const DEFAULT_CATEGORY = 'Default';
 // trailing slash.
 const BASE_URL = args.baseUrl || 'https://example.com';
 const BASE_PATH = BASE_URL === "https://" + path.basename(BASE_URL) ? "" : "/" + path.basename(BASE_URL);
+
+console.log(BASE_URL)
+console.log(BASE_PATH)
 
 // CODELABS_DIR is the directory where the actual codelabs exist on disk.
 // Despite being a constant, this can be overridden with the --codelabs-dir
