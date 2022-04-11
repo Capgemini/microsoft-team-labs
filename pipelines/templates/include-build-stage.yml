@@ -9,7 +9,7 @@ stages:
         variables:
           GOPATH: "$(system.defaultWorkingDirectory)/gopath" # Go workspace path
           GOBIN: "$(GOPATH)/bin/" # Go binaries path
-          GHPAGESURL: "https://capgemini.github.io/microsoft-team-labs"
+          BASEURL: "https://zealous-island-0ee131903.1.azurestaticapps.net/"
 
         steps:
           - task: GoTool@0
@@ -32,7 +32,7 @@ stages:
           - task: CmdLine@2
             displayName: "Build: Site"
             inputs:
-              script: npx gulp dist --codelabs-dir=./codelabs-rendered --source=./codelabs/*.md --base-url $(GHPAGESURL)
+              script: npx gulp dist --codelabs-dir=./codelabs-rendered --source=./codelabs/*.md --base-url $(BASEURL)
                 
           - task: CopyFiles@2
             displayName: "Artifact: Copy Site"
