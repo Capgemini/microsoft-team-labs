@@ -14,7 +14,7 @@
     },
     {
       "route": "/login",
-      "rewrite": "/.auth/login/azureActiveDirectory"
+      "rewrite": "/.auth/login/aad"
     },
   ],
   "auth": {
