@@ -2,20 +2,26 @@
   "routes": [
     {
       "route": "/index.html",
-      "allowedRoles": ["authenticated"]
+      "allowedRoles": [
+        "authenticated"
+      ]
     },
     {
       "route": "/elements/*",
-      "allowedRoles": ["authenticated"]
+      "allowedRoles": [
+        "authenticated"
+      ]
     },
     {
       "route": "/codelabs/*",
-      "allowedRoles": ["authenticated"]
+      "allowedRoles": [
+        "authenticated"
+      ]
     },
     {
       "route": "/login",
       "rewrite": "/.auth/login/aad"
-    }
+    },
   ],
   "auth": {
     "identityProviders": {
