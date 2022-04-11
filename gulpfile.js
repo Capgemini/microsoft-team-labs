@@ -311,7 +311,7 @@ gulp.task('minify', gulp.parallel(
 // appropriate.
 gulp.task('dist', gulp.series(
   'build',
-  'relative-urls',
+  // 'relative-urls',
   'copy',
   'minify',
 ));
