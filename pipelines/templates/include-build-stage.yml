@@ -50,6 +50,14 @@ stages:
               OverWrite: true
 
           - task: CopyFiles@2
+            displayName: "Artifact: Copy staticwebapp.config.json"
+            inputs:
+              SourceFolder: "$(system.defaultWorkingDirectory)"
+              Contents: "staticwebapp.config.json"
+              TargetFolder: "$(Build.ArtifactStagingDirectory)"
+              OverWrite: true
+
+          - task: CopyFiles@2
             displayName: "Artifact: Copy .gitignore"
             inputs:
               SourceFolder: "$(system.defaultWorkingDirectory)"
