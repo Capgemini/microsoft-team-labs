@@ -24,6 +24,10 @@ stages:
               customCommand: "install"
               arguments: "github.com/googlecodelabs/tools/claat@latest"
 
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: '3.6'
+
           - task: Npm@1
             displayName: "Build: Restore NPM"
             inputs:
