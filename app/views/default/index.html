@@ -101,134 +101,164 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </head>
 
 <body id="app" is="body-bind" class="loading fullbleed {% if view.id != 'default' -%}view{%- endif -%}">
-  <paper-header-panel id="main" mode="standard" main>
-    <div id="mainToolbar" class="paper-header">
-      <div class="site-width layout horizontal">
-        <a href="/">
-          <img src="images/logo.png" class="logo-devs" alt="Codelabs Logo">
-        </a>
-        <div id="searchbar">
-          <paper-input-container no-label-float>
-            <paper-icon-button prefix icon="search"></paper-icon-button>
-            <label>Search</label>
-            <input is="iron-input" bind-value="{{searchVal}}" on-keydown="onSearchKeyDown">
-          </paper-input-container>
-        </div>
-      </div>
-    </div>
+    <paper-header-panel id="main" mode="standard" main>
+        <div id="mainToolbar" class="paper-header">
+            <div class="site-width layout horizontal">
 
-    {# Event pages force down attribute. On homepage, it's applied dynamically. #}
-    <header id="banner" {% if view.id !='default' -%}down{%- else %}down$="[[_toBoolean(selectedFilter)]]" {%- endif %}>
-      <div class="site-width">
-        {% if view.id == 'default' %}
-        <h2 class="banner-title">Welcome to Microsoft Labs by Capgemini!</h2>
-        <div class="banner-description" data-filter-selected$="{% raw %}[[_toBoolean(selectedFilter)]]{% endraw %}">
-          <p class="banner-info">
-            The Microsoft Labs provide hands-on coding experience on Microsoft products e.g. Power Apps, Power Platform, Azure DevOps, SpecFlow.
-          </p>
-          {%- else -%}
-          <div class="banner-description">
-            <img id="logo" src="{{view.logoUrl}}" alt="Event logo">
-            <div class="banner-meta">
-              <h3>{{view.title}}</h3>
-              {% if view.description -%}
-              <p>{{view.description}}</p>
-              {%- endif %}
+                <paper-icon-button icon="menu"></paper-icon-button>
+
+                <a href="/">
+                    <img src="images/logo.png" class="logo-devs" alt="Codelabs Logo">
+                </a>
+                <div id="searchbar">
+                    <paper-input-container no-label-float>
+                        <paper-icon-button prefix icon="search"></paper-icon-button>
+                        <label>Search</label>
+                        <input is="iron-input" bind-value="{{searchVal}}" on-keydown="onSearchKeyDown">
+                    </paper-input-container>
+                </div>
             </div>
-            {%- endif %}
-          </div>
         </div>
-    </header>
 
-    <main>
-        <!--<div id="filters" class="site-width layout horizontal center justified">
-            <div id="sortby">
-                <paper-tabs selected="0" noink on-iron-activate="sortBy">
-                    <paper-tab>A-Z</paper-tab>
-                    <paper-tab>Recent</paper-tab>
-                    <paper-tab>Duration</paper-tab>
-                </paper-tabs>
-            </div>
+        {# Event pages force down attribute. On homepage, it's applied dynamically. #}
+        <header id="banner" {% if view.id !='default' -%}down{%- else %}down$="[[_toBoolean(selectedFilter)]]" {%- endif %}>
+            <div class="site-width">
+                {% if view.id == 'default' %}
+                <h2 class="banner-title">Welcome to Microsoft Labs by Capgemini!</h2>
+                <div class="banner-description" data-filter-selected$="{% raw %}[[_toBoolean(selectedFilter)]]{% endraw %}">
+                    <p class="banner-info">
+                        The Microsoft Labs provide hands-on coding experience on Microsoft products e.g. Power Apps, Power Platform, Azure DevOps, SpecFlow.
+                    </p>
+                    {%- else -%}
+                    <div class="banner-description">
+                        <img id="logo" src="{{view.logoUrl}}" alt="Event logo">
+                        <div class="banner-meta">
+                            <h3>{{view.title}}</h3>
+                            {% if view.description -%}
+                            <p>{{view.description}}</p>
+                            {%- endif %}
+                        </div>
+                        {%- endif %}
+                    </div>
+                </div>
+               </div>
+        </header>
 
-            {% if view.id == 'default' && views|length > 1 %}
-            <paper-dropdown-menu label="Choose an event" class="dropdown-filter" no-label-float noink no-animations>
-                <paper-listbox id="eventList" slot="dropdown-content" class="dropdown-content">
-                    {%- for view in views -%}
-                    {%- if view.id != 'default' && !view.hidden -%}
-                    <a href="{{view.url}}/" tabindex="-1">
-                        <paper-item>{{view.title}}</paper-item>
-                    </a>
-                    {%- endif -%}
-                    {%- endfor %}
-                </paper-listbox>
-            </paper-dropdown-menu>
-            {% endif %}
+        <main>
 
-            {%- if showcats -%}
-            <paper-dropdown-menu label="Filter by category" class="dropdown-filter" no-label-float noink no-animations>
-                <paper-listbox id="categorylist" slot="dropdown-content" class="dropdown-content"
-                               on-iron-activate="onCategoryActivate" attr-for-selected="filter">
-                    <paper-item filter=""><i>Clear Filter</i></paper-item>
-                    {% for category in categories -%}
-                    {%- if categoryHasShowableCodelabs(category, codelabs) -%}
-                    <paper-item filter="{{category}}">{{category | capitalize}}</paper-item>
-                    {%- endif -%}
-                    {%- endfor %}
-                </paper-listbox>
-            </paper-dropdown-menu>
-            {%- endif -%}
-        </div>-->
-        
+            <!--<div id="filters" class="site-width layout horizontal center justified">
+                <div id="sortby">
+                    <paper-tabs selected="0" noink on-iron-activate="sortBy">
+                        <paper-tab>A-Z</paper-tab>
+                        <paper-tab>Recent</paper-tab>
+                        <paper-tab>Duration</paper-tab>
+                    </paper-tabs>
+                </div>
 
-        {% for category in categories -%}
-        <div class="site-width">
-            <h4 class="card-sorter-header">{{category | replace('_', ' ', 'g') | title}}</h4>
-        </div>
-        <card-sorter id="cards" class="site-width cards">
+                {% if view.id == 'default' && views|length > 1 %}
+                <paper-dropdown-menu label="Choose an event" class="dropdown-filter" no-label-float noink no-animations>
+                    <paper-listbox id="eventList" slot="dropdown-content" class="dropdown-content">
+                        {%- for view in views -%}
+                        {%- if view.id != 'default' && !view.hidden -%}
+                        <a href="{{view.url}}/" tabindex="-1">
+                            <paper-item>{{view.title}}</paper-item>
+                        </a>
+                        {%- endif -%}
+                        {%- endfor %}
+                    </paper-listbox>
+                </paper-dropdown-menu>
+                {% endif %}
 
-            {% for codelab in codelabs -%}
-
-            {% if codelab.mainCategory == category %}
-
-            {% if codelab.status.indexOf('hidden') === -1 || view.id !== 'default' %}
-            {% set cat = levelledCategory(codelab, view.catLevel) %}
-            <a href="{{codelabUrl(view, codelab)}}" on-tap="navigate"
-               class="codelab-card category-{{categoryClass(codelab, cat.level)}}" data-category="{{codelab.category}}"
-               data-title="{{codelab.title}}" data-duration="{{codelab.duration}}" data-updated="{{codelab.updated}}"
-               data-tags="{{codelab.tags}}" data-pin="{{codelabPin(view, codelab)}}">
-                {%- if codelabPin(view, codelab) -%}
-                <div class="card-pin"></div>
+                {%- if showcats -%}
+                <paper-dropdown-menu label="Filter by category" class="dropdown-filter" no-label-float noink no-animations>
+                    <paper-listbox id="categorylist" slot="dropdown-content" class="dropdown-content"
+                                   on-iron-activate="onCategoryActivate" attr-for-selected="filter">
+                        <paper-item filter=""><i>Clear Filter</i></paper-item>
+                        {% for category in categories -%}
+                        {%- if categoryHasShowableCodelabs(category, codelabs) -%}
+                        <paper-item filter="{{category}}">{{category | capitalize}}</paper-item>
+                        {%- endif -%}
+                        {%- endfor %}
+                    </paper-listbox>
+                </paper-dropdown-menu>
                 {%- endif -%}
-                <div class="description">{{codelab.title}}</div>
-                <div class="summary">{{codelab.summary}}</div>
-                <div class="card-duration">
-                    <span>{%- if codelab.duration -%}{{codelab.duration}} min {%- endif -%}</span>
-                    <span>{%- if codelab.updated -%}Updated {{codePrettyDate(codelab.updated)}}{%- endif -%}</span>
+            </div>-->
+            {% for category in categories -%}
+            <div class="site-width">
+                <h4 id="category_{{category}}" class="card-sorter-header">{{category | replace('_', ' ', 'g') | title}}</h4>
+            </div>
+            <card-sorter id="cards" class="site-width cards">
+
+                {% for codelab in codelabs -%}
+
+                {% if codelab.mainCategory == category %}
+
+                {% if codelab.status.indexOf('hidden') === -1 || view.id !== 'default' %}
+                {% set cat = levelledCategory(codelab, view.catLevel) %}
+                <a href="{{codelabUrl(view, codelab)}}" on-tap="navigate"
+                   class="codelab-card category-{{categoryClass(codelab, cat.level)}}" data-category="{{codelab.category}}"
+                   data-title="{{codelab.title}}" data-duration="{{codelab.duration}}" data-updated="{{codelab.updated}}"
+                   data-tags="{{codelab.tags}}" data-pin="{{codelabPin(view, codelab)}}">
+                    {%- if codelabPin(view, codelab) -%}
+                    <div class="card-pin"></div>
+                    {%- endif -%}
+                    <div class="description">{{codelab.title}}</div>
+                    <div class="summary">{{codelab.summary}}</div>
+                    <div class="card-duration">
+                        <span>{%- if codelab.duration -%}{{codelab.duration}} min {%- endif -%}</span>
+                        <span>{%- if codelab.updated -%}Updated {{codePrettyDate(codelab.updated)}}{%- endif -%}</span>
+                    </div>
+                    <div class="card-footer">
+                        <div class="category-icon {{categoryClass(codelab, cat.level)}}-icon"></div>
+                        <paper-button class="{{categoryClass(codelab, cat.level)}}-bg">Start</paper-button>
+                    </div>
+                </a>
+                {% endif %}
+
+                {% endif %}
+
+                {% endfor %}
+            </card-sorter>
+            {%- endfor %}
+
+            <app-drawer closed>
+                <div id="mainToolbar">
+                    <img src="images/logo.png" class="logo-devs" alt="Codelabs Logo">
                 </div>
-                <div class="card-footer">
-                    <div class="category-icon {{categoryClass(codelab, cat.level)}}-icon"></div>
-                    <paper-button class="{{categoryClass(codelab, cat.level)}}-bg">Start</paper-button>
+
+                <div style="padding: 16px">
+                    <h4>Categories</h4>
+                    <ul>
+                        {% for category in categories -%}
+                        <li>
+                            <a href="#category_{{category}}" onclick="drawer.toggle()">
+                                <h5>{{category | replace('_', ' ', 'g') | title}}</h5>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
                 </div>
-            </a>
-            {% endif %}
+            </app-drawer>
 
-            {% endif %}
+            <div id="loading-placeholder" class="site-width">
+                Loading Codelabs, please wait...
+            </div>
+        </main>
 
-            {% endfor %}
-        </card-sorter>
-        {%- endfor %}
+    </paper-header-panel>
 
-        <div id="loading-placeholder" class="site-width">
-            Loading Codelabs, please wait...
-        </div>
-    </main>
+    <script>
+        var drawer = document.querySelector('app-drawer');
+        document.querySelector('paper-icon-button')
+            .addEventListener('click', function () {
+                drawer.toggle();
+            });
+    </script>
 
-  </paper-header-panel>
-
-  <!-- build:js /scripts/main.js -->
-  <script src="bower_components/url-search-params-polyfill/build/url-search-params.js"></script>
-  <script src="scripts/app.js"></script>
-  <!-- endbuild-->
+    <!-- build:js /scripts/main.js -->
+    <script src="bower_components/url-search-params-polyfill/build/url-search-params.js"></script>
+    <script src="scripts/app.js"></script>
+    <!-- endbuild-->
 </body>
 
 </html>
