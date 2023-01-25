@@ -178,10 +178,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </paper-dropdown-menu>
             {%- endif -%}
         </div>-->
+        
 
         {% for category in categories -%}
         <div class="site-width">
-            <h4 class="card-sorter-header">{{category | capitalize}}</h4>
+            <h4 class="card-sorter-header">{{category | replace('_', ' ', 'g') | title}}</h4>
         </div>
         <card-sorter id="cards" class="site-width cards">
 

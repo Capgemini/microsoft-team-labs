@@ -1,6 +1,6 @@
 id: specflow-reference
 summary: A reference lab containing useful code examples to solve advanced SpecFlow problems.
-categories: Automated Testing, SpecFlow
+categories: Automated_Testing, SpecFlow
 environment: Web
 status: Draft
 authors: Zoe Dawson and Mike Andrews

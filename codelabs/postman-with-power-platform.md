@@ -1,6 +1,6 @@
 id: postman-with-power-platform
 summary: A lab to learn the learn how to use Postman with Power Platform Web API.
-categories: Web API Tools,
+categories: Web_API_Tools,
 environment: Web
 status: Draft
 authors: Ahmet Oztourk
