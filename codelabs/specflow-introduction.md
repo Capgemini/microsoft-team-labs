@@ -1,6 +1,6 @@
 id: specflow-introduction
 summary: A lab to learn the foundations of automated UI testing for Dynamics using Specflow and EasyRepro.
-categories: Automated Testing, SpecFlow
+categories: Automated_Testing, SpecFlow
 environment: Web
 status: Draft
 authors: Zoe Dawson and Matthew Hoy

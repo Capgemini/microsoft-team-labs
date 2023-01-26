@@ -25,7 +25,11 @@ $card-col-height: 200px; // column mode
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin-bottom: $keyline * 3;
+  //margin-bottom: $keyline * 3;
+}
+
+.card-sorter-header {
+    margin: 0px 0px 16px 0px;
 }
 
 .codelab-card {

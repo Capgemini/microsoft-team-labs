@@ -81,6 +81,7 @@ ul, li {
   @include keyline-40();
   padding: 40px 0 48px 0;
   box-shadow: 0px 3px 6px -3px $grey400;
+  margin-bottom: 16px;
 
   &[down] {
     .banner-slider {
@@ -184,10 +185,15 @@ ul, li {
   }
 }
 
+#catagories-drawer-content {
+    padding: 16px;
+}
+
 @media (max-width: $phone-breakpoint-max) {
   #banner {
     padding: $keyline * 2 0;
     line-height: 16px;
+    margin-bottom: 16px;
 
     paper-button {
       display: inline-block;

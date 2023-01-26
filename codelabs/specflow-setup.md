@@ -1,6 +1,6 @@
 id: specflow-setup
 summary: A lab to set up a new automated UI testing project using EasyRepro.
-categories: Automated Testing, SpecFlow
+categories: Automated_Testing, SpecFlow
 environment: Web
 status: Draft
 authors: Zoe Dawson and Matthew Hoy

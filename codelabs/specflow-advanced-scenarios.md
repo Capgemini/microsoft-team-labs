@@ -1,6 +1,6 @@
 id: specflow-advanced-scenarios
 summary: A lab to create more advanced SpecFlow scenarios using custom step bindings.
-categories: Automated Testing, SpecFlow
+categories: Automated_Testing, SpecFlow
 environment: Web
 status: Draft
 authors: Zoe Dawson and Matthew Hoy

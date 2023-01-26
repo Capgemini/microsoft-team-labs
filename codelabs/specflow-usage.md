@@ -1,6 +1,6 @@
 id: specflow-usage
 summary: A lab to create and explore basic scenarios using existing bindings.
-categories: Automated Testing, SpecFlow
+categories: Automated_Testing, SpecFlow
 environment: Web
 status: Draft
 authors: Zoe Dawson and Matthew Hoy
