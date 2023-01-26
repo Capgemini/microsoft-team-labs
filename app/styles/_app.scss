@@ -185,6 +185,10 @@ ul, li {
   }
 }
 
+#catagories-drawer-content {
+    padding: 16px;
+}
+
 @media (max-width: $phone-breakpoint-max) {
   #banner {
     padding: $keyline * 2 0;

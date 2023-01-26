@@ -12,15 +12,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="description" content="{{view.description}}">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="generator" content="{{view.title}}">
-  <meta name="application-name" content="{{view.title}}">
-  <link rel="canonical" href="{{canonicalViewUrl(view)}}" />
-  <link rel="preconnect" href="https://www.google-analytics.com" />
+    <meta charset="utf-8">
+    <meta name="description" content="{{view.description}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="{{view.title}}">
+    <meta name="application-name" content="{{view.title}}">
+    <link rel="canonical" href="{{canonicalViewUrl(view)}}" />
+    <link rel="preconnect" href="https://www.google-analytics.com" />
 
-  <script>
+    <script>
     window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
     ga('create', '{{ga}}', 'auto');
     ga('send', 'pageview');
@@ -28,76 +28,70 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     ga('create', '{{view.ga}}', 'auto', { name: 'view' });
     ga('view.send', 'pageview');
     {% endif %}
-  </script>
-  <script async src='https://www.google-analytics.com/analytics.js'></script>
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
 
-  <title>{{view.title}}</title>
+    <title>{{view.title}}</title>
 
-  <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/main.css">
 
-  {% if view.customStyle %}
-  <link rel="stylesheet" href="{{view.customStyle}}">
-  {%- endif %}
+    {% if view.customStyle %}
+    <link rel="stylesheet" href="{{view.customStyle}}">
+    {%- endif %}
 
-  <link rel="import" href="elements/elements.html">
+    <link rel="import" href="elements/elements.html">
 
-  <style is="custom-style">
-    :root {
-      --paper-tabs-selection-bar-color: currentcolor;
+    <style is="custom-style">
+        :root {
+            --paper-tabs-selection-bar-color: currentcolor;
+            --paper-input-container-underline: {
+                display: none;
+            };
+            --paper-input-container-underline-focus: {
+                display: none;
+            };
+        }
 
-      --paper-input-container-underline: {
-        display: none;
-      }
+        .dropdown-filter {
+            --paper-input-container: {
+                padding: 8px;
+            }
+        }
+    </style>
 
-      ;
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#455a64">
+    <meta name="apple-mobile-web-app-title" content="{{view.title}}">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="194x194" href="images/favicons/favicon-194x194.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/favicons/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" href="images/favicons/safari-pinned-tab.svg" color="#455a64">
+    <meta name="msapplication-TileColor" content="#455a64">
+    <meta name="msapplication-TileImage" content="images/favicons/mstile-144x144.png">
+    <meta name="theme-color" content="#455a64">
 
-      --paper-input-container-underline-focus: {
-        display: none;
-      }
+    <meta name="og:type" property="og:type" content="website" />
+    <meta name="og:title" property="og:title" content="{{view.title}}" />
+    <meta name="og:description" property="og:description" content="{{view.description}}" />
+    <meta name="og:url" property="og:url" content="{{canonicalViewUrl(view)}}" />
+    <meta name="og:site_name" property="og:site_name" content="Codelabs" />
+    <meta name="og:determiner" property="og:determiner" content="the" />
+    <meta name="og:locale" property="og:locale" content="en_US" />
+    <meta name="og:image" property="og:image" content="images/og-image.png" />
+    <meta name="og:image:url" property="og:image:url" content="images/og-image.png" />
+    <meta name="og:image:type" property="og:image:type" content="image/png" />
+    <meta name="og:image:width" property="og:image:width" content="1200" />
+    <meta name="og:image:height" property="og:image:height" content="1200" />
+    <meta name="og:image:alt" property="og:image:alt" content="Codelabs" />
 
-      ;
-    }
-
-    .dropdown-filter {
-      --paper-input-container: {
-        padding: 8px;
-      }
-    }
-  </style>
-
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="#455a64">
-  <meta name="apple-mobile-web-app-title" content="{{view.title}}">
-  <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="images/favicons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="194x194" href="images/favicons/favicon-194x194.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="images/favicons/android-chrome-192x192.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="images/favicons/favicon-16x16.png">
-  <link rel="manifest" href="site.webmanifest">
-  <link rel="mask-icon" href="images/favicons/safari-pinned-tab.svg" color="#455a64">
-  <meta name="msapplication-TileColor" content="#455a64">
-  <meta name="msapplication-TileImage" content="images/favicons/mstile-144x144.png">
-  <meta name="theme-color" content="#455a64">
-
-  <meta name="og:type" property="og:type" content="website" />
-  <meta name="og:title" property="og:title" content="{{view.title}}" />
-  <meta name="og:description" property="og:description" content="{{view.description}}" />
-  <meta name="og:url" property="og:url" content="{{canonicalViewUrl(view)}}" />
-  <meta name="og:site_name" property="og:site_name" content="Codelabs" />
-  <meta name="og:determiner" property="og:determiner" content="the" />
-  <meta name="og:locale" property="og:locale" content="en_US" />
-  <meta name="og:image" property="og:image" content="images/og-image.png" />
-  <meta name="og:image:url" property="og:image:url" content="images/og-image.png" />
-  <meta name="og:image:type" property="og:image:type" content="image/png" />
-  <meta name="og:image:width" property="og:image:width" content="1200" />
-  <meta name="og:image:height" property="og:image:height" content="1200" />
-  <meta name="og:image:alt" property="og:image:alt" content="Codelabs" />
-
-  <meta name="twitter:card" property="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" property="twitter:title" content="{{view.title}}" />
-  <meta name="twitter:description" property="twitter:description" content="{{view.description}}" />
-  <meta name="twitter:image" property="twitter:image" content="images/og-image.png" />
-  <meta name="twitter:url" property="twitter:url" content="{{canonicalViewUrl(view)}}" />
+    <meta name="twitter:card" property="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" property="twitter:title" content="{{view.title}}" />
+    <meta name="twitter:description" property="twitter:description" content="{{view.description}}" />
+    <meta name="twitter:image" property="twitter:image" content="images/og-image.png" />
+    <meta name="twitter:url" property="twitter:url" content="{{canonicalViewUrl(view)}}" />
 </head>
 
 <body id="app" is="body-bind" class="loading fullbleed {% if view.id != 'default' -%}view{%- endif -%}">
@@ -141,49 +135,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         {%- endif %}
                     </div>
                 </div>
-               </div>
+            </div>
         </header>
 
         <main>
-
-            <!--<div id="filters" class="site-width layout horizontal center justified">
-                <div id="sortby">
-                    <paper-tabs selected="0" noink on-iron-activate="sortBy">
-                        <paper-tab>A-Z</paper-tab>
-                        <paper-tab>Recent</paper-tab>
-                        <paper-tab>Duration</paper-tab>
-                    </paper-tabs>
-                </div>
-
-                {% if view.id == 'default' && views|length > 1 %}
-                <paper-dropdown-menu label="Choose an event" class="dropdown-filter" no-label-float noink no-animations>
-                    <paper-listbox id="eventList" slot="dropdown-content" class="dropdown-content">
-                        {%- for view in views -%}
-                        {%- if view.id != 'default' && !view.hidden -%}
-                        <a href="{{view.url}}/" tabindex="-1">
-                            <paper-item>{{view.title}}</paper-item>
-                        </a>
-                        {%- endif -%}
-                        {%- endfor %}
-                    </paper-listbox>
-                </paper-dropdown-menu>
-                {% endif %}
-
-                {%- if showcats -%}
-                <paper-dropdown-menu label="Filter by category" class="dropdown-filter" no-label-float noink no-animations>
-                    <paper-listbox id="categorylist" slot="dropdown-content" class="dropdown-content"
-                                   on-iron-activate="onCategoryActivate" attr-for-selected="filter">
-                        <paper-item filter=""><i>Clear Filter</i></paper-item>
-                        {% for category in categories -%}
-                        {%- if categoryHasShowableCodelabs(category, codelabs) -%}
-                        <paper-item filter="{{category}}">{{category | capitalize}}</paper-item>
-                        {%- endif -%}
-                        {%- endfor %}
-                    </paper-listbox>
-                </paper-dropdown-menu>
-                {%- endif -%}
-            </div>-->
-
             {% for category in categories -%}
             <div class="site-width">
                 <h4 id="category_{{category}}" class="card-sorter-header">{{category | replace('_', ' ', 'g') | title}}</h4>
@@ -228,17 +183,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <paper-icon-button class="categories-drawer-buttons" icon="close"></paper-icon-button>
                 </div>
 
-                <div style="padding: 16px">
+                <div id="catagories-drawer-content">
                     <h4>Categories</h4>
-                    <ul>
+                    <paper-listbox>
                         {% for category in categories -%}
-                        <li>
-                            <a href="#category_{{category}}" onclick="drawer.toggle()">
-                                <h5>{{category | replace('_', ' ', 'g') | title}}</h5>
-                            </a>
-                        </li>
+                        <a href="#category_{{category}}" onclick="drawer.toggle()">
+                            <paper-item>
+                                {{category | replace('_', ' ', 'g') | title}}
+                            </paper-item>
+                        </a>
                         {% endfor %}
-                    </ul>
+                    </paper-listbox>
                 </div>
             </app-drawer>
 
@@ -253,7 +208,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var drawer = document.getElementById('categories-drawer');
         var elements = document.getElementsByClassName('categories-drawer-buttons');
 
-        Array.from(elements).forEach( element => {
+        Array.from(elements).forEach(element => {
             element.addEventListener('click', () => drawer.toggle());
         });
     </script>
