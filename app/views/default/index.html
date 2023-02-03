@@ -165,6 +165,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <span>{%- if codelab.updated -%}Updated {{codePrettyDate(codelab.updated)}}{%- endif -%}</span>
                     </div>
                     <div class="card-footer">
+                        <span>{%- if codelab.tags[0] -%}{{codelab.tags[0] | title}}{%- endif -%}</span>
                         <div class="category-icon {{categoryClass(codelab, cat.level)}}-icon"></div>
                         <paper-button class="{{categoryClass(codelab, cat.level)}}-bg">Start</paper-button>
                     </div>

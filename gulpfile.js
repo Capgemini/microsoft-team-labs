@@ -40,6 +40,7 @@ const serveStatic = require('serve-static');
 const spawn = childprocess.spawn;
 const swig = require('swig-templates');
 const url = require('url');
+const codelabsSkillLevel = require('./helpers/codelabs-skill-level');
 
 // DEFAULT_GA is the default Google Analytics tracker ID
 const DEFAULT_GA = 'UA-49880327-14';
@@ -501,7 +502,7 @@ const collectMetadata = () => {
 
     _allMetadata = {
       categories: Object.keys(categories).sort(),
-      codelabs: codelabs,
+      codelabs: codelabs.sort(codelabsSkillLevel.SortByLevel),
       views: views,
     }
   }

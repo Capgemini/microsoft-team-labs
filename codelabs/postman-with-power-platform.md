@@ -4,6 +4,7 @@ categories: Web_API_Tools,
 environment: Web
 status: Draft
 authors: Ahmet Oztourk
+tags: Introduction
 
 # Using Postman with Power Platform
 
