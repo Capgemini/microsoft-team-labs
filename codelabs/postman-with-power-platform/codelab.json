@@ -3,7 +3,7 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2023-01-26T13:27:04Z",
+  "updated": "2023-02-06T10:52:40Z",
   "id": "postman-with-power-platform",
   "duration": 0,
   "title": "Using Postman with Power Platform",
@@ -17,6 +17,8 @@
   "category": [
     "web_api_tools"
   ],
-  "tags": [],
+  "tags": [
+    "introduction"
+  ],
   "url": "postman-with-power-platform"
 }
