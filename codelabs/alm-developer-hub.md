@@ -4,6 +4,7 @@ categories: ALM
 environment: Web
 status: Draft
 authors: Luke Phillips and Tom Ashworth
+tags: Intermediate
 
 # Install and configure Development Hub
 

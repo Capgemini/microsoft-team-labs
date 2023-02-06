@@ -4,6 +4,7 @@ categories: Automated_Testing, SpecFlow
 environment: Web
 status: Draft
 authors: Zoe Dawson and Matthew Hoy
+tags: Introduction
 
 # Introduction to Automated Testing
 

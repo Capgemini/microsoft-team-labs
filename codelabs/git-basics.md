@@ -4,6 +4,7 @@ categories: Git
 environment: Web
 status: Draft
 authors: Jie Zeng and Hamzah Rahim
+tags: Introduction
 
 # Git Basics
 

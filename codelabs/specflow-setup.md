@@ -4,6 +4,7 @@ categories: Automated_Testing, SpecFlow
 environment: Web
 status: Draft
 authors: Zoe Dawson and Matthew Hoy
+tags: Intermediate
 
 # Installing and Configuring the Capgemini.PowerApps.Bindings
 
