@@ -61,6 +61,11 @@
   }
 }
 
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
 @media (min-width: $tablet-breakpoint-min) {
   #searchbar {
     background-color: $blueGrey600;

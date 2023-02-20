@@ -107,8 +107,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <div id="searchbar">
                     <paper-input-container no-label-float>
                         <paper-icon-button prefix icon="search"></paper-icon-button>
-                        <label>Search</label>
-                        <input is="iron-input" bind-value="{{searchVal}}" on-keydown="onSearchKeyDown">
+                        <input id="searchBarInput" on-input="onSearchKeyDown" placeholder="Search">
                     </paper-input-container>
                 </div>
             </div>
@@ -141,7 +140,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <main>
             {% for category in categories -%}
             <div class="site-width">
-                <h4 id="category_{{category}}" class="card-sorter-header">{{category | replace('_', ' ', 'g') | title}}</h4>
+                <h4 id="category_{{category}}" class="card-sorter-header" data-category="{{category}}">{{category | replace('_', ' ', 'g') | title}}</h4>
             </div>
             <card-sorter id="cards" class="site-width cards">
 
