@@ -202,60 +202,24 @@
     app.onSearchKeyDown = function (e, detail) {
       this.debounce('search', function () {
         let text = document.getElementById("searchBarInput").value;
-        let cards = document.querySelectorAll('.codelab-card');
-        let headings = document.querySelectorAll('.card-sorter-header');
+        let headings = document.querySelectorAll('.card-sorter-header')
 
-        resetCardsAndHeadings(cards, headings);
+        headings.forEach(heading => {
+          let cat = heading.getAttribute("data-category")
+          let cardSorter = document.querySelectorAll(`.cards_${cat}`)[0];
+          cardSorter.filterByText(text);
 
-        if (text.length >= 3) {
-          hideCodelabs(cards, text);
-          cards = document.querySelectorAll('.codelab-card');
-          hideHeadings(headings, getCodelabCategories(cards));
-        } 
-
-      }, 500);
+          if (!cardSorter.children.length) {
+            heading.hidden = true;
+          }
+          else {
+            heading.hidden = false;
+          }
+        });
+      }, 250);
     };
 
     return app;
-  };
-
-  const resetCardsAndHeadings = (cards, headings) => {
-    cards.forEach(card => {
-      card.hidden = false;
-    });
-    headings.forEach(heading => {
-      heading.hidden = false;
-    });
-  };
-
-  const hideCodelabs= (cards, text) => {
-    cards.forEach(card => {
-      if (!card.j.includes(text)) {
-        card.hidden = true;
-      }
-    });
-  };
-
-  const hideHeadings = (headings, cardArray) => {
-    headings.forEach(heading => {
-      if (!cardArray.includes(heading.getAttribute("data-category"))) {
-        heading.hidden = true;
-      }
-      else {
-        heading.hidden = false;
-      }
-    });
-  };
-
-  const getCodelabCategories = (cards) => {
-    let cardArray = [];
-    cards.forEach(card => {
-      if (!card.hidden) {
-        let cat = card.getAttribute("data-category").split(',')[0].toString();
-        cardArray.push(cat);
-      }
-    });
-    return cardArray;
   };
 
   // unregisterServiceWorker removes the service worker. We used to use SW, but

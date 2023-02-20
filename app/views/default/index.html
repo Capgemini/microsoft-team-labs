@@ -142,7 +142,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <div class="site-width">
                 <h4 id="category_{{category}}" class="card-sorter-header" data-category="{{category}}">{{category | replace('_', ' ', 'g') | title}}</h4>
             </div>
-            <card-sorter id="cards" class="site-width cards">
+            <card-sorter id="cards" class="site-width cards_{{category}}">
 
                 {% for codelab in codelabs -%}
 
