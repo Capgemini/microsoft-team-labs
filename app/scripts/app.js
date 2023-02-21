@@ -201,7 +201,21 @@
 
     app.onSearchKeyDown = function (e, detail) {
       this.debounce('search', function () {
-        this.$.cards.filterByText(app.searchVal);
+        let text = document.getElementById("searchBarInput").value;
+        let headings = document.querySelectorAll('.card-sorter-header')
+
+        headings.forEach(heading => {
+          let cat = heading.getAttribute("data-category")
+          let cardSorter = document.querySelectorAll(`.cards_${cat}`)[0];
+          cardSorter.filterByText(text);
+
+          if (!cardSorter.children.length) {
+            heading.hidden = true;
+          }
+          else {
+            heading.hidden = false;
+          }
+        });
       }, 250);
     };
 
