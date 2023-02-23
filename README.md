@@ -86,22 +86,19 @@ stored in `/app/views` directory. Views commonly correspond to events (e.g. NEXT
 2018) or abstract themes (e.g. Windows), but we refer to them generically as
 "views" internally.
 
+Only the default view is currently used in the Microsoft Team Labs application.
+
 #### Add a new view
 To add a new view (e.g. to serve Codelabs for a particular event):
 
 1. Create a new folder in `app/views`, which will be the "view id". As the view
-id will appear in the URL, the name should be sluggified, meaning all lowercase
-with special characters replaced with dashes.
+id will appear in the URL, it should be lowercase with special characters replaced with dashes.
 
-    ```text
-    // General example
+    ```text 
+    // Examples
     My Codelab -> my-codelab
-
-    // Always substitute file extensions, otherwise the browser will get confused
-    Learn underscore.js -> learn-underscore-js
-
-    // Keep other URL-friendly characters when the context warrants
-    Tracking with utm_source -> tracking-with-utm_source
+    Learn underscore.js -> learn-underscore-js 
+    Tracking with utm_source -> tracking-with-utm_source // URL friendly characters can remain
     ```
 
 1. Add a new file named `view.json` inside this folder. Here is a template
@@ -110,57 +107,25 @@ with special characters replaced with dashes.
     ```javascript
     // app/views/my-event/view.json
     {
-      // Required: page and view title.
-      "title": "My Event",
-
-      // Required: Text description of the event. This will appear in the view
-      // landing page.
-      "description": "",
-
-      // Required: list of string tags by which to include codelabs. Tags are
-      // specified in the codelab by the codelab author.
-      "tags": [],
-
-      // Optional: list of string categories by which to include codelabs.
-      // Categories are specified in the codelab by the codelab author.
-      "categories": [],
-
-      // Optional: name of a custom stylesheet to include. See also: point below
-      // about custom styles.
-      "customStyle": "style.css",
-
-      // Optional: list of regular expressions to exclude particular codelabs.
-      "exclude": [],
+      "title": "My Event", // Required: Page and view title.
+      "description": "", // Required: Text description of the event.
+      "tags": [], // Required: List of string tags by which to include codelabs.
+      "categories": [], // Optional: List of string categories by which to include codelabs.
+      "customStyle": "style.css", // Optional: name of a custom stylesheet to include.
+      "exclude": [], // Optional: List of regular expressions to exclude particular codelabs.
+      "catLevel": 0, // Optional: Category level to use for iconography
+      "sort": "mainCategory", // Optional: Method for sorting codelabs.
+      "pins": [], // Optional: List of codelab IDs that should be "pinned" at the start.
+      "ga": "", // Optional: Custom google analytics tracking code. By default, all codelab views are tracked on the main codelab analytics.
+      "hidden": false, // Optional: Include view in list of views on home page. Still accessible via direct URL.
 
       // Optional: URL to a custom logo for the codelab. If provided, this logo
-      // must be placed in app/views/<view-id>/ and referenced as such. For
-      // example, if the event was named "my-event", this logo would exist at
-      // app/views/my-event/my-event-logo.svg.
+      // must be placed in app/views/<view-id>/ and referenced as such.
       //
-      // Where possible, please use SVG logos. When SVG logos are not available,
-      // please size images to be 125px high at 72 DPI.
+      // Use SVG logos, or size images to 125px high at 72 DPI
       //
       // Minify images before uploading using a tool like ImageOptim.
       "logoUrl": "/my-event/my-event-logo.svg",
-
-      // Optional: category level to use for iconography
-      "catLevel": 0,
-
-      // Optional: Method for sorting codelabs.
-      "sort": "mainCategory",
-
-      // Optional: List of codelab IDs that should be "pinned" at the start.
-      // This is useful for "getting started" codelabs or when users should
-      // complete codelabs in a specific order.
-      "pins": [],
-
-      // Optional: custom google analytics tracking code. By default, all
-      // codelab views are tracked on the main codelab analytics.
-      "ga": "",
-
-      // Optional: If true, do not include this view in the list of views on
-      // the home page. It will still be accessible via the direct URL.
-      "hidden": false,
     }
     ```
 
@@ -170,20 +135,17 @@ this file will be included in the HTML, allowing for custom styles.
     This file is not included in the main assets bundle, so there will be a
     performance decrease as the browser needs to load additional styles.
     Furthermore, if the Codelab schema were to change, your custom styles may be
-    broken. Please check with the Codelabs team to see if your style changes
-    make more sense to upstream across all views.
+    broken.
 
 1. (Optional) Add a file named `index.html` inside the view folder. This allows
-you to fully customize the view, but comes at the expense of duplication. Please
-use this sparingly and check with the core team before making drastic changes.
+you to fully customize the view, but comes at the expense of duplication.
 
 1. Execute the `serve` command as described above to see the view.
 
 
 ## Options
 `--base-url` - base URL for serving canonical links. This should always include
-the protocol (http:// or https://) and NOT including a trailing slash. The
-default value is "https://codelabs.developers.google.com".
+the protocol (http:// or https://) and NOT including a trailing slash.
 
 `--codelabs-dir` - absolute or relative path on disk where Codelabs are stored.
 Any filters will be applied to these Codelabs, and then the resulting selection
